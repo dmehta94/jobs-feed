@@ -30,6 +30,17 @@ jobs:
           USAJOBS_API_KEY: ${{ secrets.USAJOBS_API_KEY }}
           USAJOBS_EMAIL: ${{ secrets.USAJOBS_EMAIL }}
         run: python -m collector.collect
+      - name: Email this week's postings
+        if: always()
+        continue-on-error: true
+        env:
+          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
+          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
+          DIGEST_TO: ${{ secrets.DIGEST_TO }}
+          MIN_SALARY: ${{ vars.MIN_SALARY }}
+          EXCLUDE_TERMS: ${{ vars.EXCLUDE_TERMS }}
+          MAX_YEARS: ${{ vars.MAX_YEARS }}
+        run: python -m collector.email_digest
       - name: Commit results
         run: |
           git config user.name "jobs-feed bot"
