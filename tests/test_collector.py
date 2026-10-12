@@ -30,7 +30,9 @@ class FakeSession:
 
     def request(self, method, url, **kwargs):
         if kwargs.get("params"):
-            url = url + "?" + "&".join(f"{k}={v}" for k, v in kwargs["params"].items())
+            params = kwargs["params"]
+            pairs = params.items() if isinstance(params, dict) else params
+            url = url + "?" + "&".join(f"{k}={v}" for k, v in pairs)
         key = f"{method} {url}"
         self.calls.append(key)
         for pattern, body in self.routes.items():
@@ -260,10 +262,70 @@ def test_usajobs_skipped_without_key(monkeypatch):
 
 def test_orgs_csv_is_well_formed():
     orgs = collect.load_orgs()
-    assert len(orgs) >= 60
+    assert len(orgs) >= 80
+    assert any(o["name"] == "Anthropic" for o in orgs)
     names = [o["name"] for o in orgs]
     assert len(names) == len(set(names))
     for o in orgs:
-        assert o["category"] in {"Education", "Research & Policy", "Civic Tech", "Higher Ed", "NYC Government"}
+        assert o["category"] in {"Education", "Research & Policy", "Civic Tech", "Higher Ed", "NYC Government", "AI & Tech"}
         assert o["tier"] in {"1", "2"}
         assert o["careers_url"].startswith("https://")
+
+
+# ---------- discovery ----------
+
+from collector import discovery
+
+
+def test_discovery_mission_filter():
+    keep = discovery.keep
+    base = {"location": "New York, NY", "remote": None, "department": None}
+    assert keep({**base, "org": "Newsela", "title": "Data Analyst", "description": "Help students read."})
+    assert keep({**base, "org": "Ford Foundation", "title": "Research Analyst", "description": ""})
+    assert not keep({**base, "org": "Citadel", "title": "Data Analyst",
+                     "description": "Machine learning for markets. Equity compensation. College degree required."})
+    assert not keep({**base, "org": "Newsela", "title": "Account Executive", "description": "Sell to schools."})
+    assert not keep({**base, "org": "Newsela", "title": "Data Analyst", "location": "Austin, TX",
+                     "description": "Help students read."})
+
+
+def test_themuse_and_remotive_adapters(fake):
+    fake({
+        r"themuse\.com/api/public/jobs": {"page_count": 1, "results": [{
+            "name": "Research Analyst", "company": {"name": "Teaching Matters"},
+            "locations": [{"name": "New York, NY"}], "refs": {"landing_page": "https://muse/1"},
+            "publication_date": "2026-10-10T00:00:00Z", "contents": "<p>Support teachers. $80,000 - $90,000</p>"}]},
+        r"remotive\.com/api/remote-jobs": {"jobs": [
+            {"title": "Data Analyst", "company_name": "Edu Co", "url": "https://rem/1",
+             "candidate_required_location": "USA Only", "publication_date": "2026-10-11", "description": "students",
+             "salary": "$85k - $95k", "job_type": "full_time"},
+            {"title": "Data Analyst", "company_name": "EU Co", "url": "https://rem/2",
+             "candidate_required_location": "Germany", "description": "students"}]},
+    })
+    [muse] = discovery.fetch_themuse()
+    assert muse["org"] == "Teaching Matters" and muse["salary_max"] == 90000
+    rem = discovery.fetch_remotive()
+    assert [j["url"] for j in rem] == ["https://rem/1", "https://rem/1"]  # same feed answers both categories here
+    assert rem[0]["salary_min"] == 85000
+
+
+def test_adzuna_skipped_without_key(monkeypatch):
+    monkeypatch.delenv("ADZUNA_APP_ID", raising=False)
+    assert discovery.fetch_adzuna() is None
+
+
+def test_collect_discovery_skips_known_and_stale(fake, monkeypatch):
+    monkeypatch.setattr(discovery, "SOURCES", [("Fake", lambda: [
+        discovery._job("Zearn", "Data Analyst", "New York, NY", "https://agg/1", posted="2026-10-10",
+                       description="students"),
+        discovery._job("Edu Org", "Research Analyst", "Remote", "https://agg/2", remote=True,
+                       posted="2026-10-10", description="students"),
+        discovery._job("Edu Org", "Data Analyst", "Remote", "https://agg/3", remote=True,
+                       posted="2026-01-01", description="students"),
+    ]), ("Keyless", lambda: None)])
+    known = [{"org": "Zearn", "title": "Data Analyst"}]
+    results = collect.collect_discovery("2026-10-12", {}, known)
+    (h1, jobs), (h2, _) = results
+    assert [j["url"] for j in jobs] == ["https://agg/2"]
+    assert jobs[0]["category"] == "Discovered" and jobs[0]["tier"] == 3
+    assert h2["status"].startswith("skipped")

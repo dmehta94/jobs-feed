@@ -8,6 +8,7 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 
 - **Organization job boards.** The supported platforms are Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Workday, BambooHR, Recruitee, and Breezy. The collector finds an organization's platform by reading its careers page, including one level of linked pages, and remembers it in `data/platforms.json`.
 - **NYC Jobs.** All external city postings come from the [NYC Open Data jobs dataset](https://data.cityofnewyork.us/City-Government/Jobs-NYC-Postings/kpav-sd4t), narrowed to data, research, and analyst titles.
+- **Keyword searches across job aggregators.** These catch employers that aren't in `orgs.csv`. Results must mention education or public-interest work in the employer name, title, or opening of the description. The sources are [The Muse](https://www.themuse.com/developers/api/v2) and [Remotive](https://remotive.com/api-documentation), which need no key, and [Adzuna](https://developer.adzuna.com/), which is optional and needs a free key saved as `ADZUNA_APP_ID` and `ADZUNA_APP_KEY`. These postings are marked `Discovered`.
 - **USAJOBS (optional).** Federal postings in the NYC area or remote. This source needs a free key from [developer.usajobs.gov](https://developer.usajobs.gov/), saved as the repository secrets `USAJOBS_API_KEY` and `USAJOBS_EMAIL`.
 
 ## Output

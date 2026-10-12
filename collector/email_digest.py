@@ -94,6 +94,7 @@ GROUPS = [
     ("Other target organizations", lambda j: j.get("tier") == 2 and j.get("category") != "NYC Government"),
     ("NYC government", lambda j: j.get("category") == "NYC Government"),
     ("Federal", lambda j: j.get("category") == "Federal Government"),
+    ("Found by keyword search", lambda j: j.get("category") == "Discovered"),
 ]
 
 

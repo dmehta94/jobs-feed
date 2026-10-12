@@ -13,12 +13,14 @@ Run from the repo root:  python -m collector.collect
 import csv
 import hashlib
 import json
+import re
 import sys
 import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from . import http
+from . import discovery
 from .government import fetch_nyc, fetch_usajobs
 from .sources import ADAPTERS, detect, fetch_detail, probe
 from .text import extract_salary, location_is_ok, phd_required, title_is_relevant, years_required
@@ -156,6 +158,33 @@ def collect_government(today, seen):
     return results
 
 
+def _norm_key(org, title):
+    return (re.sub(r"[^a-z0-9]", "", (org or "").lower()), re.sub(r"[^a-z0-9]", "", (title or "").lower()))
+
+
+def collect_discovery(today, seen, known_jobs):
+    """Keyword searches across aggregators. Postings already found on an org's own board are skipped."""
+    known = {_norm_key(j["org"], j["title"]) for j in known_jobs}
+    results = []
+    for name, fetch in discovery.SOURCES:
+        try:
+            raw = fetch()
+        except http.FetchError as exc:
+            results.append(({"org": name, "category": "Discovered", "status": f"fetch failed: {exc}"}, []))
+            continue
+        if raw is None:
+            results.append(({"org": name, "category": "Discovered", "status": "skipped (no API key set)"}, []))
+            continue
+        kept = [j for j in raw if discovery.keep(j) and discovery.recent_enough(j)
+                and _norm_key(j["org"], j["title"]) not in known]
+        jobs = [finish(j, org=j["org"], category="Discovered", tier=3, source=name.lower().replace(" ", ""),
+                       today=today, seen=seen) for j in kept]
+        known.update(_norm_key(j["org"], j["title"]) for j in jobs)
+        results.append(({"org": name, "category": "Discovered", "status": "ok", "total": len(raw),
+                         "relevant": len(jobs)}, jobs))
+    return results
+
+
 def main():
     today = date.today().isoformat()
     started = time.time()
@@ -172,6 +201,10 @@ def main():
         jobs.extend(j)
     for h, j in collect_government(today, seen):
         print(f"{h['org'][:45]:45} {'':22} {h['status'][:40]:40} {h.get('relevant', 0):>4}/{h.get('total', 0)}")
+        health.append(h)
+        jobs.extend(j)
+    for h, j in collect_discovery(today, seen, jobs):
+        print(f"{h['org'][:45]:45} {'(search)':22} {h['status'][:40]:40} {h.get('relevant', 0):>4}/{h.get('total', 0)}")
         health.append(h)
         jobs.extend(j)
 
