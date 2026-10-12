@@ -90,3 +90,13 @@ def test_send_uses_gmail_smtp(monkeypatch):
     assert sent["login"] == ("me@example.com", "app-pass")
     assert sent["to"] == ["me@example.com"]
     assert "Subject: Subject" in sent["msg"]
+
+
+def test_exclude_employers_matches_employer_only(monkeypatch):
+    monkeypatch.delenv("MIN_SALARY", raising=False)
+    monkeypatch.delenv("EXCLUDE_TERMS", raising=False)
+    monkeypatch.setenv("EXCLUDE_EMPLOYERS", "OpenAI, Meta")
+    feed = {"jobs": [job(org="OpenAI", title="Education Analyst"),
+                     job(org="Meta Platforms", title="Data Analyst"),
+                     job(org="Newsela", title="Data Analyst", description="Builds on the OpenAI API")]}
+    assert [j["org"] for j in email_digest.select(feed, TODAY)] == ["Newsela"]

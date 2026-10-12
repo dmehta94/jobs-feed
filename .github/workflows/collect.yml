@@ -41,6 +41,7 @@ jobs:
           DIGEST_TO: ${{ secrets.DIGEST_TO }}
           MIN_SALARY: ${{ vars.MIN_SALARY }}
           EXCLUDE_TERMS: ${{ vars.EXCLUDE_TERMS }}
+          EXCLUDE_EMPLOYERS: ${{ vars.EXCLUDE_EMPLOYERS }}
           MAX_YEARS: ${{ vars.MAX_YEARS }}
         run: python -m collector.email_digest
       - name: Commit results
