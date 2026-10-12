@@ -9,7 +9,8 @@ Environment (set as GitHub repository secrets/variables, never committed):
     DIGEST_TO           recipient (defaults to GMAIL_ADDRESS)
     MIN_SALARY          optional: drop postings whose listed top of range is below this
     EXCLUDE_TERMS       optional: comma-separated terms; postings mentioning any are dropped
-    EXCLUDE_EMPLOYERS   optional: comma-separated employer names; matched against the employer only
+    EXCLUDE_EMPLOYERS   optional: comma-separated employer names, matched against the employer only;
+                        prefix a name with ! to exempt it (e.g. "Google, !DeepMind" keeps Google DeepMind)
     MAX_YEARS           optional: drop postings asking for at least this many years (default 5)
 
 Run from the repo root:  python -m collector.email_digest
@@ -42,7 +43,9 @@ def select(feed, today=None):
     min_salary = _env_int("MIN_SALARY")
     max_years = _env_int("MAX_YEARS") or 5
     terms = [t.strip().lower() for t in os.environ.get("EXCLUDE_TERMS", "").split(",") if t.strip()]
-    employers = [t.strip().lower() for t in os.environ.get("EXCLUDE_EMPLOYERS", "").split(",") if t.strip()]
+    names = [t.strip().lower() for t in os.environ.get("EXCLUDE_EMPLOYERS", "").split(",") if t.strip()]
+    employers = [n for n in names if not n.startswith("!")]
+    exempt = [n[1:].strip() for n in names if n.startswith("!")]
     recent = (today - timedelta(days=14)).isoformat()
 
     picked = []
@@ -61,7 +64,8 @@ def select(feed, today=None):
         haystack = " ".join(str(job.get(k) or "") for k in ("org", "title", "description")).lower()
         if any(t in haystack for t in terms):
             continue
-        if any(e in (job.get("org") or "").lower() for e in employers):
+        org = (job.get("org") or "").lower()
+        if any(e in org for e in employers) and not any(x and x in org for x in exempt):
             continue
         picked.append(job)
     picked.sort(key=lambda j: (j.get("tier", 9), j.get("org", ""), j.get("title", "")))

@@ -100,3 +100,11 @@ def test_exclude_employers_matches_employer_only(monkeypatch):
                      job(org="Meta Platforms", title="Data Analyst"),
                      job(org="Newsela", title="Data Analyst", description="Builds on the OpenAI API")]}
     assert [j["org"] for j in email_digest.select(feed, TODAY)] == ["Newsela"]
+
+
+def test_exclude_employers_exemption(monkeypatch):
+    monkeypatch.delenv("MIN_SALARY", raising=False)
+    monkeypatch.delenv("EXCLUDE_TERMS", raising=False)
+    monkeypatch.setenv("EXCLUDE_EMPLOYERS", "Google, !DeepMind")
+    feed = {"jobs": [job(org="Google", title="Data Analyst"), job(org="Google DeepMind", title="Research Analyst")]}
+    assert [j["org"] for j in email_digest.select(feed, TODAY)] == ["Google DeepMind"]

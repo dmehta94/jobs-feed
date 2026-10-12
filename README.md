@@ -27,7 +27,7 @@ The filters only drop postings that are clearly off-target, such as unrelated fi
 After each run, the workflow can email a short list of the week's new postings, grouped by organization tier, with pay, location, and closing dates where known. It sends through Gmail and needs:
 
 - **Secrets** (Settings → Secrets and variables → Actions → Secrets): `GMAIL_ADDRESS` and `GMAIL_APP_PASSWORD`. The app password comes from your Google Account's security settings and requires 2-Step Verification. You can also set `DIGEST_TO` to send to a different address.
-- **Variables** (same page, Variables tab; all optional): `MIN_SALARY` drops postings whose listed top of range is below it, `EXCLUDE_TERMS` drops postings mentioning any of a comma-separated list of terms, `EXCLUDE_EMPLOYERS` drops postings from employers whose name contains any of a comma-separated list, and `MAX_YEARS` drops postings asking for at least that many years of experience (default 5).
+- **Variables** (same page, Variables tab; all optional): `MIN_SALARY` drops postings whose listed top of range is below it, `EXCLUDE_TERMS` drops postings mentioning any of a comma-separated list of terms, `EXCLUDE_EMPLOYERS` drops postings from employers whose name contains any of a comma-separated list (prefix a name with `!` to exempt it, as in `Google, !DeepMind`), and `MAX_YEARS` drops postings asking for at least that many years of experience (default 5).
 
 If the secrets aren't set, the email step is skipped and the collector runs as usual.
 
