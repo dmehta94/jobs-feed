@@ -125,15 +125,43 @@ def years_required(text):
     return min(found) if found else None
 
 
-_PHD = re.compile(r"(ph\.?\s?d|doctorate|doctoral degree)[^.]{0,60}(required|must have)|"
-                  r"(required|must have)[^.]{0,40}(ph\.?\s?d|doctorate|doctoral degree)", re.I)
+_DOCTORATE = re.compile(r"\b(ph\.?\s?d|doctorate|doctoral degree|ed\.?\s?d)\b", re.I)
+_MASTERS = re.compile(r"\b(master'?s|masters|m\.?a\.?|m\.?s\.?|mpp|mpa|mph|msw|m\.?ed|graduate degree|advanced degree)\b", re.I)
+_REQUIRED = re.compile(r"\b(required|requires?|must (have|hold|possess)|minimum|mandatory|necessary)\b", re.I)
+# Signals that the advanced degree is optional: preferred, or a bachelor's path also qualifies.
+_OPTIONAL = re.compile(r"\b(prefer\w*|a plus|plus|desir\w*|ideal\w*|helpful|bonus|not required|"
+                       r"or equivalent|equivalent (experience|combination)|bachelor'?s?|baccalaureate|b\.?a\.?|b\.?s\.?|"
+                       r"undergraduate|in lieu)\b", re.I)
+# Split into clauses at sentence ends, semicolons, line breaks, bullets, and before numbered items,
+# but not right after a list number like "1." (that period belongs to the item that follows).
+_SEGMENTS = re.compile(r"(?<![0-9][.])(?<=[.;!?])\s+|\n+|\s+(?=\d\.\s)|\s[•·]\s")
+
+
+def advanced_degree_required(text):
+    """'PhD' or "Master's" when the text requires that degree with no bachelor's path, else None.
+
+    Works clause by clause. A clause counts when it names an advanced degree, is marked required
+    (in the clause itself or by a short header just before it, like "Minimum qualifications:"),
+    isn't marked optional, and isn't followed by an "or ... bachelor's" alternative.
+    """
+    if not text:
+        return None
+    segs = [seg for seg in _SEGMENTS.split(text) if seg and seg.strip()]
+    found = None
+    for i, seg in enumerate(segs):
+        is_phd = bool(_DOCTORATE.search(seg))
+        if not (is_phd or _MASTERS.search(seg)) or _OPTIONAL.search(seg):
+            continue
+        following = " ".join(segs[i + 1:i + 3])
+        if re.match(r"\s*or\b", following, re.I) and _OPTIONAL.search(following):
+            continue
+        prev = segs[i - 1] if i else ""
+        if _REQUIRED.search(seg) or (_REQUIRED.search(prev) and len(prev) < 80):
+            if is_phd:
+                return "PhD"
+            found = "Master's"
+    return found
 
 
 def phd_required(text):
-    if not text:
-        return False
-    for match in _PHD.finditer(text):
-        context = text[max(0, match.start() - 40):match.end() + 40].lower()
-        if not re.search(r"not required|preferred|or equivalent|master'?s|helpful", context):
-            return True
-    return False
+    return advanced_degree_required(text) == "PhD"

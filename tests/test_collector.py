@@ -6,7 +6,8 @@ from datetime import date
 import pytest
 
 from collector import collect, government, http, sources
-from collector.text import extract_salary, location_is_ok, phd_required, title_is_relevant, years_required
+from collector.text import (advanced_degree_required, extract_salary, location_is_ok, phd_required,
+                            title_is_relevant, years_required)
 
 
 class FakeResponse:
@@ -94,6 +95,26 @@ def test_years_and_phd():
     assert years_required("A strong portfolio") is None
     assert phd_required("PhD required in economics or related field")
     assert not phd_required("PhD preferred but not required")
+
+
+@pytest.mark.parametrize("text,expected", [
+    ("Master's degree required in public policy or a related field.", "Master's"),
+    ("Requires an MPP, MPA, or similar graduate degree.", "Master's"),
+    ("Minimum qualifications: PhD in economics.", "PhD"),
+    ("A doctoral degree is required.", "PhD"),
+    ("Bachelor's degree required; master's degree preferred.", None),
+    ("Master's degree or equivalent experience required.", None),
+    ("Requires a bachelor's degree and 2 years of experience, or a master's degree.", None),
+    ("1. A master's degree from an accredited college; or 2. A baccalaureate degree and two years of experience.", None),
+    ("Bachelor's degree required. Experience with R a plus.", None),
+    ("A master's degree is a plus.", None),
+    ("We value lifelong learners.", None),
+    ("Minimum Qual Requirements: 1. A master's degree from an accredited college; or 2. A baccalaureate degree and two years of experience.", None),
+    ("Minimum Qualifications: 1. A master's degree in statistics. 2. Two years of experience.", "Master's"),
+    ("Qualifications\nMaster's degree in education research required\nStrong SQL", "Master's"),
+])
+def test_advanced_degree_required(text, expected):
+    assert advanced_degree_required(text) == expected
 
 
 # ---------- detection ----------

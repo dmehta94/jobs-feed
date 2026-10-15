@@ -23,7 +23,7 @@ from . import http
 from . import discovery
 from .government import fetch_nyc, fetch_usajobs
 from .sources import ADAPTERS, detect, fetch_detail, probe
-from .text import extract_salary, location_is_ok, phd_required, title_is_relevant, years_required
+from .text import advanced_degree_required, extract_salary, location_is_ok, title_is_relevant, years_required
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -93,7 +93,8 @@ def finish(job, *, org, category, tier, source, today, seen):
         "salary_max": job.get("salary_max"),
         "salary_text": job.get("salary_text"),
         "years_required": years_required(desc),
-        "phd_required": phd_required(desc),
+        "advanced_degree_required": (degree := advanced_degree_required(desc)),  # "PhD", "Master's", or None
+        "phd_required": degree == "PhD",
         "description": desc[:DESCRIPTION_CHARS],
     }
     if job.get("extra"):

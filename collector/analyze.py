@@ -114,6 +114,8 @@ def summarize(jobs):
                 "median": statistics.median(pay) if pay else None,
             },
             "phd_required_pct": round(100 * sum(bool(j.get("phd_required")) for j in group) / len(group)) if group else 0,
+            "advanced_degree_required_pct": round(100 * sum(bool(j.get("advanced_degree_required") or j.get("phd_required"))
+                                                       for j in group) / len(group)) if group else 0,
             "orgs": Counter(j.get("org") for j in group).most_common(8),
         }
 
@@ -139,7 +141,7 @@ def to_markdown(summary, generated_at):
                         f"{y['postings_stating']} state a number)")
         if p["median"] is not None:
             bits.append(f"median top of pay range: ${int(p['median']):,} ({p['postings_stating']} list pay)")
-        bits.append(f"PhD required: {b['phd_required_pct']}%")
+        bits.append(f"master's or PhD required: {b['advanced_degree_required_pct']}% (PhD: {b['phd_required_pct']}%)")
         lines.append("; ".join(bits))
         lines.append("")
         lines.append("| Mentioned | Share |")

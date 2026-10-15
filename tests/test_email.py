@@ -24,6 +24,7 @@ def test_select_applies_filters(monkeypatch):
         job(title="Low pay", salary_min=50000, salary_max=60000),
         job(title="Unknown pay", salary_min=None, salary_max=None),
         job(title="PhD", phd_required=True),
+        job(title="Masters", advanced_degree_required="Master's"),
         job(title="Senior", years_required=7),
         job(title="Charter", description="Join our charter school network"),
     ]}

@@ -55,7 +55,7 @@ def select(feed, today=None):
                 continue
         elif not job.get("new_this_week"):
             continue
-        if job.get("phd_required"):
+        if job.get("advanced_degree_required") or job.get("phd_required"):
             continue
         if job.get("years_required") and job["years_required"] >= max_years:
             continue
