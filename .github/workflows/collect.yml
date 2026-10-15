@@ -32,6 +32,9 @@ jobs:
           ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
           ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
         run: python -m collector.collect
+      - name: Summarize what postings ask for
+        continue-on-error: true
+        run: python -m collector.analyze
       - name: Email this week's postings
         if: always()
         continue-on-error: true

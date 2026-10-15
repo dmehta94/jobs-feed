@@ -19,6 +19,7 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 | `data/health.json` | One row per source: which platform it uses, whether it worked, and how many postings it had |
 | `data/platforms.json` | Detected hiring platforms, reused on later runs |
 | `data/seen.json` | When each posting was first seen, so new postings can be flagged |
+| `data/analysis.md` | What the postings ask for: tools, methods, experience, and pay, overall and by role family |
 
 The filters only drop postings that are clearly off-target, such as unrelated fields, executive titles, or on-site jobs outside the NYC area. Judging fit is left to whoever reads the output.
 

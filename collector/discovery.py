@@ -43,6 +43,16 @@ SEARCH_TERMS = [
     "policy research analyst",
     "nonprofit data analyst",
     "data analyst school district",
+    "institutional effectiveness analyst",
+    "enrollment analyst college",
+    "student success analyst",
+    "assessment specialist",
+    "measurement scientist",
+    "program evaluation associate",
+    "evaluation associate",
+    "research assistant education",
+    "learning engineer",
+    "product analyst education",
 ]
 
 

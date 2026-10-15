@@ -29,7 +29,7 @@ TITLE_INCLUDE = re.compile(
     r"\b(data|research|researcher|analyst|analytics|analysis|statistic\w*|statistician|"
     r"evaluat\w*|efficacy|learning scien\w*|psychometric\w*|assessment|measurement|"
     r"insights?|quantitative|econometric\w*|scientist|curriculum|instructional design\w*|education|"
-    r"policy|impact|evidence|metrics|reporting|survey)\b",
+    r"policy|impact|evidence|metrics|reporting|survey|learning engineer\w*|institutional effectiveness|accountability)\b",
     re.I,
 )
 
