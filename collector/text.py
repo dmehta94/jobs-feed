@@ -60,7 +60,7 @@ def title_is_relevant(title):
 # ---------- location ----------
 
 LOCATION_OK = re.compile(
-    r"(new york|\bnyc\b|\bny\b|brooklyn|queens|manhattan|bronx|staten island|long island city|"
+    r"(new york|\bnyc\b|\bny\b|brooklyn|queens|manhattan|bronx|staten island|long island city|hoboken|jersey city|"
     r"remote|anywhere|virtual|distributed|work from home|telework|"
     r"united states|\busa?\b|u\.s\.|nationwide|multiple locations|various)",
     re.I,

@@ -128,6 +128,9 @@ def collect_org(org, cache, today, seen):
             except http.FetchError:
                 pass
     raw = [j for j in raw if j["title"]]
+    for j in raw:  # many boards flag remote work only in the title, e.g. "Research Analyst (Remote Eligible)"
+        if not j.get("remote") and re.search(r"\bremote\b", j["title"], re.I):
+            j["remote"] = True
     relevant = [j for j in raw if title_is_relevant(j["title"]) and location_is_ok(j["location"], j["remote"])]
     details = 0
     for job in relevant:

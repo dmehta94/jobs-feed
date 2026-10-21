@@ -82,6 +82,7 @@ def test_title_filter(title, expected):
     ("Remote - Europe", True, False),
     ("London, UK; New York, NY", None, True),
     ("Remote (US or Canada)", True, True),
+    ("Hoboken, NJ, United States", None, True),
 ])
 def test_location_filter(loc, remote, expected):
     assert location_is_ok(loc, remote) is expected
