@@ -287,6 +287,11 @@ def fetch_icims(host, max_pages=15):
         pass
     for page in range(max_pages):
         raw = http.get_text(f"https://{host}/jobs/search", params={"ss": 1, "in_iframe": 1, "pr": page})
+        redirect = re.search(r"window\.top\.location\.href\s*=\s*'([^']+)'", raw)
+        if redirect and not found:  # the portal hands off to a Jibe career site
+            target = redirect.group(1).replace("\\/", "/")
+            p = urlparse(target)
+            return fetch_jibe(f"{p.scheme}://{p.netloc}")
         before = len(found)
         for href, jid, slug, label in _ICIMS_JOB.findall(raw):
             title = html_to_text(label) or slug.replace("-", " ").title()
@@ -309,7 +314,14 @@ _JOBVITE_ROW = re.compile(r"""<a href=["'](/[a-z0-9-]+/job/[A-Za-z0-9]+)["'][^>]
 
 
 def fetch_jobvite(token):
-    raw = http.get_text(f"https://jobs.jobvite.com/{token}/jobs")
+    raw = ""
+    for path in ("jobs/viewall", "jobs"):
+        try:
+            raw = http.get_text(f"https://jobs.jobvite.com/{token}/{path}")
+        except http.FetchError:
+            continue
+        if f"/{token}/job/" in raw:
+            break
     jobs, seen = [], set()
     for path, title, rest in _JOBVITE_ROW.findall(raw):
         if path in seen:
@@ -365,6 +377,28 @@ def fetch_greenhouse_html(token):
         title = parts[0] if parts else html_to_text(inner)
         loc = parts[1] if len(parts) > 1 else ""
         jobs.append(_job(title, loc, url, remote=("remote" in loc.lower()) or None, detail=("page", url)))
+    return jobs
+
+
+# ---------- Jibe (iCIMS-hosted career sites) ----------
+
+def fetch_jibe(base, max_pages=20):
+    jobs = []
+    for page in range(1, max_pages + 1):
+        data = http.get_json(f"{base.rstrip('/')}/api/jobs", params={"page": page, "limit": 100,
+                                                                      "sortBy": "posted_date", "descending": "true"})
+        items = data.get("jobs", [])
+        for item in items:
+            d = item.get("data", item)
+            url = d.get("apply_url") or f"{base.rstrip('/')}/jobs/{d.get('slug') or d.get('req_id')}"
+            loc = d.get("full_location") or d.get("location_name") or ", ".join(
+                x for x in [d.get("city"), d.get("state")] if x)
+            desc = html_to_text((d.get("description") or "") + " " + (d.get("qualifications") or ""))
+            jobs.append(_job(d.get("title"), loc, url, remote=("remote" in (loc or "").lower()) or None,
+                             posted=d.get("posted_date") or d.get("create_date"), department=d.get("department"),
+                             description=desc))
+        if len(items) < 100 or len(jobs) >= data.get("totalCount", 0):
+            return jobs
     return jobs
 
 
@@ -432,8 +466,8 @@ def fetch_csod(token):
                 "cultureId": 1, "searchText": "", "cultureName": "en-US", "states": [], "countryCodes": [],
                 "cities": [], "placeID": "", "radius": None, "postingsWithinDays": None,
                 "customFieldCheckboxKeys": [], "customFieldDropdowns": [], "customFieldRadios": []}
-        region = re.search(r'"cloud"\s*:\s*"([a-z0-9]+)"', home)
-        api_host = f"https://{region.group(1)}.api.csod.com" if region else f"https://{corp}.csod.com"
+        cloud = re.search(r'"cloud"\s*:\s*"(https://[^"]+)"', home)
+        api_host = cloud.group(1).rstrip("/") if cloud else "https://us.api.csod.com"
         data = http.post_json(f"{api_host}/rec-job-search/external/jobs", body, headers=headers)
         reqs = (data.get("data") or {}).get("requisitions", [])
         for r in reqs:
@@ -510,6 +544,7 @@ ADAPTERS = {
     "greenhouse_html": fetch_greenhouse_html,
     "links": fetch_links,
     "rippling": fetch_rippling,
+    "jibe": fetch_jibe,
     "ukgready": fetch_ukgready,
     "csod": fetch_csod,
     "site_links": fetch_site_links,

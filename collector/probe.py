@@ -109,6 +109,9 @@ LIST_URLS = {
     "adp": lambda t: [("https://workforcenow.adp.com/mascsr/default/careercenter/public/events/staffing/v1/"
                        f"job-requisitions?cid={t}&lang=en_US&ccId=19000101_000001&locale=en_US&$top=20")],
     "talentbrew": lambda t: [t, t.rstrip("/") + "/search-jobs"],
+    "ukgready": lambda t: [f"https://{t.split('|')[0]}/ta/rest/ui/recruitment/companies/%7C{t.split('|')[1]}/job-requisitions?offset=0&size=20&sort=desc&ein_id=&lang=en-US",
+                           f"https://{t.split('|')[0]}/ta/{t.split('|')[1]}.careers?CareersSearch"],
+    "jibe": lambda t: [t.rstrip('/') + "/api/jobs?page=1&limit=5", t.rstrip('/') + "/jobs"],
     "greenhouse": lambda t: [f"https://job-boards.greenhouse.io/{t}", f"https://job-boards.eu.greenhouse.io/{t}",
                              f"https://boards-api.eu.greenhouse.io/v1/boards/{t}/jobs", f"https://boards.greenhouse.io/{t}"],
 }
