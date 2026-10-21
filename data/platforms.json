@@ -1,0 +1,126 @@
+{
+  "Achievement Network": {
+    "platform": "workable",
+    "token": "stronger-consulting"
+  },
+  "Advocates for Children of NY": {
+    "platform": "greenhouse",
+    "token": "advocatesforchildrenofnewyork"
+  },
+  "American Institutes for Research": {
+    "platform": "greenhouse",
+    "token": "americaninstitutesforresearch"
+  },
+  "Amplify": {
+    "platform": "ashby",
+    "token": "amplify"
+  },
+  "Anthropic": {
+    "platform": "greenhouse",
+    "token": "anthropic"
+  },
+  "Brilliant": {
+    "platform": "lever",
+    "token": "brilliant"
+  },
+  "Chan Zuckerberg Initiative": {
+    "platform": "greenhouse",
+    "token": "chanzuckerberginitiative"
+  },
+  "Code for America": {
+    "platform": "greenhouse",
+    "token": "codeforamerica"
+  },
+  "Code.org": {
+    "platform": "greenhouse",
+    "token": "codeorg"
+  },
+  "College Board": {
+    "platform": "workday",
+    "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers"
+  },
+  "Coursera": {
+    "platform": "greenhouse",
+    "token": "coursera"
+  },
+  "DataKind": {
+    "platform": "greenhouse",
+    "token": "datakindinc"
+  },
+  "DonorsChoose": {
+    "platform": "greenhouse",
+    "token": "donorschoose"
+  },
+  "Duolingo": {
+    "platform": "greenhouse",
+    "token": "duolingo"
+  },
+  "EdReports": {
+    "platform": "greenhouse",
+    "token": "edreports"
+  },
+  "Gates Foundation": {
+    "platform": "workday",
+    "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates"
+  },
+  "Great Minds": {
+    "platform": "recruitee",
+    "token": "greatminds"
+  },
+  "ICF": {
+    "platform": "workday",
+    "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site"
+  },
+  "Khan Academy": {
+    "platform": "greenhouse",
+    "token": "khanacademy"
+  },
+  "Learning Policy Institute": {
+    "platform": "greenhouse",
+    "token": "learningpolicyinstitute"
+  },
+  "Nava PBC": {
+    "platform": "greenhouse",
+    "token": "navapbc"
+  },
+  "New Visions for Public Schools": {
+    "platform": "greenhouse",
+    "token": "centralofficecareers"
+  },
+  "Newsela": {
+    "platform": "greenhouse",
+    "token": "newsela"
+  },
+  "Propel": {
+    "platform": "ashby",
+    "token": "propel"
+  },
+  "Recidiviz": {
+    "platform": "greenhouse",
+    "token": "recidiviz"
+  },
+  "Renaissance Learning": {
+    "platform": "greenhouse",
+    "token": "renaissancelearning-nam"
+  },
+  "Saga Education": {
+    "platform": "greenhouse",
+    "token": "sagaeducation"
+  },
+  "TNTP": {
+    "platform": "workday",
+    "token": "tntp.wd5.myworkdayjobs.com|tntp|TNTP"
+  },
+  "Teaching Lab": {
+    "platform": "greenhouse",
+    "token": "teachinglab"
+  },
+  "Urban Institute": {
+    "platform": "workday",
+    "token": "urban.wd115.myworkdayjobs.com|urban|Urban-Careers"
+  },
+  "Vera Institute of Justice": {
+    "platform": "greenhouse",
+    "token": "verainstituteofjustice"
+  }
+}
