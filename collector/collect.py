@@ -20,7 +20,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 from . import http
-from . import discovery
+from . import discovery, sources_extra
 from .government import fetch_nyc, fetch_usajobs
 from .sources import ADAPTERS, detect, fetch_detail, probe
 from .text import advanced_degree_required, extract_salary, location_is_ok, title_is_relevant, years_required
@@ -118,6 +118,16 @@ def collect_org(org, cache, today, seen):
         health.update(status=f"fetch failed: {exc}", total=0, relevant=0)
         return health, []
     cache[name] = {"platform": platform, "token": token}
+    # Postings found only as links have no title yet; read those pages first.
+    untitled = 0
+    for job in raw:
+        if not job["title"] and job.get("_detail") and job["_detail"][0] == "page" and untitled < MAX_DETAIL_FETCHES_PER_ORG:
+            untitled += 1
+            try:
+                job["title"], job["description"] = sources_extra.page_detail(job["_detail"][1])
+            except http.FetchError:
+                pass
+    raw = [j for j in raw if j["title"]]
     relevant = [j for j in raw if title_is_relevant(j["title"]) and location_is_ok(j["location"], j["remote"])]
     details = 0
     for job in relevant:

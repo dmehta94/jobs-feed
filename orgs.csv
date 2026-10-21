@@ -1,98 +1,98 @@
 name,category,tier,careers_url,ats,token,notes
-Zearn,Education,1,https://about.zearn.org/careers,,,
+Zearn,Education,1,https://about.zearn.org/careers,workable,zearn,
 New Classrooms,Education,1,https://newclassrooms.org/careers/,,,
 New Visions for Public Schools,Education,1,https://www.newvisions.org/pages/careers,,,
 Amplify,Education,1,https://amplify.com/careers/,,,Includes Desmos
-Illustrative Mathematics,Education,1,https://illustrativemathematics.org/careers/,,,
+Illustrative Mathematics,Education,1,https://illustrativemathematics.org/jobs/,,,
 Carnegie Learning,Education,1,https://www.carnegielearning.com/company/careers/,,,
-MDRC,Research & Policy,1,https://www.mdrc.org/work-with-us/careers,,,
-Overdeck Family Foundation,Education,1,https://overdeck.org/careers/,,,
-Research Alliance for NYC Schools (NYU),Research & Policy,1,https://steinhardt.nyu.edu/research-alliance/about/careers,,,
+MDRC,Research & Policy,1,https://www.mdrc.org/about/careers,,,
+Overdeck Family Foundation,Education,1,https://overdeck.org/about/careers/,,,
+Research Alliance for NYC Schools (NYU),Research & Policy,1,https://steinhardt.nyu.edu/research_alliance/careers,,,
 Curriculum Associates,Education,2,https://www.curriculumassociates.com/about/careers,,,i-Ready; research and efficacy teams
 NWEA (HMH),Education,2,https://careers.hmhco.com/,,,
 Khan Academy,Education,2,https://www.khanacademy.org/careers,,,
 Newsela,Education,2,https://newsela.com/about/careers/,,,
 DonorsChoose,Education,2,https://www.donorschoose.org/about/careers,,,NYC-based
-Panorama Education,Education,2,https://www.panoramaed.com/careers,,,
+Panorama Education,Education,2,https://www.panoramaed.com/about/careers,,,
 Quill.org,Education,2,https://www.quill.org/careers,,,NYC-based nonprofit
 Code.org,Education,2,https://code.org/about/jobs,,,
-CommonLit,Education,2,https://www.commonlit.org/en/careers,,,
+CommonLit,Education,2,https://www.commonlit.org/en/careers,pinpoint,commonlit,
 Great Minds,Education,2,https://greatminds.org/careers,,,Eureka Math
 TNTP,Education,2,https://tntp.org/careers/,,,
 Achievement Network,Education,2,https://www.achievementnetwork.org/careers,,,
 Instruction Partners,Education,2,https://instructionpartners.org/careers/,,,
 Teaching Lab,Education,2,https://www.teachinglab.org/careers,,,
 EdReports,Education,2,https://edreports.org/about/careers,,,
-Digital Promise,Education,2,https://digitalpromise.org/careers/,,,Learning sciences research
+Digital Promise,Education,2,https://digitalpromise.org/about/careers/,,,Learning sciences research
 The Learning Agency,Education,2,https://the-learning-agency.com/careers/,,,
 Saga Education,Education,2,https://www.saga.org/careers,,,High-dosage tutoring with research arm
-PowerMyLearning,Education,2,https://powermylearning.org/careers/,,,NYC-based
+PowerMyLearning,Education,2,https://powermylearning.org/about/careers,,,NYC-based
 Duolingo,Education,2,https://careers.duolingo.com/,,,Has a NYC office
 Coursera,Education,2,https://careers.coursera.com/,,,
 Brilliant,Education,2,https://brilliant.org/careers/,,,
 Renaissance Learning,Education,2,https://www.renaissance.com/careers/,,,
-Imagine Learning,Education,2,https://www.imaginelearning.com/en/us/about/careers,,,
-McGraw Hill,Education,2,https://careers.mheducation.com/,,,Efficacy and learning science research
-Pearson,Education,2,https://pearson.jobs/,,,Efficacy research
+Imagine Learning,Education,2,https://www.imaginelearning.com/en/us/about/careers,jobvite,imagine-learning,
+McGraw Hill,Education,2,https://careers.mheducation.com/,icims,careers-mheducation.icims.com,Efficacy and learning science research
+Pearson,Education,2,https://pearson.jobs/,oracle,hccz.fa.em3.oraclecloud.com|CX_2,Efficacy research
 College Board,Education,2,https://careers.collegeboard.org/,,,NYC headquarters; research team
 ETS,Education,2,https://www.ets.org/careers.html,,,Research and psychometrics
-Mathematica,Research & Policy,2,https://www.mathematica.org/career-opportunities,,,Analyst and research assistant tiers only
+Mathematica,Research & Policy,2,https://careers.mathematica.org,talentbrew,https://careers.mathematica.org,Analyst and research assistant tiers only
 American Institutes for Research,Research & Policy,2,https://www.air.org/careers,,,Analyst and research assistant tiers only
 RAND,Research & Policy,2,https://www.rand.org/jobs.html,,,
 Urban Institute,Research & Policy,2,https://www.urban.org/about/careers,,,
-Child Trends,Research & Policy,2,https://www.childtrends.org/careers,,,
-WestEd,Research & Policy,2,https://www.wested.org/careers/,,,Runs Regional Educational Labs
+Child Trends,Research & Policy,2,https://www.childtrends.org/careers/job-openings,adp,70c1bbee-a65c-4b42-bb04-9dcb8a73868a,
+WestEd,Research & Policy,2,https://www.wested.org/work-at-wested/,,,Runs Regional Educational Labs
 SRI Education,Research & Policy,2,https://careers.sri.com/,,,
-Westat,Research & Policy,2,https://www.westat.com/careers,,,
-Abt Global,Research & Policy,2,https://www.abtglobal.com/careers,,,
+Westat,Research & Policy,2,https://www.westat.com/careers/,,,
+Abt Global,Research & Policy,2,https://www.abtglobal.com/careers,oracle,egpy.fa.us2.oraclecloud.com|JoinAbt,
 Education Development Center,Research & Policy,2,https://www.edc.org/careers,,,Runs REL Northeast & Islands
 Education Analytics,Research & Policy,2,https://www.edanalytics.org/careers,,,
 Learning Policy Institute,Research & Policy,2,https://learningpolicyinstitute.org/careers,,,
-The Education Trust,Research & Policy,2,https://edtrust.org/careers/,,,
+The Education Trust,Research & Policy,2,https://edtrust.org/jobs-internships/,,,
 Community College Research Center (TC Columbia),Research & Policy,2,https://ccrc.tc.columbia.edu/about/jobs.html,,,
 Ithaka S+R,Research & Policy,2,https://sr.ithaka.org/about/careers/,,,NYC-based higher ed research
-Brookings Institution,Research & Policy,2,https://www.brookings.edu/careers/,,,Brown Center on Education Policy
-Robin Hood,Research & Policy,2,https://robinhood.org/careers/,,,NYC anti-poverty funder; research and evaluation team
-Citizens' Committee for Children of NY,Research & Policy,2,https://cccnewyork.org/about-us/careers/,,,NYC data and policy research
-Community Service Society of NY,Research & Policy,2,https://www.cssny.org/about/jobs,,,
+Brookings Institution,Research & Policy,2,https://www.brookings.edu/careers/,icims,careers-brookings.icims.com,Brown Center on Education Policy
+Robin Hood,Research & Policy,2,https://robinhood.org/about/careers/,adp,5690b998-5a2d-4792-b2de-97f5fca569c2,NYC anti-poverty funder; research and evaluation team
+Citizens' Committee for Children of NY,Research & Policy,2,https://cccnewyork.org/careers/,,,NYC data and policy research
+Community Service Society of NY,Research & Policy,2,https://www.cssny.org/about/jobs,adp,bfa63131-def5-44e4-b58b-93b120048fdf,
 Advocates for Children of NY,Research & Policy,2,https://www.advocatesforchildren.org/careers,,,
 Vera Institute of Justice,Research & Policy,2,https://www.vera.org/careers,,,NYC-based
-Center for Justice Innovation,Research & Policy,2,https://www.innovatingjustice.org/careers,,,NYC-based research and data roles
-Data & Society,Research & Policy,2,https://datasociety.net/about/careers/,,,NYC-based
-Chalkbeat,Education,2,https://www.chalkbeat.org/pages/careers/,,,Education newsroom; occasional data roles
+Center for Justice Innovation,Research & Policy,2,https://www.innovatingjustice.org/work-with-us/,jazzhr,innovatingjustice,NYC-based research and data roles
+Data & Society,Research & Policy,2,https://datasociety.net/careers-at-data-society/,,,NYC-based
+Chalkbeat,Education,2,https://www.chalkbeat.org/pages/careers/,adp,963627e8-e7cc-484e-be0c-95c248a520de,Education newsroom; occasional data roles
 Recidiviz,Civic Tech,2,https://www.recidiviz.org/careers,,,Three prior ATS rejections; pair with outreach
 Code for America,Civic Tech,2,https://codeforamerica.org/jobs/,,,
 Nava PBC,Civic Tech,2,https://www.navapbc.com/careers,,,
 DataKind,Civic Tech,2,https://www.datakind.org/careers,,,Also volunteer DataCorps projects
 Propel,Civic Tech,2,https://www.propel.app/careers/,,,
-U.S. Digital Response,Civic Tech,2,https://www.usdigitalresponse.org/careers,,,
-Ad Hoc,Civic Tech,2,https://adhoc.team/join/,,,
-Measures for Justice,Civic Tech,2,https://measuresforjustice.org/careers,,,
+U.S. Digital Response,Civic Tech,2,https://www.usdigitalresponse.org/,breezy,us-digital-response,
+Ad Hoc,Civic Tech,2,https://adhoc.team/careers/,,,
+Measures for Justice,Civic Tech,2,https://measuresforjustice.org/who-we-are/careers/,,,
 Anthropic,AI & Tech,2,https://www.anthropic.com/jobs,greenhouse,anthropic,Education and societal impacts teams; NYC office
 Chan Zuckerberg Initiative,Education,2,https://chanzuckerberg.com/careers/,,,Education and learning science
 Gates Foundation,Research & Policy,2,https://www.gatesfoundation.org/about/careers,,,K-12 education program
-Common Sense Media,Education,2,https://www.commonsensemedia.org/about-us/careers,,,
-Carnegie Foundation for the Advancement of Teaching,Research & Policy,2,https://www.carnegiefoundation.org/about-us/careers/,,,
-Arnold Ventures,Research & Policy,2,https://www.arnoldventures.org/careers,,,Evidence-based policy
-Project Evident,Research & Policy,2,https://www.projectevident.org/careers,,,Evidence and evaluation in education
+Common Sense Media,Education,2,https://www.commonsensemedia.org/about-us/were-hiring,,,
+Carnegie Foundation for the Advancement of Teaching,Research & Policy,2,https://www.carnegiefoundation.org/careers/,,,
+Arnold Ventures,Research & Policy,2,https://www.arnoldventures.org/careers,paylocity,17519654-d224-4f10-9a5f-2b7ad3cd5a77,Evidence-based policy
+Project Evident,Research & Policy,2,https://projectevident.org/about/careers/,jazzhr,projectevident,Evidence and evaluation in education
 J-PAL North America,Research & Policy,2,https://www.povertyactionlab.org/careers,,,Research associate roles
-Kiddom,Education,2,https://www.kiddom.co/careers,,,Curriculum platform
+Kiddom,Education,2,https://www.kiddom.co/careers,ashby,kiddom,Curriculum platform
 Ed-Fi Alliance,Education,2,https://www.ed-fi.org/careers/,,,K-12 data standards
 ISTE+ASCD,Education,2,https://iste.org/careers,,,
-Google DeepMind,AI & Tech,2,https://deepmind.google/about/careers/,greenhouse,deepmind,Public-interest science and education roles only; not Gemini or product work
-Cognia,Education,2,https://www.cognia.org/careers/,,,Assessment and accreditation
+Google DeepMind,AI & Tech,2,https://deepmind.google/careers/,greenhouse,deepmind,Public-interest science and education roles only; not Gemini or product work
+Cognia,Education,2,https://www.cognia.org/careers/,adp,ebbb9e9f-4b7c-4d22-9984-b930aaf04fa6,Assessment and accreditation
 Data Recognition Corporation,Education,2,https://www.datarecognitioncorp.com/careers/,,,State testing contractor
 Measurement Incorporated,Education,2,https://www.measurementinc.com/careers,,,Assessment and program evaluation
 Cambium Assessment,Education,2,https://cambiumassessment.com/careers,,,State assessment psychometrics
-HumRRO,Research & Policy,2,https://www.humrro.org/corpsite/careers/,,,Measurement and evaluation research
+HumRRO,Research & Policy,2,https://www.humrro.org/jobs/,,,Measurement and evaluation research
 Metis Associates,Research & Policy,2,https://metisassociates.com/careers/,,,NYC-based program evaluation firm
 Policy Studies Associates,Research & Policy,2,https://www.policystudies.com/careers/,,,Education program evaluation
-Research for Action,Research & Policy,2,https://www.researchforaction.org/careers/,,,Education research nonprofit
+Research for Action,Research & Policy,2,https://www.researchforaction.org/careers/,adp,672697df-5c45-42d2-9198-e958445cada6,Education research nonprofit
 Equal Measure,Research & Policy,2,https://www.equalmeasure.org/careers/,,,Evaluation for philanthropy
-Social Policy Research Associates,Research & Policy,2,https://www.spra.com/careers/,,,Evaluation
+Social Policy Research Associates,Research & Policy,2,https://www.spra.com/careers/,jazzhr,sprajobs,Evaluation
 ICF,Research & Policy,2,https://www.icf.com/careers,,,Education and social program evaluation
-Teachers College Columbia,Higher Ed,2,https://www.tc.columbia.edu/human-resources/careers/,,,Research centers and institutional research
+Teachers College Columbia,Higher Ed,2,https://employment.tc.columbia.edu/,,,Research centers and institutional research
 CUNY Research Foundation,Higher Ed,2,https://www.rfcuny.org/rfwebsite/careers/,,,Grant-funded research staff across CUNY
-CUNY Central Office,Higher Ed,2,https://www.cuny.edu/employment/,,,Institutional research and analytics
-NYU Steinhardt,Higher Ed,2,https://steinhardt.nyu.edu/about/work-steinhardt,,,Research centers
-NYC Public Schools Central Office,Education,1,https://www.schools.nyc.gov/careers/central-office,,,Research and policy offices
+CUNY Central Office,Higher Ed,2,https://www.cuny.edu/about/administration/offices/transformation/careers-across-disciplines/,,,Institutional research and analytics
+NYU,Higher Ed,2,https://uscareers-nyu.icims.com/jobs,icims,uscareers-nyu.icims.com,"All NYU staff roles, including Steinhardt research centers"
+NYC Public Schools Central Office,Education,1,https://www.schools.nyc.gov/careers,,,Research and policy offices

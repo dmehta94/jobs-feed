@@ -67,13 +67,24 @@ LOCATION_OK = re.compile(
 )
 
 
+NON_US = re.compile(
+    r"\b(india|ireland|canada|united kingdom|\buk\b|england|london|germany|france|spain|netherlands|"
+    r"poland|portugal|italy|switzerland|sweden|singapore|japan|china|australia|new zealand|brazil|"
+    r"mexico|argentina|colombia|philippines|kenya|nigeria|south africa|israel|emea|apac|latam|europe|asia|"
+    r"africa|toronto|vancouver|montreal|dublin|berlin|paris|bangalore|bengaluru|new delhi|delhi|mumbai)\b", re.I)
+US_MARKER = re.compile(r"(?i:united states|\busa?\b|u\.s\.|new york|\bnyc\b|\bny\b|nationwide|americas|north america)|"
+                       r"\b[A-Z][a-z]+,\s*[A-Z]{2}\b")
+
+
 def location_is_ok(location, remote=None):
-    """Keep NYC, remote, US-wide, and unspecified locations; drop on-site elsewhere."""
-    if remote:
+    """Keep NYC, remote within the US, US-wide, and unspecified locations; drop on-site elsewhere
+    and remote roles restricted to other countries."""
+    loc = (location or "").strip()
+    if loc and NON_US.search(loc) and not US_MARKER.search(loc):
+        return False
+    if remote or not loc:
         return True
-    if not location or not location.strip():
-        return True
-    return bool(LOCATION_OK.search(location))
+    return bool(LOCATION_OK.search(loc))
 
 
 # ---------- details pulled from descriptions ----------

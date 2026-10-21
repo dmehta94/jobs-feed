@@ -8,7 +8,7 @@ import re
 from datetime import datetime, timezone
 from urllib.parse import urljoin, urlparse
 
-from . import http
+from . import http, sources_extra
 from .text import extract_salary, html_to_text
 
 # ---------- detection ----------
@@ -26,25 +26,19 @@ PATTERNS = [
     ("bamboohr", re.compile(r"([a-z0-9-]+)\.bamboohr\.com")),
     ("recruitee", re.compile(r"([a-z0-9-]+)\.recruitee\.com")),
     ("breezy", re.compile(r"([a-z0-9-]+)\.breezy\.hr")),
-]
+] + sources_extra.PATTERNS
 
 # Platforms we can recognize but not read yet. Reported in health.json so they can be added later.
 UNSUPPORTED = [
-    ("paylocity", re.compile(r"recruiting\.paylocity\.com", re.I)),
     ("ukg", re.compile(r"recruiting\d*\.ultipro\.com|\.ukg\.net", re.I)),
-    ("icims", re.compile(r"\.icims\.com", re.I)),
-    ("adp", re.compile(r"workforcenow\.adp\.com|myjobs\.adp\.com", re.I)),
     ("taleo", re.compile(r"\.taleo\.net", re.I)),
-    ("jazzhr", re.compile(r"applytojob\.com", re.I)),
     ("paycom", re.compile(r"paycomonline\.net", re.I)),
     ("dayforce", re.compile(r"dayforcehcm\.com", re.I)),
     ("successfactors", re.compile(r"successfactors\.com|jobs\.sap\.com", re.I)),
-    ("oracle", re.compile(r"oraclecloud\.com/hcmUI", re.I)),
-    ("jobvite", re.compile(r"jobs\.jobvite\.com", re.I)),
     ("interfolio", re.compile(r"apply\.interfolio\.com", re.I)),
 ]
 
-IGNORED_TOKENS = {"embed", "v1", "js", "api", "jobs", "careers", "www"}
+IGNORED_TOKENS = {"embed", "v1", "js", "api", "jobs", "careers", "www", "app", "cdn", "assets", "static", "help", "support"}
 
 
 def detect_in_html(page):
@@ -55,6 +49,9 @@ def detect_in_html(page):
             if platform == "workday":
                 tenant, wd, site = match.groups()
                 return "workday", f"{tenant}.{wd}.myworkdayjobs.com|{tenant}|{site}"
+            if platform == "oracle":
+                host, site = match.groups()
+                return "oracle", f"{host.lower()}|{site}"
             token = match.group(1).strip(".")
             if token.lower() not in IGNORED_TOKENS:
                 return platform, token
@@ -88,7 +85,7 @@ def candidate_job_pages(page, base_url, limit=6):
 
 def detect(careers_url):
     """Find an org's hiring platform from its careers page, following a few job-ish links.
-    Returns (platform, token, how)."""
+    Falls back to reading postings linked directly from the page. Returns (platform, token, how)."""
     if not careers_url:
         return None, None, "no careers URL"
     page = http.get_text(careers_url)
@@ -96,15 +93,20 @@ def detect(careers_url):
     if platform and not platform.startswith("unsupported"):
         return platform, token, "careers page"
     unsupported = platform
+    pages = [(careers_url, page)]
     for url in candidate_job_pages(page, careers_url):
         try:
             sub = http.get_text(url)
         except http.FetchError:
             continue
+        pages.append((url, sub))
         p2, t2 = detect_in_html(sub)
         if p2 and not p2.startswith("unsupported"):
             return p2, t2, f"linked page {url}"
         unsupported = unsupported or p2
+    for url, raw in pages:
+        if sources_extra.has_job_links(raw):
+            return "links", url, f"posting links on {url}"
     return unsupported, None, "not found on careers page"
 
 
@@ -196,7 +198,12 @@ def _job(title, location, url, *, remote=None, posted=None, department=None,
 
 
 def fetch_greenhouse(token):
-    data = http.get_json(f"https://boards-api.greenhouse.io/v1/boards/{token}/jobs?content=true")
+    try:
+        data = http.get_json(f"https://boards-api.greenhouse.io/v1/boards/{token}/jobs?content=true")
+    except http.FetchError as exc:
+        if "404" not in str(exc):
+            raise
+        return sources_extra.fetch_greenhouse_html(token)  # some boards turn the public API off
     jobs = []
     for j in data.get("jobs", []):
         desc = html_to_text(j.get("content", ""))
@@ -373,6 +380,7 @@ ADAPTERS = {
     "bamboohr": fetch_bamboohr,
     "recruitee": fetch_recruitee,
     "breezy": fetch_breezy,
+    **sources_extra.ADAPTERS,
 }
 
 
@@ -381,6 +389,12 @@ ADAPTERS = {
 def fetch_detail(detail):
     """Return the plain-text description for a job whose list entry had none."""
     platform, args = detail
+    if platform == "page":
+        return sources_extra.page_detail(args)[1]
+    if platform == "adp":
+        return sources_extra.adp_detail(*args)
+    if platform == "oracle":
+        return sources_extra.oracle_detail(*args)
     if platform == "workday":
         base, path = args
         info = http.get_json(f"{base}{path}").get("jobPostingInfo", {})

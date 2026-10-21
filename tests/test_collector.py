@@ -38,6 +38,8 @@ class FakeSession:
         self.calls.append(key)
         for pattern, body in self.routes.items():
             if re.search(pattern, key):
+                if body is None:
+                    return FakeResponse(404, "not found")
                 return FakeResponse(200, body(key, kwargs) if callable(body) else body)
         return FakeResponse(404, "not found")
 
@@ -76,6 +78,10 @@ def test_title_filter(title, expected):
     ("Chicago, IL", True, True),
     ("", None, True),
     ("San Francisco", None, False),
+    ("Flexible / Remote, New Delhi, India", None, False),
+    ("Remote - Europe", True, False),
+    ("London, UK; New York, NY", None, True),
+    ("Remote (US or Canada)", True, True),
 ])
 def test_location_filter(loc, remote, expected):
     assert location_is_ok(loc, remote) is expected
@@ -129,7 +135,7 @@ def test_advanced_degree_required(text, expected):
     ('<a href="https://collegeboard.wd1.myworkdayjobs.com/en-US/Careers/job/x">',
      ("workday", "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers")),
     ('<a href="https://tntp.bamboohr.com/careers">', ("bamboohr", "tntp")),
-    ('<a href="https://recruiting.paylocity.com/recruiting/jobs/All/abc">', ("unsupported:paylocity", None)),
+    ('<a href="https://recruiting.ultipro.com/ABC1000/JobBoard/x">', ("unsupported:ukg", None)),
     ("<p>No jobs right now</p>", (None, None)),
 ])
 def test_detect_in_html(snippet, expected):
@@ -251,10 +257,10 @@ def test_collect_org_filters_caches_and_tracks_first_seen(fake):
 
 
 def test_collect_org_reports_unsupported_platform(fake):
-    fake({r"GET https://mdrc\.example/careers": '<a href="https://recruiting.paylocity.com/x">Jobs</a>'})
+    fake({r"GET https://mdrc\.example/careers": '<a href="https://recruiting.ultipro.com/MDR1000/JobBoard/x">Jobs</a>'})
     org = {"name": "MDRC", "category": "Research & Policy", "tier": "1", "careers_url": "https://mdrc.example/careers"}
     health, jobs = collect.collect_org(org, {}, "2026-10-12", {})
-    assert health["platform"] == "unsupported:paylocity"
+    assert health["platform"] == "unsupported:ukg"
     assert jobs == []
 
 
@@ -350,3 +356,81 @@ def test_collect_discovery_skips_known_and_stale(fake, monkeypatch):
     assert [j["url"] for j in jobs] == ["https://agg/2"]
     assert jobs[0]["category"] == "Discovered" and jobs[0]["tier"] == 3
     assert h2["status"].startswith("skipped")
+
+
+# ---------- platforms added from probe results (fixtures are real captured pages) ----------
+
+import json as _json
+from pathlib import Path as _Path
+from collector import sources_extra
+
+FIX = _Path(__file__).parent / "fixtures"
+
+
+def _links(org):
+    return " ".join(_json.loads((FIX / "ats_links.json").read_text())[org])
+
+
+@pytest.mark.parametrize("org,platform,token_start", [
+    ("Child Trends", "adp", "70c1bbee-a65c-4b42-bb04-9dcb8"),
+    ("Abt Global", "oracle", "egpy.fa.us2.oraclecloud.com|JoinAbt"),
+    ("Pearson", "oracle", "hccz.fa.em3.oraclecloud.com|CX_2"),
+    ("Arnold Ventures", "paylocity", "17519654-d224-4f10-9a5f-2b7ad3cd5a77"),
+    ("McGraw Hill", "icims", "careers-mheducation.icims.com"),
+    ("Imagine Learning", "jobvite", "imagine-learning"),
+    ("CommonLit", "pinpoint", "commonlit"),
+    ("Kiddom", "ashby", "kiddom"),
+    ("Project Evident", "jazzhr", "projectevident"),
+])
+def test_detect_real_platform_links(org, platform, token_start):
+    found, token = sources.detect_in_html(_links(org))
+    assert found == platform and token.startswith(token_start)
+
+
+def test_links_reader_finds_paycom_and_paylocity_postings():
+    assert sources_extra.has_job_links(_links("Common Sense Media"))
+    assert sources_extra.has_job_links(_links("Education Analytics"))
+    jobs = sources_extra.fetch_links("https://x", raw=_links("Common Sense Media"))
+    assert len(jobs) == 5 and all("paycomonline.net" in j["url"] for j in jobs)
+
+
+def test_jazzhr_reader_on_real_page(fake):
+    fake({r"innovatingjustice\.applytojob\.com/apply$": (FIX / "jazzhr_list.html").read_text()})
+    jobs = sources_extra.fetch_jazzhr("innovatingjustice")
+    assert len(jobs) >= 10
+    assert any(j["title"] == "Director, Clinical Practice and Training" for j in jobs)
+    assert all(j["url"].startswith("https://innovatingjustice.applytojob.com/apply/") for j in jobs)
+
+
+def test_pinpoint_reader_on_real_feed(fake):
+    fake({r"commonlit\.pinpointhq\.com/jobs\.rss": (FIX / "pinpoint.rss").read_text()})
+    jobs = sources_extra.fetch_pinpoint("commonlit")
+    assert jobs and jobs[0]["title"] == "Sales Manager" and jobs[0]["description"]
+
+
+def test_adp_reader(fake):
+    fake({r"job-requisitions\?": {"jobRequisitions": [
+        {"itemID": "9201", "requisitionTitle": "Research Analyst", "postDate": "2026-10-01T00:00:00Z",
+         "requisitionLocations": [{"address": {"cityName": "New York", "countrySubdivisionLevel1": {"codeValue": "NY"}}}]}],
+        "meta": {"totalNumber": 1}},
+          r"job-requisitions/9201": {"requisitionDescription": "<p>Bachelor's required. $80,000 - $90,000</p>"}})
+    [job] = sources_extra.fetch_adp("abc")
+    assert job["location"] == "New York, NY" and job["posted"] == "2026-10-01"
+    assert "jobId=9201" in job["url"]
+    assert "80,000" in sources.fetch_detail(job["_detail"])
+
+
+def test_oracle_reader(fake):
+    fake({r"recruitingCEJobRequisitions\?": {"items": [{"requisitionList": [
+        {"Id": "123", "Title": "Data Analyst", "PrimaryLocation": "New York, NY", "PostedDate": "2026-10-02"}]}]}})
+    jobs = sources_extra.fetch_oracle("egpy.fa.us2.oraclecloud.com|CX_3001")
+    assert len(jobs) == 1 and jobs[0]["url"].endswith("/sites/CX_3001/job/123")
+
+
+def test_greenhouse_falls_back_to_board_html(fake):
+    board = ('<a href="https://job-boards.greenhouse.io/deepmind/jobs/7606920?gh_jid=7606920">'
+             '<p class="body">Research Scientist, Education</p><p class="body">London, UK</p></a>')
+    fake({r"boards-api\.greenhouse\.io/v1/boards/deepmind/jobs": None,
+          r"GET https://job-boards\.greenhouse\.io/deepmind$": board})
+    jobs = sources.fetch_greenhouse("deepmind")
+    assert [j["title"] for j in jobs] == ["Research Scientist, Education"]
