@@ -102,6 +102,36 @@ def probe_aggregators():
     print(f"Aggregator rows: {len(rows)}")
 
 
+LIST_URLS = {
+    "icims": lambda t: [f"https://{t}/jobs/search?ss=1&in_iframe=1", f"https://{t}/jobs/search?ss=1"],
+    "jobvite": lambda t: [f"https://jobs.jobvite.com/{t}/jobs", f"https://jobs.jobvite.com/{t}/search"],
+    "jazzhr": lambda t: [f"https://{t}.applytojob.com/apply", f"https://{t}.applytojob.com/apply/jobs"],
+    "adp": lambda t: [("https://workforcenow.adp.com/mascsr/default/careercenter/public/events/staffing/v1/"
+                       f"job-requisitions?cid={t}&lang=en_US&ccId=19000101_000001&locale=en_US&$top=20")],
+    "talentbrew": lambda t: [t, t.rstrip("/") + "/search-jobs"],
+    "greenhouse": lambda t: [f"https://job-boards.greenhouse.io/{t}", f"https://job-boards.eu.greenhouse.io/{t}",
+                             f"https://boards-api.eu.greenhouse.io/v1/boards/{t}/jobs", f"https://boards.greenhouse.io/{t}"],
+}
+_SRC = re.compile(r"""<(?:script|iframe)[^>]+src=["']([^"']+)["']""", re.I)
+
+
+def deep_probe(org):
+    """Save full careers pages (scripts and iframes listed) and raw list-endpoint responses."""
+    out = {"org": org["name"], "pages": []}
+    urls = [org.get("careers_url")]
+    if org.get("ats") in LIST_URLS and org.get("token"):
+        urls += LIST_URLS[org["ats"]](org["token"])
+    for i, url in enumerate(u for u in urls if u):
+        r = try_url(url)
+        raw = r.pop("text")
+        fname = OUT / "deep" / f"{_safe(org['name'])}__{i}.html"
+        fname.parent.mkdir(parents=True, exist_ok=True)
+        fname.write_text(raw[:400_000])
+        out["pages"].append({**r, "file": str(fname.relative_to(ROOT)), "length": len(raw),
+                             "srcs": sorted(set(_SRC.findall(raw)))[:60]})
+    return out
+
+
 def main(names=None):
     health = load_json(ROOT / "data" / "health.json", {}).get("sources", [])
     failing = {h["org"] for h in health if h.get("status") != "ok"}
@@ -120,5 +150,18 @@ def main(names=None):
     return 0
 
 
+def main_deep(names):
+    orgs = [o for o in load_orgs() if o["name"] in names]
+    results = [deep_probe(o) for o in orgs]
+    OUT.mkdir(exist_ok=True)
+    (OUT / "deep.json").write_text(json.dumps(results, indent=2) + "\n")
+    for r in results:
+        print(r["org"], [(p["status"], p["length"]) for p in r["pages"]])
+    return 0
+
+
 if __name__ == "__main__":
-    sys.exit(main(sys.argv[1:] or None))
+    args = sys.argv[1:]
+    if args and args[0] == "--deep":
+        sys.exit(main_deep(args[1:]))
+    sys.exit(main(args or None))

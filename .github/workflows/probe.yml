@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       orgs:
-        description: "Org names to probe, separated by |  (blank = every source that failed last run)"
+        description: "Org names to probe, separated by |  (blank = every source that failed last run). Start with --deep| to save full pages."
         required: false
         default: ""
 
