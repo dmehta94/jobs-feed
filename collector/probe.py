@@ -160,8 +160,31 @@ def main_deep(names):
     return 0
 
 
+def main_test(names):
+    """Run the real collection for a few orgs and record counts, samples, and errors."""
+    import traceback
+    from .collect import collect_org
+    orgs = [o for o in load_orgs() if o["name"] in names]
+    results = []
+    for org in orgs:
+        try:
+            health, jobs = collect_org(org, {}, "2026-01-01", {})
+            res = {"org": org["name"], **{k: health.get(k) for k in ("platform", "token", "found_by", "status", "total", "relevant")},
+                   "samples": [{"title": j["title"], "location": j["location"], "url": j["url"],
+                                "desc_len": len(j["description"] or "")} for j in jobs[:5]]}
+        except Exception as exc:  # report, don't stop
+            res = {"org": org["name"], "error": f"{type(exc).__name__}: {exc}", "trace": traceback.format_exc()[-1500:]}
+        results.append(res)
+        print(json.dumps({k: v for k, v in res.items() if k != "trace"})[:400])
+    OUT.mkdir(exist_ok=True)
+    (OUT / "test.json").write_text(json.dumps(results, indent=2) + "\n")
+    return 0
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
     if args and args[0] == "--deep":
         sys.exit(main_deep(args[1:]))
+    if args and args[0] == "--test":
+        sys.exit(main_test(args[1:]))
     sys.exit(main(args or None))

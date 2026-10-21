@@ -3,11 +3,11 @@ Zearn,Education,1,https://about.zearn.org/careers,workable,zearn,
 New Classrooms,Education,1,https://newclassrooms.org/careers/,,,
 New Visions for Public Schools,Education,1,https://www.newvisions.org/pages/careers,,,
 Amplify,Education,1,https://amplify.com/careers/,,,Includes Desmos
-Illustrative Mathematics,Education,1,https://illustrativemathematics.org/jobs/,,,
+Illustrative Mathematics,Education,1,https://illustrativemathematics.org/jobs/,jazzhr,illustrativemathematics,
 Carnegie Learning,Education,1,https://www.carnegielearning.com/company/careers/,,,
-MDRC,Research & Policy,1,https://www.mdrc.org/about/careers,,,
+MDRC,Research & Policy,1,https://www.mdrc.org/about/careers,ukgready,secure6.saashr.com|6162152,
 Overdeck Family Foundation,Education,1,https://overdeck.org/about/careers/,,,
-Research Alliance for NYC Schools (NYU),Research & Policy,1,https://steinhardt.nyu.edu/research_alliance/careers,,,
+Research Alliance for NYC Schools (NYU),Research & Policy,1,https://steinhardt.nyu.edu/research-alliance/about-research-alliance-new-york-city-schools/careers,,,
 Curriculum Associates,Education,2,https://www.curriculumassociates.com/about/careers,,,i-Ready; research and efficacy teams
 NWEA (HMH),Education,2,https://careers.hmhco.com/,,,
 Khan Academy,Education,2,https://www.khanacademy.org/careers,,,
@@ -23,7 +23,7 @@ Achievement Network,Education,2,https://www.achievementnetwork.org/careers,,,
 Instruction Partners,Education,2,https://instructionpartners.org/careers/,,,
 Teaching Lab,Education,2,https://www.teachinglab.org/careers,,,
 EdReports,Education,2,https://edreports.org/about/careers,,,
-Digital Promise,Education,2,https://digitalpromise.org/about/careers/,,,Learning sciences research
+Digital Promise,Education,2,https://digitalpromise.org/about/careers/,rippling,digital-promise,Learning sciences research
 The Learning Agency,Education,2,https://the-learning-agency.com/careers/,,,
 Saga Education,Education,2,https://www.saga.org/careers,,,High-dosage tutoring with research arm
 PowerMyLearning,Education,2,https://powermylearning.org/about/careers,,,NYC-based
@@ -36,19 +36,19 @@ McGraw Hill,Education,2,https://careers.mheducation.com/,icims,careers-mheducati
 Pearson,Education,2,https://pearson.jobs/,oracle,hccz.fa.em3.oraclecloud.com|CX_2,Efficacy research
 College Board,Education,2,https://careers.collegeboard.org/,,,NYC headquarters; research team
 ETS,Education,2,https://www.ets.org/careers.html,,,Research and psychometrics
-Mathematica,Research & Policy,2,https://careers.mathematica.org,talentbrew,https://careers.mathematica.org,Analyst and research assistant tiers only
+Mathematica,Research & Policy,2,https://careers.mathematica.org,csod,mathematica|4,Analyst and research assistant tiers only
 American Institutes for Research,Research & Policy,2,https://www.air.org/careers,,,Analyst and research assistant tiers only
 RAND,Research & Policy,2,https://www.rand.org/jobs.html,,,
 Urban Institute,Research & Policy,2,https://www.urban.org/about/careers,,,
 Child Trends,Research & Policy,2,https://www.childtrends.org/careers/job-openings,adp,70c1bbee-a65c-4b42-bb04-9dcb8a73868a,
-WestEd,Research & Policy,2,https://www.wested.org/work-at-wested/,,,Runs Regional Educational Labs
+WestEd,Research & Policy,2,https://careers.wested.org/,,,Runs Regional Educational Labs
 SRI Education,Research & Policy,2,https://careers.sri.com/,,,
 Westat,Research & Policy,2,https://www.westat.com/careers/,,,
 Abt Global,Research & Policy,2,https://www.abtglobal.com/careers,oracle,egpy.fa.us2.oraclecloud.com|JoinAbt,
 Education Development Center,Research & Policy,2,https://www.edc.org/careers,,,Runs REL Northeast & Islands
 Education Analytics,Research & Policy,2,https://www.edanalytics.org/careers,,,
 Learning Policy Institute,Research & Policy,2,https://learningpolicyinstitute.org/careers,,,
-The Education Trust,Research & Policy,2,https://edtrust.org/jobs-internships/,,,
+The Education Trust,Research & Policy,2,https://edtrust.org/jobs-internships/,adp,9e2312b5-b5bd-498a-975d-1e1c12aead82|9200770504427_3,
 Community College Research Center (TC Columbia),Research & Policy,2,https://ccrc.tc.columbia.edu/about/jobs.html,,,
 Ithaka S+R,Research & Policy,2,https://sr.ithaka.org/about/careers/,,,NYC-based higher ed research
 Brookings Institution,Research & Policy,2,https://www.brookings.edu/careers/,icims,careers-brookings.icims.com,Brown Center on Education Policy
@@ -82,7 +82,7 @@ ISTE+ASCD,Education,2,https://iste.org/careers,,,
 Google DeepMind,AI & Tech,2,https://deepmind.google/careers/,greenhouse,deepmind,Public-interest science and education roles only; not Gemini or product work
 Cognia,Education,2,https://www.cognia.org/careers/,adp,ebbb9e9f-4b7c-4d22-9984-b930aaf04fa6,Assessment and accreditation
 Data Recognition Corporation,Education,2,https://www.datarecognitioncorp.com/careers/,,,State testing contractor
-Measurement Incorporated,Education,2,https://www.measurementinc.com/careers,,,Assessment and program evaluation
+Measurement Incorporated,Education,2,https://www.measurementinc.com/careers/,site_links,https://www.measurementinc.com/careers/,Assessment and program evaluation
 Cambium Assessment,Education,2,https://cambiumassessment.com/careers,,,State assessment psychometrics
 HumRRO,Research & Policy,2,https://www.humrro.org/jobs/,,,Measurement and evaluation research
 Metis Associates,Research & Policy,2,https://metisassociates.com/careers/,,,NYC-based program evaluation firm

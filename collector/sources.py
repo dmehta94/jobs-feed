@@ -52,6 +52,8 @@ def detect_in_html(page):
             if platform == "oracle":
                 host, site = match.groups()
                 return "oracle", f"{host.lower()}|{site}"
+            if platform in sources_extra.MULTI_GROUP and len(match.groups()) > 1:
+                return platform, "|".join(g for g in match.groups() if g)
             token = match.group(1).strip(".")
             if token.lower() not in IGNORED_TOKENS:
                 return platform, token
@@ -156,9 +158,15 @@ def probe(name, careers_url):
         try:
             info = http.get_json(f"https://boards-api.greenhouse.io/v1/boards/{slug}", retries=0)
         except http.FetchError:
-            continue
-        if names_match(name, info.get("name", "")):
+            info = None
+        if info and names_match(name, info.get("name", "")):
             return "greenhouse", slug
+        try:  # Workable's widget endpoint reports the account name, so it can be checked the same way
+            info = http.get_json(f"https://apply.workable.com/api/v1/widget/accounts/{slug}", retries=0)
+        except http.FetchError:
+            info = None
+        if info and names_match(name, info.get("name", "")):
+            return "workable", slug
     return None, None
 
 

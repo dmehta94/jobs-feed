@@ -20,6 +20,11 @@ from .text import extract_salary, html_to_text
 # ---------- detection (supported platforms; checked before the generic patterns' unsupported list) ----------
 
 PATTERNS = [
+    ("adp", re.compile(r"""recruitment-current-openings[^>]*cid=["']([0-9a-f-]{36})["'][^>]*ccid=["']([^"']+)["']""", re.I)),
+    ("jazzhr", re.compile(r"app\.jazz\.co/widgets/basic/create/([a-z0-9-]+)", re.I)),
+    ("rippling", re.compile(r"ats\.rippling\.com(?:/|&#x2F;)([a-z0-9-]+)(?:/|&#x2F;)jobs", re.I)),
+    ("ukgready", re.compile(r"(secure\d*\.saashr\.com)/ta/(\d+)\.careers", re.I)),
+    ("csod", re.compile(r"([a-z0-9-]+)\.csod\.com/ux/ats/careersite/(\d+)", re.I)),
     ("adp", re.compile(r"workforcenow\.adp\.com/[^\"'\s<>]*?[?&](?:amp;)?cid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})", re.I)),
     ("oracle", re.compile(r"([a-z0-9]+\.fa\.[a-z0-9]+\.oraclecloud\.com)(?::443)?/hcmUI/CandidateExperience/[a-z]{2}(?:-[A-Z]{2})?/sites/([A-Za-z0-9_]+)", re.I)),
     ("paylocity", re.compile(r"recruiting\.paylocity\.com/recruiting/(?:jobs/All|PublicLeads/New)/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})", re.I)),
@@ -28,6 +33,8 @@ PATTERNS = [
     ("icims", re.compile(r"((?:careers|uscareers|jobs)-[a-z0-9-]+\.icims\.com)", re.I)),
     ("jobvite", re.compile(r"jobs\.jobvite\.com/([a-z0-9-]+)", re.I)),
 ]
+
+MULTI_GROUP = {"adp", "ukgready", "csod"}  # platforms whose token joins several captured groups with "|"
 
 # Links that point straight at one posting, on platforms we otherwise can't list.
 JOB_LINK = re.compile(
@@ -83,15 +90,17 @@ def page_title(raw):
 ADP_BASE = "https://workforcenow.adp.com/mascsr/default/careercenter/public/events/staffing/v1/job-requisitions"
 
 
-def _adp_params(cid, **extra):
-    return {"cid": cid, "timeStamp": int(time.time() * 1000), "lang": "en_US", "ccId": "19000101_000001",
+def _adp_params(cid, ccid="19000101_000001", **extra):
+    return {"cid": cid, "timeStamp": int(time.time() * 1000), "lang": "en_US", "ccId": ccid,
             "locale": "en_US", **extra}
 
 
-def fetch_adp(cid):
+def fetch_adp(token):
+    cid, _, ccid = token.partition("|")
+    ccid = ccid or "19000101_000001"
     jobs, skip = [], 0
     while skip < 1000:
-        data = http.get_json(ADP_BASE, params=_adp_params(cid, **{"$top": 50, "$skip": skip}))
+        data = http.get_json(ADP_BASE, params=_adp_params(cid, ccid, **{"$top": 50, "$skip": skip}))
         reqs = data.get("jobRequisitions", [])
         for r in reqs:
             item = r.get("itemID")
@@ -104,10 +113,10 @@ def fetch_adp(cid):
                 locs.append(", ".join(x for x in [city, state] if x) or name or "")
             loc_text = "; ".join(x for x in locs if x)
             url = (f"https://workforcenow.adp.com/mascsr/default/mdf/recruitment/recruitment.html?cid={cid}"
-                   f"&ccId=19000101_000001&jobId={item}&lang=en_US")
+                   f"&ccId={ccid}&jobId={item}&lang=en_US")
             jobs.append(_job(r.get("requisitionTitle"), loc_text, url,
                              remote=("remote" in loc_text.lower()) or None, posted=r.get("postDate"),
-                             detail=("adp", (cid, item))))
+                             detail=("adp", (cid, item, ccid))))
         total = (data.get("meta") or {}).get("totalNumber", 0)
         skip += 50
         if not reqs or skip >= total:
@@ -115,8 +124,8 @@ def fetch_adp(cid):
     return jobs
 
 
-def adp_detail(cid, item):
-    data = http.get_json(f"{ADP_BASE}/{item}", params=_adp_params(cid))
+def adp_detail(cid, item, ccid="19000101_000001"):
+    data = http.get_json(f"{ADP_BASE}/{item}", params=_adp_params(cid, ccid))
     return html_to_text(data.get("requisitionDescription", ""))
 
 
@@ -272,6 +281,10 @@ _ICIMS_JOB = re.compile(r"""href=["'](https?://[^"']+?\.icims\.com/jobs/(\d+)/([
 
 def fetch_icims(host, max_pages=15):
     found = {}
+    try:  # some iCIMS portals only serve the framed job list after a cookie-setting first visit
+        http.get_text(f"https://{host}/jobs/search", params={"ss": 1})
+    except http.FetchError:
+        pass
     for page in range(max_pages):
         raw = http.get_text(f"https://{host}/jobs/search", params={"ss": 1, "in_iframe": 1, "pr": page})
         before = len(found)
@@ -355,6 +368,111 @@ def fetch_greenhouse_html(token):
     return jobs
 
 
+# ---------- Rippling ----------
+
+def fetch_rippling(slug):
+    data = None
+    for url in (f"https://api.rippling.com/platform/api/ats/v1/board/{slug}/jobs",
+                f"https://ats.rippling.com/api/v2/board/{slug}/jobs"):
+        try:
+            data = http.get_json(url)
+            break
+        except http.FetchError:
+            continue
+    if data is None:
+        raise http.FetchError("no Rippling job board found")
+    items = data.get("items", data) if isinstance(data, dict) else data
+    jobs = []
+    for j in items or []:
+        loc = j.get("workLocation") or j.get("locations") or ""
+        if isinstance(loc, dict):
+            loc = loc.get("label") or loc.get("name") or ""
+        elif isinstance(loc, list):
+            loc = "; ".join((x.get("name") or x.get("label") or "") if isinstance(x, dict) else str(x) for x in loc)
+        url = j.get("url") or f"https://ats.rippling.com/{slug}/jobs/{j.get('uuid') or j.get('id')}"
+        dept = j.get("department")
+        jobs.append(_job(j.get("name") or j.get("title"), loc, url, remote=("remote" in str(loc).lower()) or None,
+                         department=dept.get("label") if isinstance(dept, dict) else dept, detail=("page", url)))
+    return jobs
+
+
+# ---------- UKG Ready (saashr.com) ----------
+
+def fetch_ukgready(token):
+    host, company = token.split("|")
+    jobs, offset = [], 0
+    while offset < 500:
+        data = http.get_json(f"https://{host}/ta/rest/ui/recruitment/companies/%7C{company}/job-requisitions",
+                             params={"offset": offset, "size": 50, "sort": "desc", "ein_id": "", "lang": "en-US"})
+        reqs = data.get("job_requisitions", [])
+        for r in reqs:
+            loc = r.get("location") or {}
+            loc_text = ", ".join(x for x in [loc.get("city"), loc.get("state")] if x)
+            url = f"https://{host}/ta/{company}.careers?ShowJob={r.get('id')}"
+            jobs.append(_job(r.get("job_title"), loc_text, url, remote=bool(r.get("is_remote_job")) or None,
+                             description=html_to_text(r.get("job_description") or ""), detail=("page", url)))
+        offset += 50
+        if len(reqs) < 50:
+            return jobs
+    return jobs
+
+
+# ---------- Cornerstone (csod.com) career sites ----------
+
+def fetch_csod(token):
+    corp, site = token.split("|")
+    home = http.get_text(f"https://{corp}.csod.com/ux/ats/careersite/{site}/home?c={corp}")
+    m = re.search(r'"token"\s*:\s*"([^"]+)"', home)
+    if not m:
+        raise http.FetchError("Cornerstone page had no access token")
+    headers = {"Authorization": f"Bearer {m.group(1)}", "Content-Type": "application/json"}
+    jobs, page = [], 1
+    while page <= 10:
+        body = {"careerSiteId": int(site), "careerSitePageId": int(site), "pageNumber": page, "pageSize": 100,
+                "cultureId": 1, "searchText": "", "cultureName": "en-US", "states": [], "countryCodes": [],
+                "cities": [], "placeID": "", "radius": None, "postingsWithinDays": None,
+                "customFieldCheckboxKeys": [], "customFieldDropdowns": [], "customFieldRadios": []}
+        region = re.search(r'"cloud"\s*:\s*"([a-z0-9]+)"', home)
+        api_host = f"https://{region.group(1)}.api.csod.com" if region else f"https://{corp}.csod.com"
+        data = http.post_json(f"{api_host}/rec-job-search/external/jobs", body, headers=headers)
+        reqs = (data.get("data") or {}).get("requisitions", [])
+        for r in reqs:
+            locs = r.get("locations") or []
+            loc_text = "; ".join(", ".join(x for x in [l.get("city"), l.get("state")] if x) for l in locs)
+            rid = r.get("requisitionId")
+            url = f"https://{corp}.csod.com/ux/ats/careersite/{site}/home/requisition/{rid}?c={corp}"
+            jobs.append(_job(r.get("displayJobTitle"), loc_text, url, remote=("remote" in loc_text.lower()) or None,
+                             posted=r.get("postingEffectiveDate"), detail=("page", url)))
+        total = (data.get("data") or {}).get("totalCount", 0)
+        if not reqs or page * 100 >= total:
+            return jobs
+        page += 1
+    return jobs
+
+
+# ---------- same-site posting pages (orgs that publish openings as pages on their own site) ----------
+
+def fetch_site_links(url, limit=40):
+    raw = http.get_text(url)
+    base = urlparse(url)
+    prefix = base.path.rstrip("/") + "/"
+    jobs, seen = [], set()
+    for href, label in re.findall(r"""<a\b[^>]*href=["']([^"'#]+)["'][^>]*>(.*?)</a>""", raw, re.I | re.S):
+        full = urljoin(url, href.strip())
+        p = urlparse(full)
+        if p.netloc != base.netloc or not p.path.startswith(prefix) or p.path.rstrip("/") + "/" == prefix:
+            continue
+        slug = p.path[len(prefix):].strip("/")
+        if not slug or "/" in slug or full in seen:
+            continue
+        seen.add(full)
+        text = html_to_text(label)
+        jobs.append(_job(text if 3 <= len(text) <= 120 else "", "", full, detail=("page", full)))
+        if len(jobs) >= limit:
+            break
+    return jobs
+
+
 # ---------- generic: careers page that links straight to postings ----------
 
 def fetch_links(url, raw=None, limit=60):
@@ -391,4 +509,8 @@ ADAPTERS = {
     "talentbrew": fetch_talentbrew,
     "greenhouse_html": fetch_greenhouse_html,
     "links": fetch_links,
+    "rippling": fetch_rippling,
+    "ukgready": fetch_ukgready,
+    "csod": fetch_csod,
+    "site_links": fetch_site_links,
 }
