@@ -27,7 +27,7 @@ from .text import advanced_degree_required, extract_salary, location_is_ok, titl
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
-DESCRIPTION_CHARS = 2500
+DESCRIPTION_CHARS = 12000
 MAX_DETAIL_FETCHES_PER_ORG = 40
 SEEN_RETENTION_DAYS = 90
 

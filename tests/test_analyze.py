@@ -38,3 +38,8 @@ def test_summarize_and_markdown():
     assert s["families"]["Assessment & measurement"]["phd_required_pct"] == 100
     md = analyze.to_markdown(s, "2026-10-19")
     assert "## All postings (3 postings)" in md and "| SQL | 33% |" in md
+
+
+def test_writing_ignores_reporting_lines():
+    assert "Writing / reports" not in analyze.mentions(job("Analyst", "This role reports to the Director."))
+    assert "Writing / reports" in analyze.mentions(job("Analyst", "Write clear research briefs."))

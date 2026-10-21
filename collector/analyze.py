@@ -60,7 +60,7 @@ TERMS = {
     "Data visualization / dashboards": r"visuali[sz]|dashboard",
     "Administrative data": r"administrative data|admin data",
     # requirements and context
-    "Writing / reports": r"writ(ing|ten)|report",
+    "Writing / reports": r"\bwrit(e|ing|ten)\b|\breports?\b(?! (?:directly )?to\b)|\bbriefs?\b|\bmemos?\b",
     "Explaining to non-technical audiences": r"non-?technical|lay audience|plain language",
     "K-12 or school experience": r"k-?12|school district|classroom|teach(ing|er) experience",
     "Master's preferred or required": r"master'?s",
@@ -156,7 +156,7 @@ def to_markdown(summary, generated_at):
     section("All postings", summary["overall"], top=30)
     for name, b in summary["families"].items():
         section(name, b)
-    lines.append("Shares count a posting once if its title or first 2,500 characters of description "
+    lines.append("Shares count a posting once if its title or description "
                  "mention the term. Mentions include both required and preferred qualifications.")
     return "\n".join(lines) + "\n"
 
