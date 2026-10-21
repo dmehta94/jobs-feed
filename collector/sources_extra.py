@@ -24,6 +24,7 @@ PATTERNS = [
     ("jazzhr", re.compile(r"app\.jazz\.co/widgets/basic/create/([a-z0-9-]+)", re.I)),
     ("rippling", re.compile(r"ats\.rippling\.com(?:/|&#x2F;)([a-z0-9-]+)(?:/|&#x2F;)jobs", re.I)),
     ("ukgready", re.compile(r"(secure\d*\.saashr\.com)/ta/(\d+)\.careers", re.I)),
+    ("ukgpro", re.compile(r"(recruiting\d*\.ultipro\.com)(?::443)?/([A-Z0-9]+)/JobBoard/([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})", re.I)),
     ("csod", re.compile(r"([a-z0-9-]+)\.csod\.com/ux/ats/careersite/(\d+)", re.I)),
     ("adp", re.compile(r"workforcenow\.adp\.com/[^\"'\s<>]*?[?&](?:amp;)?cid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})", re.I)),
     ("oracle", re.compile(r"([a-z0-9]+\.fa\.[a-z0-9]+\.oraclecloud\.com)(?::443)?/hcmUI/CandidateExperience/[a-z]{2}(?:-[A-Z]{2})?/sites/([A-Za-z0-9_]+)", re.I)),
@@ -34,7 +35,7 @@ PATTERNS = [
     ("jobvite", re.compile(r"jobs\.jobvite\.com/([a-z0-9-]+)", re.I)),
 ]
 
-MULTI_GROUP = {"adp", "ukgready", "csod"}  # platforms whose token joins several captured groups with "|"
+MULTI_GROUP = {"adp", "ukgready", "csod", "ukgpro"}  # platforms whose token joins several captured groups with "|"
 
 # Links that point straight at one posting, on platforms we otherwise can't list.
 JOB_LINK = re.compile(
@@ -451,6 +452,39 @@ def fetch_ukgready(token):
     return jobs
 
 
+# ---------- UKG Pro (UltiPro) job boards ----------
+
+def fetch_ukgpro(token):
+    host, tenant, guid = token.split("|")
+    base = f"https://{host}/{tenant}/JobBoard/{guid}"
+    jobs, skip = [], 0
+    while skip < 1000:
+        body = {"opportunitySearch": {"Top": 50, "Skip": skip, "QueryString": "",
+                                      "OrderBy": [{"Value": "postedDateDesc", "PropertyName": "PostedDate", "Ascending": False}],
+                                      "Filters": [{"t": "TermsSearchFilterDto", "fieldName": n, "extra": None, "values": []}
+                                                  for n in (4, 5, 6)]},
+                "matchCriteria": {"PreferredJobs": [], "Educations": [], "LicenseAndCertifications": [], "Skills": [],
+                                  "hasNoLicenses": False, "SkippedSkills": []}}
+        data = http.post_json(f"{base}/JobBoardView/LoadSearchResults", body)
+        opps = data.get("opportunities", [])
+        for o in opps:
+            locs = []
+            for loc in o.get("Locations") or []:
+                addr = loc.get("Address") or {}
+                state = (addr.get("State") or {}).get("Code")
+                locs.append(", ".join(x for x in [addr.get("City"), state] if x) or loc.get("LocalizedDescription") or "")
+            loc_text = "; ".join(x for x in locs if x)
+            url = f"{base}/OpportunityDetail?opportunityId={o.get('Id')}"
+            jobs.append(_job(o.get("Title"), loc_text, url,
+                             remote=("remote" in (loc_text + str(o.get("Title"))).lower()) or None,
+                             posted=o.get("PostedDate"), description=html_to_text(o.get("BriefDescription") or ""),
+                             detail=("page", url)))
+        skip += 50
+        if not opps or skip >= data.get("totalCount", 0):
+            return jobs
+    return jobs
+
+
 # ---------- Cornerstone (csod.com) career sites ----------
 
 def fetch_csod(token):
@@ -547,5 +581,6 @@ ADAPTERS = {
     "jibe": fetch_jibe,
     "ukgready": fetch_ukgready,
     "csod": fetch_csod,
+    "ukgpro": fetch_ukgpro,
     "site_links": fetch_site_links,
 }
