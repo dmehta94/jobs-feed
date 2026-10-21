@@ -172,7 +172,16 @@ def main_test(names):
     for org in orgs:
         try:
             health, jobs = collect_org(org, {}, "2026-01-01", {})
-            res = {"org": org["name"], **{k: health.get(k) for k in ("platform", "token", "found_by", "status", "total", "relevant")},
+            from .sources import ADAPTERS
+            raw_sample = []
+            if health.get("platform") in ADAPTERS:
+                try:
+                    raw_sample = [{"title": j["title"], "location": j["location"], "remote": j["remote"]}
+                                  for j in ADAPTERS[health["platform"]](health["token"])[:12]]
+                except Exception as exc:
+                    raw_sample = [{"error": str(exc)}]
+            res = {"org": org["name"], "raw_sample": raw_sample,
+                   **{k: health.get(k) for k in ("platform", "token", "found_by", "status", "total", "relevant")},
                    "samples": [{"title": j["title"], "location": j["location"], "url": j["url"],
                                 "desc_len": len(j["description"] or "")} for j in jobs[:5]]}
         except Exception as exc:  # report, don't stop
