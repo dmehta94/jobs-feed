@@ -1,0 +1,124 @@
+"""Diagnostics for sources that failed: find working careers pages and capture hiring-platform pages.
+
+For every org whose last status wasn't "ok", tries the configured careers URL plus common
+alternatives on the org's domain, records what each returned, which hiring platforms the pages
+reference, and saves the first part of each hiring-platform page so readers can be written
+against real responses. Output goes to probe/ (committed to the `probe` branch by the workflow).
+
+Run from the repo root:  python -m collector.probe
+"""
+import json
+import re
+import sys
+from pathlib import Path
+from urllib.parse import urljoin, urlparse
+
+from . import http
+from .collect import load_orgs, load_json
+from .sources import UNSUPPORTED, detect_in_html
+
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "probe"
+PATHS = ["", "/careers", "/careers/", "/jobs", "/jobs/", "/about/careers", "/about-us/careers", "/join-us",
+         "/work-with-us", "/employment", "/opportunities", "/about/jobs", "/careers/open-positions",
+         "/about/work-with-us", "/company/careers"]
+ATS_HOST = re.compile(
+    r"https?://[^\s\"'<>]*(greenhouse\.io|lever\.co|ashbyhq\.com|smartrecruiters\.com|workable\.com|"
+    r"myworkdayjobs\.com|bamboohr\.com|recruitee\.com|breezy\.hr|paylocity\.com|ultipro\.com|ukg\.net|"
+    r"icims\.com|adp\.com|taleo\.net|applytojob\.com|paycomonline\.net|dayforcehcm\.com|successfactors\.|"
+    r"oraclecloud\.com|jobvite\.com|interfolio\.com|hirebridge\.com|applicantpro\.com|isolvedhire\.com|"
+    r"careerplug\.com|rippling\.com|dover\.com|teamtailor\.com|personio\.|pinpointhq\.com|"
+    r"governmentjobs\.com|peopleadmin\.com|silkroad\.com|clearcompany\.com|hrmdirect\.com|"
+    r"theapplicantmanager\.com|appone\.com|zohorecruit\.com|freshteam\.com|jazzhr\.com|"
+    r"workforcenow\.adp\.com|myjobs\.adp\.com|recruiting\.adp\.com|idealist\.org)[^\s\"'<>]*", re.I)
+SNIPPET = 150_000
+
+
+def _safe(name):
+    return re.sub(r"[^A-Za-z0-9]+", "_", name).strip("_")[:60]
+
+
+def try_url(url):
+    try:
+        resp = http._request("GET", url, retries=0, timeout=20, allow_redirects=True)
+        return {"url": url, "status": resp.status_code, "final_url": resp.url, "text": resp.text}
+    except http.FetchError as exc:
+        return {"url": url, "status": str(exc), "final_url": None, "text": ""}
+
+
+def probe_org(org):
+    careers = org.get("careers_url") or ""
+    parsed = urlparse(careers)
+    base = f"{parsed.scheme}://{parsed.netloc}" if parsed.netloc else ""
+    candidates = [careers] + [base + p for p in PATHS if base]
+    seen, attempts, ats_links = set(), [], set()
+    best = None
+    for url in candidates:
+        if not url or url in seen:
+            continue
+        seen.add(url)
+        r = try_url(url)
+        page = r.pop("text")
+        platform, token = detect_in_html(page) if page else (None, None)
+        links = sorted(set(m.group(0).rstrip("\\);,.") for m in ATS_HOST.finditer(page)))[:25]
+        ats_links.update(links)
+        unsupported = [name for name, rx in UNSUPPORTED if rx.search(page)] if page else []
+        attempts.append({**r, "platform": platform, "token": token, "ats_links": links,
+                         "unsupported": unsupported, "length": len(page)})
+        if r["status"] == 200 and best is None and (platform or links or "career" in url or "job" in url):
+            best = r["final_url"] or url
+        if platform and not platform.startswith("unsupported"):
+            break
+    # Save raw hiring-platform pages so readers can be written against real responses.
+    saved = []
+    for i, link in enumerate(sorted(ats_links)[:4]):
+        r = try_url(link)
+        if r["text"]:
+            path = OUT / "pages" / f"{_safe(org['name'])}__{i}.html"
+            path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(r["text"][:SNIPPET])
+            saved.append({"link": link, "status": r["status"], "final_url": r["final_url"], "file": str(path.relative_to(ROOT))})
+    return {"org": org["name"], "careers_url": careers, "working_page": best,
+            "attempts": attempts, "ats_links": sorted(ats_links), "saved_pages": saved}
+
+
+def probe_aggregators():
+    """Record why aggregator results were filtered out."""
+    from . import discovery
+    from .text import location_is_ok, title_is_relevant
+    rows = []
+    for name, fetch in (("The Muse", lambda: discovery.fetch_themuse(max_pages=3)), ("Remotive", discovery.fetch_remotive)):
+        try:
+            jobs = fetch() or []
+        except http.FetchError as exc:
+            rows.append({"source": name, "error": str(exc)})
+            continue
+        for j in jobs:
+            rows.append({"source": name, "org": j["org"], "title": j["title"], "location": j["location"],
+                         "title_ok": title_is_relevant(j["title"]),
+                         "location_ok": location_is_ok(j["location"], j["remote"]),
+                         "mission_ok": discovery.has_mission(j), "desc_len": len(j.get("description") or "")})
+    (OUT / "aggregators.json").write_text(json.dumps(rows, indent=2) + "\n")
+    print(f"Aggregator rows: {len(rows)}")
+
+
+def main(names=None):
+    health = load_json(ROOT / "data" / "health.json", {}).get("sources", [])
+    failing = {h["org"] for h in health if h.get("status") != "ok"}
+    orgs = [o for o in load_orgs() if (o["name"] in names if names else o["name"] in failing)]
+    results = []
+    for org in orgs:
+        res = probe_org(org)
+        results.append(res)
+        found = res["attempts"][-1]["platform"] if res["attempts"] else None
+        print(f"{org['name'][:45]:45} working={str(res['working_page'])[:60]:60} ats_links={len(res['ats_links'])} last={found}")
+    OUT.mkdir(exist_ok=True)
+    (OUT / "probe.json").write_text(json.dumps(results, indent=2) + "\n")
+    if not names:
+        probe_aggregators()
+    print(f"Probed {len(results)} orgs.")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:] or None))

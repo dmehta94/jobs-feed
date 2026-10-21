@@ -1,0 +1,41 @@
+name: Probe failing sources
+
+on:
+  workflow_dispatch:
+    inputs:
+      orgs:
+        description: "Org names to probe, separated by |  (blank = every source that failed last run)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r requirements.txt
+      - name: Probe
+        env:
+          ORGS: ${{ inputs.orgs }}
+        run: |
+          if [ -n "$ORGS" ]; then
+            IFS='|' read -ra NAMES <<< "$ORGS"
+            python -m collector.probe "${NAMES[@]}"
+          else
+            python -m collector.probe
+          fi
+      - name: Save results to the probe branch
+        run: |
+          git config user.name "jobs-feed bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B probe
+          git add -f probe/
+          git commit -m "probe: $(date -u +%FT%TZ)" || exit 0
+          git push -f origin probe
