@@ -6,7 +6,7 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 
 ## Sources
 
-- **Organization job boards.** The supported platforms are Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Workday, BambooHR, Recruitee, and Breezy. The collector finds an organization's platform by reading its careers page, including one level of linked pages, and remembers it in `data/platforms.json`.
+- **Organization job boards.** The supported platforms are Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Workday, BambooHR, Recruitee, Breezy, ADP Workforce Now, Oracle Recruiting Cloud, Paylocity, Pinpoint, JazzHR, iCIMS and Jibe, Jobvite, Rippling, UKG Pro, UKG Ready, Cornerstone, and careers pages that link straight to individual postings. `python -m collector.probe` (or the "Probe failing sources" workflow) diagnoses sources that fail. The collector finds an organization's platform by reading its careers page, including one level of linked pages, and remembers it in `data/platforms.json`.
 - **NYC Jobs.** All external city postings come from the [NYC Open Data jobs dataset](https://data.cityofnewyork.us/City-Government/Jobs-NYC-Postings/kpav-sd4t), narrowed to data, research, and analyst titles.
 - **Keyword searches across job aggregators.** These catch employers that aren't in `orgs.csv`. Results must mention education or public-interest work in the employer name, title, or opening of the description. The sources are [The Muse](https://www.themuse.com/developers/api/v2) and [Remotive](https://remotive.com/api-documentation), which need no key, and [Adzuna](https://developer.adzuna.com/), which is optional and needs a free key saved as `ADZUNA_APP_ID` and `ADZUNA_APP_KEY`. These postings are marked `Discovered`.
 - **USAJOBS (optional).** Federal postings in the NYC area or remote. This source needs a free key from [developer.usajobs.gov](https://developer.usajobs.gov/), saved as the repository secrets `USAJOBS_API_KEY` and `USAJOBS_EMAIL`.
@@ -15,7 +15,7 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 
 | File | What's in it |
 |---|---|
-| `data/jobs.json` | Relevant open postings: title, org, location, pay if listed, posted and first-seen dates, years of experience mentioned, and the first part of the description |
+| `data/jobs.json` | Relevant open postings: title, org, location, pay if listed, posted and first-seen dates, years of experience and advanced degrees required, and the description |
 | `data/health.json` | One row per source: which platform it uses, whether it worked, and how many postings it had |
 | `data/platforms.json` | Detected hiring platforms, reused on later runs |
 | `data/seen.json` | When each posting was first seen, so new postings can be flagged |
