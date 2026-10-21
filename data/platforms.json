@@ -7,6 +7,10 @@
     "platform": "workable",
     "token": "stronger-consulting"
   },
+  "Ad Hoc": {
+    "platform": "workable",
+    "token": "ad-hoc"
+  },
   "Advocates for Children of NY": {
     "platform": "greenhouse",
     "token": "advocatesforchildrenofnewyork"
@@ -34,6 +38,14 @@
   "Brookings Institution": {
     "platform": "icims",
     "token": "careers-brookings.icims.com"
+  },
+  "Carnegie Foundation for the Advancement of Teaching": {
+    "platform": "workable",
+    "token": "carnegie-foundation-for-the-advancement-of-teaching"
+  },
+  "Carnegie Learning": {
+    "platform": "workable",
+    "token": "carnegie-learning"
   },
   "Center for Justice Innovation": {
     "platform": "jazzhr",
@@ -83,9 +95,17 @@
     "platform": "greenhouse",
     "token": "coursera"
   },
+  "Curriculum Associates": {
+    "platform": "workable",
+    "token": "curriculum-associates"
+  },
   "DataKind": {
     "platform": "greenhouse",
     "token": "datakindinc"
+  },
+  "Digital Promise": {
+    "platform": "rippling",
+    "token": "digital-promise"
   },
   "DonorsChoose": {
     "platform": "greenhouse",
@@ -94,6 +114,10 @@
   "Duolingo": {
     "platform": "greenhouse",
     "token": "duolingo"
+  },
+  "ETS": {
+    "platform": "workable",
+    "token": "ets"
   },
   "EdReports": {
     "platform": "greenhouse",
@@ -115,6 +139,10 @@
     "platform": "workday",
     "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site"
   },
+  "Illustrative Mathematics": {
+    "platform": "jazzhr",
+    "token": "illustrativemathematics"
+  },
   "Imagine Learning": {
     "platform": "jobvite",
     "token": "imagine-learning"
@@ -131,9 +159,21 @@
     "platform": "greenhouse",
     "token": "learningpolicyinstitute"
   },
+  "MDRC": {
+    "platform": "ukgready",
+    "token": "secure6.saashr.com|6162152"
+  },
+  "Mathematica": {
+    "platform": "csod",
+    "token": "mathematica|4"
+  },
   "McGraw Hill": {
-    "platform": "icims",
-    "token": "careers-mheducation.icims.com"
+    "platform": "jibe",
+    "token": "https://careers.mheducation.com"
+  },
+  "Measurement Incorporated": {
+    "platform": "site_links",
+    "token": "https://www.measurementinc.com/careers/"
   },
   "NYU": {
     "platform": "icims",
@@ -155,6 +195,10 @@
     "platform": "adp",
     "token": "04bec9b7-ccb5-4dd2-947d-4c34fc061de3"
   },
+  "Panorama Education": {
+    "platform": "workable",
+    "token": "panorama-education"
+  },
   "Pearson": {
     "platform": "oracle",
     "token": "hccz.fa.em3.oraclecloud.com|CX_2"
@@ -166,6 +210,10 @@
   "Propel": {
     "platform": "ashby",
     "token": "propel"
+  },
+  "RAND": {
+    "platform": "workable",
+    "token": "rand"
   },
   "Recidiviz": {
     "platform": "greenhouse",
@@ -183,6 +231,10 @@
     "platform": "adp",
     "token": "5690b998-5a2d-4792-b2de-97f5fca569c2"
   },
+  "SRI Education": {
+    "platform": "workable",
+    "token": "sri"
+  },
   "Saga Education": {
     "platform": "greenhouse",
     "token": "sagaeducation"
@@ -199,6 +251,10 @@
     "platform": "greenhouse",
     "token": "teachinglab"
   },
+  "The Education Trust": {
+    "platform": "adp",
+    "token": "9e2312b5-b5bd-498a-975d-1e1c12aead82|9200770504427_3"
+  },
   "U.S. Digital Response": {
     "platform": "breezy",
     "token": "us-digital-response"
@@ -210,6 +266,14 @@
   "Vera Institute of Justice": {
     "platform": "greenhouse",
     "token": "verainstituteofjustice"
+  },
+  "WestEd": {
+    "platform": "ukgpro",
+    "token": "recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a"
+  },
+  "Westat": {
+    "platform": "workable",
+    "token": "westat"
   },
   "Zearn": {
     "platform": "workable",
