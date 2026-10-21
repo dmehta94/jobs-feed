@@ -1,15 +1,15 @@
 {
-  "generated_at": "2026-10-21T20:10:37+00:00",
+  "generated_at": "2026-10-21T20:30:46+00:00",
   "sources": [
     {
       "org": "Zearn",
       "category": "Education",
       "tier": 1,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "workable",
+      "token": "zearn",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 3,
       "relevant": 0
     },
     {
@@ -29,7 +29,7 @@
       "tier": 1,
       "platform": "greenhouse",
       "token": "centralofficecareers",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 8,
       "relevant": 1
@@ -40,7 +40,7 @@
       "tier": 1,
       "platform": "ashby",
       "token": "amplify",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 35,
       "relevant": 6
@@ -51,7 +51,7 @@
       "tier": 1,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -73,7 +73,7 @@
       "tier": 1,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -82,12 +82,12 @@
       "org": "Overdeck Family Foundation",
       "category": "Education",
       "tier": 1,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "adp",
+      "token": "04bec9b7-ccb5-4dd2-947d-4c34fc061de3",
+      "found_by": "linked page https://overdeck.org/about/careers/general-application-join-our-community/",
+      "status": "ok",
+      "total": 2,
+      "relevant": 1
     },
     {
       "org": "Research Alliance for NYC Schools (NYU)",
@@ -95,7 +95,7 @@
       "tier": 1,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -128,7 +128,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "khanacademy",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 6,
       "relevant": 3
@@ -139,10 +139,10 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "newsela",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 12,
-      "relevant": 4
+      "relevant": 3
     },
     {
       "org": "DonorsChoose",
@@ -150,7 +150,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "donorschoose",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 4,
       "relevant": 0
@@ -161,7 +161,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -183,7 +183,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "codeorg",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 5,
       "relevant": 1
@@ -192,11 +192,11 @@
       "org": "CommonLit",
       "category": "Education",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "pinpoint",
+      "token": "commonlit",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 1,
       "relevant": 0
     },
     {
@@ -205,7 +205,7 @@
       "tier": 2,
       "platform": "recruitee",
       "token": "greatminds",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 25,
       "relevant": 2
@@ -216,7 +216,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "tntp.wd5.myworkdayjobs.com|tntp|TNTP",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 5,
       "relevant": 0
@@ -227,7 +227,7 @@
       "tier": 2,
       "platform": "workable",
       "token": "stronger-consulting",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 4,
       "relevant": 0
@@ -249,7 +249,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "teachinglab",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 4,
       "relevant": 1
@@ -260,7 +260,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "edreports",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 1,
       "relevant": 0
@@ -293,7 +293,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "sagaeducation",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 11,
       "relevant": 0
@@ -304,7 +304,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -315,7 +315,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "duolingo",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 61,
       "relevant": 8
@@ -326,7 +326,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "coursera",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 26,
       "relevant": 0
@@ -337,7 +337,7 @@
       "tier": 2,
       "platform": "lever",
       "token": "brilliant",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 3,
       "relevant": 0
@@ -348,7 +348,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "renaissancelearning-nam",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 10,
       "relevant": 0
@@ -357,10 +357,10 @@
       "org": "Imagine Learning",
       "category": "Education",
       "tier": 2,
-      "platform": "unsupported:jobvite",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
+      "platform": "jobvite",
+      "token": "imagine-learning",
+      "found_by": "orgs.csv",
+      "status": "ok",
       "total": 0,
       "relevant": 0
     },
@@ -368,10 +368,10 @@
       "org": "McGraw Hill",
       "category": "Education",
       "tier": 2,
-      "platform": "unsupported:icims",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
+      "platform": "icims",
+      "token": "careers-mheducation.icims.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
       "total": 0,
       "relevant": 0
     },
@@ -379,12 +379,12 @@
       "org": "Pearson",
       "category": "Education",
       "tier": 2,
-      "platform": "unsupported:oracle",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "oracle",
+      "token": "hccz.fa.em3.oraclecloud.com|CX_2",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 213,
+      "relevant": 5
     },
     {
       "org": "College Board",
@@ -392,7 +392,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 52,
       "relevant": 5
@@ -412,10 +412,10 @@
       "org": "Mathematica",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
+      "platform": "talentbrew",
+      "token": "https://careers.mathematica.org",
+      "found_by": "orgs.csv",
+      "status": "fetch failed: HTTP 403",
       "total": 0,
       "relevant": 0
     },
@@ -425,7 +425,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "americaninstitutesforresearch",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 12,
       "relevant": 5
@@ -447,7 +447,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "urban.wd115.myworkdayjobs.com|urban|Urban-Careers",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 4,
       "relevant": 0
@@ -456,12 +456,12 @@
       "org": "Child Trends",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:adp",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "adp",
+      "token": "70c1bbee-a65c-4b42-bb04-9dcb8a73868a",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 3,
+      "relevant": 1
     },
     {
       "org": "WestEd",
@@ -500,11 +500,11 @@
       "org": "Abt Global",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:oracle",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "oracle",
+      "token": "egpy.fa.us2.oraclecloud.com|JoinAbt",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 11,
       "relevant": 0
     },
     {
@@ -522,12 +522,12 @@
       "org": "Education Analytics",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:paylocity",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "links",
+      "token": "https://www.edanalytics.org/careers",
+      "found_by": "posting links on https://www.edanalytics.org/careers",
+      "status": "ok",
+      "total": 2,
+      "relevant": 2
     },
     {
       "org": "Learning Policy Institute",
@@ -535,7 +535,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "learningpolicyinstitute",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 0,
       "relevant": 0
@@ -546,7 +546,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -577,22 +577,22 @@
       "org": "Brookings Institution",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:icims",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "icims",
+      "token": "careers-brookings.icims.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 10,
+      "relevant": 3
     },
     {
       "org": "Robin Hood",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:adp",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "adp",
+      "token": "5690b998-5a2d-4792-b2de-97f5fca569c2",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 3,
       "relevant": 0
     },
     {
@@ -610,12 +610,12 @@
       "org": "Community Service Society of NY",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "adp",
+      "token": "bfa63131-def5-44e4-b58b-93b120048fdf",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 7,
+      "relevant": 1
     },
     {
       "org": "Advocates for Children of NY",
@@ -623,7 +623,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "advocatesforchildrenofnewyork",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 1,
       "relevant": 1
@@ -634,7 +634,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "verainstituteofjustice",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 8,
       "relevant": 1
@@ -643,12 +643,12 @@
       "org": "Center for Justice Innovation",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:jazzhr",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "jazzhr",
+      "token": "innovatingjustice",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 58,
+      "relevant": 1
     },
     {
       "org": "Data & Society",
@@ -665,11 +665,11 @@
       "org": "Chalkbeat",
       "category": "Education",
       "tier": 2,
-      "platform": "unsupported:adp",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "adp",
+      "token": "963627e8-e7cc-484e-be0c-95c248a520de",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 3,
       "relevant": 0
     },
     {
@@ -678,7 +678,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "recidiviz",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 7,
       "relevant": 3
@@ -689,7 +689,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "codeforamerica",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 8,
       "relevant": 1
@@ -700,7 +700,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "navapbc",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 12,
       "relevant": 1
@@ -711,7 +711,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "datakindinc",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 1,
       "relevant": 1
@@ -722,7 +722,7 @@
       "tier": 2,
       "platform": "ashby",
       "token": "propel",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 7,
       "relevant": 0
@@ -731,11 +731,11 @@
       "org": "U.S. Digital Response",
       "category": "Civic Tech",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "breezy",
+      "token": "us-digital-response",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 2,
       "relevant": 0
     },
     {
@@ -769,7 +769,7 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 674,
-      "relevant": 91
+      "relevant": 88
     },
     {
       "org": "Chan Zuckerberg Initiative",
@@ -777,7 +777,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "chanzuckerberginitiative",
-      "found_by": "linked page https://chanzuckerberg.com/careers/career-opportunities/",
+      "found_by": "cached",
       "status": "ok",
       "total": 7,
       "relevant": 1
@@ -788,7 +788,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 18,
       "relevant": 0
@@ -797,11 +797,11 @@
       "org": "Common Sense Media",
       "category": "Education",
       "tier": 2,
-      "platform": "unsupported:paycom",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
+      "platform": "links",
+      "token": "https://www.commonsensemedia.org/about-us/were-hiring",
+      "found_by": "posting links on https://www.commonsensemedia.org/about-us/were-hiring",
+      "status": "ok",
+      "total": 5,
       "relevant": 0
     },
     {
@@ -819,23 +819,23 @@
       "org": "Arnold Ventures",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:paylocity",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "paylocity",
+      "token": "17519654-d224-4f10-9a5f-2b7ad3cd5a77",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 4,
+      "relevant": 1
     },
     {
       "org": "Project Evident",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "jazzhr",
+      "token": "projectevident",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 5,
+      "relevant": 1
     },
     {
       "org": "J-PAL North America",
@@ -852,12 +852,12 @@
       "org": "Kiddom",
       "category": "Education",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "ashby",
+      "token": "kiddom",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 17,
+      "relevant": 1
     },
     {
       "org": "Ed-Fi Alliance",
@@ -896,12 +896,12 @@
       "org": "Cognia",
       "category": "Education",
       "tier": 2,
-      "platform": "unsupported:adp",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "adp",
+      "token": "ebbb9e9f-4b7c-4d22-9984-b930aaf04fa6",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 1,
+      "relevant": 1
     },
     {
       "org": "Data Recognition Corporation",
@@ -942,7 +942,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -973,10 +973,10 @@
       "org": "Research for Action",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:adp",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
+      "platform": "adp",
+      "token": "672697df-5c45-42d2-9198-e958445cada6",
+      "found_by": "orgs.csv",
+      "status": "ok",
       "total": 0,
       "relevant": 0
     },
@@ -995,10 +995,10 @@
       "org": "Social Policy Research Associates",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "unsupported:jazzhr",
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
+      "platform": "jazzhr",
+      "token": "sprajobs",
+      "found_by": "orgs.csv",
+      "status": "ok",
       "total": 0,
       "relevant": 0
     },
@@ -1008,9 +1008,9 @@
       "tier": 2,
       "platform": "workday",
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
-      "found_by": "linked page https://careers.icf.com/us/en/digital-modernization-jobs",
+      "found_by": "cached",
       "status": "ok",
-      "total": 355,
+      "total": 354,
       "relevant": 1
     },
     {
@@ -1047,15 +1047,15 @@
       "relevant": 0
     },
     {
-      "org": "NYU Steinhardt",
+      "org": "NYU",
       "category": "Higher Ed",
       "tier": 2,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (404 Not Found)",
-      "status": "no supported platform found",
-      "total": 0,
-      "relevant": 0
+      "platform": "icims",
+      "token": "uscareers-nyu.icims.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 150,
+      "relevant": 12
     },
     {
       "org": "NYC Public Schools Central Office",
@@ -1063,7 +1063,7 @@
       "tier": 1,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0

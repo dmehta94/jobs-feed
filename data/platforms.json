@@ -1,4 +1,8 @@
 {
+  "Abt Global": {
+    "platform": "oracle",
+    "token": "egpy.fa.us2.oraclecloud.com|JoinAbt"
+  },
   "Achievement Network": {
     "platform": "workable",
     "token": "stronger-consulting"
@@ -19,13 +23,33 @@
     "platform": "greenhouse",
     "token": "anthropic"
   },
+  "Arnold Ventures": {
+    "platform": "paylocity",
+    "token": "17519654-d224-4f10-9a5f-2b7ad3cd5a77"
+  },
   "Brilliant": {
     "platform": "lever",
     "token": "brilliant"
   },
+  "Brookings Institution": {
+    "platform": "icims",
+    "token": "careers-brookings.icims.com"
+  },
+  "Center for Justice Innovation": {
+    "platform": "jazzhr",
+    "token": "innovatingjustice"
+  },
+  "Chalkbeat": {
+    "platform": "adp",
+    "token": "963627e8-e7cc-484e-be0c-95c248a520de"
+  },
   "Chan Zuckerberg Initiative": {
     "platform": "greenhouse",
     "token": "chanzuckerberginitiative"
+  },
+  "Child Trends": {
+    "platform": "adp",
+    "token": "70c1bbee-a65c-4b42-bb04-9dcb8a73868a"
   },
   "Code for America": {
     "platform": "greenhouse",
@@ -35,9 +59,25 @@
     "platform": "greenhouse",
     "token": "codeorg"
   },
+  "Cognia": {
+    "platform": "adp",
+    "token": "ebbb9e9f-4b7c-4d22-9984-b930aaf04fa6"
+  },
   "College Board": {
     "platform": "workday",
     "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers"
+  },
+  "Common Sense Media": {
+    "platform": "links",
+    "token": "https://www.commonsensemedia.org/about-us/were-hiring"
+  },
+  "CommonLit": {
+    "platform": "pinpoint",
+    "token": "commonlit"
+  },
+  "Community Service Society of NY": {
+    "platform": "adp",
+    "token": "bfa63131-def5-44e4-b58b-93b120048fdf"
   },
   "Coursera": {
     "platform": "greenhouse",
@@ -59,6 +99,10 @@
     "platform": "greenhouse",
     "token": "edreports"
   },
+  "Education Analytics": {
+    "platform": "links",
+    "token": "https://www.edanalytics.org/careers"
+  },
   "Gates Foundation": {
     "platform": "workday",
     "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates"
@@ -71,13 +115,29 @@
     "platform": "workday",
     "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site"
   },
+  "Imagine Learning": {
+    "platform": "jobvite",
+    "token": "imagine-learning"
+  },
   "Khan Academy": {
     "platform": "greenhouse",
     "token": "khanacademy"
   },
+  "Kiddom": {
+    "platform": "ashby",
+    "token": "kiddom"
+  },
   "Learning Policy Institute": {
     "platform": "greenhouse",
     "token": "learningpolicyinstitute"
+  },
+  "McGraw Hill": {
+    "platform": "icims",
+    "token": "careers-mheducation.icims.com"
+  },
+  "NYU": {
+    "platform": "icims",
+    "token": "uscareers-nyu.icims.com"
   },
   "Nava PBC": {
     "platform": "greenhouse",
@@ -91,6 +151,18 @@
     "platform": "greenhouse",
     "token": "newsela"
   },
+  "Overdeck Family Foundation": {
+    "platform": "adp",
+    "token": "04bec9b7-ccb5-4dd2-947d-4c34fc061de3"
+  },
+  "Pearson": {
+    "platform": "oracle",
+    "token": "hccz.fa.em3.oraclecloud.com|CX_2"
+  },
+  "Project Evident": {
+    "platform": "jazzhr",
+    "token": "projectevident"
+  },
   "Propel": {
     "platform": "ashby",
     "token": "propel"
@@ -103,9 +175,21 @@
     "platform": "greenhouse",
     "token": "renaissancelearning-nam"
   },
+  "Research for Action": {
+    "platform": "adp",
+    "token": "672697df-5c45-42d2-9198-e958445cada6"
+  },
+  "Robin Hood": {
+    "platform": "adp",
+    "token": "5690b998-5a2d-4792-b2de-97f5fca569c2"
+  },
   "Saga Education": {
     "platform": "greenhouse",
     "token": "sagaeducation"
+  },
+  "Social Policy Research Associates": {
+    "platform": "jazzhr",
+    "token": "sprajobs"
   },
   "TNTP": {
     "platform": "workday",
@@ -115,6 +199,10 @@
     "platform": "greenhouse",
     "token": "teachinglab"
   },
+  "U.S. Digital Response": {
+    "platform": "breezy",
+    "token": "us-digital-response"
+  },
   "Urban Institute": {
     "platform": "workday",
     "token": "urban.wd115.myworkdayjobs.com|urban|Urban-Careers"
@@ -122,5 +210,9 @@
   "Vera Institute of Justice": {
     "platform": "greenhouse",
     "token": "verainstituteofjustice"
+  },
+  "Zearn": {
+    "platform": "workable",
+    "token": "zearn"
   }
 }
