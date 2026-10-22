@@ -1,14 +1,14 @@
 # jobs-feed
 
-A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, civic tech nonprofits, and NYC government.
+A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area and remote jobs anywhere in the US.
 
 Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's hiring platform, pulls every open posting straight from that platform's public job feed, keeps the plausibly relevant ones, and commits the results to `data/`.
 
 ## Sources
 
-- **Organization job boards.** The supported platforms are Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Workday, BambooHR, Recruitee, Breezy, ADP Workforce Now, Oracle Recruiting Cloud, Paylocity, Pinpoint, JazzHR, iCIMS and Jibe, Jobvite, Rippling, UKG Pro, UKG Ready, Cornerstone, and careers pages that link straight to individual postings. `python -m collector.probe` (or the "Probe failing sources" workflow) diagnoses sources that fail. The collector finds an organization's platform by reading its careers page, including one level of linked pages, and remembers it in `data/platforms.json`.
+- **Organization job boards.** The supported platforms are Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Workday, BambooHR, Recruitee, Breezy, ADP Workforce Now, Oracle Recruiting Cloud, Paylocity, Pinpoint, JazzHR, iCIMS and Jibe, Jobvite, Rippling, UKG Pro, UKG Ready, Cornerstone, Eightfold, Trakstar Hire, PageUp, and careers pages that link straight to individual postings. A board found by guessing that turns out to be empty is reported as `empty` and re-detected the next week. `python -m collector.probe` (or the "Probe failing sources" workflow) diagnoses sources that fail. The collector finds an organization's platform by reading its careers page, including one level of linked pages, and remembers it in `data/platforms.json`.
 - **NYC Jobs.** All external city postings come from the [NYC Open Data jobs dataset](https://data.cityofnewyork.us/City-Government/Jobs-NYC-Postings/kpav-sd4t), narrowed to data, research, and analyst titles.
-- **Keyword searches across job aggregators.** These catch employers that aren't in `orgs.csv`. Results must mention education or public-interest work in the employer name, title, or opening of the description. The sources are [The Muse](https://www.themuse.com/developers/api/v2) and [Remotive](https://remotive.com/api-documentation), which need no key, and [Adzuna](https://developer.adzuna.com/), which is optional and needs a free key saved as `ADZUNA_APP_ID` and `ADZUNA_APP_KEY`. These postings are marked `Discovered`.
+- **Keyword searches across job aggregators.** These catch employers that aren't in `orgs.csv`. Results must mention education or public-interest work in the employer name, title, or opening of the description. The sources are [The Muse](https://www.themuse.com/developers/api/v2) and [Remotive](https://remotive.com/api-documentation), which need no key, and [Adzuna](https://developer.adzuna.com/), which is optional and needs a free key saved as `ADZUNA_APP_ID` and `ADZUNA_APP_KEY`. Two education job boards are also read: [Edtech.com](https://www.edtech.com/jobs) (its sitemap of the past week's postings, then each relevant posting's structured data) and [HigherEdJobs](https://www.higheredjobs.com/) (remote postings only). These postings are marked `Discovered`.
 - **USAJOBS (optional).** Federal postings in the NYC area or remote. This source needs a free key from [developer.usajobs.gov](https://developer.usajobs.gov/), saved as the repository secrets `USAJOBS_API_KEY` and `USAJOBS_EMAIL`.
 
 ## Output
@@ -21,7 +21,7 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 | `data/seen.json` | When each posting was first seen, so new postings can be flagged |
 | `data/analysis.md` | What the postings ask for: tools, methods, experience, and pay, overall and by role family |
 
-The filters only drop postings that are clearly off-target, such as unrelated fields, executive titles, or on-site jobs outside the NYC area. Judging fit is left to whoever reads the output.
+The filters only drop postings that are clearly off-target, such as unrelated fields, executive titles, or on-site jobs outside the NYC area. Postings listed in another city are kept when the description says the job can be done fully remotely ("can be performed remotely", "fully remote", "remote within the US"); hybrid schedules elsewhere don't count. Judging fit is left to whoever reads the output.
 
 ## Weekly email (optional)
 
