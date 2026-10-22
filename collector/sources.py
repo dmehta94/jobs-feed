@@ -437,6 +437,8 @@ def fetch_detail(detail):
         return sources_extra.adp_detail(*args)
     if platform == "oracle":
         return sources_extra.oracle_detail(*args)
+    if platform == "csod":
+        return sources_extra.csod_detail(*args)
     if platform == "eightfold":
         return sources_extra.eightfold_detail(*args)
     if platform == "workday":

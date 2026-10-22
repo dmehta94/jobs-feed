@@ -488,6 +488,48 @@ def fetch_ukgpro(token):
 
 # ---------- Cornerstone (csod.com) career sites ----------
 
+_CSOD_SESSIONS = {}
+
+
+def _csod_session(corp, site):
+    if (corp, site) not in _CSOD_SESSIONS:
+        home = http.get_text(f"https://{corp}.csod.com/ux/ats/careersite/{site}/home?c={corp}")
+        tok = re.search(r'"token"\s*:\s*"([^"]+)"', home)
+        cloud = re.search(r'"cloud"\s*:\s*"(https://[^"]+)"', home)
+        _CSOD_SESSIONS[(corp, site)] = (tok.group(1) if tok else "",
+                                        cloud.group(1).rstrip("/") if cloud else "https://us.api.csod.com")
+    return _CSOD_SESSIONS[(corp, site)]
+
+
+def _longest_text(obj):
+    best = ""
+    if isinstance(obj, dict):
+        obj = list(obj.values())
+    if isinstance(obj, list):
+        for v in obj:
+            t = _longest_text(v)
+            best = t if len(t) > len(best) else best
+    elif isinstance(obj, str) and len(obj) > len(best):
+        best = obj
+    return best
+
+
+def csod_detail(corp, site, rid):
+    """Cornerstone's posting pages are rendered in the browser; try the JSON endpoints behind them."""
+    token, api_host = _csod_session(corp, site)
+    headers = {"Authorization": f"Bearer {token}"}
+    for url in (f"{api_host}/rec-job-search/external/jobs/{rid}?cultureId=1",
+                f"https://{corp}.csod.com/services/x/job-requisition/v2/requisitions/{rid}/jobDetails?cultureId=1",
+                f"{api_host}/rec-job-search/external/jobDetails/{rid}?cultureId=1"):
+        try:
+            text = html_to_text(_longest_text(http.get_json(url, headers=headers, retries=0)))
+        except http.FetchError:
+            continue
+        if len(text) > 200:
+            return text
+    return ""
+
+
 def fetch_csod(token):
     corp, site = token.split("|")
     home = http.get_text(f"https://{corp}.csod.com/ux/ats/careersite/{site}/home?c={corp}")
@@ -511,7 +553,7 @@ def fetch_csod(token):
             rid = r.get("requisitionId")
             url = f"https://{corp}.csod.com/ux/ats/careersite/{site}/home/requisition/{rid}?c={corp}"
             jobs.append(_job(r.get("displayJobTitle"), loc_text, url, remote=("remote" in loc_text.lower()) or None,
-                             posted=r.get("postingEffectiveDate"), detail=("page", url)))
+                             posted=r.get("postingEffectiveDate"), detail=("csod", (corp, site, rid))))
         total = (data.get("data") or {}).get("totalCount", 0)
         if not reqs or page * 100 >= total:
             return jobs
