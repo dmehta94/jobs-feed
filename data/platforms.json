@@ -35,6 +35,18 @@
     "platform": "icims",
     "token": "careers-brookings.icims.com"
   },
+  "Brown University": {
+    "platform": "workday",
+    "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown"
+  },
+  "CAST": {
+    "platform": "adp",
+    "token": "8d062d6e-b354-4c8f-96ab-5157321963e8"
+  },
+  "Carnegie Foundation for the Advancement of Teaching": {
+    "platform": "trakstar",
+    "token": "carnegiefoundationcareers"
+  },
   "Center for Justice Innovation": {
     "platform": "jazzhr",
     "token": "innovatingjustice"
@@ -83,6 +95,10 @@
     "platform": "greenhouse",
     "token": "coursera"
   },
+  "Curriculum Associates": {
+    "platform": "eightfold",
+    "token": "careers.curriculumassociates.com|curriculumassociates.com"
+  },
   "DataKind": {
     "platform": "greenhouse",
     "token": "datakindinc"
@@ -103,9 +119,9 @@
     "platform": "greenhouse",
     "token": "edreports"
   },
-  "Education Analytics": {
-    "platform": "links",
-    "token": "https://www.edanalytics.org/careers"
+  "Education Northwest": {
+    "platform": "trakstar",
+    "token": "educationnorthwest"
   },
   "Gates Foundation": {
     "platform": "workday",
@@ -114,6 +130,10 @@
   "Great Minds": {
     "platform": "recruitee",
     "token": "greatminds"
+  },
+  "Harvard University": {
+    "platform": "smartrecruiters",
+    "token": "HarvardUniversity"
   },
   "ICF": {
     "platform": "workday",
@@ -139,6 +159,10 @@
     "platform": "ukgready",
     "token": "secure6.saashr.com|6162152"
   },
+  "Math for America": {
+    "platform": "site_links",
+    "token": "https://www.mathforamerica.org/careers"
+  },
   "Mathematica": {
     "platform": "csod",
     "token": "mathematica|4"
@@ -151,6 +175,10 @@
     "platform": "site_links",
     "token": "https://www.measurementinc.com/careers/"
   },
+  "NORC at the University of Chicago": {
+    "platform": "pageup",
+    "token": "https://careers.norc.org/en-us"
+  },
   "NYU": {
     "platform": "icims",
     "token": "uscareers-nyu.icims.com"
@@ -158,6 +186,10 @@
   "Nava PBC": {
     "platform": "greenhouse",
     "token": "navapbc"
+  },
+  "New Classrooms": {
+    "platform": "links",
+    "token": "https://newclassrooms.org/careers/"
   },
   "New Visions for Public Schools": {
     "platform": "greenhouse",
@@ -187,6 +219,10 @@
     "platform": "ashby",
     "token": "propel"
   },
+  "RAND": {
+    "platform": "workday",
+    "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site"
+  },
   "Recidiviz": {
     "platform": "greenhouse",
     "token": "recidiviz"
@@ -211,6 +247,10 @@
     "platform": "jazzhr",
     "token": "sprajobs"
   },
+  "Stanford University": {
+    "platform": "oracle",
+    "token": "careersearch.stanford.edu|stanford"
+  },
   "TNTP": {
     "platform": "workday",
     "token": "tntp.wd5.myworkdayjobs.com|tntp|TNTP"
@@ -227,9 +267,21 @@
     "platform": "breezy",
     "token": "us-digital-response"
   },
+  "University of Chicago": {
+    "platform": "workday",
+    "token": "uchicago.wd5.myworkdayjobs.com|uchicago|External"
+  },
+  "University of Pennsylvania": {
+    "platform": "workday",
+    "token": "wd1.myworkdaysite.com|upenn|careers-at-penn"
+  },
   "Urban Institute": {
     "platform": "workday",
     "token": "urban.wd115.myworkdayjobs.com|urban|Urban-Careers"
+  },
+  "Vanderbilt University": {
+    "platform": "oracle",
+    "token": "ecsr.fa.us2.oraclecloud.com|CX_1"
   },
   "Vera Institute of Justice": {
     "platform": "greenhouse",

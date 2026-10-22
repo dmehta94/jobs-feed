@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-21T20:46:49+00:00",
+  "generated_at": "2026-10-22T22:13:14+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -16,10 +16,10 @@
       "org": "New Classrooms",
       "category": "Education",
       "tier": 1,
-      "platform": null,
-      "token": null,
-      "found_by": "careers page failed (HTTP 403)",
-      "status": "no supported platform found",
+      "platform": "links",
+      "token": "https://newclassrooms.org/careers/",
+      "found_by": "orgs.csv",
+      "status": "ok",
       "total": 0,
       "relevant": 0
     },
@@ -42,7 +42,7 @@
       "token": "amplify",
       "found_by": "cached",
       "status": "ok",
-      "total": 35,
+      "total": 33,
       "relevant": 6
     },
     {
@@ -60,10 +60,10 @@
       "org": "Carnegie Learning",
       "category": "Education",
       "tier": 1,
-      "platform": "workable",
-      "token": "carnegie-learning",
-      "found_by": "cached",
-      "status": "ok",
+      "platform": "unsupported:paycom",
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
       "total": 0,
       "relevant": 0
     },
@@ -104,11 +104,11 @@
       "org": "Curriculum Associates",
       "category": "Education",
       "tier": 2,
-      "platform": "workable",
-      "token": "curriculum-associates",
-      "found_by": "cached",
+      "platform": "eightfold",
+      "token": "careers.curriculumassociates.com|curriculumassociates.com",
+      "found_by": "orgs.csv",
       "status": "ok",
-      "total": 0,
+      "total": 54,
       "relevant": 0
     },
     {
@@ -130,8 +130,8 @@
       "token": "khanacademy",
       "found_by": "cached",
       "status": "ok",
-      "total": 6,
-      "relevant": 3
+      "total": 5,
+      "relevant": 2
     },
     {
       "org": "Newsela",
@@ -141,7 +141,7 @@
       "token": "newsela",
       "found_by": "cached",
       "status": "ok",
-      "total": 12,
+      "total": 11,
       "relevant": 3
     },
     {
@@ -163,7 +163,7 @@
       "token": "panorama-education",
       "found_by": "cached",
       "status": "ok",
-      "total": 7,
+      "total": 8,
       "relevant": 0
     },
     {
@@ -229,7 +229,7 @@
       "token": "stronger-consulting",
       "found_by": "cached",
       "status": "ok",
-      "total": 4,
+      "total": 5,
       "relevant": 0
     },
     {
@@ -328,7 +328,7 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 26,
+      "total": 30,
       "relevant": 0
     },
     {
@@ -372,8 +372,8 @@
       "token": "https://careers.mheducation.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 85,
-      "relevant": 15
+      "total": 89,
+      "relevant": 10
     },
     {
       "org": "Pearson",
@@ -394,17 +394,17 @@
       "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers",
       "found_by": "cached",
       "status": "ok",
-      "total": 52,
+      "total": 51,
       "relevant": 5
     },
     {
       "org": "ETS",
       "category": "Education",
       "tier": 2,
-      "platform": "workable",
-      "token": "ets",
-      "found_by": "cached",
-      "status": "ok",
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
       "total": 0,
       "relevant": 0
     },
@@ -427,18 +427,18 @@
       "token": "americaninstitutesforresearch",
       "found_by": "cached",
       "status": "ok",
-      "total": 12,
+      "total": 13,
       "relevant": 5
     },
     {
       "org": "RAND",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "workable",
-      "token": "rand",
-      "found_by": "cached",
+      "platform": "workday",
+      "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site",
+      "found_by": "orgs.csv",
       "status": "ok",
-      "total": 0,
+      "total": 22,
       "relevant": 0
     },
     {
@@ -471,17 +471,17 @@
       "token": "recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 3,
+      "total": 6,
       "relevant": 0
     },
     {
       "org": "SRI Education",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "workable",
-      "token": "sri",
-      "found_by": "cached",
-      "status": "ok",
+      "platform": null,
+      "token": null,
+      "found_by": "careers page failed (ConnectionError: HTTPSConnectionPool(host='careers.sri.com', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='careers.sri.com', port=443): Failed to resolve 'careers.sri.com' ([Errno -2] Name or service not known)\")))",
+      "status": "no supported platform found",
       "total": 0,
       "relevant": 0
     },
@@ -489,10 +489,10 @@
       "org": "Westat",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "workable",
-      "token": "westat",
-      "found_by": "cached",
-      "status": "ok",
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
       "total": 0,
       "relevant": 0
     },
@@ -525,9 +525,9 @@
       "platform": "links",
       "token": "https://www.edanalytics.org/careers",
       "found_by": "cached",
-      "status": "ok",
-      "total": 2,
-      "relevant": 2
+      "status": "empty: guessed board had no postings",
+      "total": 0,
+      "relevant": 0
     },
     {
       "org": "Learning Policy Institute",
@@ -535,8 +535,8 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "learningpolicyinstitute",
-      "found_by": "cached",
-      "status": "ok",
+      "found_by": "careers page",
+      "status": "empty: guessed board had no postings",
       "total": 0,
       "relevant": 0
     },
@@ -592,7 +592,7 @@
       "token": "5690b998-5a2d-4792-b2de-97f5fca569c2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 3,
+      "total": 2,
       "relevant": 0
     },
     {
@@ -647,7 +647,7 @@
       "token": "innovatingjustice",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 58,
+      "total": 59,
       "relevant": 1
     },
     {
@@ -680,7 +680,7 @@
       "token": "recidiviz",
       "found_by": "cached",
       "status": "ok",
-      "total": 7,
+      "total": 6,
       "relevant": 3
     },
     {
@@ -702,7 +702,7 @@
       "token": "navapbc",
       "found_by": "cached",
       "status": "ok",
-      "total": 12,
+      "total": 11,
       "relevant": 1
     },
     {
@@ -742,10 +742,10 @@
       "org": "Ad Hoc",
       "category": "Civic Tech",
       "tier": 2,
-      "platform": "workable",
-      "token": "ad-hoc",
-      "found_by": "cached",
-      "status": "ok",
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
       "total": 0,
       "relevant": 0
     },
@@ -768,7 +768,7 @@
       "token": "anthropic",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 674,
+      "total": 680,
       "relevant": 88
     },
     {
@@ -790,7 +790,7 @@
       "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates",
       "found_by": "cached",
       "status": "ok",
-      "total": 18,
+      "total": 20,
       "relevant": 0
     },
     {
@@ -808,9 +808,9 @@
       "org": "Carnegie Foundation for the Advancement of Teaching",
       "category": "Research & Policy",
       "tier": 2,
-      "platform": "workable",
-      "token": "carnegie-foundation-for-the-advancement-of-teaching",
-      "found_by": "cached",
+      "platform": "trakstar",
+      "token": "carnegiefoundationcareers",
+      "found_by": "orgs.csv",
       "status": "ok",
       "total": 0,
       "relevant": 0
@@ -834,8 +834,8 @@
       "token": "projectevident",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 5,
-      "relevant": 1
+      "total": 4,
+      "relevant": 0
     },
     {
       "org": "J-PAL North America",
@@ -953,7 +953,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "not found on careers page",
+      "found_by": "careers page failed (404 Not Found)",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -1010,8 +1010,8 @@
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
       "found_by": "cached",
       "status": "ok",
-      "total": 354,
-      "relevant": 12
+      "total": 356,
+      "relevant": 14
     },
     {
       "org": "Teachers College Columbia",
@@ -1055,12 +1055,221 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 150,
-      "relevant": 12
+      "relevant": 13
     },
     {
       "org": "NYC Public Schools Central Office",
       "category": "Education",
       "tier": 1,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Harvard University",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "smartrecruiters",
+      "token": "HarvardUniversity",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 324,
+      "relevant": 3
+    },
+    {
+      "org": "Stanford University",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "oracle",
+      "token": "careersearch.stanford.edu|stanford",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 230,
+      "relevant": 3
+    },
+    {
+      "org": "Brown University",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "workday",
+      "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
+      "found_by": "linked page http://www.brown.edu/careers",
+      "status": "ok",
+      "total": 71,
+      "relevant": 0
+    },
+    {
+      "org": "University of Chicago",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "workday",
+      "token": "uchicago.wd5.myworkdayjobs.com|uchicago|External",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 343,
+      "relevant": 1
+    },
+    {
+      "org": "University of Pennsylvania",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "workday",
+      "token": "wd1.myworkdaysite.com|upenn|careers-at-penn",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 330,
+      "relevant": 0
+    },
+    {
+      "org": "Johns Hopkins University",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "careers page failed (HTTP 403)",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "University of Virginia",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "workday",
+      "token": "uva.wd1.myworkdayjobs.com|uva|uva_pipelines_and_pathways",
+      "found_by": "linked page https://jobs.virginia.edu/us/en/pipelines-pathways",
+      "status": "empty: guessed board had no postings",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Vanderbilt University",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "oracle",
+      "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
+      "found_by": "careers page",
+      "status": "ok",
+      "total": 121,
+      "relevant": 1
+    },
+    {
+      "org": "University of Michigan",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Northwestern University",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "University of Washington",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "NORC at the University of Chicago",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "pageup",
+      "token": "https://careers.norc.org/en-us",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "National Student Clearinghouse",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Education Northwest",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "trakstar",
+      "token": "educationnorthwest",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "CAST",
+      "category": "Education",
+      "tier": 2,
+      "platform": "adp",
+      "token": "8d062d6e-b354-4c8f-96ab-5157321963e8",
+      "found_by": "careers page",
+      "status": "ok",
+      "total": 1,
+      "relevant": 0
+    },
+    {
+      "org": "Open Up Resources",
+      "category": "Education",
+      "tier": 2,
+      "platform": "workable",
+      "token": "open-up-resources",
+      "found_by": "careers page",
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Math for America",
+      "category": "Education",
+      "tier": 2,
+      "platform": "site_links",
+      "token": "https://www.mathforamerica.org/careers",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 1,
+      "relevant": 0
+    },
+    {
+      "org": "The Wallace Foundation",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "William T. Grant Foundation",
+      "category": "Research & Policy",
+      "tier": 2,
       "platform": null,
       "token": null,
       "found_by": "not found on careers page",
@@ -1097,6 +1306,20 @@
       "org": "Adzuna",
       "category": "Discovered",
       "status": "skipped (no API key set)"
+    },
+    {
+      "org": "Edtech.com",
+      "category": "Discovered",
+      "status": "ok",
+      "total": 120,
+      "relevant": 42
+    },
+    {
+      "org": "HigherEdJobs",
+      "category": "Discovered",
+      "status": "ok",
+      "total": 184,
+      "relevant": 16
     }
   ]
 }
