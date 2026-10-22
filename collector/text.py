@@ -68,10 +68,17 @@ def title_is_relevant(title):
 # ---------- location ----------
 
 # "New York" alone is often the state ("Buffalo, NY", "Albany, New York"), so a place counts as NYC only
-# when it names the city, a borough, or a nearby city, or starts with "New York".
+# when it names the city, a borough, a nearby city, or a Nassau County town, or starts with "New York".
 NYC_AREA = re.compile(
     r"(new york,?\s*(?:ny|new york|city)\b|new york city|^\W*new york\b|\bnyc\b|brooklyn|queens|manhattan|\bbronx|"
-    r"staten island|long island city|hoboken|jersey city)", re.I)
+    r"staten island|long island city|hoboken|jersey city|"
+    # Nassau County, Long Island
+    r"\b(?:nassau|garden city|mineola|hempstead|uniondale|hicksville|levittown|great neck|manhasset|port washington|"
+    r"glen cove|long beach|freeport|valley stream|rockville centre|oceanside|westbury|old westbury|elmont|"
+    r"floral park|new hyde park|lake success|lynbrook|massapequa|bethpage|syosset|jericho|plainview|"
+    r"oyster bay|roslyn|east meadow|baldwin|merrick|bellmore|wantagh|seaford|carle place|franklin square|"
+    r"woodmere|cedarhurst|lawrence|hewlett|inwood|bellerose|albertson|williston park|sea cliff|"
+    r"locust valley|glen head|woodbury|east williston|island park|point lookout|atlantic beach)\b)", re.I)
 ANYWHERE = re.compile(r"(remote|anywhere|virtual|distributed|work from home|telework|nationwide|multiple locations|various)", re.I)
 LOCATION_OK = re.compile(NYC_AREA.pattern + "|" + ANYWHERE.pattern + r"|united states|\busa?\b|u\.s\.", re.I)
 # A trailing country ("Nashville, TN, United States") says nothing about where in the US the job is.

@@ -607,6 +607,8 @@ def test_discovery_skips_same_posting_under_another_employer_name():
     ("Buffalo, NY", False), ("Albany, New York", False), ("Liverpool, NY", False),
     ("New York, NY", True), ("New York", True), ("475 Riverside Dr, New York, NY", True),
     ("Brooklyn, NY", True), ("New York City", True),
+    ("Garden City, NY", True), ("Hempstead, New York", True), ("Nassau County, NY", True),
+    ("Stony Brook, NY", False), ("Lawrenceville, NJ", False),
 ])
 def test_new_york_state_is_not_nyc(loc, expected):
     assert location_is_ok(loc, None) is expected

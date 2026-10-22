@@ -16,6 +16,8 @@ Environment (set as GitHub repository secrets/variables, never committed):
     MAX_PER_ORG         optional: most postings from one employer (default 3)
     MAX_NYC             optional: most NYC city postings (default 5)
     MIN_FIT             optional: lowest fit score to include (default 5; higher means stricter)
+    READ_LINKEDIN_ALERTS optional: "no" turns off the LinkedIn alerts section (see alerts.py)
+    DRY_RUN             set by a manual run with email=no: build the email but don't send it
 
 Run from the repo root:  python -m collector.email_digest
 """
@@ -29,6 +31,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
 
+from . import alerts as linkedin_alerts
 from .fit import shortlist
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -112,9 +115,11 @@ GROUPS = [
 ]
 
 
-def build(feed, jobs, health, today=None, matched=None):
+def build(feed, jobs, health, today=None, matched=None, alerts=None):
     today = today or date.today()
     subject = f"Job feed — {today.strftime('%b')} {today.day}: top {len(jobs)} new posting{'s' if len(jobs) != 1 else ''}"
+    if alerts:
+        subject += f" + {len(alerts)} from LinkedIn"
     broken = [s["org"] for s in health.get("sources", []) if s.get("tier") == 1 and s.get("status") != "ok"]
     footer = f"{feed.get('sources_ok', 0)} of {feed.get('sources_total', 0)} sources working."
     if broken:
@@ -144,7 +149,23 @@ def build(feed, jobs, health, today=None, matched=None):
                 f"{' · ' + html.escape(notes) if notes else ''}</span></li>")
         html_parts.append("</ul>")
         text_lines.append("")
-    if not jobs:
+    if alerts:
+        heading = "From your LinkedIn alerts"
+        note = "Employers outside the collector's list. Requirements weren't checked; open the posting to see them."
+        text_lines += [heading.upper(), note]
+        html_parts.append(f"<h3 style='font-family:sans-serif;margin-bottom:4px'>{html.escape(heading)}</h3>"
+                          f"<p style='font-family:sans-serif;color:#555;margin-top:0'>{html.escape(note)}</p>"
+                          "<ul style='font-family:sans-serif;padding-left:18px'>")
+        for job in alerts:
+            pay = _pay(job) if job.get("salary_max") else "pay not shown"
+            text_lines.append(f"- {job['org']} — {job['title']} · {pay} · {_where(job)}\n  {job['url']}")
+            html_parts.append(
+                f"<li style='margin-bottom:6px'><b>{html.escape(job['org'])}</b> — "
+                f"<a href='{html.escape(job['url'], quote=True)}'>{html.escape(job['title'])}</a>"
+                f"<br><span style='color:#555'>{html.escape(pay)} · {html.escape(_where(job))}</span></li>")
+        html_parts.append("</ul>")
+        text_lines.append("")
+    if not jobs and not alerts:
         text_lines.append("Nothing new this week.")
         html_parts.append("<p style='font-family:sans-serif'>Nothing new this week.</p>")
     if matched and matched > len(jobs):
@@ -185,9 +206,18 @@ def main():
     feed = json.loads((DATA / "jobs.json").read_text())
     health = json.loads((DATA / "health.json").read_text())
     jobs, matched = pick(feed)
-    subject, text, html_body = build(feed, jobs, health, matched=matched)
+    alerts = []
+    if os.environ.get("READ_LINKEDIN_ALERTS", "yes").lower() != "no":
+        try:
+            alerts = linkedin_alerts.pick_alerts(linkedin_alerts.read_mailbox(), feed.get("jobs", []))
+        except Exception as exc:  # the log is public: report the kind of failure, never mailbox content
+            print(f"LinkedIn alerts skipped ({type(exc).__name__}).")
+    subject, text, html_body = build(feed, jobs, health, matched=matched, alerts=alerts)
+    if os.environ.get("DRY_RUN"):
+        print(f"Dry run: would email {len(jobs)} postings and {len(alerts)} from LinkedIn alerts.")
+        return 0
     send(subject, text, html_body)
-    print(f"Emailed {len(jobs)} postings.")
+    print(f"Emailed {len(jobs)} postings and {len(alerts)} from LinkedIn alerts.")
     return 0
 
 

@@ -1,6 +1,6 @@
 # jobs-feed
 
-A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area and remote jobs anywhere in the US.
+A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area (including Nassau County) and remote jobs anywhere in the US.
 
 Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's hiring platform, pulls every open posting straight from that platform's public job feed, keeps the plausibly relevant ones, and commits the results to `data/`.
 
@@ -32,7 +32,9 @@ After each run, the workflow can email a short list of the week's new postings, 
 
 The email is a short ranked list, not every posting. `collector/fit.py` drops senior and off-target titles (finance, IT, engineering, project management, internships, and similar), then scores the rest on role match, education focus, and experience asked. These optional variables tune it: `MAX_ITEMS` (default 15), `MAX_PER_ORG` (default 3), `MAX_NYC` (default 5), and `MIN_FIT` (default 5; raise it for a stricter list).
 
-If the secrets aren't set, the email step is skipped and the collector runs as usual.
+The email also has a section of postings from the account owner's LinkedIn job-alert emails, read with the same app password over IMAP (read-only). Because this repository is public, those postings are never written to `data/`, committed, or printed to the Actions log beyond a count; they appear only in the email, and their links are rebuilt without LinkedIn's tracking and sign-in parameters. Set the variable `READ_LINKEDIN_ALERTS` to `no` to turn this off.
+
+If the secrets aren't set, the email step is skipped and the collector runs as usual. A manual run with `email` set to `no` builds the email without sending it.
 
 ## Adding or fixing an organization
 

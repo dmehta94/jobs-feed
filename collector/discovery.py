@@ -127,25 +127,32 @@ def fetch_remotive():
 
 
 def fetch_adzuna(max_days_old=14):
+    """Two passes per search term: jobs within 25 miles of NYC, and remote jobs anywhere in the US."""
     app_id, app_key = os.environ.get("ADZUNA_APP_ID"), os.environ.get("ADZUNA_APP_KEY")
     if not app_id or not app_key:
         return None
     found = {}
+    passes = [({"where": "New York, NY", "distance": 25}, None), ({"what_or": "remote telework"}, True)]
     for term in SEARCH_TERMS:
-        data = http.get_json("https://api.adzuna.com/v1/api/jobs/us/search/1", params={
-            "app_id": app_id, "app_key": app_key, "what": term, "where": "New York, NY", "distance": 25,
-            "results_per_page": 50, "max_days_old": max_days_old, "content-type": "application/json",
-        })
-        for r in data.get("results", []):
-            url = r.get("redirect_url")
-            if not url or url in found:
-                continue
-            found[url] = _job((r.get("company") or {}).get("display_name"), r.get("title"),
-                              (r.get("location") or {}).get("display_name"), url, posted=r.get("created"),
-                              description=html_to_text(r.get("description", "")),
-                              employment_type=r.get("contract_time"),
-                              salary_min=r.get("salary_min") if r.get("salary_is_predicted") in ("0", 0) else None,
-                              salary_max=r.get("salary_max") if r.get("salary_is_predicted") in ("0", 0) else None)
+        for extra, remote in passes:
+            data = http.get_json("https://api.adzuna.com/v1/api/jobs/us/search/1", params={
+                "app_id": app_id, "app_key": app_key, "what": term, "results_per_page": 50,
+                "max_days_old": max_days_old, "content-type": "application/json", **extra,
+            })
+            for r in data.get("results", []):
+                url = r.get("redirect_url")
+                if not url or url in found:
+                    continue
+                desc = html_to_text(r.get("description", ""))
+                real_pay = r.get("salary_is_predicted") in ("0", 0)
+                found[url] = _job((r.get("company") or {}).get("display_name"), r.get("title"),
+                                  (r.get("location") or {}).get("display_name"), url, posted=r.get("created"),
+                                  description=desc, employment_type=r.get("contract_time"),
+                                  # Adzuna shows only a snippet, so "remote" must appear in the title or snippet.
+                                  remote=(remote and bool(re.search(r"\b(remote|telework)\b", r.get("title", "") + desc, re.I)))
+                                  or None,
+                                  salary_min=r.get("salary_min") if real_pay else None,
+                                  salary_max=r.get("salary_max") if real_pay else None)
     return list(found.values())
 
 
