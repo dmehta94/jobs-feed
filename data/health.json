@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T22:13:14+00:00",
+  "generated_at": "2026-10-22T23:56:31+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -20,7 +20,7 @@
       "token": "https://newclassrooms.org/careers/",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 0,
+      "total": 2,
       "relevant": 0
     },
     {
@@ -394,7 +394,7 @@
       "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers",
       "found_by": "cached",
       "status": "ok",
-      "total": 51,
+      "total": 52,
       "relevant": 5
     },
     {
@@ -524,10 +524,10 @@
       "tier": 2,
       "platform": "links",
       "token": "https://www.edanalytics.org/careers",
-      "found_by": "cached",
-      "status": "empty: guessed board had no postings",
-      "total": 0,
-      "relevant": 0
+      "found_by": "posting links on https://www.edanalytics.org/careers",
+      "status": "ok",
+      "total": 2,
+      "relevant": 2
     },
     {
       "org": "Learning Policy Institute",
@@ -953,7 +953,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (404 Not Found)",
+      "found_by": "not found on careers page",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -1011,7 +1011,7 @@
       "found_by": "cached",
       "status": "ok",
       "total": 356,
-      "relevant": 14
+      "relevant": 15
     },
     {
       "org": "Teachers College Columbia",
@@ -1087,7 +1087,7 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 230,
+      "total": 232,
       "relevant": 3
     },
     {
@@ -1096,7 +1096,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
-      "found_by": "linked page http://www.brown.edu/careers",
+      "found_by": "cached",
       "status": "ok",
       "total": 71,
       "relevant": 0
@@ -1109,7 +1109,7 @@
       "token": "uchicago.wd5.myworkdayjobs.com|uchicago|External",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 343,
+      "total": 342,
       "relevant": 1
     },
     {
@@ -1151,7 +1151,7 @@
       "tier": 2,
       "platform": "oracle",
       "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 121,
       "relevant": 1
@@ -1228,7 +1228,7 @@
       "tier": 2,
       "platform": "adp",
       "token": "8d062d6e-b354-4c8f-96ab-5157321963e8",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 1,
       "relevant": 0
@@ -1240,8 +1240,8 @@
       "platform": "workable",
       "token": "open-up-resources",
       "found_by": "careers page",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
+      "status": "ok",
+      "total": 3,
       "relevant": 0
     },
     {
@@ -1278,6 +1278,17 @@
       "relevant": 0
     },
     {
+      "org": "RTI International",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "icims",
+      "token": "careers-rtiinc.icims.com",
+      "found_by": "linked page https://careers.rti.org/",
+      "status": "ok",
+      "total": 34,
+      "relevant": 7
+    },
+    {
       "org": "NYC Jobs (NYC Open Data)",
       "category": "NYC Government",
       "status": "ok",
@@ -1312,7 +1323,7 @@
       "category": "Discovered",
       "status": "ok",
       "total": 120,
-      "relevant": 42
+      "relevant": 37
     },
     {
       "org": "HigherEdJobs",
