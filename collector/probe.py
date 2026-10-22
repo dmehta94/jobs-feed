@@ -193,8 +193,30 @@ def main_test(names):
     return 0
 
 
+def main_urls(urls):
+    """Fetch arbitrary URLs and save the responses, to check what a runner can reach."""
+    rows = []
+    for i, url in enumerate(urls):
+        try:
+            resp = http.session.get(url, timeout=30, allow_redirects=True)
+            status, final, body, ctype = resp.status_code, resp.url, resp.text, resp.headers.get("content-type", "")
+        except Exception as exc:  # report, don't stop
+            status, final, body, ctype = f"{type(exc).__name__}: {exc}"[:200], None, "", ""
+        fname = OUT / "urls" / f"{i:02d}_{_safe(urlparse(url).netloc + urlparse(url).path)[:50]}.txt"
+        fname.parent.mkdir(parents=True, exist_ok=True)
+        fname.write_text(body[:400_000])
+        rows.append({"url": url, "status": status, "final_url": final, "content_type": ctype,
+                     "length": len(body), "file": str(fname.relative_to(ROOT)), "head": body[:300]})
+        print(status, len(body), url)
+    OUT.mkdir(exist_ok=True)
+    (OUT / "urls.json").write_text(json.dumps(rows, indent=2) + "\n")
+    return 0
+
+
 if __name__ == "__main__":
     args = sys.argv[1:]
+    if args and args[0] == "--urls":
+        sys.exit(main_urls(args[1:]))
     if args and args[0] == "--deep":
         sys.exit(main_deep(args[1:]))
     if args and args[0] == "--test":

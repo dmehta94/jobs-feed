@@ -38,7 +38,7 @@ College Board,Education,2,https://careers.collegeboard.org/,,,NYC headquarters; 
 ETS,Education,2,https://www.ets.org/careers.html,,,Research and psychometrics
 Mathematica,Research & Policy,2,https://careers.mathematica.org,csod,mathematica|4,Analyst and research assistant tiers only
 American Institutes for Research,Research & Policy,2,https://www.air.org/careers,,,Analyst and research assistant tiers only
-RAND,Research & Policy,2,https://www.rand.org/jobs.html,,,
+RAND,Research & Policy,2,https://www.rand.org/jobs.html,workday,rand.wd5.myworkdayjobs.com|rand|External_Career_Site,
 Urban Institute,Research & Policy,2,https://www.urban.org/about/careers,,,
 Child Trends,Research & Policy,2,https://www.childtrends.org/careers/job-openings,adp,70c1bbee-a65c-4b42-bb04-9dcb8a73868a,
 WestEd,Research & Policy,2,https://careers.wested.org/,ukgpro,recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a,Runs Regional Educational Labs
@@ -96,3 +96,22 @@ CUNY Research Foundation,Higher Ed,2,https://www.rfcuny.org/rfwebsite/careers/,,
 CUNY Central Office,Higher Ed,2,https://www.cuny.edu/about/administration/offices/transformation/careers-across-disciplines/,,,Institutional research and analytics
 NYU,Higher Ed,2,https://uscareers-nyu.icims.com/jobs,icims,uscareers-nyu.icims.com,"All NYU staff roles, including Steinhardt research centers"
 NYC Public Schools Central Office,Education,1,https://www.schools.nyc.gov/careers,,,Research and policy offices
+Harvard University,Higher Ed,2,https://careers.harvard.edu/jobs,smartrecruiters,HarvardUniversity,"HGSE, CEPR, Strategic Data Project; many roles remote"
+Stanford University,Higher Ed,2,https://careersearch.stanford.edu/,,,"GSE, CEPA, CREDO, SCALE"
+Brown University,Higher Ed,2,https://www.brown.edu/about/administration/human-resources/careers,,,Annenberg Institute
+University of Chicago,Higher Ed,2,https://jobs.uchicago.edu/,,,"Consortium on School Research, Education Lab (has NYC staff)"
+University of Pennsylvania,Higher Ed,2,https://careers.upenn.edu/,,,"Penn GSE, CPRE"
+Johns Hopkins University,Higher Ed,2,https://jobs.jhu.edu/,,,"School of Education, Institute for Education Policy, Everyone Graduates Center"
+University of Virginia,Higher Ed,2,https://jobs.virginia.edu/,,,EdPolicyWorks
+Vanderbilt University,Higher Ed,2,https://www.vanderbilt.edu/work-at-vanderbilt/,,,"Peabody, Tennessee Education Research Alliance"
+University of Michigan,Higher Ed,2,https://careers.umich.edu/,,,"Education Policy Initiative, Youth Policy Lab"
+Northwestern University,Higher Ed,2,https://careers.northwestern.edu/,,,School of Education and Social Policy
+University of Washington,Higher Ed,2,https://hr.uw.edu/jobs/,,,Center for Education Data & Research
+NORC at the University of Chicago,Research & Policy,2,https://www.norc.org/careers.html,,,Education and child development research; many remote roles
+National Student Clearinghouse,Research & Policy,2,https://www.studentclearinghouse.org/careers/,,,Research Center
+Education Northwest,Research & Policy,2,https://educationnorthwest.org/careers,,,Regional education lab
+CAST,Education,2,https://www.cast.org/about/careers,,,Universal Design for Learning research
+Open Up Resources,Education,2,https://openupresources.org/careers/,,,Open math curriculum
+Math for America,Education,2,https://www.mathforamerica.org/careers,,,NYC math teacher nonprofit
+The Wallace Foundation,Research & Policy,2,https://wallacefoundation.org/careers,,,NYC; education research funder
+William T. Grant Foundation,Research & Policy,2,https://wtgrantfoundation.org/careers,,,NYC; youth research funder

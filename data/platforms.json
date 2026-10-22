@@ -7,10 +7,6 @@
     "platform": "workable",
     "token": "stronger-consulting"
   },
-  "Ad Hoc": {
-    "platform": "workable",
-    "token": "ad-hoc"
-  },
   "Advocates for Children of NY": {
     "platform": "greenhouse",
     "token": "advocatesforchildrenofnewyork"
@@ -38,14 +34,6 @@
   "Brookings Institution": {
     "platform": "icims",
     "token": "careers-brookings.icims.com"
-  },
-  "Carnegie Foundation for the Advancement of Teaching": {
-    "platform": "workable",
-    "token": "carnegie-foundation-for-the-advancement-of-teaching"
-  },
-  "Carnegie Learning": {
-    "platform": "workable",
-    "token": "carnegie-learning"
   },
   "Center for Justice Innovation": {
     "platform": "jazzhr",
@@ -95,10 +83,6 @@
     "platform": "greenhouse",
     "token": "coursera"
   },
-  "Curriculum Associates": {
-    "platform": "workable",
-    "token": "curriculum-associates"
-  },
   "DataKind": {
     "platform": "greenhouse",
     "token": "datakindinc"
@@ -114,10 +98,6 @@
   "Duolingo": {
     "platform": "greenhouse",
     "token": "duolingo"
-  },
-  "ETS": {
-    "platform": "workable",
-    "token": "ets"
   },
   "EdReports": {
     "platform": "greenhouse",
@@ -154,10 +134,6 @@
   "Kiddom": {
     "platform": "ashby",
     "token": "kiddom"
-  },
-  "Learning Policy Institute": {
-    "platform": "greenhouse",
-    "token": "learningpolicyinstitute"
   },
   "MDRC": {
     "platform": "ukgready",
@@ -211,10 +187,6 @@
     "platform": "ashby",
     "token": "propel"
   },
-  "RAND": {
-    "platform": "workable",
-    "token": "rand"
-  },
   "Recidiviz": {
     "platform": "greenhouse",
     "token": "recidiviz"
@@ -230,10 +202,6 @@
   "Robin Hood": {
     "platform": "adp",
     "token": "5690b998-5a2d-4792-b2de-97f5fca569c2"
-  },
-  "SRI Education": {
-    "platform": "workable",
-    "token": "sri"
   },
   "Saga Education": {
     "platform": "greenhouse",
@@ -270,10 +238,6 @@
   "WestEd": {
     "platform": "ukgpro",
     "token": "recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a"
-  },
-  "Westat": {
-    "platform": "workable",
-    "token": "westat"
   },
   "Zearn": {
     "platform": "workable",
