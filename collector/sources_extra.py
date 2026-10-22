@@ -655,9 +655,25 @@ def fetch_pageup(token):
     return jobs
 
 
+_LD_POSTING = re.compile(r"<script[^>]*application/ld\+json[^>]*>(.*?)</script>", re.S | re.I)
+
+
+def ld_description(raw):
+    """Description from a schema.org JobPosting block, which many boards embed for search engines."""
+    for block in _LD_POSTING.findall(raw or ""):
+        try:
+            data = json.loads(block, strict=False)
+        except ValueError:
+            continue
+        for item in data if isinstance(data, list) else [data]:
+            if isinstance(item, dict) and item.get("@type") == "JobPosting" and item.get("description"):
+                return html_to_text(htmllib.unescape(item["description"]))
+    return ""
+
+
 def page_detail(url):
     raw = http.get_text(url)
-    return page_title(raw), page_text(raw)[:8000]
+    return page_title(raw), (ld_description(raw) or page_text(raw))[:8000]
 
 
 ADAPTERS = {

@@ -113,8 +113,8 @@ _STRONG_REMOTE = re.compile(
     r"(?:is|as) a remote (?:position|role|job|opportunity)|this (?:position|role|job) is (?:fully )?remote|"
     r"remote (?:within|anywhere in|from anywhere in) the (?:u\.?s\.?|united states)|"
     r"work from anywhere|location:?\s*remote|remote,? (?:us|u\.s\.|usa|united states)\b|"
-    r"open to (?:fully )?remote|remote work (?:is )?(?:available|permitted|allowed))", re.I)
-_WEAK_REMOTE = re.compile(r"(remote[- ](?:eligible|friendly|option)|telework|telecommut\w*|work(?:ing)? remotely|"
+    r"open to (?:fully )?remote)", re.I)
+_WEAK_REMOTE = re.compile(r"(remote[- ](?:eligible|friendly|option)|remote work (?:is )?(?:available|permitted|allowed)|telework|telecommut\w*|work(?:ing)? remotely|"
                           r"work from home|remote work)", re.I)
 _HYBRID = re.compile(r"(hybrid|\b(?:one|two|three|four|\d) days? (?:a|per|each) week|in[- ]office (?:days|presence)|"
                      r"on[- ]site (?:days|presence)|in[- ]person (?:days|at least))", re.I)
@@ -124,17 +124,20 @@ _NOT_REMOTE = re.compile(r"(not (?:a )?remote|not (?:be )?eligible for (?:remote
                          r"not (?:available|offered|open) (?:for|to) remote)", re.I)
 
 
-def remote_from_text(text):
+def remote_from_text(text, strict=False):
     """True when a description says the job can be done fully remotely; False otherwise.
 
     Clear statements ("fully remote", "can be performed remotely") count unless the posting also
-    says it isn't remote. Softer ones ("remote eligible", "telework") count only when there's no
+    says it isn't remote. With strict=True (used for postings listed outside the NYC area), only clear
+    statements count. Otherwise softer ones ("remote eligible", "telework") count only when there's no
     sign of a hybrid schedule, since "two days a week remote" isn't a remote job."""
     text = text or ""
     if _NOT_REMOTE.search(text):
         return False
     if _STRONG_REMOTE.search(text):
         return True
+    if strict:  # softer wording is often benefits boilerplate ("we support remote work")
+        return False
     return bool(_WEAK_REMOTE.search(text)) and not _HYBRID.search(text)
 
 

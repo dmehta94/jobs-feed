@@ -165,7 +165,7 @@ def collect_org(org, cache, today, seen):
         if not job.get("description") and job.get("_detail"):
             checked += 1
             _read_detail(job)
-        if remote_from_text(job.get("description")):
+        if remote_from_text(job.get("description"), strict=True):
             job["remote"] = True
             relevant.append(job)
     relevant.sort(key=lambda j: title_priority(j["title"]))
