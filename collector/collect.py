@@ -210,9 +210,28 @@ def _norm_key(org, title):
     return (re.sub(r"[^a-z0-9]", "", (org or "").lower()), re.sub(r"[^a-z0-9]", "", (title or "").lower()))
 
 
+_GENERIC_ORG = {"university", "college", "school", "of", "the", "and", "for", "graduate", "education", "inc",
+                "institute", "center", "foundation", "at", "us", "llc"}
+
+
+def _org_words(org):
+    return set(re.findall(r"[a-z]+", (org or "").lower())) - _GENERIC_ORG
+
+
+def _already_known(job, known, known_titles):
+    """Same posting under a slightly different employer name ("Harvard University" vs. "Harvard Graduate
+    School of Education") counts as already found."""
+    if _norm_key(job["org"], job["title"]) in known:
+        return True
+    return any(_org_words(job["org"]) & words for words in known_titles.get(_norm_key("", job["title"])[1], []))
+
+
 def collect_discovery(today, seen, known_jobs):
     """Keyword searches across aggregators. Postings already found on an org's own board are skipped."""
     known = {_norm_key(j["org"], j["title"]) for j in known_jobs}
+    known_titles = {}
+    for j in known_jobs:
+        known_titles.setdefault(_norm_key("", j["title"])[1], []).append(_org_words(j["org"]))
     results = []
     for name, fetch in discovery.SOURCES:
         try:
@@ -224,10 +243,12 @@ def collect_discovery(today, seen, known_jobs):
             results.append(({"org": name, "category": "Discovered", "status": "skipped (no API key set)"}, []))
             continue
         kept = [j for j in raw if discovery.keep(j) and discovery.recent_enough(j)
-                and _norm_key(j["org"], j["title"]) not in known]
+                and not _already_known(j, known, known_titles)]
         jobs = [finish(j, org=j["org"], category="Discovered", tier=3, source=name.lower().replace(" ", ""),
                        today=today, seen=seen) for j in kept]
         known.update(_norm_key(j["org"], j["title"]) for j in jobs)
+        for j in jobs:
+            known_titles.setdefault(_norm_key("", j["title"])[1], []).append(_org_words(j["org"]))
         results.append(({"org": name, "category": "Discovered", "status": "ok", "total": len(raw),
                          "relevant": len(jobs)}, jobs))
     return results

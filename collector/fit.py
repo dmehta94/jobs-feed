@@ -10,7 +10,7 @@ import re
 NOT_SENIOR = re.compile(r"\b(?:senior research (?:assistant|associate i?\b)|(?:research )?data manager\b)", re.I)
 SENIOR = re.compile(
     r"\b(senior|sr\.?|lead|principal|director|head|chief|vp|vice president|manager|architect|"
-    r"supervisor|commissioner|deputy|executive|staff (?:engineer|scientist|data|research))\b", re.I)
+    r"supervisor|commissioner|deputy|executive|dean|provost|staff (?:engineer|scientist|data|research))\b", re.I)
 
 # Functions that share words like "analyst" or "data" but aren't the target work.
 OFF_TARGET = re.compile(
@@ -24,7 +24,13 @@ OFF_TARGET = re.compile(
     r"intern(ship)?|extern(ship)?|scoring service|reader|evaluator - scoring|nurse|clinic\w*|"
     r"programmer|mainframe|business analyst|systems integration|database administrator|"
     r"uipath|rpa|robotic process|automation|timekeep\w*|time ?keeper|"
-    r"enforcement|safeguards|trust and safety|investigat\w*|police|correction)\b", re.I)
+    r"enforcement|safeguards|trust and safety|investigat\w*|police|correction|"
+    r"adjunct|faculty|lecturer|professor|postdoc\w*|tenure)\b", re.I)
+
+# Dev doesn't work for charter or private schools; these networks don't always say "charter" in their name.
+CHARTER = re.compile(r"\b(charter|success academy|uncommon schools|kipp|achievement first|democracy prep|"
+                     r"idea public schools|harlem village academies|great oaks|ascend learning|brooklyn laboratory|"
+                     r"zeta charter|public prep|explore schools|icahn charter|private school|preparatory school)\b", re.I)
 
 CORE_ROLE = re.compile(
     r"\b(data analyst|research analyst|research associate|research assistant|research scientist|"
@@ -78,6 +84,8 @@ def score(job):
     if gate:
         return None, [gate]
     core, curriculum = CORE_ROLE.search(title), CURRICULUM.search(title)
+    if CHARTER.search(job.get("org") or ""):
+        return None, ["charter or private school"]
     if AI_LABS.search(job.get("org") or "") and not AI_LAB_OK.search(title):
         return None, ["AI lab role outside education or societal impact"]
 
@@ -85,10 +93,12 @@ def score(job):
     if core:
         points += 3
         why.append("data/research role")
-    elif curriculum:
+    edu_hits = len(EDUCATION.findall(text))
+    if not core and not (EDUCATION.search(title) or edu_hits >= 5):
+        return None, ["curriculum or design role outside education (e.g. corporate training)"]
+    if not core:
         points += 1
         why.append("curriculum role")
-    edu_hits = len(EDUCATION.findall(text))
     if EDUCATION.search(title) or edu_hits >= 5:
         points += 3
         why.append("education focus")

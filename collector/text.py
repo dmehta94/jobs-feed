@@ -67,8 +67,11 @@ def title_is_relevant(title):
 
 # ---------- location ----------
 
+# "New York" alone is often the state ("Buffalo, NY", "Albany, New York"), so a place counts as NYC only
+# when it names the city, a borough, or a nearby city, or starts with "New York".
 NYC_AREA = re.compile(
-    r"(new york|\bnyc\b|\bny\b|brooklyn|queens|manhattan|bronx|staten island|long island city|hoboken|jersey city)", re.I)
+    r"(new york,?\s*(?:ny|new york|city)\b|new york city|^\W*new york\b|\bnyc\b|brooklyn|queens|manhattan|\bbronx|"
+    r"staten island|long island city|hoboken|jersey city)", re.I)
 ANYWHERE = re.compile(r"(remote|anywhere|virtual|distributed|work from home|telework|nationwide|multiple locations|various)", re.I)
 LOCATION_OK = re.compile(NYC_AREA.pattern + "|" + ANYWHERE.pattern + r"|united states|\busa?\b|u\.s\.", re.I)
 # A trailing country ("Nashville, TN, United States") says nothing about where in the US the job is.

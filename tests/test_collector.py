@@ -591,3 +591,32 @@ def test_trakstar_feed(fake):
 ])
 def test_workday_remote_type(posting, expected):
     assert sources._workday_remote(posting) is expected
+
+
+def test_discovery_skips_same_posting_under_another_employer_name():
+    known = [{"org": "Harvard University", "title": "Data Scientist, M-Powering Teacher Coaching"}]
+    keys = {collect._norm_key(j["org"], j["title"]) for j in known}
+    titles = {collect._norm_key("", known[0]["title"])[1]: [collect._org_words("Harvard University")]}
+    dup = {"org": "Harvard Graduate School of Education", "title": "Data Scientist, M-Powering Teacher Coaching"}
+    other = {"org": "Stanford University", "title": "Data Scientist, M-Powering Teacher Coaching"}
+    assert collect._already_known(dup, keys, titles)
+    assert not collect._already_known(other, keys, titles)
+
+
+@pytest.mark.parametrize("loc,expected", [
+    ("Buffalo, NY", False), ("Albany, New York", False), ("Liverpool, NY", False),
+    ("New York, NY", True), ("New York", True), ("475 Riverside Dr, New York, NY", True),
+    ("Brooklyn, NY", True), ("New York City", True),
+])
+def test_new_york_state_is_not_nyc(loc, expected):
+    assert location_is_ok(loc, None) is expected
+
+
+def test_fit_drops_charter_networks_and_corporate_training():
+    from collector.fit import score
+    assert score({"org": "Success Academy Charter Schools", "title": "Data Analyst", "category": "Discovered"})[0] is None
+    assert score({"org": "Uncommon Schools", "title": "Data Analyst", "category": "Discovered"})[0] is None
+    assert score({"org": "Harbor Freight Tools", "title": "Instructional Designer", "category": "Discovered",
+                  "description": "Design training for store associates."})[0] is None
+    assert score({"org": "Open Up Resources", "title": "Curriculum Writer, Math", "category": "Education",
+                  "description": "Write lessons for middle school students and teachers."})[0] is not None
