@@ -46,7 +46,7 @@ def test_build_groups_and_flags_broken_sources():
     health = {"sources": [{"org": "MDRC", "tier": 1, "status": "no supported platform found"},
                           {"org": "Zearn", "tier": 1, "status": "ok"}]}
     subject, text, html_body = email_digest.build(feed, jobs, health, TODAY)
-    assert subject == "Job feed — Oct 19: 2 new postings"
+    assert subject == "Job feed — Oct 19: top 2 new postings"
     assert "TIER 1 ORGANIZATIONS" in text and "NYC GOVERNMENT" in text
     assert "$85,000–$95,000" in text and "pay not listed" in text
     assert "civil service exam" in text and "closes 2026-10-30" in text
@@ -56,7 +56,7 @@ def test_build_groups_and_flags_broken_sources():
 
 def test_build_empty_week():
     subject, text, _ = email_digest.build({"sources_ok": 1, "sources_total": 1}, [], {"sources": []}, TODAY)
-    assert "0 new postings" in subject and "Nothing new this week." in text
+    assert "top 0 new postings" in subject and "Nothing new this week." in text
 
 
 def test_main_skips_without_secrets(monkeypatch, capsys):
@@ -109,3 +109,36 @@ def test_exclude_employers_exemption(monkeypatch):
     monkeypatch.setenv("EXCLUDE_EMPLOYERS", "Google, !DeepMind")
     feed = {"jobs": [job(org="Google", title="Data Analyst"), job(org="Google DeepMind", title="Research Analyst")]}
     assert [j["org"] for j in email_digest.select(feed, TODAY)] == ["Google DeepMind"]
+
+
+from collector import fit
+
+
+def test_fit_drops_senior_and_off_target_titles():
+    for title in ["Senior Data Analyst", "Director of Research", "Financial Analyst", "Mainframe Programmer Analyst",
+                  "Business Analyst (Remote)", "Data Engineer", "UiPath Analyst & Designer", "Technical Program Manager",
+                  "Pool Supervisor", "Data Analytics Intern"]:
+        assert fit.score(job(title=title))[0] is None, title
+
+
+def test_fit_ranks_education_entry_level_first():
+    edu = job(org="New Visions", title="Data Analyst (Entry-Level)", category="Education", years_required=1,
+              description="Support schools and students with data.")
+    nyc = job(org="Dept Of Transportation", title="Data Engagement Analyst", category="NYC Government", tier=2,
+              years_required=3, description="Minimum qualifications: A baccalaureate degree from an accredited college.")
+    assert fit.score(edu)[0] > fit.score(nyc)[0]
+    assert "education focus" not in fit.score(nyc)[1]  # degree boilerplate isn't an education focus
+
+
+def test_fit_limits_ai_labs_to_education_and_societal_roles():
+    assert fit.score(job(org="Anthropic", category="AI & Tech", title="Research Engineer, RL"))[0] is None
+    assert fit.score(job(org="Anthropic", category="AI & Tech", title="Economic Research Analyst"))[0] is not None
+
+
+def test_shortlist_caps():
+    jobs = [job(org="Big Org", title=f"Data Analyst {i}", url=f"u{i}") for i in range(6)]
+    jobs += [job(org=f"Agency {i}", title="Research Analyst", category="NYC Government", url=f"n{i}") for i in range(8)]
+    out, matched = fit.shortlist(jobs, max_items=10, max_per_org=2, max_nyc=3, min_score=0)
+    assert matched == 14
+    assert sum(j["org"] == "Big Org" for j in out) == 2
+    assert sum(j["category"] == "NYC Government" for j in out) == 3

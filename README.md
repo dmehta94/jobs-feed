@@ -30,6 +30,8 @@ After each run, the workflow can email a short list of the week's new postings, 
 - **Secrets** (Settings → Secrets and variables → Actions → Secrets): `GMAIL_ADDRESS` and `GMAIL_APP_PASSWORD`. The app password comes from your Google Account's security settings and requires 2-Step Verification. You can also set `DIGEST_TO` to send to a different address.
 - **Variables** (same page, Variables tab; all optional): `MIN_SALARY` drops postings whose listed top of range is below it, `EXCLUDE_TERMS` drops postings mentioning any of a comma-separated list of terms, `EXCLUDE_EMPLOYERS` drops postings from employers whose name contains any of a comma-separated list (prefix a name with `!` to exempt it, as in `Google, !DeepMind`), and `MAX_YEARS` drops postings asking for at least that many years of experience (default 5).
 
+The email is a short ranked list, not every posting. `collector/fit.py` drops senior and off-target titles (finance, IT, engineering, project management, internships, and similar), then scores the rest on role match, education focus, and experience asked. These optional variables tune it: `MAX_ITEMS` (default 15), `MAX_PER_ORG` (default 3), `MAX_NYC` (default 5), and `MIN_FIT` (default 5; raise it for a stricter list).
+
 If the secrets aren't set, the email step is skipped and the collector runs as usual.
 
 ## Adding or fixing an organization

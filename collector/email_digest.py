@@ -12,6 +12,10 @@ Environment (set as GitHub repository secrets/variables, never committed):
     EXCLUDE_EMPLOYERS   optional: comma-separated employer names, matched against the employer only;
                         prefix a name with ! to exempt it (e.g. "Google, !DeepMind" keeps Google DeepMind)
     MAX_YEARS           optional: drop postings asking for at least this many years (default 5)
+    MAX_ITEMS           optional: most postings to list (default 15)
+    MAX_PER_ORG         optional: most postings from one employer (default 3)
+    MAX_NYC             optional: most NYC city postings (default 5)
+    MIN_FIT             optional: lowest fit score to include (default 5; higher means stricter)
 
 Run from the repo root:  python -m collector.email_digest
 """
@@ -24,6 +28,8 @@ from datetime import date, timedelta
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from pathlib import Path
+
+from .fit import shortlist
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -87,8 +93,8 @@ def _where(job):
 
 
 def _notes(job):
-    bits = []
-    if job.get("years_required"):
+    bits = [r for r in job.get("fit_reasons", []) if r.startswith(("education", "asks"))]
+    if job.get("years_required") and not any(b.startswith("asks") for b in bits):
         bits.append(f"{job['years_required']}+ yrs asked")
     if job.get("exam_required"):
         bits.append("civil service exam")
@@ -106,9 +112,9 @@ GROUPS = [
 ]
 
 
-def build(feed, jobs, health, today=None):
+def build(feed, jobs, health, today=None, matched=None):
     today = today or date.today()
-    subject = f"Job feed — {today.strftime('%b')} {today.day}: {len(jobs)} new posting{'s' if len(jobs) != 1 else ''}"
+    subject = f"Job feed — {today.strftime('%b')} {today.day}: top {len(jobs)} new posting{'s' if len(jobs) != 1 else ''}"
     broken = [s["org"] for s in health.get("sources", []) if s.get("tier") == 1 and s.get("status") != "ok"]
     footer = f"{feed.get('sources_ok', 0)} of {feed.get('sources_total', 0)} sources working."
     if broken:
@@ -141,10 +147,10 @@ def build(feed, jobs, health, today=None):
     if not jobs:
         text_lines.append("Nothing new this week.")
         html_parts.append("<p style='font-family:sans-serif'>Nothing new this week.</p>")
-    if len(jobs) > MAX_LISTED:
-        more = f"…and {len(jobs) - MAX_LISTED} more in data/jobs.json."
+    if matched and matched > len(jobs):
+        more = f"{matched - len(jobs)} lower-ranked matches left out. The Claude digest reads all of them."
         text_lines.append(more)
-        html_parts.append(f"<p style='font-family:sans-serif'>{html.escape(more)}</p>")
+        html_parts.append(f"<p style='font-family:sans-serif;color:#555'>{html.escape(more)}</p>")
     text_lines += ["", footer, "The ranked digest arrives in the Claude app at 7:19 a.m."]
     html_parts.append(f"<p style='font-family:sans-serif;color:#777;font-size:12px'>{html.escape(footer)}<br>"
                       "The ranked digest arrives in the Claude app at 7:19 a.m.</p>")
@@ -163,14 +169,23 @@ def send(subject, text, html_body):
         smtp.sendmail(sender, [to], msg.as_string())
 
 
+def pick(feed):
+    """Filtered, ranked, and capped list for the email. Returns (jobs, number that matched)."""
+    return shortlist(select(feed),
+                     max_items=_env_int("MAX_ITEMS") or 15,
+                     max_per_org=_env_int("MAX_PER_ORG") or 3,
+                     max_nyc=_env_int("MAX_NYC") if _env_int("MAX_NYC") is not None else 5,
+                     min_score=_env_int("MIN_FIT") if _env_int("MIN_FIT") is not None else 5)
+
+
 def main():
     if not os.environ.get("GMAIL_ADDRESS") or not os.environ.get("GMAIL_APP_PASSWORD"):
         print("Email skipped: GMAIL_ADDRESS / GMAIL_APP_PASSWORD not set.")
         return 0
     feed = json.loads((DATA / "jobs.json").read_text())
     health = json.loads((DATA / "health.json").read_text())
-    jobs = select(feed)
-    subject, text, html_body = build(feed, jobs, health)
+    jobs, matched = pick(feed)
+    subject, text, html_body = build(feed, jobs, health, matched=matched)
     send(subject, text, html_body)
     print(f"Emailed {len(jobs)} postings.")
     return 0

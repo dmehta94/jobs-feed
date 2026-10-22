@@ -46,6 +46,10 @@ jobs:
           EXCLUDE_TERMS: ${{ vars.EXCLUDE_TERMS }}
           EXCLUDE_EMPLOYERS: ${{ vars.EXCLUDE_EMPLOYERS }}
           MAX_YEARS: ${{ vars.MAX_YEARS }}
+          MAX_ITEMS: ${{ vars.MAX_ITEMS }}
+          MAX_PER_ORG: ${{ vars.MAX_PER_ORG }}
+          MAX_NYC: ${{ vars.MAX_NYC }}
+          MIN_FIT: ${{ vars.MIN_FIT }}
         run: python -m collector.email_digest
       - name: Commit results
         run: |
