@@ -339,7 +339,7 @@ def fetch_workday(token):
                 path = j.get("externalPath")
                 if path and path not in found:
                     found[path] = _job(j.get("title"), j.get("locationsText"),
-                                       f"https://{host}/{site}{path}",
+                                       _workday_url(host, tenant, site, path),
                                        remote=_workday_remote(j),
                                        posted=_workday_posted(j.get("postedOn")),
                                        detail=("workday", (base, path)))
@@ -347,6 +347,12 @@ def fetch_workday(token):
             if len(postings) < 20:
                 break
     return list(found.values())
+
+
+def _workday_url(host, tenant, site, path):
+    if "myworkdaysite.com" in host:  # e.g. wd1.myworkdaysite.com/recruiting/upenn/careers-at-penn
+        return f"https://{host}/recruiting/{tenant}/{site}{path}"
+    return f"https://{host}/{site}{path}"
 
 
 def _workday_remote(j):
@@ -431,6 +437,8 @@ def fetch_detail(detail):
         return sources_extra.adp_detail(*args)
     if platform == "oracle":
         return sources_extra.oracle_detail(*args)
+    if platform == "eightfold":
+        return sources_extra.eightfold_detail(*args)
     if platform == "workday":
         base, path = args
         info = http.get_json(f"{base}{path}").get("jobPostingInfo", {})

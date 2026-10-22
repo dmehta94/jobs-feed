@@ -514,3 +514,70 @@ def test_smartrecruiters_searches_big_boards_by_keyword(fake):
 def test_title_gate(title, shown):
     from collector.fit import title_gate
     assert (title_gate(title) is None) is shown
+
+
+def test_edtech_reads_sitemap_then_structured_data(fake):
+    page = (_Path(__file__).parent / "fixtures" / "edtech_job.html").read_text()
+    sitemap = ("<urlset><url><loc>https://www.edtech.com/jobs/data-scientist-m-powering-teacher-coaching-31890</loc>"
+               "<lastmod>2026-10-14T07:51:32+00:00</lastmod></url>"
+               "<url><loc>https://www.edtech.com/jobs/account-executive-79735</loc>"
+               "<lastmod>2026-10-14T07:50:00+00:00</lastmod></url></urlset>")
+    session = fake({r"GET https://www\.edtech\.com/sitemap\.xml": sitemap,
+                    r"GET https://www\.edtech\.com/jobs/data-scientist": page})
+    [job] = discovery.fetch_edtech()
+    assert job["org"] == "Harvard Graduate School of Education"
+    assert job["title"] == "Data Scientist, M-Powering Teacher Coaching"
+    assert job["remote"] is True and job["location"].startswith("Remote")
+    assert (job["salary_min"], job["salary_max"]) == (90000, 95000)
+    assert job["posted"] == "2026-10-14" and "Center for Education Policy Research" in job["description"]
+    assert discovery.keep(job)
+    assert not any("account-executive" in c for c in session.calls)
+
+
+def test_higheredjobs_reads_remote_search_results(fake):
+    page = (_Path(__file__).parent / "fixtures" / "higheredjobs_remote.html").read_text()
+    fake({r"advanced_action\.cfm": page, r"details\.cfm\?JobCode=": '<div id="jobDesc"><p>Fully remote.</p></div><footer>'})
+    jobs = discovery.fetch_higheredjobs()
+    titles = {j["title"]: j for j in jobs}
+    job = titles["Research Informatics Analyst School of Medicine Brain Health"]
+    assert job["org"] == "Emory University" and job["remote"] is True and job["location"] == "Online/Remote"
+    sbs = titles["Senior Business Systems Analyst - Workday Adaptive Planning"]
+    assert (sbs["salary_min"], sbs["salary_max"]) == (80128, 128226)
+
+
+def test_pageup_listing(fake):
+    page = (_Path(__file__).parent / "fixtures" / "pageup_listing.html").read_text()
+    fake({r"careers\.norc\.org/en-us/listing/": page})
+    [job] = sources_extra.fetch_pageup("https://careers.norc.org/en-us")
+    assert job["title"].startswith("Data Scientist I - Computational Research")
+    assert job["location"] == "Chicago - 300 E Randolph St"
+    assert job["url"] == ("https://careers.norc.org/en-us/job/503995/"
+                          "data-scientist-i-computational-research-statistics-machine-learning")
+
+
+def test_eightfold_search_and_remote_local(fake):
+    def search(key, kwargs):
+        if "query=data&" not in key or "start=0" not in key:
+            return {"data": {"positions": [], "count": 0}}
+        return {"data": {"count": 2, "positions": [
+            {"id": 1, "name": "Research Data Analyst", "locations": ["Remote, United States of America"],
+             "workLocationOption": "remote", "postedTs": 1792454400, "positionUrl": "/careers/job/1"},
+            {"id": 2, "name": "Data Specialist", "locations": ["Remote, Kansas, United States of America"],
+             "workLocationOption": "remote_local", "positionUrl": "/careers/job/2"}]}}
+    fake({r"careers\.ca\.example/api/pcsx/search": search,
+          r"careers\.ca\.example/api/pcsx/position_details": {"data": {"jobDescription": "<p>Bachelor's required.</p>"}}})
+    jobs = sources_extra.fetch_eightfold("careers.ca.example|ca.example")
+    one, two = sorted(jobs, key=lambda j: j["title"])[::-1]
+    assert one["remote"] is True and one["url"] == "https://careers.ca.example/careers/job/1"
+    assert two["remote"] is None and not location_is_ok(two["location"], two["remote"])
+    assert "Bachelor" in sources.fetch_detail(one["_detail"])
+
+
+def test_trakstar_feed(fake):
+    rss = ('<?xml version="1.0"?><rss version="2.0"><channel><item><title>Research Associate</title>'
+           '<link>https://edn.hire.trakstar.com/jobs/abc</link><description>&lt;p&gt;Remote role&lt;/p&gt;</description>'
+           '<pubDate>Mon, 19 Oct 2026 12:00:00 +0000</pubDate></item></channel></rss>')
+    fake({r"edn\.hire\.trakstar\.com/jobfeeds/edn": rss})
+    [job] = sources_extra.fetch_trakstar("edn")
+    assert job["title"] == "Research Associate" and job["posted"] == "2026-10-19"
+    assert job["url"] == "https://edn.hire.trakstar.com/jobs/abc"

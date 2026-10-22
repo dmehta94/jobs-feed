@@ -33,6 +33,7 @@ PATTERNS = [
     ("jazzhr", re.compile(r"([a-z0-9-]+)\.applytojob\.com", re.I)),
     ("icims", re.compile(r"((?:careers|uscareers|jobs)-[a-z0-9-]+\.icims\.com)", re.I)),
     ("jobvite", re.compile(r"jobs\.jobvite\.com/([a-z0-9-]+)", re.I)),
+    ("trakstar", re.compile(r"([a-z0-9-]+)\.hire\.trakstar\.com", re.I)),
 ]
 
 MULTI_GROUP = {"adp", "ukgready", "csod", "ukgpro"}  # platforms whose token joins several captured groups with "|"
@@ -161,7 +162,7 @@ def fetch_oracle(token):
                 loc = r.get("PrimaryLocation") or ""
                 found[rid] = _job(r.get("Title"), loc, url,
                                   remote=(r.get("WorkplaceTypeCode") == "ORA_REMOTE" or "remote" in loc.lower()) or None,
-                                  posted=r.get("PostedDate"), description=html_to_text(r.get("ShortDescriptionStr", "")),
+                                  posted=r.get("PostedDate"),
                                   detail=("oracle", (host, site_number, rid)))
     return list(found.values())
 
@@ -561,6 +562,99 @@ def fetch_links(url, raw=None, limit=60):
     return jobs
 
 
+# ---------- Eightfold AI career sites (careers.<org>.com/careers) ----------
+
+EIGHTFOLD_TERMS = ["data", "research", "analyst", "efficacy", "psychometric", "learning science", "evaluation",
+                   "assessment", "curriculum", "scientist"]
+
+
+def fetch_eightfold(token):
+    """token is 'host|domain', e.g. 'careers.curriculumassociates.com|curriculumassociates.com'."""
+    host, domain = token.split("|")
+    found = {}
+    for term in EIGHTFOLD_TERMS:
+        start = 0
+        while start < 200:
+            data = (http.get_json(f"https://{host}/api/pcsx/search",
+                                  params={"domain": domain, "query": term, "location": "", "start": start})
+                    .get("data") or {})
+            positions = data.get("positions") or []
+            for p in positions:
+                pid = p.get("id")
+                if not pid or pid in found:
+                    continue
+                option = (p.get("workLocationOption") or "").lower()
+                loc = "; ".join(p.get("locations") or [])
+                if option == "remote_local":  # remote, but tied to the listed state or metro
+                    loc = re.sub(r"(?i)\bremote,?\s*", "", loc)
+                posted = p.get("postedTs")
+                found[pid] = _job(p.get("name"), loc,
+                                  p.get("publicUrl") or f"https://{host}{p.get('positionUrl') or ''}",
+                                  remote=(option == "remote") or None,
+                                  posted=time.strftime("%Y-%m-%d", time.gmtime(posted)) if posted else None,
+                                  department=p.get("department"), detail=("eightfold", (host, domain, pid)))
+            start += len(positions)
+            if not positions or start >= (data.get("count") or 0):
+                break
+    return list(found.values())
+
+
+def eightfold_detail(host, domain, pid):
+    data = http.get_json(f"https://{host}/api/pcsx/position_details",
+                         params={"position_id": pid, "domain": domain, "hl": "en"}).get("data") or {}
+    return html_to_text(data.get("jobDescription") or "")
+
+
+# ---------- Trakstar Hire (formerly Recruiterbox) job feeds ----------
+
+def fetch_trakstar(token):
+    """token is the account name in <name>.hire.trakstar.com."""
+    raw = http.get_text(f"https://{token}.hire.trakstar.com/jobfeeds/{token}")
+    root = ElementTree.fromstring(raw.encode("utf-8"))
+    jobs = []
+    for item in root.iter("item"):
+        fields = {(el.tag.split("}")[-1]): (el.text or "") for el in item}
+        loc = ", ".join(x for x in [fields.get("city"), fields.get("state")] if x) or fields.get("location", "")
+        desc = html_to_text(fields.get("description", ""))
+        jobs.append(_job(fields.get("title"), loc, fields.get("link"),
+                         remote=("remote" in (loc + " " + fields.get("title", "")).lower()) or None,
+                         posted=_rss_date(fields.get("pubDate")), description=desc))
+    return jobs
+
+
+def _rss_date(text):
+    from email.utils import parsedate_to_datetime
+    try:
+        return parsedate_to_datetime(text).date().isoformat() if text else None
+    except (TypeError, ValueError):
+        return None
+
+
+# ---------- PageUp career sites (/en-us/listing/) ----------
+
+_PAGEUP_JOB = re.compile(r"""<a[^>]+href=["'](/[a-z]{2}-[a-z]{2}/job/\d+/[^"']+)["'][^>]*>(.*?)</a>""", re.I | re.S)
+
+
+def fetch_pageup(token):
+    """token is the site root, e.g. 'https://careers.norc.org/en-us'."""
+    root = token.rstrip("/")
+    raw = http.get_text(f"{root}/listing/", params={"page": 1, "page-items": 500})
+    base = urlparse(root)
+    jobs, seen = [], set()
+    for match in _PAGEUP_JOB.finditer(raw):
+        href, label = match.groups()
+        url = f"{base.scheme}://{base.netloc}{href}"
+        if url in seen:
+            continue
+        seen.add(url)
+        # The location sits in the same table row as the link.
+        row = raw[match.end(): match.end() + 1500]
+        loc = re.search(r"""class=["'][^"']*location[^"']*["'][^>]*>(.*?)</""", row, re.I | re.S)
+        jobs.append(_job(html_to_text(label), html_to_text(loc.group(1)) if loc else "", url,
+                         detail=("page", url)))
+    return jobs
+
+
 def page_detail(url):
     raw = http.get_text(url)
     return page_title(raw), page_text(raw)[:8000]
@@ -583,4 +677,7 @@ ADAPTERS = {
     "csod": fetch_csod,
     "ukgpro": fetch_ukgpro,
     "site_links": fetch_site_links,
+    "eightfold": fetch_eightfold,
+    "trakstar": fetch_trakstar,
+    "pageup": fetch_pageup,
 }
