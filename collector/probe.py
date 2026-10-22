@@ -163,6 +163,12 @@ def main_deep(names):
     return 0
 
 
+def _remote_why(text):
+    from .text import _STRONG_REMOTE, _WEAK_REMOTE
+    m = _STRONG_REMOTE.search(text or "") or _WEAK_REMOTE.search(text or "")
+    return (text[max(0, m.start() - 100): m.end() + 60]) if m else None
+
+
 def main_test(names):
     """Run the real collection for a few orgs and record counts, samples, and errors."""
     import traceback
@@ -183,7 +189,8 @@ def main_test(names):
             res = {"org": org["name"], "raw_sample": raw_sample,
                    **{k: health.get(k) for k in ("platform", "token", "found_by", "status", "total", "relevant")},
                    "samples": [{"title": j["title"], "location": j["location"], "url": j["url"],
-                                "desc_len": len(j["description"] or "")} for j in jobs[:5]]}
+                                "desc_len": len(j["description"] or ""),
+                                "remote_why": _remote_why(j["description"])} for j in jobs[:8]]}
         except Exception as exc:  # report, don't stop
             res = {"org": org["name"], "error": f"{type(exc).__name__}: {exc}", "trace": traceback.format_exc()[-1500:]}
         results.append(res)
