@@ -36,7 +36,7 @@ TITLE_INCLUDE = re.compile(
 TITLE_EXCLUDE = re.compile(
     r"\b(director|vice president|vp|svp|evp|chief|head of|principal|staff engineer|"
     r"sales|account executive|account manager|recruiter|business development|"
-    r"teacher|tutor|paraprofessional|nurse|physician|attorney|counsel|"
+    r"nurse|physician|attorney|counsel|"
     r"engineering manager|software engineer|devops|site reliability|"
     r"security engineer|it support|help ?desk)\b",
     re.I,
@@ -51,20 +51,39 @@ NYC_GOV_TITLES = re.compile(
 )
 
 
+# Teaching jobs are out, but data and research roles about teaching ("Data Scientist, Teacher Coaching") are in.
+TEACHING = re.compile(r"\b(teachers?|tutors?|paraprofessional)\b", re.I)
+DATA_WORK = re.compile(r"\b(data|research\w*|analyst|analytics|scientist|statistic\w*|evaluat\w*|psychometric\w*|"
+                       r"curriculum|assessment|measurement|quantitative)\b", re.I)
+
+
 def title_is_relevant(title):
     if not title:
+        return False
+    if TEACHING.search(title) and not DATA_WORK.search(title):
         return False
     return bool(TITLE_INCLUDE.search(title)) and not TITLE_EXCLUDE.search(title)
 
 
 # ---------- location ----------
 
-LOCATION_OK = re.compile(
-    r"(new york|\bnyc\b|\bny\b|brooklyn|queens|manhattan|bronx|staten island|long island city|hoboken|jersey city|"
-    r"remote|anywhere|virtual|distributed|work from home|telework|"
-    r"united states|\busa?\b|u\.s\.|nationwide|multiple locations|various)",
-    re.I,
-)
+NYC_AREA = re.compile(
+    r"(new york|\bnyc\b|\bny\b|brooklyn|queens|manhattan|bronx|staten island|long island city|hoboken|jersey city)", re.I)
+ANYWHERE = re.compile(r"(remote|anywhere|virtual|distributed|work from home|telework|nationwide|multiple locations|various)", re.I)
+LOCATION_OK = re.compile(NYC_AREA.pattern + "|" + ANYWHERE.pattern + r"|united states|\busa?\b|u\.s\.", re.I)
+# A trailing country ("Nashville, TN, United States") says nothing about where in the US the job is.
+_COUNTRY = re.compile(r"[,\s-]*\b(united states(?: of america)?|usa?|u\.s\.a?\.?)\s*$", re.I)
+_SPLIT = re.compile(r"\s*(?:;|\||/|\bor\b|\band\b|\n)\s*", re.I)
+
+
+def _place_ok(place):
+    place = place.strip(" ,-()")
+    if not place:
+        return False
+    rest = _COUNTRY.sub("", place).strip(" ,-()")
+    if not rest:
+        return True  # just "United States": a US-wide posting
+    return bool(NYC_AREA.search(rest) or ANYWHERE.search(rest))
 
 
 NON_US = re.compile(
@@ -84,7 +103,39 @@ def location_is_ok(location, remote=None):
         return False
     if remote or not loc:
         return True
-    return bool(LOCATION_OK.search(loc))
+    return any(_place_ok(p) for p in _SPLIT.split(loc))
+
+
+# Remote eligibility stated only in the description (e.g. "Cambridge, MA" with "can be performed fully remotely").
+_STRONG_REMOTE = re.compile(
+    r"(fully[- ]remote|100% remote|entirely remote|remote[- ]first|remote[- ]based|"
+    r"(?:performed|done|worked) (?:fully |entirely |100% )?remotely|"
+    r"(?:is|as) a remote (?:position|role|job|opportunity)|this (?:position|role|job) is (?:fully )?remote|"
+    r"remote (?:within|anywhere in|from anywhere in) the (?:u\.?s\.?|united states)|"
+    r"work from anywhere|location:?\s*remote|remote,? (?:us|u\.s\.|usa|united states)\b|"
+    r"open to (?:fully )?remote|remote work (?:is )?(?:available|permitted|allowed))", re.I)
+_WEAK_REMOTE = re.compile(r"(remote[- ](?:eligible|friendly|option)|telework|telecommut\w*|work(?:ing)? remotely|"
+                          r"work from home|remote work)", re.I)
+_HYBRID = re.compile(r"(hybrid|\b(?:one|two|three|four|\d) days? (?:a|per|each) week|in[- ]office (?:days|presence)|"
+                     r"on[- ]site (?:days|presence)|in[- ]person (?:days|at least))", re.I)
+_NOT_REMOTE = re.compile(r"(not (?:a )?remote|not (?:be )?eligible for (?:remote|telework|telecommut)|no remote|"
+                         r"remote work is not|(?:on[- ]site|in[- ]person) (?:only|required|position)|"
+                         r"(?:live|reside|located) (?:with)?in (?:a )?(?:reasonable )?commut\w* distance|must (?:live|reside) in the [\w .]+ (?:area|region|metro\w*)|"
+                         r"not (?:available|offered|open) (?:for|to) remote)", re.I)
+
+
+def remote_from_text(text):
+    """True when a description says the job can be done fully remotely; False otherwise.
+
+    Clear statements ("fully remote", "can be performed remotely") count unless the posting also
+    says it isn't remote. Softer ones ("remote eligible", "telework") count only when there's no
+    sign of a hybrid schedule, since "two days a week remote" isn't a remote job."""
+    text = text or ""
+    if _NOT_REMOTE.search(text):
+        return False
+    if _STRONG_REMOTE.search(text):
+        return True
+    return bool(_WEAK_REMOTE.search(text)) and not _HYBRID.search(text)
 
 
 # ---------- details pulled from descriptions ----------

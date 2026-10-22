@@ -23,12 +23,15 @@ from . import http
 from . import discovery, sources_extra
 from .government import fetch_nyc, fetch_usajobs
 from .sources import ADAPTERS, detect, fetch_detail, probe
-from .text import advanced_degree_required, extract_salary, location_is_ok, title_is_relevant, years_required
+from .fit import title_priority
+from .text import (advanced_degree_required, extract_salary, location_is_ok, remote_from_text, title_is_relevant,
+                   years_required)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 DESCRIPTION_CHARS = 12000
-MAX_DETAIL_FETCHES_PER_ORG = 40
+MAX_DETAIL_FETCHES_PER_ORG = 80
+MAX_REMOTE_CHECKS_PER_ORG = 80  # out-of-area postings whose description is read to see if they're remote
 SEEN_RETENTION_DAYS = 90
 
 
@@ -102,6 +105,19 @@ def finish(job, *, org, category, tier, source, today, seen):
     return out
 
 
+def _clearly_abroad(location):
+    return not location_is_ok(location, True)
+
+
+def _read_detail(job):
+    try:
+        job["description"] = fetch_detail(job["_detail"])
+    except http.FetchError:
+        return
+    if job["description"] and job.get("salary_min") is None:
+        job["salary_min"], job["salary_max"], job["salary_text"] = extract_salary(job["description"])
+
+
 def collect_org(org, cache, today, seen):
     name = org["name"]
     tier = int(org.get("tier") or 2)
@@ -117,6 +133,11 @@ def collect_org(org, cache, today, seen):
         cache.pop(name, None)  # re-detect next week
         health.update(status=f"fetch failed: {exc}", total=0, relevant=0)
         return health, []
+    if not raw and how != "orgs.csv":
+        # An empty board found by guessing is usually the wrong board (a same-named account). Re-detect next run.
+        cache.pop(name, None)
+        health.update(status="empty: guessed board had no postings", total=0, relevant=0)
+        return health, []
     cache[name] = {"platform": platform, "token": token}
     # Postings found only as links have no title yet; read those pages first.
     untitled = 0
@@ -131,17 +152,30 @@ def collect_org(org, cache, today, seen):
     for j in raw:  # many boards flag remote work only in the title, e.g. "Research Analyst (Remote Eligible)"
         if not j.get("remote") and re.search(r"\bremote\b", j["title"], re.I):
             j["remote"] = True
-    relevant = [j for j in raw if title_is_relevant(j["title"]) and location_is_ok(j["location"], j["remote"])]
+    titled = [j for j in raw if title_is_relevant(j["title"])]
+    relevant = [j for j in titled if location_is_ok(j["location"], j["remote"])]
+    # Postings based elsewhere often say only in the description that they can be done remotely.
+    elsewhere = sorted((j for j in titled if not location_is_ok(j["location"], j["remote"])
+                        and not _clearly_abroad(j["location"])),
+                       key=lambda j: title_priority(j["title"]))
+    checked = 0
+    for job in elsewhere:
+        if checked >= MAX_REMOTE_CHECKS_PER_ORG or title_priority(job["title"]) > 0:
+            break
+        if not job.get("description") and job.get("_detail"):
+            checked += 1
+            _read_detail(job)
+        if remote_from_text(job.get("description")):
+            job["remote"] = True
+            relevant.append(job)
+    relevant.sort(key=lambda j: title_priority(j["title"]))
     details = 0
     for job in relevant:
         if not job.get("description") and job.get("_detail") and details < MAX_DETAIL_FETCHES_PER_ORG:
             details += 1
-            try:
-                job["description"] = fetch_detail(job["_detail"])
-            except http.FetchError:
-                pass
-            if job["description"] and job.get("salary_min") is None:
-                job["salary_min"], job["salary_max"], job["salary_text"] = extract_salary(job["description"])
+            _read_detail(job)
+        if not job.get("remote") and remote_from_text(job.get("description")):
+            job["remote"] = True
     jobs = [finish(j, org=name, category=org.get("category"), tier=tier, source=platform,
                    today=today, seen=seen) for j in relevant]
     health.update(status="ok", total=len(raw), relevant=len(jobs))

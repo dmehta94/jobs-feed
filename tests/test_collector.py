@@ -6,6 +6,7 @@ from datetime import date
 import pytest
 
 from collector import collect, government, http, sources
+from collector import text as text_mod
 from collector.text import (advanced_degree_required, extract_salary, location_is_ok, phd_required,
                             title_is_relevant, years_required)
 
@@ -63,6 +64,9 @@ def fake(monkeypatch):
     ("Director of Research", False),
     ("Account Executive, Data Products", False),
     ("Math Teacher", False),
+    ("Data Scientist, M-Powering Teacher Coaching", True),
+    ("Teacher Effectiveness Analyst", True),
+    ("Tutor, Algebra", False),
     ("Software Engineer, Data Platform", False),
     ("Office Manager", False),
 ])
@@ -83,6 +87,14 @@ def test_title_filter(title, expected):
     ("London, UK; New York, NY", None, True),
     ("Remote (US or Canada)", True, True),
     ("Hoboken, NJ, United States", None, True),
+    ("Nashville, TN, United States", None, False),
+    ("United States", None, True),
+    ("US-Remote", None, True),
+    ("Cambridge, MA", None, False),
+    ("Remote - Cambridge, Massachusetts", None, True),
+    ("Ann Arbor, MI; Cambridge, MA; Princeton, NJ; Washington, DC;", None, False),
+    ("2 Locations", None, False),
+    ("Multiple Locations", None, True),
 ])
 def test_location_filter(loc, remote, expected):
     assert location_is_ok(loc, remote) is expected
@@ -435,3 +447,70 @@ def test_greenhouse_falls_back_to_board_html(fake):
           r"GET https://job-boards\.greenhouse\.io/deepmind$": board})
     jobs = sources.fetch_greenhouse("deepmind")
     assert [j["title"] for j in jobs] == ["Research Scientist, Education"]
+
+
+# ---------- remote roles based elsewhere ----------
+
+@pytest.mark.parametrize("text,expected", [
+    ("This position can be performed fully remotely at a non-Harvard location.", True),
+    ("Location: Remote (US)", True),
+    ("We offer telework flexibility.", True),
+    ("Fully remote; must reside in an approved state.", True),
+    ("Hybrid schedule with telework up to two days per week.", False),
+    ("This role is hybrid, with three days a week in our Boston office.", False),
+    ("This position is not eligible for remote work.", False),
+    ("Remote option; must reside within commuting distance of Seattle.", False),
+    ("Join our team in Chicago.", False),
+    ("", False),
+])
+def test_remote_from_text(text, expected):
+    assert text_mod.remote_from_text(text) is expected
+
+
+def test_collect_org_keeps_out_of_area_roles_that_are_remote(fake):
+    fake({r"boards/cepr/jobs": {"jobs": [
+        {"title": "Data Scientist, Teacher Coaching", "absolute_url": "u1", "location": {"name": "Cambridge, MA"},
+         "content": "This position can be performed fully remotely."},
+        {"title": "Data Scientist, Lab", "absolute_url": "u2", "location": {"name": "Cambridge, MA"},
+         "content": "This role is on-site only."},
+    ]}})
+    org = {"name": "CEPR", "category": "Higher Ed", "tier": "2", "careers_url": "", "ats": "greenhouse", "token": "cepr"}
+    health, jobs = collect.collect_org(org, {}, "2026-10-12", {})
+    assert [j["url"] for j in jobs] == ["u1"]
+    assert jobs[0]["remote"] is True
+
+
+def test_collect_org_flags_empty_guessed_board(fake):
+    fake({r"boards/rand/jobs": {"jobs": []}})
+    org = {"name": "RAND", "category": "Research & Policy", "tier": "2", "careers_url": ""}
+    cache = {"RAND": {"platform": "greenhouse", "token": "rand"}}
+    health, jobs = collect.collect_org(org, cache, "2026-10-12", {})
+    assert health["status"].startswith("empty") and "RAND" not in cache
+
+
+def test_smartrecruiters_searches_big_boards_by_keyword(fake):
+    def listing(key, kwargs):
+        if "q=" not in key:
+            return {"totalFound": 1500, "content": []}
+        if "q=data&" in key + "&" or key.endswith("q=data"):
+            return {"totalFound": 1, "content": [{"id": "9", "name": "Data Scientist",
+                                                  "location": {"fullLocation": "Cambridge, MA", "remote": True}}]}
+        return {"totalFound": 0, "content": []}
+    fake({r"api\.smartrecruiters\.com/v1/companies/HarvardUniversity/postings\?": listing})
+    jobs = sources.fetch_smartrecruiters("HarvardUniversity")
+    assert [(j["title"], j["remote"]) for j in jobs] == [("Data Scientist", True)]
+
+
+@pytest.mark.parametrize("title,shown", [
+    ("Data Scientist, M-Powering Teacher Coaching", True),
+    ("Associate Demographic Scientist", True),
+    ("Senior Research Assistant, The Hamilton Project", True),
+    ("Research Data Manager", True),
+    ("Data Specialist (Contract-to-Hire, Remote)", True),
+    ("Senior Data Scientist", False),
+    ("Contracts Manager", False),
+    ("Financial Analyst", False),
+])
+def test_title_gate(title, shown):
+    from collector.fit import title_gate
+    assert (title_gate(title) is None) is shown

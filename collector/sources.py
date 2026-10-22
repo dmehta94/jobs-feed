@@ -6,7 +6,7 @@ salary_min, salary_max, salary_text, description.
 """
 import re
 from datetime import datetime, timezone
-from urllib.parse import urljoin, urlparse
+from urllib.parse import quote, urljoin, urlparse
 
 from . import http, sources_extra
 from .text import extract_salary, html_to_text
@@ -165,7 +165,8 @@ def probe(name, careers_url):
             info = http.get_json(f"https://apply.workable.com/api/v1/widget/accounts/{slug}", retries=0)
         except http.FetchError:
             info = None
-        if info and names_match(name, info.get("name", "")):
+        # The widget answers for any slug, so also require that the account actually lists jobs.
+        if info and info.get("jobs") and names_match(name, info.get("name", "")):
             return "workable", slug
     return None, None
 
@@ -268,22 +269,44 @@ def fetch_ashby(token):
     return jobs
 
 
+def _smartrecruiters_page(token, offset, term=None):
+    url = f"https://api.smartrecruiters.com/v1/companies/{token}/postings?limit=100&offset={offset}"
+    if term:
+        url += "&q=" + quote(term)
+    return http.get_json(url)
+
+
 def fetch_smartrecruiters(token):
-    jobs, offset = [], 0
-    while True:
-        data = http.get_json(f"https://api.smartrecruiters.com/v1/companies/{token}/postings?limit=100&offset={offset}")
+    """Reads every posting; boards too big to page through (universities) are searched by keyword."""
+    found = {}
+
+    def add(data):
         for j in data.get("content", []):
             loc = j.get("location") or {}
-            loc_text = ", ".join(x for x in [loc.get("city"), loc.get("region")] if x)
-            jobs.append(_job(j.get("name"), loc_text,
-                             f"https://jobs.smartrecruiters.com/{token}/{j.get('id')}",
-                             remote=loc.get("remote") or None, posted=_iso(j.get("releasedDate")),
-                             department=(j.get("department") or {}).get("label"),
-                             employment_type=(j.get("typeOfEmployment") or {}).get("label"),
-                             detail=("smartrecruiters", (token, j.get("id")))))
-        offset += 100
-        if offset >= data.get("totalFound", 0) or offset >= 1000:
-            return jobs
+            loc_text = loc.get("fullLocation") or ", ".join(x for x in [loc.get("city"), loc.get("region")] if x)
+            url = f"https://jobs.smartrecruiters.com/{token}/{j.get('id')}"
+            found.setdefault(url, _job(j.get("name"), loc_text, url,
+                                       remote=loc.get("remote") or None, posted=_iso(j.get("releasedDate")),
+                                       department=(j.get("department") or {}).get("label"),
+                                       employment_type=(j.get("typeOfEmployment") or {}).get("label"),
+                                       detail=("smartrecruiters", (token, j.get("id")))))
+
+    first = _smartrecruiters_page(token, 0)
+    add(first)
+    total = first.get("totalFound", 0)
+    if total <= 1000:
+        for offset in range(100, total, 100):
+            add(_smartrecruiters_page(token, offset))
+        return list(found.values())
+    for term in WORKDAY_SEARCH_TERMS + ["scientist", "statistic", "assessment", "curriculum"]:
+        offset = 0
+        while offset < 400:
+            data = _smartrecruiters_page(token, offset, term)
+            add(data)
+            offset += 100
+            if offset >= data.get("totalFound", 0):
+                break
+    return list(found.values())
 
 
 def fetch_workable(token):
@@ -317,13 +340,18 @@ def fetch_workday(token):
                 if path and path not in found:
                     found[path] = _job(j.get("title"), j.get("locationsText"),
                                        f"https://{host}/{site}{path}",
-                                       remote=("remote" in (j.get("locationsText") or "").lower()) or None,
+                                       remote=_workday_remote(j),
                                        posted=_workday_posted(j.get("postedOn")),
                                        detail=("workday", (base, path)))
             offset += 20
             if len(postings) < 20:
                 break
     return list(found.values())
+
+
+def _workday_remote(j):
+    where = " ".join(str(j.get(k) or "") for k in ("locationsText", "remoteType")).lower()
+    return ("remote" in where) or None
 
 
 def _workday_posted(text):

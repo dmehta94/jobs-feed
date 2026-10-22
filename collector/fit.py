@@ -6,14 +6,17 @@ education focus, and seniority so the weekly email can show a short ranked list.
 """
 import re
 
+# Titles that read as senior but are early-career in research organizations.
+NOT_SENIOR = re.compile(r"\b(?:senior research (?:assistant|associate i?\b)|(?:research )?data manager\b)", re.I)
 SENIOR = re.compile(
     r"\b(senior|sr\.?|lead|principal|director|head|chief|vp|vice president|manager|architect|"
     r"supervisor|commissioner|deputy|executive|staff (?:engineer|scientist|data|research))\b", re.I)
 
 # Functions that share words like "analyst" or "data" but aren't the target work.
 OFF_TARGET = re.compile(
-    r"\b(financ\w*|budget|revenue|accounting|accountant|procurement|contract\w*|payroll|human resources|hr|"
+    r"\b(financ\w*|budget|revenue|accounting|accountant|procurement|payroll|human resources|hr|"
     r"recruit\w*|talent|legal|litigation|attorney|paralegal|compliance|audit\w*|tax|"
+    r"contracts? (?:manager|specialist|administrator|analyst|officer)|contracting|"
     r"it|information technology|systems? analyst|servicenow|salesforce|erp|network|security|cyber|cloud|"
     r"infrastructure|data center|devops|site reliability|software|engineer\w*|developer|"
     r"program manager|project manager|product manager|operations|facilities|clerical|administrative assistant|"
@@ -27,7 +30,11 @@ CORE_ROLE = re.compile(
     r"\b(data analyst|research analyst|research associate|research assistant|research scientist|"
     r"quantitative|data scientist|statistician|statistic\w*|evaluation|evaluator|efficacy|psychometric\w*|"
     r"assessment|measurement|learning scien\w*|learning engineer\w*|institutional research|"
-    r"analytics|analyst|researcher|insights|policy analyst|data (?:and|&) (?:systems|research|evaluation))\b", re.I)
+    r"analytics|analyst|researcher|insights|policy analyst|data (?:and|&) (?:systems|research|evaluation)|"
+    r"data (?:specialist|coordinator|associate|fellow|manager|strategist)|"
+    r"research (?:specialist|coordinator|fellow|advisor|data|program associate)|"
+    r"(?:demographic|social|education(?:al)?|learning|assessment|survey) scientist|"
+    r"fellows? program,? .*(?:economics|policy|societal|education))\b", re.I)
 
 CURRICULUM = re.compile(r"\b(curriculum|instructional design\w*|content (?:creator|developer|specialist))\b", re.I)
 
@@ -48,15 +55,29 @@ CATEGORY_POINTS = {"Education": 3, "Research & Policy": 2, "Higher Ed": 2, "Civi
                    "NYC Government": 1, "Federal Government": 0, "Discovered": 0, "AI & Tech": 0}
 
 
+def title_gate(title):
+    """Why a title is ruled out, or None if it's a data, research, or curriculum role at a fitting level."""
+    title = title or ""
+    if (SENIOR.search(title) and not NOT_SENIOR.search(title)) or OFF_TARGET.search(title):
+        return "senior or off-target title"
+    if not (CORE_ROLE.search(title) or CURRICULUM.search(title)):
+        return "title isn't a data, research, or curriculum role"
+    return None
+
+
+def title_priority(title):
+    """0 for titles worth showing, 1 for the rest; used to spend detail-page reads where they matter."""
+    return 0 if title_gate(title) is None else 1
+
+
 def score(job):
     """Return (score, reasons). None means 'don't show this posting at all'."""
     title = job.get("title") or ""
     text = BOILERPLATE.sub(" ", " ".join([title, (job.get("description") or "")[:4000]]))
-    if SENIOR.search(title) or OFF_TARGET.search(title):
-        return None, ["senior or off-target title"]
+    gate = title_gate(title)
+    if gate:
+        return None, [gate]
     core, curriculum = CORE_ROLE.search(title), CURRICULUM.search(title)
-    if not (core or curriculum):
-        return None, ["title isn't a data, research, or curriculum role"]
     if AI_LABS.search(job.get("org") or "") and not AI_LAB_OK.search(title):
         return None, ["AI lab role outside education or societal impact"]
 
