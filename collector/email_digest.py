@@ -206,12 +206,21 @@ def main():
     feed = json.loads((DATA / "jobs.json").read_text())
     health = json.loads((DATA / "health.json").read_text())
     jobs, matched = pick(feed)
-    alerts = []
+    alerts, alert_status, emails_read = [], "off", 0
     if os.environ.get("READ_LINKEDIN_ALERTS", "yes").lower() != "no":
         try:
-            alerts = linkedin_alerts.pick_alerts(linkedin_alerts.read_mailbox(), feed.get("jobs", []))
+            bodies = linkedin_alerts.read_mailbox()
+            emails_read = len(bodies)
+            alerts = linkedin_alerts.pick_alerts(bodies, feed.get("jobs", []))
+            alert_status = "ok"
         except Exception as exc:  # the log is public: report the kind of failure, never mailbox content
+            alert_status = f"failed ({type(exc).__name__})"
             print(f"LinkedIn alerts skipped ({type(exc).__name__}).")
+    # Counts only, so the public repo shows whether the email step worked without revealing what it read.
+    (DATA / "email_status.json").write_text(json.dumps({
+        "date": date.today().isoformat(), "dry_run": bool(os.environ.get("DRY_RUN")), "postings": len(jobs),
+        "matched": matched, "linkedin_alerts": alert_status, "alert_emails_read": emails_read,
+        "alert_postings": len(alerts)}, indent=2) + "\n")
     subject, text, html_body = build(feed, jobs, health, matched=matched, alerts=alerts)
     if os.environ.get("DRY_RUN"):
         print(f"Dry run: would email {len(jobs)} postings and {len(alerts)} from LinkedIn alerts.")
