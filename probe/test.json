@@ -1,0 +1,203 @@
+[
+  {
+    "org": "Mathematica",
+    "raw_sample": [
+      {
+        "title": "Data Scientist (Remote Eligible)",
+        "location": "Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Statistician, Healthcare Evaluation & Disability (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Proposal Development Associate (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Health Informatics & Interoperability Lead (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC; Windsor Mill, MD;",
+        "remote": null
+      },
+      {
+        "title": "Sr. IT Project Manager",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "IT Project Manager",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Advisory Services Analyst, Medicaid Policy and Program",
+        "location": "Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Medicaid Research Associate",
+        "location": "Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Health Research Analyst (Qualitative Research)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Digital Quality Measure Developer (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC; Windsor Mill, MD;",
+        "remote": null
+      },
+      {
+        "title": "Public Health Cloud Solutions Architect (Remote Eligible)",
+        "location": "Princeton, NJ; Washington, DC;",
+        "remote": null
+      },
+      {
+        "title": "Senior Fellow - Medicaid (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "remote": null
+      }
+    ],
+    "platform": "csod",
+    "token": "mathematica|4",
+    "found_by": "orgs.csv",
+    "status": "ok",
+    "total": 21,
+    "relevant": 9,
+    "samples": [
+      {
+        "title": "Data Scientist (Remote Eligible)",
+        "location": "Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/390?c=mathematica",
+        "desc_len": 4825,
+        "remote_why": "ce, which yield crucial evidence and information for policy and decision makers. This position will work remotely or flexibly in one of our office locations. The ideal candi"
+      },
+      {
+        "title": "Statistician, Healthcare Evaluation & Disability (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/387?c=mathematica",
+        "desc_len": 1587,
+        "remote_why": null
+      },
+      {
+        "title": "Advisory Services Analyst, SNAP and SNAP E&T (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/376?c=mathematica",
+        "desc_len": 2624,
+        "remote_why": null
+      },
+      {
+        "title": "Medicare Researcher (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/374?c=mathematica",
+        "desc_len": 2408,
+        "remote_why": null
+      },
+      {
+        "title": "Advisory Services Analyst, Early Childhood Programs (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/362?c=mathematica",
+        "desc_len": 2984,
+        "remote_why": null
+      },
+      {
+        "title": "Sr. Data Analytics Developer (Remote Eligible)",
+        "location": "Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/375?c=mathematica",
+        "desc_len": 1457,
+        "remote_why": null
+      },
+      {
+        "title": "Project Associate, Human Services Policy (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/372?c=mathematica",
+        "desc_len": 3225,
+        "remote_why": null
+      },
+      {
+        "title": "Federal Medicaid Analyst, Project Manager (Remote Eligible)",
+        "location": "Ann Arbor, MI; Cambridge, MA; Chicago, IL; Princeton, NJ; Washington, DC;",
+        "url": "https://mathematica.csod.com/ux/ats/careersite/4/home/requisition/354?c=mathematica",
+        "desc_len": 3040,
+        "remote_why": null
+      }
+    ]
+  },
+  {
+    "org": "University of Pennsylvania",
+    "raw_sample": [
+      {
+        "title": "Research Lab Technician B (Unit for Experimental Psychiatry)",
+        "location": "3600 Civic Center Boulevard",
+        "remote": null
+      },
+      {
+        "title": "Penn Medicine Clinician",
+        "location": "HUP",
+        "remote": null
+      },
+      {
+        "title": "Director of Business Development, Wharton Research Data Services (WRDS)",
+        "location": "3819 Chestnut Street",
+        "remote": null
+      },
+      {
+        "title": "Temporary Employee (Department of OBGYN)",
+        "location": "Biomedical Research Building 2 - 12th Floor",
+        "remote": null
+      },
+      {
+        "title": "Business Administrator A/B",
+        "location": "Vet School-Rosenthal Bldg - 3rd Floor",
+        "remote": null
+      },
+      {
+        "title": "Major Gifts Officer/Major Gifts Officer Senior, Wharton External Affairs",
+        "location": "FMC Tower",
+        "remote": null
+      },
+      {
+        "title": "Research Technician B/C",
+        "location": "New Bolton Center",
+        "remote": null
+      },
+      {
+        "title": "Part-Time Temporary Teacher Aide; Penn Children's Center",
+        "location": "Left Bank-Penn Children's Center",
+        "remote": null
+      },
+      {
+        "title": "Hoffman Center Large Animal Attendant (Stallion Handler)",
+        "location": "New Bolton Center",
+        "remote": null
+      },
+      {
+        "title": "Garden Supervisor",
+        "location": "Leidy Laboratories of Biology",
+        "remote": null
+      },
+      {
+        "title": "Associate Director of Development, Major Gifts (New York Regional Office)",
+        "location": "Penn Club of New York",
+        "remote": null
+      },
+      {
+        "title": "Penn Medicine Clinician- Foot and Ankle Surgeon",
+        "location": "Chester County Hospital",
+        "remote": null
+      }
+    ],
+    "platform": "workday",
+    "token": "wd1.myworkdaysite.com|upenn|careers-at-penn",
+    "found_by": "orgs.csv",
+    "status": "ok",
+    "total": 330,
+    "relevant": 0,
+    "samples": []
+  }
+]
