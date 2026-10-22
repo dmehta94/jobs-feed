@@ -4,7 +4,12 @@ on:
   schedule:
     # Mondays 10:00 UTC (6:00 a.m. Eastern in summer, 5:00 a.m. in winter), ahead of the 7:19 a.m. digest
     - cron: "0 10 * * 1"
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      email:
+        description: "Send the email after collecting (yes/no)"
+        required: false
+        default: "yes"
 
 permissions:
   contents: write
@@ -36,7 +41,7 @@ jobs:
         continue-on-error: true
         run: python -m collector.analyze
       - name: Email this week's postings
-        if: always()
+        if: always() && github.event.inputs.email != 'no'
         continue-on-error: true
         env:
           GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
