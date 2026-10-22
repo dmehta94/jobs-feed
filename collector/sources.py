@@ -356,8 +356,10 @@ def _workday_url(host, tenant, site, path):
 
 
 def _workday_remote(j):
-    where = " ".join(str(j.get(k) or "") for k in ("locationsText", "remoteType")).lower()
-    return ("remote" in where) or None
+    kind = str(j.get("remoteType") or "").lower()  # e.g. "Remote", "Hybrid", "Hybrid Remote", "On-site"
+    if "remote" in kind and "hybrid" not in kind:
+        return True
+    return ("remote" in str(j.get("locationsText") or "").lower()) or None
 
 
 def _workday_posted(text):

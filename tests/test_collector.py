@@ -581,3 +581,13 @@ def test_trakstar_feed(fake):
     [job] = sources_extra.fetch_trakstar("edn")
     assert job["title"] == "Research Associate" and job["posted"] == "2026-10-19"
     assert job["url"] == "https://edn.hire.trakstar.com/jobs/abc"
+
+
+@pytest.mark.parametrize("posting,expected", [
+    ({"remoteType": "Remote"}, True),
+    ({"remoteType": "Hybrid Remote"}, None),
+    ({"remoteType": "On-site", "locationsText": "Remote - US"}, True),
+    ({"locationsText": "Philadelphia, PA"}, None),
+])
+def test_workday_remote_type(posting, expected):
+    assert sources._workday_remote(posting) is expected
