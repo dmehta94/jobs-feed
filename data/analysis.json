@@ -183,8 +183,8 @@
         "Machine learning": 4,
         "Git/GitHub": 3,
         "Regression": 3,
-        "Snowflake": 2,
         "BigQuery / GCP": 2,
+        "Snowflake": 2,
         "Experiments / RCTs": 2,
         "SPSS": 2,
         "dbt": 2,
@@ -264,8 +264,8 @@
         "BigQuery / GCP": 4,
         "Tableau": 4,
         "SPSS": 4,
-        "SAS": 4,
         "Longitudinal / panel data": 4,
+        "SAS": 4,
         "Looker": 4
       },
       "years_required": {
@@ -321,9 +321,9 @@
         "Python": 88,
         "AI / LLM tools": 72,
         "SQL": 60,
-        "Explaining to non-technical audiences": 52,
-        "Machine learning": 52,
         "R": 52,
+        "Machine learning": 52,
+        "Explaining to non-technical audiences": 52,
         "Data visualization / dashboards": 52,
         "Master's preferred or required": 36,
         "Qualitative methods": 32,
@@ -414,10 +414,10 @@
         "dbt": 6,
         "Psychometrics (IRT, validity, reliability)": 6,
         "K-12 or school experience": 6,
-        "Administrative data": 6,
-        "SAS": 6,
         "Power BI": 6,
-        "Survey methods": 6
+        "Administrative data": 6,
+        "Survey methods": 6,
+        "SAS": 6
       },
       "years_required": {
         "postings_stating": 8,
@@ -479,15 +479,15 @@
         "Psychometrics (IRT, validity, reliability)": 33,
         "AWS": 33,
         "BigQuery / GCP": 25,
-        "Snowflake": 25,
         "Tableau": 25,
-        "Power BI": 17,
+        "Snowflake": 25,
         "R": 17,
-        "Explaining to non-technical audiences": 8,
+        "Power BI": 17,
         "Survey methods": 8,
+        "Explaining to non-technical audiences": 8,
         "Looker": 8,
-        "Machine learning": 8,
         "Master's preferred or required": 8,
+        "Machine learning": 8,
         "K-12 or school experience": 8
       },
       "years_required": {
@@ -544,20 +544,20 @@
         "K-12 or school experience": 36,
         "R": 36,
         "Psychometrics (IRT, validity, reliability)": 36,
-        "Python": 27,
         "Data visualization / dashboards": 27,
+        "Python": 27,
         "Looker": 18,
         "SQL": 18,
         "SAS": 18,
-        "Explaining to non-technical audiences": 9,
-        "Snowflake": 9,
         "Power BI": 9,
-        "Causal inference / quasi-experimental": 9,
-        "Experiments / RCTs": 9,
-        "Regression": 9,
-        "Survey methods": 9,
-        "BigQuery / GCP": 9,
         "Tableau": 9,
+        "Regression": 9,
+        "BigQuery / GCP": 9,
+        "Survey methods": 9,
+        "Snowflake": 9,
+        "Causal inference / quasi-experimental": 9,
+        "Explaining to non-technical audiences": 9,
+        "Experiments / RCTs": 9,
         "Qualitative methods": 9,
         "Master's preferred or required": 9
       },
@@ -607,8 +607,8 @@
         "Qualitative methods": 44,
         "Causal inference / quasi-experimental": 33,
         "AI / LLM tools": 33,
-        "Master's preferred or required": 33,
         "R": 33,
+        "Master's preferred or required": 33,
         "Excel": 33,
         "Explaining to non-technical audiences": 22,
         "Data visualization / dashboards": 22,
@@ -619,8 +619,8 @@
         "Python": 11,
         "Regression": 11,
         "SQL": 11,
-        "SAS": 11,
         "Tableau": 11,
+        "SAS": 11,
         "SPSS": 11,
         "Longitudinal / panel data": 11,
         "Psychometrics (IRT, validity, reliability)": 11
@@ -670,8 +670,8 @@
     "Institutional research": {
       "postings": 1,
       "term_share_pct": {
-        "Excel": 100,
-        "Writing / reports": 100
+        "Writing / reports": 100,
+        "Excel": 100
       },
       "years_required": {
         "postings_stating": 0,
@@ -692,5 +692,5 @@
       ]
     }
   },
-  "generated_at": "2026-10-22T23:56:31+00:00"
+  "generated_at": "2026-10-23T00:06:20+00:00"
 }

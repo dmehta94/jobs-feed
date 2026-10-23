@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-22T23:56:31+00:00",
+  "generated_at": "2026-10-23T00:06:20+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -524,7 +524,7 @@
       "tier": 2,
       "platform": "links",
       "token": "https://www.edanalytics.org/careers",
-      "found_by": "posting links on https://www.edanalytics.org/careers",
+      "found_by": "cached",
       "status": "ok",
       "total": 2,
       "relevant": 2
@@ -801,7 +801,7 @@
       "token": "https://www.commonsensemedia.org/about-us/were-hiring",
       "found_by": "cached",
       "status": "ok",
-      "total": 5,
+      "total": 6,
       "relevant": 0
     },
     {
@@ -953,7 +953,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "not found on careers page",
+      "found_by": "careers page failed (404 Not Found)",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -1239,7 +1239,7 @@
       "tier": 2,
       "platform": "workable",
       "token": "open-up-resources",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 3,
       "relevant": 0
@@ -1283,7 +1283,7 @@
       "tier": 2,
       "platform": "icims",
       "token": "careers-rtiinc.icims.com",
-      "found_by": "linked page https://careers.rti.org/",
+      "found_by": "cached",
       "status": "ok",
       "total": 34,
       "relevant": 7

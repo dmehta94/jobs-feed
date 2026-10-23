@@ -1,6 +1,6 @@
 # What the collected postings ask for
 
-Based on 486 postings with descriptions (collection run 2026-10-22T23:56:31+00:00).
+Based on 486 postings with descriptions (collection run 2026-10-23T00:06:20+00:00).
 
 ## All postings (486 postings)
 median experience asked: 4.0 yrs (28% ask 2 or fewer; 178 state a number); median top of pay range: $110,120 (434 list pay); master's or PhD required: 21% (PhD: 16%)
@@ -118,9 +118,9 @@ median experience asked: 4.5 yrs (17% ask 2 or fewer; 12 state a number); median
 | Python | 88% |
 | AI / LLM tools | 72% |
 | SQL | 60% |
-| Explaining to non-technical audiences | 52% |
-| Machine learning | 52% |
 | R | 52% |
+| Machine learning | 52% |
+| Explaining to non-technical audiences | 52% |
 | Data visualization / dashboards | 52% |
 | Master's preferred or required | 36% |
 | Qualitative methods | 32% |
@@ -171,10 +171,10 @@ median experience asked: 4.5 yrs (25% ask 2 or fewer; 8 state a number); median 
 | Psychometrics (IRT, validity, reliability) | 33% |
 | AWS | 33% |
 | BigQuery / GCP | 25% |
-| Snowflake | 25% |
 | Tableau | 25% |
-| Power BI | 17% |
+| Snowflake | 25% |
 | R | 17% |
+| Power BI | 17% |
 
 Most postings from: Anthropic (4), McGraw Hill (2), Code for America (1), Department Of Sanitation (1), Dept Of Health/Mental Hygiene (1), ICF (1), Kiddom (1), Newsela (1)
 
@@ -188,16 +188,16 @@ median experience asked: 4.0 yrs (25% ask 2 or fewer; 4 state a number); median 
 | K-12 or school experience | 36% |
 | R | 36% |
 | Psychometrics (IRT, validity, reliability) | 36% |
-| Python | 27% |
 | Data visualization / dashboards | 27% |
+| Python | 27% |
 | Looker | 18% |
 | SQL | 18% |
 | SAS | 18% |
-| Explaining to non-technical audiences | 9% |
-| Snowflake | 9% |
 | Power BI | 9% |
-| Causal inference / quasi-experimental | 9% |
-| Experiments / RCTs | 9% |
+| Tableau | 9% |
+| Regression | 9% |
+| BigQuery / GCP | 9% |
+| Survey methods | 9% |
 
 Most postings from: Pearson (4), Anthropic (2), Khan Academy (2), Amplify (1), Cognia (1), RTI International (1)
 
@@ -211,8 +211,8 @@ median experience asked: 3.5 yrs (50% ask 2 or fewer; 2 state a number); median 
 | Qualitative methods | 44% |
 | Causal inference / quasi-experimental | 33% |
 | AI / LLM tools | 33% |
-| Master's preferred or required | 33% |
 | R | 33% |
+| Master's preferred or required | 33% |
 | Excel | 33% |
 | Explaining to non-technical audiences | 22% |
 | Data visualization / dashboards | 22% |
@@ -229,8 +229,8 @@ median top of pay range: $94,377 (1 list pay); master's or PhD required: 0% (PhD
 
 | Mentioned | Share |
 |---|---|
-| Excel | 100% |
 | Writing / reports | 100% |
+| Excel | 100% |
 
 Most postings from: Dept Of Design & Construction (1)
 
