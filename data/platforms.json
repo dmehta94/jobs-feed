@@ -191,10 +191,6 @@
     "platform": "greenhouse",
     "token": "navapbc"
   },
-  "New Classrooms": {
-    "platform": "links",
-    "token": "https://newclassrooms.org/careers/"
-  },
   "New Visions for Public Schools": {
     "platform": "greenhouse",
     "token": "centralofficecareers"
