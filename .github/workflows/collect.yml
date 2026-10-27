@@ -2,8 +2,9 @@ name: Collect jobs
 
 on:
   schedule:
-    # Mondays 10:00 UTC (6:00 a.m. Eastern in summer, 5:00 a.m. in winter), ahead of the 7:19 a.m. digest
-    - cron: "0 10 * * 1"
+    # Mondays 02:17 UTC (Sunday night Eastern). GitHub delays scheduled runs by hours at busy times
+    # (the 10:00 UTC slot ran at 16:39 on Oct 26), so this leaves room before the 7:19 a.m. digest.
+    - cron: "17 2 * * 1"
   workflow_dispatch:
     inputs:
       email:
