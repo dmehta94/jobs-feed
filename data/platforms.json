@@ -199,6 +199,10 @@
     "platform": "greenhouse",
     "token": "newsela"
   },
+  "Open Up Resources": {
+    "platform": "workable",
+    "token": "open-up-resources"
+  },
   "Overdeck Family Foundation": {
     "platform": "adp",
     "token": "04bec9b7-ccb5-4dd2-947d-4c34fc061de3"
@@ -234,6 +238,10 @@
   "Renaissance Learning": {
     "platform": "greenhouse",
     "token": "renaissancelearning-nam"
+  },
+  "Research Alliance for NYC Schools (NYU)": {
+    "platform": "links",
+    "token": "https://steinhardt.nyu.edu/research-alliance/about-research-alliance-new-york-city-schools/careers"
   },
   "Research for Action": {
     "platform": "adp",

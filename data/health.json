@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T13:58:59+00:00",
+  "generated_at": "2026-10-30T19:18:40+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -93,10 +93,10 @@
       "org": "Research Alliance for NYC Schools (NYU)",
       "category": "Research & Policy",
       "tier": 1,
-      "platform": null,
-      "token": null,
-      "found_by": "not found on careers page",
-      "status": "no supported platform found",
+      "platform": "links",
+      "token": "https://steinhardt.nyu.edu/research-alliance/about-research-alliance-new-york-city-schools/careers",
+      "found_by": "orgs.csv",
+      "status": "ok",
       "total": 0,
       "relevant": 0
     },
@@ -108,7 +108,7 @@
       "token": "careers.curriculumassociates.com|curriculumassociates.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 60,
+      "total": 62,
       "relevant": 0
     },
     {
@@ -328,7 +328,7 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 30,
+      "total": 31,
       "relevant": 1
     },
     {
@@ -372,8 +372,8 @@
       "token": "https://careers.mheducation.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 87,
-      "relevant": 12
+      "total": 85,
+      "relevant": 13
     },
     {
       "org": "Pearson",
@@ -383,7 +383,7 @@
       "token": "hccz.fa.em3.oraclecloud.com|CX_2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 205,
+      "total": 203,
       "relevant": 5
     },
     {
@@ -427,8 +427,8 @@
       "token": "americaninstitutesforresearch",
       "found_by": "cached",
       "status": "ok",
-      "total": 17,
-      "relevant": 7
+      "total": 16,
+      "relevant": 6
     },
     {
       "org": "RAND",
@@ -614,7 +614,7 @@
       "token": "bfa63131-def5-44e4-b58b-93b120048fdf",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 7,
+      "total": 8,
       "relevant": 1
     },
     {
@@ -702,7 +702,7 @@
       "token": "navapbc",
       "found_by": "cached",
       "status": "ok",
-      "total": 18,
+      "total": 19,
       "relevant": 3
     },
     {
@@ -768,8 +768,8 @@
       "token": "anthropic",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 670,
-      "relevant": 87
+      "total": 675,
+      "relevant": 90
     },
     {
       "org": "Chan Zuckerberg Initiative",
@@ -790,7 +790,7 @@
       "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates",
       "found_by": "cached",
       "status": "ok",
-      "total": 27,
+      "total": 28,
       "relevant": 0
     },
     {
@@ -856,7 +856,7 @@
       "token": "kiddom",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 17,
+      "total": 18,
       "relevant": 1
     },
     {
@@ -885,10 +885,10 @@
       "org": "Google DeepMind",
       "category": "AI & Tech",
       "tier": 2,
-      "platform": "greenhouse",
-      "token": "deepmind",
-      "found_by": "orgs.csv",
-      "status": "fetch failed: 404 Not Found",
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
       "total": 0,
       "relevant": 0
     },
@@ -1010,7 +1010,7 @@
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
       "found_by": "cached",
       "status": "ok",
-      "total": 351,
+      "total": 348,
       "relevant": 14
     },
     {
@@ -1076,7 +1076,7 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 336,
+      "total": 326,
       "relevant": 3
     },
     {
@@ -1087,8 +1087,8 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 230,
-      "relevant": 3
+      "total": 232,
+      "relevant": 5
     },
     {
       "org": "Brown University",
@@ -1098,7 +1098,7 @@
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
       "found_by": "cached",
       "status": "ok",
-      "total": 69,
+      "total": 68,
       "relevant": 0
     },
     {
@@ -1109,7 +1109,7 @@
       "token": "uchicago.wd5.myworkdayjobs.com|uchicago|External",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 348,
+      "total": 349,
       "relevant": 1
     },
     {
@@ -1153,7 +1153,7 @@
       "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
       "found_by": "cached",
       "status": "ok",
-      "total": 116,
+      "total": 114,
       "relevant": 2
     },
     {
@@ -1239,9 +1239,9 @@
       "tier": 2,
       "platform": "workable",
       "token": "open-up-resources",
-      "found_by": "cached",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
+      "found_by": "careers page",
+      "status": "ok",
+      "total": 3,
       "relevant": 0
     },
     {
@@ -1285,7 +1285,7 @@
       "token": "careers-rtiinc.icims.com",
       "found_by": "cached",
       "status": "ok",
-      "total": 28,
+      "total": 30,
       "relevant": 8
     },
     {
@@ -1299,7 +1299,7 @@
       "org": "USAJOBS",
       "status": "ok",
       "total": 256,
-      "relevant": 21
+      "relevant": 22
     },
     {
       "org": "The Muse",
@@ -1331,7 +1331,7 @@
       "org": "HigherEdJobs",
       "category": "Discovered",
       "status": "ok",
-      "total": 179,
+      "total": 174,
       "relevant": 15
     }
   ]
