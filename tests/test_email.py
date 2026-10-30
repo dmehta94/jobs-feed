@@ -39,24 +39,25 @@ def test_first_run_uses_posted_date(monkeypatch):
     assert [j["title"] for j in email_digest.select(feed, TODAY)] == ["Data Analyst", "Undated"]
 
 
-def test_build_groups_and_flags_broken_sources():
+def test_build_ranks_and_flags_broken_sources():
     jobs = [job(), job(org="Dept Of Education", tier=2, category="NYC Government", exam_required=True,
                        post_until="2026-10-30", salary_min=None, salary_max=None)]
     feed = {"sources_ok": 60, "sources_total": 71}
     health = {"sources": [{"org": "MDRC", "tier": 1, "status": "no supported platform found"},
                           {"org": "Zearn", "tier": 1, "status": "ok"}]}
     subject, text, html_body = email_digest.build(feed, jobs, health, TODAY)
-    assert subject == "Job feed — Oct 19: top 2 new postings"
-    assert "TIER 1 ORGANIZATIONS" in text and "NYC GOVERNMENT" in text
+    assert subject == "Job feed — Oct 19: 2 to apply to first"
+    body = text[text.index("APPLY FIRST"):]
+    assert body.index("Zearn") < body.index("Dept Of Education")
     assert "$85,000–$95,000" in text and "pay not listed" in text
-    assert "civil service exam" in text and "closes 2026-10-30" in text
+    assert "civil service exam required" in text and "CLOSES OCT 30" in text and "tier 1 organization" in text
     assert "Not reading: MDRC." in text
     assert "<a href='https://x/1'>Data Analyst</a>" in html_body
 
 
 def test_build_empty_week():
     subject, text, _ = email_digest.build({"sources_ok": 1, "sources_total": 1}, [], {"sources": []}, TODAY)
-    assert "top 0 new postings" in subject and "Nothing new this week." in text
+    assert subject.endswith("nothing new") and "Nothing new this week." in text
 
 
 def test_main_skips_without_secrets(monkeypatch, capsys):
@@ -168,3 +169,27 @@ def test_last_sent_recorded_on_send_and_kept_on_dry_run(monkeypatch, tmp_path):
     assert status["last_sent"] == "2026-10-26" and not sent
     status = _run_main(monkeypatch, tmp_path, dry_run=False, sent=sent)
     assert status["last_sent"] == date.today().isoformat() and len(sent) == 1
+
+
+def test_fit_drops_part_time_temporary_sales_and_procurement_titles():
+    for title in ["Strategic Sourcing Analyst", "Go To Market Analyst", "RN Social Science Researcher",
+                  "Part-Time, Evaluator - School of Technology", "Temporary Technical - Research Assistant",
+                  "Partner, School Design - Assessment"]:
+        assert fit.score(job(title=title))[0] is None, title
+    assert fit.score(job(title="Partnerships Data Analyst"))[0] is not None
+
+
+def test_email_keeps_ranking_and_flags_deadlines():
+    ranked = [job(org=f"Org {i}", title="Data Analyst", url=f"u{i}", fit_reasons=["data/research role"])
+              for i in range(5)]
+    ranked[4]["post_until"] = "2026-10-25"
+    subject, text, _ = email_digest.build({"sources_ok": 1, "sources_total": 1}, ranked, {"sources": []},
+                                          today=TODAY)
+    assert subject.startswith("Job feed — Oct 19: 3 to apply to first, 2 more new")
+    assert text.index("APPLY FIRST") < text.index("Org 0") < text.index("Org 2") < text.index("WORTH A LOOK")
+    assert "Why: data or research role" in text and "CLOSING WITHIN TWO WEEKS: Org 4" in text
+
+
+def test_nyc_closing_dates_are_whole():
+    from collector.text import iso_date
+    assert iso_date("15-NOV-2026") == "2026-11-15"

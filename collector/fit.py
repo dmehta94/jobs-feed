@@ -10,7 +10,8 @@ import re
 NOT_SENIOR = re.compile(r"\b(?:senior research (?:assistant|associate i?\b)|(?:research )?data manager\b)", re.I)
 SENIOR = re.compile(
     r"\b(senior|sr\.?|lead|principal|director|head|chief|vp|vice president|manager|architect|"
-    r"supervis\w*|commissioner|deputy|executive|dean|provost|staff (?:engineer|scientist|data|research))\b", re.I)
+    r"supervis\w*|commissioner|deputy|executive|dean|provost|staff (?:engineer|scientist|data|research))\b|"
+    r"^partner\b", re.I)  # "Partner, School Design" is a senior role at consultancies and school-design nonprofits
 
 # Functions that share words like "analyst" or "data" but aren't the target work.
 OFF_TARGET = re.compile(
@@ -21,7 +22,8 @@ OFF_TARGET = re.compile(
     r"infrastructure|data center|devops|site reliability|software|engineer\w*|developer|"
     r"program manager|project manager|product manager|operations|facilities|clerical|administrative assistant|"
     r"sales|account|marketing|communications|fundrais\w*|development officer|grants?|"
-    r"intern(ship)?|extern(ship)?|scoring service|reader|evaluator - scoring|nurse|clinic\w*|"
+    r"intern(ship)?|extern(ship)?|scoring service|reader|evaluator - scoring|nurse|rn|clinic\w*|"
+    r"sourcing|go[- ]to[- ]market|gtm|part[- ]time|temporary|seasonal|"
     r"programmer|mainframe|business analyst|systems integration|database administrator|"
     r"uipath|rpa|robotic process|automation|timekeep\w*|time ?keeper|"
     r"enforcement|safeguards|trust and safety|investigat\w*|police|correction|"

@@ -26,12 +26,12 @@ def html_to_text(raw):
 
 _ISO_DATE = re.compile(r"(\d{4})-(\d{1,2})-(\d{1,2})")
 _US_DATE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
-_NAMED_DATE_FORMATS = ("%b %d, %Y", "%B %d, %Y", "%d %b %Y", "%d %B %Y")
+_NAMED_DATE_FORMATS = ("%b %d, %Y", "%B %d, %Y", "%d %b %Y", "%d %B %Y", "%d-%b-%Y")
 
 
 def iso_date(value):
     """A posting date as YYYY-MM-DD. Boards report dates as ISO timestamps, US-style M/D/YYYY
-    (Cornerstone, used by Mathematica), or month names; anything unreadable becomes None."""
+    (Cornerstone, used by Mathematica), or month names (NYC Jobs closing dates read 15-NOV-2026); anything unreadable becomes None."""
     if not value:
         return None
     text = str(value).strip()

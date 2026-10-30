@@ -2,7 +2,7 @@
 import os
 
 from . import http
-from .text import NYC_GOV_TITLES, TITLE_EXCLUDE
+from .text import NYC_GOV_TITLES, TITLE_EXCLUDE, iso_date
 
 NYC_DATASET = "https://data.cityofnewyork.us/resource/kpav-sd4t.json"
 NYC_FIELDS = ("job_id,agency,business_title,civil_service_title,title_classification,career_level,"
@@ -58,7 +58,7 @@ def fetch_nyc(limit=10000):
                 "civil_service_title": cs_title,
                 "title_classification": r.get("title_classification"),
                 "career_level": r.get("career_level"),
-                "post_until": (r.get("post_until") or "")[:10] or None,
+                "post_until": iso_date((r.get("post_until") or "").split("T")[0].strip()),
                 "exam_required": "Competitive" in (r.get("title_classification") or ""),
             },
         })

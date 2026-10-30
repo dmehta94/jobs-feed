@@ -24,6 +24,7 @@ Run from the repo root:  python -m collector.email_digest
 import html
 import json
 import os
+import re
 import smtplib
 import sys
 from datetime import date, timedelta
@@ -36,7 +37,6 @@ from .fit import shortlist
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
-MAX_LISTED = 40
 
 
 def _env_int(name):
@@ -95,29 +95,74 @@ def _where(job):
     return loc or "location not listed"
 
 
-def _notes(job):
-    bits = [r for r in job.get("fit_reasons", []) if r.startswith(("education", "asks"))]
-    if job.get("years_required") and not any(b.startswith("asks") for b in bits):
-        bits.append(f"{job['years_required']}+ yrs asked")
+APPLY_FIRST = 3      # top-ranked postings shown with their reasons
+WORTH_A_LOOK = 7     # the next ones, one line each; anything ranked lower is listed under "Also new"
+CLOSING_SOON_DAYS = 14
+REASON_TEXT = {"data/research role": "data or research role", "curriculum role": "curriculum role",
+               "education focus": "education focus", "entry-level": "entry-level title"}
+
+
+def _title(job):
+    return re.sub(r"^Job Title\s+", "", job.get("title") or "")  # some iCIMS boards prefix titles with this
+
+
+def _closes(job, today):
+    """('Nov 15', days left) for a posting with a known closing date, else (None, None)."""
+    try:
+        closes = date.fromisoformat(job.get("post_until") or "")
+    except ValueError:
+        return None, None
+    return f"{closes.strftime('%b')} {closes.day}", (closes - today).days
+
+
+def _why(job):
+    bits = [REASON_TEXT[r] for r in job.get("fit_reasons", []) if r in REASON_TEXT]
+    years = job.get("years_required")
+    if years is not None:
+        bits.append(f"asks {years} yr{'s' if years != 1 else ''}")
+    if job.get("tier") == 1:
+        bits.append("tier 1 organization")
+    elif job.get("category") == "Discovered":
+        bits.append("found by keyword search")
     if job.get("exam_required"):
-        bits.append("civil service exam")
-    if job.get("post_until"):
-        bits.append(f"closes {job['post_until']}")
-    return " · ".join(bits)
+        bits.append("civil service exam required")
+    return bits
 
 
-GROUPS = [
-    ("Tier 1 organizations", lambda j: j.get("tier") == 1),
-    ("Other target organizations", lambda j: j.get("tier") == 2 and j.get("category") != "NYC Government"),
-    ("NYC government", lambda j: j.get("category") == "NYC Government"),
-    ("Federal", lambda j: j.get("category") == "Federal Government"),
-    ("Found by keyword search", lambda j: j.get("category") == "Discovered"),
-]
+def _item(job, today, detailed):
+    """One posting as (text, html). Detailed items get a 'Why' line."""
+    title, pay, where = _title(job), _pay(job), _where(job)
+    closes, days = _closes(job, today)
+    deadline = f"closes {closes}" if closes else ""
+    urgent = closes and days is not None and 0 <= days <= CLOSING_SOON_DAYS
+    why = " · ".join(_why(job))
+    text = f"- {job['org']} — {title}\n  {pay} · {where}" + (f" · {deadline.upper() if urgent else deadline}" if closes else "")
+    if detailed and why:
+        text += f"\n  Why: {why}"
+    text += f"\n  {job.get('url')}"
+    deadline_html = ""
+    if closes:
+        style = "color:#b00020;font-weight:bold" if urgent else "color:#555"
+        deadline_html = f" · <span style='{style}'>{html.escape(deadline)}</span>"
+    why_html = (f"<br><span style='color:#333'>Why: {html.escape(why)}</span>" if detailed and why else "")
+    li = (f"<li style='margin-bottom:{10 if detailed else 6}px'><b>{html.escape(job['org'])}</b> — "
+          f"<a href='{html.escape(job.get('url') or '', quote=True)}'>{html.escape(title)}</a>"
+          f"<br><span style='color:#555'>{html.escape(pay)} · {html.escape(where)}</span>{deadline_html}{why_html}</li>")
+    return text, li
 
 
 def build(feed, jobs, health, today=None, matched=None, alerts=None):
+    """jobs arrive best-first (fit.shortlist). The email keeps that order: the top few with reasons,
+    then the next several, then the rest."""
     today = today or date.today()
-    subject = f"Job feed — {today.strftime('%b')} {today.day}: top {len(jobs)} new posting{'s' if len(jobs) != 1 else ''}"
+    first, rest = jobs[:APPLY_FIRST], jobs[APPLY_FIRST:]
+    look, also = rest[:WORTH_A_LOOK], rest[WORTH_A_LOOK:]
+    if jobs:
+        subject = f"Job feed — {today.strftime('%b')} {today.day}: {len(first)} to apply to first"
+        if rest:
+            subject += f", {len(rest)} more new"
+    else:
+        subject = f"Job feed — {today.strftime('%b')} {today.day}: nothing new"
     if alerts:
         subject += f" + {len(alerts)} from LinkedIn"
     broken = [s["org"] for s in health.get("sources", []) if s.get("tier") == 1 and s.get("status") != "ok"]
@@ -128,25 +173,29 @@ def build(feed, jobs, health, today=None, matched=None, alerts=None):
         footer += " First run: showing postings from the last two weeks."
 
     text_lines, html_parts = [subject, ""], [f"<h2 style='font-family:sans-serif'>{html.escape(subject)}</h2>"]
-    shown = 0
-    for heading, test in GROUPS:
-        group = [j for j in jobs if test(j)]
+    soon = []
+    for job in jobs:
+        closes, days = _closes(job, today)
+        if closes and 0 <= days <= CLOSING_SOON_DAYS:
+            soon.append(f"{job['org']} — {_title(job)} (closes {closes})")
+    if soon:
+        text_lines += ["CLOSING WITHIN TWO WEEKS: " + "; ".join(soon), ""]
+        html_parts.append("<p style='font-family:sans-serif;color:#b00020'><b>Closing within two weeks:</b> "
+                          + html.escape("; ".join(soon)) + "</p>")
+    sections = [("Apply first", "Best matches this week, highest first.", first, True),
+                ("Worth a look", "", look, False),
+                ("Also new", "Lower matches; skim if you have time.", also, False)]
+    for heading, note, group, detailed in sections:
         if not group:
             continue
-        text_lines.append(heading.upper())
-        html_parts.append(f"<h3 style='font-family:sans-serif;margin-bottom:4px'>{html.escape(heading)}</h3><ul style='font-family:sans-serif;padding-left:18px'>")
+        text_lines.append(heading.upper() + (f" — {note}" if note else ""))
+        html_parts.append(f"<h3 style='font-family:sans-serif;margin-bottom:2px'>{html.escape(heading)}</h3>"
+                          + (f"<p style='font-family:sans-serif;color:#555;margin-top:0'>{html.escape(note)}</p>" if note else "")
+                          + "<ul style='font-family:sans-serif;padding-left:18px'>")
         for job in group:
-            if shown >= MAX_LISTED:
-                break
-            shown += 1
-            notes = _notes(job)
-            line = f"{job['org']} — {job['title']} · {_pay(job)} · {_where(job)}"
-            text_lines.append(f"- {line}{' · ' + notes if notes else ''}\n  {job.get('url')}")
-            html_parts.append(
-                f"<li style='margin-bottom:6px'><b>{html.escape(job['org'])}</b> — "
-                f"<a href='{html.escape(job.get('url') or '', quote=True)}'>{html.escape(job['title'])}</a>"
-                f"<br><span style='color:#555'>{html.escape(_pay(job))} · {html.escape(_where(job))}"
-                f"{' · ' + html.escape(notes) if notes else ''}</span></li>")
+            text, li = _item(job, today, detailed)
+            text_lines.append(text)
+            html_parts.append(li)
         html_parts.append("</ul>")
         text_lines.append("")
     if alerts:
