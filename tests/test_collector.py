@@ -622,3 +622,25 @@ def test_fit_drops_charter_networks_and_corporate_training():
                   "description": "Design training for store associates."})[0] is None
     assert score({"org": "Open Up Resources", "title": "Curriculum Writer, Math", "category": "Education",
                   "description": "Write lessons for middle school students and teachers."})[0] is not None
+
+
+@pytest.mark.parametrize("org,department,title,dropped", [
+    ("Customs and Border Protection", "Department of Homeland Security", "Management & Program Analyst", True),
+    ("Immigration and Customs Enforcement", "Department of Homeland Security", "Data Analyst", True),
+    ("Department of Homeland Security Headquarters", "Department of Homeland Security",
+     "Intelligence Research Specialist", True),
+    ("U.S. Coast Guard", "Department of Homeland Security", "Data Analyst", True),
+    ("Defense Health Agency", "Department of Defense", "Statistician", True),
+    ("Police Department", "WF. Mgmt. & Rec./Civ", "Data Analyst", True),
+    ("Department Of Correction", "Employee Services", "Research Analyst", True),
+    ("Federal Emergency Management Agency", "Department of Homeland Security", "Data Analyst", False),
+    ("Department Of Investigation", "OIG NYPD", "Data Analyst", False),
+    ("Civilian Complaint Review Board", "", "Data Analyst", False),
+    ("Dept Of Health/Mental Hygiene", "OCME - Drug Intelligence", "Data Analyst", False),
+    ("Recidiviz", "", "Data Analyst", False),
+    ("Example Edtech", "", "Data Analyst, Artificial Intelligence Research", False),
+])
+def test_fit_drops_policing_enforcement_intelligence_military(org, department, title, dropped):
+    from collector.fit import score
+    s, why = score({"org": org, "department": department, "title": title, "category": "Federal Government"})
+    assert (s is None and "military" in why[0]) is dropped

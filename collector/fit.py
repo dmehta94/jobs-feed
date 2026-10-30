@@ -57,6 +57,19 @@ EARLY = re.compile(r"\b(associate|assistant|coordinator|level (?:i|1)|analyst i)
 AI_LAB_OK = re.compile(r"\b(education|learning|societal|economic|social|policy|public interest|impact)\b", re.I)
 AI_LABS = re.compile(r"\b(anthropic|deepmind)\b", re.I)
 
+# Dev won't work for policing, incarceration, immigration enforcement, intelligence, or the military,
+# even in support roles. Oversight bodies (e.g. Department of Investigation, CCRB) aren't matched.
+FORCE_ORG = re.compile(
+    r"(customs and border protection|border patrol|immigration and customs enforcement|\bice\b(?! cream)|"
+    r"^police\b|\bpolice department\b|\bnypd\b|\bsheriff|department of correction|bureau of prisons|"
+    r"\bcorrection(?:s|al)\b|marshals service|federal bureau of investigation|\bfbi\b|drug enforcement|"
+    r"alcohol, tobacco|\batf\b|\barmy\b|\bnavy\b|air force|marine corps|space force|national guard|coast guard|"
+    r"department of (?:the )?(?:army|navy|air force|defense)|defense (?:intelligence|logistics|health|contract|"
+    r"information|counterintelligence|threat)|\bintelligence\b|national security agency|central intelligence|"
+    r"\bnsa\b|\bcia\b|homeland security investigations)", re.I)
+FORCE_TITLE = re.compile(r"(?<!artificial )\bintelligence (?:research|analyst|specialist|officer|operations)\b|"
+                         r"\bcounterintelligence\b|\bcounterterror\w*", re.I)
+
 CATEGORY_POINTS = {"Education": 3, "Research & Policy": 2, "Higher Ed": 2, "Civic Tech": 2,
                    "NYC Government": 1, "Federal Government": 0, "Discovered": 0, "AI & Tech": 0}
 
@@ -86,6 +99,9 @@ def score(job):
     core, curriculum = CORE_ROLE.search(title), CURRICULUM.search(title)
     if CHARTER.search(job.get("org") or ""):
         return None, ["charter or private school"]
+    military_dept = re.search(r"department of (?:the )?(?:army|navy|air force|defense)", job.get("department") or "", re.I)
+    if FORCE_ORG.search(job.get("org") or "") or military_dept or FORCE_TITLE.search(title):
+        return None, ["policing, incarceration, immigration enforcement, intelligence, or military"]
     if AI_LABS.search(job.get("org") or "") and not AI_LAB_OK.search(title):
         return None, ["AI lab role outside education or societal impact"]
 
