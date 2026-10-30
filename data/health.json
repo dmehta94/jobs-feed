@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-26T16:49:31+00:00",
+  "generated_at": "2026-10-30T13:58:59+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -42,8 +42,8 @@
       "token": "amplify",
       "found_by": "cached",
       "status": "ok",
-      "total": 34,
-      "relevant": 6
+      "total": 35,
+      "relevant": 5
     },
     {
       "org": "Illustrative Mathematics",
@@ -108,7 +108,7 @@
       "token": "careers.curriculumassociates.com|curriculumassociates.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 54,
+      "total": 60,
       "relevant": 0
     },
     {
@@ -130,8 +130,8 @@
       "token": "khanacademy",
       "found_by": "cached",
       "status": "ok",
-      "total": 5,
-      "relevant": 2
+      "total": 4,
+      "relevant": 1
     },
     {
       "org": "Newsela",
@@ -141,7 +141,7 @@
       "token": "newsela",
       "found_by": "cached",
       "status": "ok",
-      "total": 11,
+      "total": 10,
       "relevant": 2
     },
     {
@@ -152,7 +152,7 @@
       "token": "donorschoose",
       "found_by": "cached",
       "status": "ok",
-      "total": 4,
+      "total": 5,
       "relevant": 0
     },
     {
@@ -207,8 +207,8 @@
       "token": "greatminds",
       "found_by": "cached",
       "status": "ok",
-      "total": 28,
-      "relevant": 4
+      "total": 25,
+      "relevant": 3
     },
     {
       "org": "TNTP",
@@ -218,7 +218,7 @@
       "token": "tntp.wd5.myworkdayjobs.com|tntp|TNTP",
       "found_by": "cached",
       "status": "ok",
-      "total": 5,
+      "total": 4,
       "relevant": 0
     },
     {
@@ -251,8 +251,8 @@
       "token": "teachinglab",
       "found_by": "cached",
       "status": "ok",
-      "total": 5,
-      "relevant": 2
+      "total": 4,
+      "relevant": 1
     },
     {
       "org": "EdReports",
@@ -273,8 +273,8 @@
       "token": "digital-promise",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 2,
-      "relevant": 0
+      "total": 3,
+      "relevant": 1
     },
     {
       "org": "The Learning Agency",
@@ -295,7 +295,7 @@
       "token": "sagaeducation",
       "found_by": "cached",
       "status": "ok",
-      "total": 10,
+      "total": 9,
       "relevant": 0
     },
     {
@@ -317,7 +317,7 @@
       "token": "duolingo",
       "found_by": "cached",
       "status": "ok",
-      "total": 59,
+      "total": 58,
       "relevant": 8
     },
     {
@@ -328,8 +328,8 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 29,
-      "relevant": 0
+      "total": 30,
+      "relevant": 1
     },
     {
       "org": "Brilliant",
@@ -339,7 +339,7 @@
       "token": "brilliant",
       "found_by": "cached",
       "status": "ok",
-      "total": 3,
+      "total": 4,
       "relevant": 0
     },
     {
@@ -372,7 +372,7 @@
       "token": "https://careers.mheducation.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 86,
+      "total": 87,
       "relevant": 12
     },
     {
@@ -383,8 +383,8 @@
       "token": "hccz.fa.em3.oraclecloud.com|CX_2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 207,
-      "relevant": 6
+      "total": 205,
+      "relevant": 5
     },
     {
       "org": "College Board",
@@ -394,8 +394,8 @@
       "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers",
       "found_by": "cached",
       "status": "ok",
-      "total": 50,
-      "relevant": 5
+      "total": 52,
+      "relevant": 4
     },
     {
       "org": "ETS",
@@ -427,7 +427,7 @@
       "token": "americaninstitutesforresearch",
       "found_by": "cached",
       "status": "ok",
-      "total": 15,
+      "total": 17,
       "relevant": 7
     },
     {
@@ -438,7 +438,7 @@
       "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 21,
+      "total": 22,
       "relevant": 0
     },
     {
@@ -504,7 +504,7 @@
       "token": "egpy.fa.us2.oraclecloud.com|JoinAbt",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 12,
+      "total": 8,
       "relevant": 0
     },
     {
@@ -592,7 +592,7 @@
       "token": "5690b998-5a2d-4792-b2de-97f5fca569c2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 3,
+      "total": 2,
       "relevant": 0
     },
     {
@@ -647,7 +647,7 @@
       "token": "innovatingjustice",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 57,
+      "total": 49,
       "relevant": 1
     },
     {
@@ -680,8 +680,8 @@
       "token": "recidiviz",
       "found_by": "cached",
       "status": "ok",
-      "total": 6,
-      "relevant": 3
+      "total": 11,
+      "relevant": 4
     },
     {
       "org": "Code for America",
@@ -691,7 +691,7 @@
       "token": "codeforamerica",
       "found_by": "cached",
       "status": "ok",
-      "total": 8,
+      "total": 10,
       "relevant": 1
     },
     {
@@ -702,8 +702,8 @@
       "token": "navapbc",
       "found_by": "cached",
       "status": "ok",
-      "total": 13,
-      "relevant": 1
+      "total": 18,
+      "relevant": 3
     },
     {
       "org": "DataKind",
@@ -713,7 +713,7 @@
       "token": "datakindinc",
       "found_by": "cached",
       "status": "ok",
-      "total": 2,
+      "total": 3,
       "relevant": 1
     },
     {
@@ -768,8 +768,8 @@
       "token": "anthropic",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 683,
-      "relevant": 91
+      "total": 670,
+      "relevant": 87
     },
     {
       "org": "Chan Zuckerberg Initiative",
@@ -790,7 +790,7 @@
       "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates",
       "found_by": "cached",
       "status": "ok",
-      "total": 23,
+      "total": 27,
       "relevant": 0
     },
     {
@@ -856,7 +856,7 @@
       "token": "kiddom",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 18,
+      "total": 17,
       "relevant": 1
     },
     {
@@ -1010,8 +1010,8 @@
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
       "found_by": "cached",
       "status": "ok",
-      "total": 358,
-      "relevant": 18
+      "total": 351,
+      "relevant": 14
     },
     {
       "org": "Teachers College Columbia",
@@ -1055,7 +1055,7 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 150,
-      "relevant": 13
+      "relevant": 11
     },
     {
       "org": "NYC Public Schools Central Office",
@@ -1076,7 +1076,7 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 327,
+      "total": 336,
       "relevant": 3
     },
     {
@@ -1087,8 +1087,8 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 228,
-      "relevant": 4
+      "total": 230,
+      "relevant": 3
     },
     {
       "org": "Brown University",
@@ -1098,7 +1098,7 @@
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
       "found_by": "cached",
       "status": "ok",
-      "total": 72,
+      "total": 69,
       "relevant": 0
     },
     {
@@ -1109,7 +1109,7 @@
       "token": "uchicago.wd5.myworkdayjobs.com|uchicago|External",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 347,
+      "total": 348,
       "relevant": 1
     },
     {
@@ -1120,7 +1120,7 @@
       "token": "wd1.myworkdaysite.com|upenn|careers-at-penn",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 328,
+      "total": 324,
       "relevant": 0
     },
     {
@@ -1153,8 +1153,8 @@
       "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
       "found_by": "cached",
       "status": "ok",
-      "total": 118,
-      "relevant": 1
+      "total": 116,
+      "relevant": 2
     },
     {
       "org": "University of Michigan",
@@ -1240,8 +1240,8 @@
       "platform": "workable",
       "token": "open-up-resources",
       "found_by": "cached",
-      "status": "ok",
-      "total": 3,
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
       "relevant": 0
     },
     {
@@ -1285,19 +1285,21 @@
       "token": "careers-rtiinc.icims.com",
       "found_by": "cached",
       "status": "ok",
-      "total": 32,
-      "relevant": 7
+      "total": 28,
+      "relevant": 8
     },
     {
       "org": "NYC Jobs (NYC Open Data)",
       "category": "NYC Government",
       "status": "ok",
-      "total": 1340,
-      "relevant": 237
+      "total": 1322,
+      "relevant": 230
     },
     {
       "org": "USAJOBS",
-      "status": "skipped (no API key set)"
+      "status": "ok",
+      "total": 256,
+      "relevant": 21
     },
     {
       "org": "The Muse",
@@ -1310,7 +1312,7 @@
       "org": "Remotive",
       "category": "Discovered",
       "status": "ok",
-      "total": 20,
+      "total": 24,
       "relevant": 0
     },
     {
@@ -1330,7 +1332,7 @@
       "category": "Discovered",
       "status": "ok",
       "total": 179,
-      "relevant": 17
+      "relevant": 15
     }
   ]
 }

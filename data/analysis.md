@@ -1,228 +1,228 @@
 # What the collected postings ask for
 
-Based on 495 postings with descriptions (collection run 2026-10-26T16:49:31+00:00).
+Based on 499 postings with descriptions (collection run 2026-10-30T13:58:59+00:00).
 
-## All postings (495 postings)
-median experience asked: 4 yrs (27% ask 2 or fewer; 183 state a number); median top of pay range: $110,836 (444 list pay); master's or PhD required: 21% (PhD: 16%)
+## All postings (499 postings)
+median experience asked: 4.0 yrs (29% ask 2 or fewer; 180 state a number); median top of pay range: $112,217 (446 list pay); master's or PhD required: 20% (PhD: 16%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 78% |
-| Qualitative methods | 39% |
-| AI / LLM tools | 34% |
-| Master's preferred or required | 30% |
-| Data visualization / dashboards | 26% |
-| Excel | 25% |
-| SQL | 24% |
+| Writing / reports | 76% |
+| Qualitative methods | 37% |
+| AI / LLM tools | 33% |
+| Master's preferred or required | 29% |
+| Excel | 26% |
+| Data visualization / dashboards | 24% |
+| SQL | 23% |
 | Python | 22% |
-| Explaining to non-technical audiences | 16% |
-| R | 14% |
-| Survey methods | 12% |
-| K-12 or school experience | 9% |
-| Psychometrics (IRT, validity, reliability) | 8% |
+| Explaining to non-technical audiences | 15% |
+| R | 13% |
+| Survey methods | 11% |
+| Psychometrics (IRT, validity, reliability) | 9% |
+| K-12 or school experience | 8% |
 | Machine learning | 8% |
-| GIS | 8% |
 | Power BI | 7% |
 | Tableau | 7% |
-| SAS | 6% |
+| GIS | 6% |
+| SAS | 5% |
 | Git/GitHub | 4% |
-| AWS | 3% |
-| Experiments / RCTs | 3% |
-| Causal inference / quasi-experimental | 3% |
+| Causal inference / quasi-experimental | 4% |
+| Experiments / RCTs | 4% |
 | Stata | 3% |
+| AWS | 3% |
 | Regression | 3% |
-| BigQuery / GCP | 3% |
 | Looker | 3% |
+| BigQuery / GCP | 3% |
 | Administrative data | 2% |
-| Snowflake | 2% |
 | dbt | 2% |
+| Snowflake | 2% |
 | SPSS | 2% |
 
-Most postings from: Anthropic (91), Dept Of Health/Mental Hygiene (62), Department Of Transportation (36), Office Of The Mayor (24), ICF (18), Dept Of Environment Protection (13), NYU (13), McGraw Hill (12)
+Most postings from: Anthropic (87), Dept Of Health/Mental Hygiene (61), Office Of The Mayor (24), Department Of Transportation (23), ICF (14), Dept Of Environment Protection (13), Housing Preservation & Dvlpmnt (12), McGraw Hill (12)
 
-## Other (183 postings)
-median experience asked: 3.0 yrs (34% ask 2 or fewer; 58 state a number); median top of pay range: $103,800 (165 list pay); master's or PhD required: 30% (PhD: 23%)
-
-| Mentioned | Share |
-|---|---|
-| Writing / reports | 74% |
-| Master's preferred or required | 39% |
-| Qualitative methods | 33% |
-| Excel | 25% |
-| AI / LLM tools | 17% |
-| Data visualization / dashboards | 13% |
-| Survey methods | 13% |
-| K-12 or school experience | 11% |
-| Python | 10% |
-| GIS | 9% |
-| SAS | 7% |
-| SQL | 5% |
-| Machine learning | 5% |
-| R | 5% |
-| Psychometrics (IRT, validity, reliability) | 3% |
-
-Most postings from: Dept Of Health/Mental Hygiene (35), Department Of Transportation (20), Anthropic (17), Office Of The Mayor (16), Dept Of Environment Protection (10), McGraw Hill (7), Department Of City Planning (6), Housing Preservation & Dvlpmnt (6)
-
-## General data analysis (180 postings)
-median experience asked: 4 yrs (23% ask 2 or fewer; 65 state a number); median top of pay range: $103,750 (166 list pay); master's or PhD required: 16% (PhD: 13%)
+## General data analysis (177 postings)
+median experience asked: 4 yrs (27% ask 2 or fewer; 63 state a number); median top of pay range: $103,500 (163 list pay); master's or PhD required: 14% (PhD: 10%)
 
 | Mentioned | Share |
 |---|---|
 | Writing / reports | 79% |
-| Qualitative methods | 40% |
-| AI / LLM tools | 37% |
-| Data visualization / dashboards | 33% |
-| SQL | 33% |
-| Excel | 31% |
+| Qualitative methods | 37% |
+| AI / LLM tools | 34% |
+| Excel | 32% |
+| Data visualization / dashboards | 31% |
 | Master's preferred or required | 29% |
-| Explaining to non-technical audiences | 22% |
+| SQL | 29% |
+| Explaining to non-technical audiences | 23% |
 | Python | 19% |
-| Power BI | 13% |
-| R | 13% |
-| Tableau | 11% |
-| Survey methods | 8% |
-| Psychometrics (IRT, validity, reliability) | 7% |
-| K-12 or school experience | 7% |
+| Power BI | 12% |
+| R | 11% |
+| Tableau | 10% |
+| Psychometrics (IRT, validity, reliability) | 8% |
+| Survey methods | 7% |
+| GIS | 6% |
 
-Most postings from: Anthropic (42), Dept Of Health/Mental Hygiene (19), Department Of Transportation (11), NYU (10), District Attorney-Manhattan (6), ICF (6), Mayors Office Of Contract Svcs (6), Office Of Management & Budget (6)
+Most postings from: Anthropic (36), Dept Of Health/Mental Hygiene (15), NYU (9), Department Of Transportation (8), ICF (6), Office Of Management & Budget (6), District Attorney-Manhattan (5), Mathematica (5)
 
-## Policy & social research (57 postings)
-median experience asked: 4.5 yrs (15% ask 2 or fewer; 26 state a number); median top of pay range: $127,977 (48 list pay); master's or PhD required: 18% (PhD: 12%)
+## Other (175 postings)
+median experience asked: 3.0 yrs (36% ask 2 or fewer; 56 state a number); median top of pay range: $105,000 (156 list pay); master's or PhD required: 30% (PhD: 24%)
+
+| Mentioned | Share |
+|---|---|
+| Writing / reports | 70% |
+| Master's preferred or required | 39% |
+| Qualitative methods | 32% |
+| Excel | 27% |
+| AI / LLM tools | 21% |
+| K-12 or school experience | 12% |
+| Data visualization / dashboards | 11% |
+| Survey methods | 11% |
+| Python | 10% |
+| Machine learning | 6% |
+| GIS | 6% |
+| SAS | 6% |
+| SQL | 5% |
+| Psychometrics (IRT, validity, reliability) | 5% |
+| R | 4% |
+
+Most postings from: Dept Of Health/Mental Hygiene (33), Anthropic (18), Office Of The Mayor (14), Department Of Transportation (11), Dept Of Environment Protection (10), Campaign Finance Board (8), McGraw Hill (7), Department Of City Planning (5)
+
+## Policy & social research (67 postings)
+median experience asked: 4.0 yrs (19% ask 2 or fewer; 32 state a number); median top of pay range: $125,000 (57 list pay); master's or PhD required: 16% (PhD: 12%)
 
 | Mentioned | Share |
 |---|---|
 | Writing / reports | 84% |
-| Qualitative methods | 49% |
-| AI / LLM tools | 44% |
-| Data visualization / dashboards | 28% |
-| Python | 26% |
+| Qualitative methods | 51% |
+| AI / LLM tools | 36% |
+| Data visualization / dashboards | 25% |
+| Python | 22% |
 | Excel | 19% |
+| Survey methods | 19% |
 | R | 19% |
-| Master's preferred or required | 18% |
-| Survey methods | 18% |
-| Explaining to non-technical audiences | 18% |
-| SQL | 18% |
-| Machine learning | 12% |
-| Stata | 11% |
-| K-12 or school experience | 9% |
+| Master's preferred or required | 16% |
+| SQL | 16% |
+| Explaining to non-technical audiences | 12% |
+| Stata | 9% |
 | Psychometrics (IRT, validity, reliability) | 9% |
+| Machine learning | 9% |
+| K-12 or school experience | 7% |
 
-Most postings from: Anthropic (15), Office Of The Mayor (6), Dept Of Health/Mental Hygiene (5), American Institutes for Research (3), Brookings Institution (3), Department Of Transportation (3), ICF (3), Great Minds (2)
+Most postings from: Anthropic (14), Dept Of Health/Mental Hygiene (8), Office Of The Mayor (7), Housing Preservation & Dvlpmnt (4), American Institutes for Research (3), Brookings Institution (3), RTI International (3), Internal Revenue Service (3)
 
-## Data science (24 postings)
-median experience asked: 4 yrs (18% ask 2 or fewer; 11 state a number); median top of pay range: $156,056 (20 list pay); master's or PhD required: 21% (PhD: 21%)
-
-| Mentioned | Share |
-|---|---|
-| Writing / reports | 88% |
-| Python | 88% |
-| AI / LLM tools | 75% |
-| SQL | 58% |
-| Data visualization / dashboards | 54% |
-| Machine learning | 50% |
-| Explaining to non-technical audiences | 50% |
-| R | 50% |
-| Master's preferred or required | 38% |
-| Qualitative methods | 33% |
-| Causal inference / quasi-experimental | 25% |
-| Psychometrics (IRT, validity, reliability) | 21% |
-| Experiments / RCTs | 17% |
-| Stata | 17% |
-| Git/GitHub | 17% |
-
-Most postings from: Anthropic (7), Department Of Transportation (2), Duolingo (2), ICF (2), McGraw Hill (2), RTI International (2), American Institutes for Research (1), College Board (1)
-
-## Product & business analytics (17 postings)
-median experience asked: 4.5 yrs (38% ask 2 or fewer; 8 state a number); median top of pay range: $138,549 (17 list pay); master's or PhD required: 0% (PhD: 0%)
+## Data science (26 postings)
+median experience asked: 3 yrs (22% ask 2 or fewer; 9 state a number); median top of pay range: $166,757 (22 list pay); master's or PhD required: 19% (PhD: 19%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 94% |
-| SQL | 71% |
-| Qualitative methods | 71% |
-| AI / LLM tools | 65% |
-| Data visualization / dashboards | 47% |
-| Excel | 35% |
-| Python | 29% |
-| Explaining to non-technical audiences | 29% |
-| Machine learning | 18% |
-| R | 18% |
-| Tableau | 18% |
-| GIS | 18% |
-| Master's preferred or required | 12% |
-| Causal inference / quasi-experimental | 6% |
-| Experiments / RCTs | 6% |
-
-Most postings from: ICF (4), Duolingo (3), Anthropic (2), College Board (1), Dept Of Environment Protection (1), Financial Info Svcs Agency (1), NYU (1), Newsela (1)
-
-## Data engineering & analytics engineering (13 postings)
-median experience asked: 4 yrs (33% ask 2 or fewer; 9 state a number); median top of pay range: $167,644 (13 list pay); master's or PhD required: 8% (PhD: 8%)
-
-| Mentioned | Share |
-|---|---|
-| Python | 100% |
-| SQL | 85% |
+| Python | 85% |
+| Writing / reports | 81% |
 | AI / LLM tools | 69% |
-| Git/GitHub | 62% |
-| Writing / reports | 54% |
-| Data visualization / dashboards | 38% |
-| dbt | 38% |
-| Qualitative methods | 38% |
-| Psychometrics (IRT, validity, reliability) | 38% |
-| AWS | 38% |
-| BigQuery / GCP | 23% |
-| Tableau | 23% |
-| Snowflake | 23% |
-| Power BI | 15% |
-| R | 15% |
+| SQL | 62% |
+| Data visualization / dashboards | 42% |
+| R | 42% |
+| Machine learning | 42% |
+| Explaining to non-technical audiences | 35% |
+| Causal inference / quasi-experimental | 31% |
+| Master's preferred or required | 31% |
+| Qualitative methods | 27% |
+| Experiments / RCTs | 23% |
+| Psychometrics (IRT, validity, reliability) | 19% |
+| Stata | 15% |
+| SAS | 12% |
 
-Most postings from: Anthropic (4), ICF (2), McGraw Hill (2), Code for America (1), Department Of Sanitation (1), Dept Of Health/Mental Hygiene (1), Kiddom (1), Newsela (1)
+Most postings from: Anthropic (9), Department Of Transportation (2), Duolingo (2), McGraw Hill (2), Bureau of Labor Statistics (1), Veterans Health Administration (1), American Institutes for Research (1), College Board (1)
 
-## Assessment & measurement (11 postings)
-median experience asked: 4.0 yrs (25% ask 2 or fewer; 4 state a number); median top of pay range: $155,105 (7 list pay); master's or PhD required: 0% (PhD: 0%)
-
-| Mentioned | Share |
-|---|---|
-| Writing / reports | 82% |
-| AI / LLM tools | 45% |
-| K-12 or school experience | 36% |
-| R | 36% |
-| Psychometrics (IRT, validity, reliability) | 36% |
-| Data visualization / dashboards | 27% |
-| Python | 27% |
-| SQL | 18% |
-| Looker | 18% |
-| Explaining to non-technical audiences | 18% |
-| SAS | 18% |
-| BigQuery / GCP | 9% |
-| Experiments / RCTs | 9% |
-| Power BI | 9% |
-| Tableau | 9% |
-
-Most postings from: Pearson (4), Anthropic (2), Khan Academy (2), Amplify (1), Cognia (1), RTI International (1)
-
-## Program evaluation (9 postings)
-median experience asked: 3.5 yrs (50% ask 2 or fewer; 2 state a number); median top of pay range: $112,883 (7 list pay); master's or PhD required: 22% (PhD: 22%)
+## Program evaluation (15 postings)
+median experience asked: 2 yrs (67% ask 2 or fewer; 3 state a number); median top of pay range: $131,441 (12 list pay); master's or PhD required: 20% (PhD: 20%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 89% |
-| Survey methods | 44% |
-| Qualitative methods | 44% |
-| Causal inference / quasi-experimental | 33% |
-| AI / LLM tools | 33% |
-| Excel | 33% |
-| Master's preferred or required | 33% |
+| Writing / reports | 93% |
+| Qualitative methods | 40% |
+| Survey methods | 33% |
 | R | 33% |
-| Explaining to non-technical audiences | 22% |
-| Data visualization / dashboards | 22% |
-| GIS | 22% |
-| Administrative data | 22% |
-| Stata | 22% |
-| Experiments / RCTs | 11% |
-| Python | 11% |
+| Master's preferred or required | 27% |
+| Causal inference / quasi-experimental | 27% |
+| Data visualization / dashboards | 20% |
+| Stata | 20% |
+| Excel | 20% |
+| SAS | 13% |
+| SQL | 13% |
+| Python | 13% |
+| SPSS | 13% |
+| AI / LLM tools | 13% |
+| GIS | 13% |
 
-Most postings from: Anthropic (2), Dept Of Health/Mental Hygiene (2), American Institutes for Research (1), Mathematica (1), Office Of Management & Budget (1), University of Chicago (1), Vanderbilt University (1)
+Most postings from: U.S. Coast Guard (4), Dept Of Health/Mental Hygiene (3), Recidiviz (1), Internet Society Foundation (1), American Institutes for Research (1), Anthropic (1), Mathematica (1), Office Of Management & Budget (1)
+
+## Data engineering & analytics engineering (14 postings)
+median experience asked: 4 yrs (33% ask 2 or fewer; 9 state a number); median top of pay range: $173,822 (14 list pay); master's or PhD required: 7% (PhD: 7%)
+
+| Mentioned | Share |
+|---|---|
+| SQL | 86% |
+| Python | 86% |
+| AI / LLM tools | 64% |
+| Git/GitHub | 57% |
+| Writing / reports | 50% |
+| Qualitative methods | 36% |
+| Data visualization / dashboards | 36% |
+| Psychometrics (IRT, validity, reliability) | 36% |
+| dbt | 36% |
+| AWS | 29% |
+| Tableau | 21% |
+| Explaining to non-technical audiences | 14% |
+| Master's preferred or required | 14% |
+| BigQuery / GCP | 14% |
+| R | 14% |
+
+Most postings from: Anthropic (5), Dept Of Health/Mental Hygiene (2), McGraw Hill (2), ICF (1), Code for America (1), Department Of Sanitation (1), Kiddom (1), Newsela (1)
+
+## Product & business analytics (14 postings)
+median experience asked: 5.0 yrs (33% ask 2 or fewer; 6 state a number); median top of pay range: $150,000 (14 list pay); master's or PhD required: 0% (PhD: 0%)
+
+| Mentioned | Share |
+|---|---|
+| Writing / reports | 93% |
+| SQL | 71% |
+| Qualitative methods | 64% |
+| AI / LLM tools | 64% |
+| Data visualization / dashboards | 43% |
+| Explaining to non-technical audiences | 36% |
+| Python | 36% |
+| Excel | 29% |
+| Machine learning | 21% |
+| R | 21% |
+| Tableau | 21% |
+| GIS | 14% |
+| Causal inference / quasi-experimental | 7% |
+| Experiments / RCTs | 7% |
+| dbt | 7% |
+
+Most postings from: ICF (3), Duolingo (3), Anthropic (2), Financial Info Svcs Agency (1), NYU (1), Newsela (1), Nyc Housing Authority (1), Off Of Payroll Administration (1)
+
+## Assessment & measurement (10 postings)
+median experience asked: 4.0 yrs (0% ask 2 or fewer; 2 state a number); median top of pay range: $185,000 (7 list pay); master's or PhD required: 10% (PhD: 10%)
+
+| Mentioned | Share |
+|---|---|
+| Writing / reports | 70% |
+| Psychometrics (IRT, validity, reliability) | 60% |
+| R | 40% |
+| AI / LLM tools | 40% |
+| Python | 30% |
+| Qualitative methods | 30% |
+| K-12 or school experience | 30% |
+| Data visualization / dashboards | 30% |
+| Explaining to non-technical audiences | 20% |
+| SAS | 20% |
+| SQL | 20% |
+| Looker | 20% |
+| Excel | 10% |
+| Survey methods | 10% |
+| BigQuery / GCP | 10% |
+
+Most postings from: Pearson (3), RTI International (2), Anthropic (2), Transcend (1), Cognia (1), Khan Academy (1)
 
 ## Institutional research (1 postings)
 median top of pay range: $94,377 (1 list pay); master's or PhD required: 0% (PhD: 0%)
