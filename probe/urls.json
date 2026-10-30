@@ -1,0 +1,29 @@
+[
+  {
+    "url": "https://www.schools.nyc.gov/careers/job-opportunities",
+    "status": 200,
+    "final_url": "https://www.schools.nyc.gov/careers/job-opportunities",
+    "content_type": "text/html; charset=utf-8",
+    "length": 685315,
+    "file": "probe/urls/00_www_schools_nyc_gov_careers_job_opportunities.txt",
+    "head": " <!DOCTYPE html> <!--[if lt IE 9]>     <html class=\"lt-ie10 lt-ie9\" lang=\"en\"><![endif]--> <!--[if IE 9]>        <html class=\"lt-ie10 ie9\" lang=\"en\"><![endif]--> <!--[if gt IE 9]><!--> <html lang=\"en\"> <!--<![endif]--> <head><script>var HawkSearchBaseUrl = '/search/json'; var HawkSearchTrackingUrl ="
+  },
+  {
+    "url": "https://www.schools.nyc.gov/careers/administration-and-central-offices",
+    "status": 200,
+    "final_url": "https://www.schools.nyc.gov/careers/administration-and-central-offices",
+    "content_type": "text/html; charset=utf-8",
+    "length": 660231,
+    "file": "probe/urls/01_www_schools_nyc_gov_careers_administration_and_cen.txt",
+    "head": " <!DOCTYPE html> <!--[if lt IE 9]>     <html class=\"lt-ie10 lt-ie9\" lang=\"en\"><![endif]--> <!--[if IE 9]>        <html class=\"lt-ie10 ie9\" lang=\"en\"><![endif]--> <!--[if gt IE 9]><!--> <html lang=\"en\"> <!--<![endif]--> <head><script>var HawkSearchBaseUrl = '/search/json'; var HawkSearchTrackingUrl ="
+  },
+  {
+    "url": "https://www.google.com/about/careers/applications/jobs/results?company=DeepMind",
+    "status": 200,
+    "final_url": "https://www.google.com/about/careers/applications/jobs/results?company=DeepMind",
+    "content_type": "text/html; charset=utf-8",
+    "length": 1364043,
+    "file": "probe/urls/02_www_google_com_about_careers_applications_jobs_res.txt",
+    "head": "<!doctype html><html lang=\"en-US\" dir=\"ltr\"><head><base href=\"https://www.google.com/about/careers/applications/\"><link rel=\"preconnect\" href=\"//www.gstatic.com\"><meta name=\"referrer\" content=\"origin\"><script nonce=\"oo4oljxTCxOnUSNkvt4_Kg\">window['ppConfig'] = {productName: 'HiringCportalFrontendUi'"
+  }
+]
