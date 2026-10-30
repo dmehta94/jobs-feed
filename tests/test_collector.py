@@ -644,3 +644,43 @@ def test_fit_drops_policing_enforcement_intelligence_military(org, department, t
     from collector.fit import score
     s, why = score({"org": org, "department": department, "title": title, "category": "Federal Government"})
     assert (s is None and "military" in why[0]) is dropped
+
+
+# ---------- dates and what counts as new ----------
+
+def test_iso_date_reads_board_formats():
+    assert text_mod.iso_date("2026-10-19T14:02:00Z") == "2026-10-19"
+    assert text_mod.iso_date("10/19/2026") == "2026-10-19"  # Cornerstone (Mathematica)
+    assert text_mod.iso_date("8/7/2026 12:00:00 AM") == "2026-08-07"
+    assert text_mod.iso_date("Oct 19, 2026") == "2026-10-19"
+    assert text_mod.iso_date("Posted Today") is None and text_mod.iso_date("13/45/2026") is None
+    assert text_mod.iso_date(None) is None
+
+
+def test_finish_normalizes_posted_date():
+    job = collect.finish({"title": "Data Scientist", "url": "u", "posted": "10/19/2026"}, org="Mathematica",
+                         category="Research & Policy", tier=2, source="csod", today="2026-10-30", seen={})
+    assert job["posted"] == "2026-10-19"
+
+
+def test_postings_first_seen_on_last_weeks_run_are_not_new():
+    seen = {"u": {"first_seen": "2026-10-26", "last_seen": "2026-10-26"}}
+    job = collect.finish({"title": "Data Analyst", "url": "u"}, org="Zearn", category="Education", tier=1,
+                         source="greenhouse", today="2026-11-02", seen=seen)
+    assert job["new_this_week"] is False
+
+
+def test_new_since_uses_last_email():
+    assert collect.new_since("2026-11-02", {}) == "2026-10-26"
+    assert collect.new_since("2026-11-02", {"last_sent": "2026-10-26", "dry_run": True}) == "2026-10-26"
+    assert collect.new_since("2026-11-02", {"last_sent": "2026-10-29"}) == "2026-10-29"
+    assert collect.new_since("2026-11-02", {"last_sent": "2026-09-01"}) == "2026-10-19"  # capped at two weeks
+    assert collect.new_since("2026-11-02", {"last_sent": "2026-11-02"}) == "2026-10-26"  # same-day rerun
+
+
+def test_discovered_posting_takes_listed_org_tier():
+    orgs = [{"name": "New Classrooms", "category": "Education", "tier": "1"},
+            {"name": "Carnegie Foundation for the Advancement of Teaching", "category": "Research & Policy", "tier": "2"}]
+    assert collect._listed_org("New Classrooms Innovation Partners", orgs)["tier"] == "1"
+    assert collect._listed_org("Carnegie Learning", orgs) is None
+    assert collect._listed_org("NYC", orgs) is None

@@ -6,6 +6,7 @@ is left to the weekly digest, which reads the surviving postings in full.
 """
 import html
 import re
+from datetime import date, datetime
 
 # ---------- cleanup ----------
 
@@ -21,6 +22,33 @@ def html_to_text(raw):
     text = _TAG.sub(" ", text)
     text = html.unescape(text)  # some boards double-escape
     return _WS.sub(" ", text).strip()
+
+
+_ISO_DATE = re.compile(r"(\d{4})-(\d{1,2})-(\d{1,2})")
+_US_DATE = re.compile(r"(\d{1,2})/(\d{1,2})/(\d{4})")
+_NAMED_DATE_FORMATS = ("%b %d, %Y", "%B %d, %Y", "%d %b %Y", "%d %B %Y")
+
+
+def iso_date(value):
+    """A posting date as YYYY-MM-DD. Boards report dates as ISO timestamps, US-style M/D/YYYY
+    (Cornerstone, used by Mathematica), or month names; anything unreadable becomes None."""
+    if not value:
+        return None
+    text = str(value).strip()
+    try:
+        if m := _ISO_DATE.match(text):
+            return date(*map(int, m.groups())).isoformat()
+        if m := _US_DATE.match(text):
+            month, day, year = map(int, m.groups())
+            return date(year, month, day).isoformat()
+    except ValueError:
+        return None
+    for fmt in _NAMED_DATE_FORMATS:
+        try:
+            return datetime.strptime(text, fmt).date().isoformat()
+        except ValueError:
+            continue
+    return None
 
 
 # ---------- relevance ----------

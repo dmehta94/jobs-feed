@@ -20,7 +20,7 @@ from datetime import date, timedelta
 
 from . import http
 from .fit import title_priority
-from .text import extract_salary, html_to_text, location_is_ok, title_is_relevant
+from .text import extract_salary, html_to_text, iso_date, location_is_ok, title_is_relevant
 
 # Mission language, checked in the employer name, title, and the start of the description
 # (later paragraphs are mostly boilerplate like "college degree" or "equity compensation").
@@ -304,7 +304,8 @@ SOURCES = [
 
 def recent_enough(job, today=None, days=30):
     """Aggregators keep stale listings around; drop anything dated more than a month back."""
-    if not job.get("posted"):
+    posted = iso_date(job.get("posted"))
+    if not posted:
         return True
     today = today or date.today()
-    return job["posted"] >= (today - timedelta(days=days)).isoformat()
+    return posted >= (today - timedelta(days=days)).isoformat()

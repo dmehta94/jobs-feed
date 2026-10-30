@@ -24,8 +24,8 @@ from . import discovery, sources_extra
 from .government import fetch_nyc, fetch_usajobs
 from .sources import ADAPTERS, detect, fetch_detail, probe
 from .fit import title_priority
-from .text import (advanced_degree_required, extract_salary, location_is_ok, remote_from_text, title_is_relevant,
-                   years_required)
+from .text import (advanced_degree_required, extract_salary, iso_date, location_is_ok, remote_from_text,
+                   title_is_relevant, years_required)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -33,6 +33,8 @@ DESCRIPTION_CHARS = 12000
 MAX_DETAIL_FETCHES_PER_ORG = 80
 MAX_REMOTE_CHECKS_PER_ORG = 80  # out-of-area postings whose description is read to see if they're remote
 SEEN_RETENTION_DAYS = 90
+NEW_WINDOW_DAYS = 7      # without a record of the last email, "new" means first seen within the past week
+MAX_NEW_WINDOW_DAYS = 14  # never reach back further than this, even if emails stopped going out
 
 
 def load_json(path, default):
@@ -87,9 +89,9 @@ def finish(job, *, org, category, tier, source, today, seen):
         "location": job.get("location"),
         "remote": job.get("remote"),
         "url": job.get("url"),
-        "posted": job.get("posted"),
+        "posted": iso_date(job.get("posted")),
         "first_seen": first_seen,
-        "new_this_week": first_seen >= (date.fromisoformat(today) - timedelta(days=7)).isoformat(),
+        "new_this_week": first_seen > (date.fromisoformat(today) - timedelta(days=NEW_WINDOW_DAYS)).isoformat(),
         "employment_type": job.get("employment_type"),
         "department": job.get("department"),
         "salary_min": job.get("salary_min"),
@@ -116,6 +118,17 @@ def _read_detail(job):
         return
     if job["description"] and job.get("salary_min") is None:
         job["salary_min"], job["salary_max"], job["salary_text"] = extract_salary(job["description"])
+
+
+def new_since(today, email_status):
+    """Postings first seen after this date count as new: the day the last email went out, so each email
+    lists only what the one before it couldn't have. A run that found a posting on the same day an email
+    went out already showed it to that email, hence the strict comparison."""
+    floor = (date.fromisoformat(today) - timedelta(days=MAX_NEW_WINDOW_DAYS)).isoformat()
+    last_sent = iso_date((email_status or {}).get("last_sent"))
+    if last_sent and last_sent < today:
+        return max(last_sent, floor)
+    return (date.fromisoformat(today) - timedelta(days=NEW_WINDOW_DAYS)).isoformat()
 
 
 def collect_org(org, cache, today, seen):
@@ -226,7 +239,20 @@ def _already_known(job, known, known_titles):
     return any(_org_words(job["org"]) & words for words in known_titles.get(_norm_key("", job["title"])[1], []))
 
 
-def collect_discovery(today, seen, known_jobs):
+def _listed_org(employer, orgs):
+    """The orgs.csv row a discovered posting's employer matches, if any ("New Classrooms Innovation Partners"
+    matches "New Classrooms"). Lets a tier 1 org whose own board can't be read still rank as tier 1."""
+    name = _norm_key(employer, "")[0]
+    if len(name) < 6:
+        return None
+    for org in orgs:
+        listed = _norm_key(org["name"], "")[0]
+        if len(listed) >= 6 and (name.startswith(listed) or listed.startswith(name)):
+            return org
+    return None
+
+
+def collect_discovery(today, seen, known_jobs, orgs=()):
     """Keyword searches across aggregators. Postings already found on an org's own board are skipped."""
     known = {_norm_key(j["org"], j["title"]) for j in known_jobs}
     known_titles = {}
@@ -244,8 +270,12 @@ def collect_discovery(today, seen, known_jobs):
             continue
         kept = [j for j in raw if discovery.keep(j) and discovery.recent_enough(j)
                 and not _already_known(j, known, known_titles)]
-        jobs = [finish(j, org=j["org"], category="Discovered", tier=3, source=name.lower().replace(" ", ""),
-                       today=today, seen=seen) for j in kept]
+        jobs = []
+        for j in kept:
+            listed = _listed_org(j["org"], orgs)
+            jobs.append(finish(j, org=j["org"], category=listed.get("category") if listed else "Discovered",
+                               tier=int(listed.get("tier") or 2) if listed else 3,
+                               source=name.lower().replace(" ", ""), today=today, seen=seen))
         known.update(_norm_key(j["org"], j["title"]) for j in jobs)
         for j in jobs:
             known_titles.setdefault(_norm_key("", j["title"])[1], []).append(_org_words(j["org"]))
@@ -272,10 +302,14 @@ def main():
         print(f"{h['org'][:45]:45} {'':22} {h['status'][:40]:40} {h.get('relevant', 0):>4}/{h.get('total', 0)}")
         health.append(h)
         jobs.extend(j)
-    for h, j in collect_discovery(today, seen, jobs):
+    for h, j in collect_discovery(today, seen, jobs, orgs):
         print(f"{h['org'][:45]:45} {'(search)':22} {h['status'][:40]:40} {h.get('relevant', 0):>4}/{h.get('total', 0)}")
         health.append(h)
         jobs.extend(j)
+
+    since = new_since(today, load_json(DATA / "email_status.json", {}))
+    for job in jobs:
+        job["new_this_week"] = job["first_seen"] > since
 
     # De-duplicate (some orgs share a board) and sort: new first, then tier.
     unique = {}
@@ -295,6 +329,7 @@ def main():
         "sources_total": len(health),
         "job_count": len(jobs),
         "new_this_week": sum(j["new_this_week"] for j in jobs),
+        "new_since": since,  # postings first seen after this date are flagged new_this_week
         "jobs": jobs,
     })
     write_json(DATA / "health.json", {"generated_at": generated, "sources": health})

@@ -1,13 +1,13 @@
 name,category,tier,careers_url,ats,token,notes
 Zearn,Education,1,https://about.zearn.org/careers,workable,zearn,
-New Classrooms,Education,1,https://newclassrooms.org/careers/,links,https://newclassrooms.org/careers/,
+New Classrooms,Education,1,https://newclassrooms.org/careers/,links,https://newclassrooms.org/careers/,Careers page blocks automated readers (Cloudflare); its postings also reach Edtech.com and are ranked tier 1 from there
 New Visions for Public Schools,Education,1,https://www.newvisions.org/pages/careers,,,
 Amplify,Education,1,https://amplify.com/careers/,,,Includes Desmos
 Illustrative Mathematics,Education,1,https://illustrativemathematics.org/jobs/,jazzhr,illustrativemathematics,
-Carnegie Learning,Education,1,https://www.carnegielearning.com/company/careers/,,,Paycom; not readable yet
+Carnegie Learning,Education,1,https://www.carnegielearning.com/company/careers/,,,Paycom; not readable yet. Its postings also reach Edtech.com and are ranked tier 1 from there
 MDRC,Research & Policy,1,https://www.mdrc.org/about/careers,ukgready,secure6.saashr.com|6162152,
 Overdeck Family Foundation,Education,1,https://overdeck.org/about/careers/,,,
-Research Alliance for NYC Schools (NYU),Research & Policy,1,https://steinhardt.nyu.edu/research-alliance/about-research-alliance-new-york-city-schools/careers,,,
+Research Alliance for NYC Schools (NYU),Research & Policy,1,https://steinhardt.nyu.edu/research-alliance/about-research-alliance-new-york-city-schools/careers,links,https://steinhardt.nyu.edu/research-alliance/about-research-alliance-new-york-city-schools/careers,
 Curriculum Associates,Education,2,https://www.curriculumassociates.com/about/careers,eightfold,careers.curriculumassociates.com|curriculumassociates.com,i-Ready; research and efficacy teams
 NWEA (HMH),Education,2,https://careers.hmhco.com/,,,
 Khan Academy,Education,2,https://www.khanacademy.org/careers,,,
@@ -79,7 +79,7 @@ J-PAL North America,Research & Policy,2,https://www.povertyactionlab.org/careers
 Kiddom,Education,2,https://www.kiddom.co/careers,ashby,kiddom,Curriculum platform
 Ed-Fi Alliance,Education,2,https://www.ed-fi.org/careers/,,,K-12 data standards
 ISTE+ASCD,Education,2,https://iste.org/careers,,,
-Google DeepMind,AI & Tech,2,https://deepmind.google/careers/,greenhouse,deepmind,Public-interest science and education roles only; not Gemini or product work
+Google DeepMind,AI & Tech,2,https://deepmind.google/careers/,,,"Public-interest science and education roles only; not Gemini or product work. Hiring moved to Google Careers (Oct 2026), which has no public feed; Greenhouse board removed"
 Cognia,Education,2,https://www.cognia.org/careers/,adp,ebbb9e9f-4b7c-4d22-9984-b930aaf04fa6,Assessment and accreditation
 Data Recognition Corporation,Education,2,https://www.datarecognitioncorp.com/careers/,,,State testing contractor
 Measurement Incorporated,Education,2,https://www.measurementinc.com/careers/,site_links,https://www.measurementinc.com/careers/,Assessment and program evaluation

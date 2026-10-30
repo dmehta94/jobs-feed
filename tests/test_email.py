@@ -142,3 +142,29 @@ def test_shortlist_caps():
     assert matched == 14
     assert sum(j["org"] == "Big Org" for j in out) == 2
     assert sum(j["category"] == "NYC Government" for j in out) == 3
+
+
+def _run_main(monkeypatch, tmp_path, dry_run, sent):
+    (tmp_path / "jobs.json").write_text('{"jobs": []}')
+    (tmp_path / "health.json").write_text('{"sources": []}')
+    monkeypatch.setattr(email_digest, "DATA", tmp_path)
+    monkeypatch.setattr(email_digest, "send", lambda *a: sent.append(a))
+    monkeypatch.setenv("GMAIL_ADDRESS", "me@example.com")
+    monkeypatch.setenv("GMAIL_APP_PASSWORD", "app-pass")
+    monkeypatch.setenv("READ_LINKEDIN_ALERTS", "no")
+    if dry_run:
+        monkeypatch.setenv("DRY_RUN", "1")
+    else:
+        monkeypatch.delenv("DRY_RUN", raising=False)
+    assert email_digest.main() == 0
+    import json
+    return json.loads((tmp_path / "email_status.json").read_text())
+
+
+def test_last_sent_recorded_on_send_and_kept_on_dry_run(monkeypatch, tmp_path):
+    (tmp_path / "email_status.json").write_text('{"last_sent": "2026-10-26"}')
+    sent = []
+    status = _run_main(monkeypatch, tmp_path, dry_run=True, sent=sent)
+    assert status["last_sent"] == "2026-10-26" and not sent
+    status = _run_main(monkeypatch, tmp_path, dry_run=False, sent=sent)
+    assert status["last_sent"] == date.today().isoformat() and len(sent) == 1

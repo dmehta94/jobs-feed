@@ -217,15 +217,24 @@ def main():
             alert_status = f"failed ({type(exc).__name__})"
             print(f"LinkedIn alerts skipped ({type(exc).__name__}).")
     # Counts only, so the public repo shows whether the email step worked without revealing what it read.
-    (DATA / "email_status.json").write_text(json.dumps({
+    # last_sent survives dry runs; the collector uses it to decide which postings count as new.
+    status_path = DATA / "email_status.json"
+    try:
+        last_sent = json.loads(status_path.read_text()).get("last_sent")
+    except (FileNotFoundError, ValueError):
+        last_sent = None
+    status = {
         "date": date.today().isoformat(), "dry_run": bool(os.environ.get("DRY_RUN")), "postings": len(jobs),
         "matched": matched, "linkedin_alerts": alert_status, "alert_emails_read": emails_read,
-        "alert_postings": len(alerts)}, indent=2) + "\n")
+        "alert_postings": len(alerts), "last_sent": last_sent}
+    status_path.write_text(json.dumps(status, indent=2) + "\n")
     subject, text, html_body = build(feed, jobs, health, matched=matched, alerts=alerts)
     if os.environ.get("DRY_RUN"):
         print(f"Dry run: would email {len(jobs)} postings and {len(alerts)} from LinkedIn alerts.")
         return 0
     send(subject, text, html_body)
+    status["last_sent"] = date.today().isoformat()
+    status_path.write_text(json.dumps(status, indent=2) + "\n")
     print(f"Emailed {len(jobs)} postings and {len(alerts)} from LinkedIn alerts.")
     return 0
 
