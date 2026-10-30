@@ -10,7 +10,7 @@ import re
 NOT_SENIOR = re.compile(r"\b(?:senior research (?:assistant|associate i?\b)|(?:research )?data manager\b)", re.I)
 SENIOR = re.compile(
     r"\b(senior|sr\.?|lead|principal|director|head|chief|vp|vice president|manager|architect|"
-    r"supervisor|commissioner|deputy|executive|dean|provost|staff (?:engineer|scientist|data|research))\b", re.I)
+    r"supervis\w*|commissioner|deputy|executive|dean|provost|staff (?:engineer|scientist|data|research))\b", re.I)
 
 # Functions that share words like "analyst" or "data" but aren't the target work.
 OFF_TARGET = re.compile(
