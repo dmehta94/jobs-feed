@@ -1,10 +1,10 @@
 {
-  "date": "2026-10-30",
-  "dry_run": true,
+  "date": "2026-11-02",
+  "dry_run": false,
   "postings": 15,
-  "matched": 26,
+  "matched": 16,
   "linkedin_alerts": "ok",
-  "alert_emails_read": 76,
+  "alert_emails_read": 72,
   "alert_postings": 8,
-  "last_sent": null
+  "last_sent": "2026-11-02"
 }

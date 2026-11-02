@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-30T19:18:40+00:00",
+  "generated_at": "2026-11-02T09:40:24+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -141,7 +141,7 @@
       "token": "newsela",
       "found_by": "cached",
       "status": "ok",
-      "total": 10,
+      "total": 9,
       "relevant": 2
     },
     {
@@ -317,7 +317,7 @@
       "token": "duolingo",
       "found_by": "cached",
       "status": "ok",
-      "total": 58,
+      "total": 56,
       "relevant": 8
     },
     {
@@ -328,8 +328,8 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 31,
-      "relevant": 1
+      "total": 29,
+      "relevant": 0
     },
     {
       "org": "Brilliant",
@@ -350,7 +350,7 @@
       "token": "renaissancelearning-nam",
       "found_by": "cached",
       "status": "ok",
-      "total": 12,
+      "total": 13,
       "relevant": 0
     },
     {
@@ -383,8 +383,8 @@
       "token": "hccz.fa.em3.oraclecloud.com|CX_2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 203,
-      "relevant": 5
+      "total": 198,
+      "relevant": 3
     },
     {
       "org": "College Board",
@@ -394,8 +394,8 @@
       "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers",
       "found_by": "cached",
       "status": "ok",
-      "total": 52,
-      "relevant": 4
+      "total": 49,
+      "relevant": 5
     },
     {
       "org": "ETS",
@@ -416,7 +416,7 @@
       "token": "mathematica|4",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 21,
+      "total": 20,
       "relevant": 9
     },
     {
@@ -460,7 +460,7 @@
       "token": "70c1bbee-a65c-4b42-bb04-9dcb8a73868a",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 3,
+      "total": 2,
       "relevant": 1
     },
     {
@@ -581,7 +581,7 @@
       "token": "careers-brookings.icims.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 11,
+      "total": 10,
       "relevant": 4
     },
     {
@@ -591,8 +591,8 @@
       "platform": "adp",
       "token": "5690b998-5a2d-4792-b2de-97f5fca569c2",
       "found_by": "orgs.csv",
-      "status": "ok",
-      "total": 2,
+      "status": "fetch failed: 404 Not Found",
+      "total": 0,
       "relevant": 0
     },
     {
@@ -613,9 +613,9 @@
       "platform": "adp",
       "token": "bfa63131-def5-44e4-b58b-93b120048fdf",
       "found_by": "orgs.csv",
-      "status": "ok",
-      "total": 8,
-      "relevant": 1
+      "status": "fetch failed: 404 Not Found",
+      "total": 0,
+      "relevant": 0
     },
     {
       "org": "Advocates for Children of NY",
@@ -647,7 +647,7 @@
       "token": "innovatingjustice",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 49,
+      "total": 51,
       "relevant": 1
     },
     {
@@ -669,7 +669,7 @@
       "token": "963627e8-e7cc-484e-be0c-95c248a520de",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 3,
+      "total": 2,
       "relevant": 0
     },
     {
@@ -680,7 +680,7 @@
       "token": "recidiviz",
       "found_by": "cached",
       "status": "ok",
-      "total": 11,
+      "total": 12,
       "relevant": 4
     },
     {
@@ -702,8 +702,8 @@
       "token": "navapbc",
       "found_by": "cached",
       "status": "ok",
-      "total": 19,
-      "relevant": 3
+      "total": 21,
+      "relevant": 4
     },
     {
       "org": "DataKind",
@@ -768,8 +768,8 @@
       "token": "anthropic",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 675,
-      "relevant": 90
+      "total": 676,
+      "relevant": 89
     },
     {
       "org": "Chan Zuckerberg Initiative",
@@ -790,7 +790,7 @@
       "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates",
       "found_by": "cached",
       "status": "ok",
-      "total": 28,
+      "total": 24,
       "relevant": 0
     },
     {
@@ -1010,7 +1010,7 @@
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
       "found_by": "cached",
       "status": "ok",
-      "total": 348,
+      "total": 347,
       "relevant": 14
     },
     {
@@ -1076,7 +1076,7 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 326,
+      "total": 330,
       "relevant": 3
     },
     {
@@ -1087,7 +1087,7 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 232,
+      "total": 231,
       "relevant": 5
     },
     {
@@ -1098,7 +1098,7 @@
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
       "found_by": "cached",
       "status": "ok",
-      "total": 68,
+      "total": 69,
       "relevant": 0
     },
     {
@@ -1109,7 +1109,7 @@
       "token": "uchicago.wd5.myworkdayjobs.com|uchicago|External",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 349,
+      "total": 350,
       "relevant": 1
     },
     {
@@ -1153,7 +1153,7 @@
       "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
       "found_by": "cached",
       "status": "ok",
-      "total": 114,
+      "total": 110,
       "relevant": 2
     },
     {
@@ -1239,9 +1239,9 @@
       "tier": 2,
       "platform": "workable",
       "token": "open-up-resources",
-      "found_by": "careers page",
-      "status": "ok",
-      "total": 3,
+      "found_by": "cached",
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
       "relevant": 0
     },
     {
@@ -1285,8 +1285,8 @@
       "token": "careers-rtiinc.icims.com",
       "found_by": "cached",
       "status": "ok",
-      "total": 30,
-      "relevant": 8
+      "total": 28,
+      "relevant": 6
     },
     {
       "org": "NYC Jobs (NYC Open Data)",
@@ -1299,7 +1299,7 @@
       "org": "USAJOBS",
       "status": "ok",
       "total": 256,
-      "relevant": 22
+      "relevant": 23
     },
     {
       "org": "The Muse",
@@ -1325,14 +1325,14 @@
       "category": "Discovered",
       "status": "ok",
       "total": 120,
-      "relevant": 30
+      "relevant": 23
     },
     {
       "org": "HigherEdJobs",
       "category": "Discovered",
       "status": "ok",
-      "total": 174,
-      "relevant": 15
+      "total": 173,
+      "relevant": 14
     }
   ]
 }
