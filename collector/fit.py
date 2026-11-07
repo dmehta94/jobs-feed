@@ -73,7 +73,7 @@ FORCE_TITLE = re.compile(r"(?<!artificial )\bintelligence (?:research|analyst|sp
                          r"\bcounterintelligence\b|\bcounterterror\w*", re.I)
 
 CATEGORY_POINTS = {"Education": 3, "Research & Policy": 2, "Higher Ed": 2, "Civic Tech": 2,
-                   "NYC Government": 1, "Federal Government": 0, "Discovered": 0, "AI & Tech": 0}
+                   "NYC Government": 1, "Health": 1, "Federal Government": 0, "Discovered": 0, "AI & Tech": 0}
 
 
 def title_gate(title):

@@ -307,7 +307,7 @@ def test_orgs_csv_is_well_formed():
     names = [o["name"] for o in orgs]
     assert len(names) == len(set(names))
     for o in orgs:
-        assert o["category"] in {"Education", "Research & Policy", "Civic Tech", "Higher Ed", "NYC Government", "AI & Tech"}
+        assert o["category"] in {"Education", "Research & Policy", "Civic Tech", "Higher Ed", "NYC Government", "AI & Tech", "Health"}
         assert o["tier"] in {"1", "2"}
         assert o["careers_url"].startswith("https://")
 
