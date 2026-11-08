@@ -1,6 +1,6 @@
 # jobs-feed
 
-A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area (including Nassau County) and remote jobs anywhere in the US.
+A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area (including Nassau County), the DC metro, and remote jobs anywhere in the US.
 
 Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's hiring platform, pulls every open posting straight from that platform's public job feed, keeps the plausibly relevant ones, and commits the results to `data/`.
 
@@ -22,7 +22,7 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 | `data/email_status.json` | Counts from the last email step and the date an email last went out |
 | `data/analysis.md` | What the postings ask for: tools, methods, experience, and pay, overall and by role family |
 
-The filters only drop postings that are clearly off-target, such as unrelated fields, executive titles, or on-site jobs outside the NYC area. Postings listed in another city are kept when the description says the job can be done fully remotely ("can be performed remotely", "fully remote", "remote within the US"); hybrid schedules elsewhere don't count. Judging fit is left to whoever reads the output.
+The filters only drop postings that are clearly off-target, such as unrelated fields, executive titles, or on-site jobs outside the NYC and DC areas. Postings listed in another city are kept when the description says the job can be done fully remotely ("can be performed remotely", "fully remote", "remote within the US"); hybrid schedules elsewhere don't count. Judging fit is left to whoever reads the output.
 
 ## Weekly email (optional)
 
