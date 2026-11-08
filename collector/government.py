@@ -69,7 +69,7 @@ USAJOBS_KEYWORDS = ["data scientist", "statistician", "research analyst", "educa
 
 
 def fetch_usajobs():
-    """Federal postings in the NYC area or remote. Needs a free API key from
+    """Federal postings in the NYC area, the DC metro, or remote. Needs a free API key from
     developer.usajobs.gov stored as USAJOBS_API_KEY and USAJOBS_EMAIL; skipped otherwise."""
     key, email = os.environ.get("USAJOBS_API_KEY"), os.environ.get("USAJOBS_EMAIL")
     if not key or not email:
@@ -77,7 +77,9 @@ def fetch_usajobs():
     headers = {"Authorization-Key": key, "User-Agent": email, "Host": "data.usajobs.gov"}
     found = {}
     for kw in USAJOBS_KEYWORDS:
-        for loc_params in ({"LocationName": "New York, New York", "Radius": 25}, {"RemoteIndicator": "True"}):
+        for loc_params in ({"LocationName": "New York, New York", "Radius": 25},
+                           {"LocationName": "Washington, District of Columbia", "Radius": 25},
+                           {"RemoteIndicator": "True"}):
             data = http.get_json("https://data.usajobs.gov/api/search", headers=headers,
                                  params={"Keyword": kw, "ResultsPerPage": 250, **loc_params})
             for item in data.get("SearchResult", {}).get("SearchResultItems", []):

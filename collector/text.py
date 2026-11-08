@@ -107,8 +107,16 @@ NYC_AREA = re.compile(
     r"oyster bay|roslyn|east meadow|baldwin|merrick|bellmore|wantagh|seaford|carle place|franklin square|"
     r"woodmere|cedarhurst|lawrence|hewlett|inwood|bellerose|albertson|williston park|sea cliff|"
     r"locust valley|glen head|woodbury|east williston|island park|point lookout|atlantic beach)\b)", re.I)
+# DC metro: the District plus close-in Virginia and Maryland suburbs (hybrid roles there are in scope).
+DC_AREA = re.compile(
+    r"(washington,?\s*(?:dc|d\.c\.)|washington d\.?c\.?|district of columbia|\bdc metro|"
+    r"\b(?:arlington|alexandria|fairfax|falls church|mclean|tysons(?: corner)?|reston|herndon|vienna|merrifield|"
+    r"springfield|annandale|chantilly)(?:,?\s*(?:va|virginia))\b|"
+    r"\b(?:bethesda|silver spring|rockville|chevy chase|gaithersburg|takoma park|hyattsville|greenbelt|"
+    r"college park|north bethesda|landover|largo|riverdale park)(?:,?\s*(?:md|maryland))?\b|"
+    r"montgomery county,?\s*(?:md|maryland)|prince george'?s county)", re.I)
 ANYWHERE = re.compile(r"(remote|anywhere|virtual|distributed|work from home|telework|nationwide|multiple locations|various)", re.I)
-LOCATION_OK = re.compile(NYC_AREA.pattern + "|" + ANYWHERE.pattern + r"|united states|\busa?\b|u\.s\.", re.I)
+LOCATION_OK = re.compile(NYC_AREA.pattern + "|" + DC_AREA.pattern + "|" + ANYWHERE.pattern + r"|united states|\busa?\b|u\.s\.", re.I)
 # A trailing country ("Nashville, TN, United States") says nothing about where in the US the job is.
 _COUNTRY = re.compile(r"[,\s-]*\b(united states(?: of america)?|usa?|u\.s\.a?\.?)\s*$", re.I)
 _SPLIT = re.compile(r"\s*(?:;|\||/|\bor\b|\band\b|\n)\s*", re.I)
@@ -121,7 +129,7 @@ def _place_ok(place):
     rest = _COUNTRY.sub("", place).strip(" ,-()")
     if not rest:
         return True  # just "United States": a US-wide posting
-    return bool(NYC_AREA.search(rest) or ANYWHERE.search(rest))
+    return bool(NYC_AREA.search(rest) or DC_AREA.search(rest) or ANYWHERE.search(rest))
 
 
 NON_US = re.compile(
@@ -134,7 +142,7 @@ US_MARKER = re.compile(r"(?i:united states|\busa?\b|u\.s\.|new york|\bnyc\b|\bny
 
 
 def location_is_ok(location, remote=None):
-    """Keep NYC, remote within the US, US-wide, and unspecified locations; drop on-site elsewhere
+    """Keep NYC, the DC metro, remote within the US, US-wide, and unspecified locations; drop on-site elsewhere
     and remote roles restricted to other countries."""
     loc = (location or "").strip()
     if loc and NON_US.search(loc) and not US_MARKER.search(loc):
@@ -166,7 +174,7 @@ def remote_from_text(text, strict=False):
     """True when a description says the job can be done fully remotely; False otherwise.
 
     Clear statements ("fully remote", "can be performed remotely") count unless the posting also
-    says it isn't remote. With strict=True (used for postings listed outside the NYC area), only clear
+    says it isn't remote. With strict=True (used for postings listed outside the NYC and DC areas), only clear
     statements count. Otherwise softer ones ("remote eligible", "telework") count only when there's no
     sign of a hybrid schedule, since "two days a week remote" isn't a remote job."""
     text = text or ""
