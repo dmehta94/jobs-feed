@@ -87,6 +87,10 @@
     "platform": "pinpoint",
     "token": "commonlit"
   },
+  "Community Service Society of NY": {
+    "platform": "adp",
+    "token": "bfa63131-def5-44e4-b58b-93b120048fdf"
+  },
   "Coursera": {
     "platform": "greenhouse",
     "token": "coursera"
@@ -114,10 +118,6 @@
   "EdReports": {
     "platform": "greenhouse",
     "token": "edreports"
-  },
-  "Education Analytics": {
-    "platform": "links",
-    "token": "https://www.edanalytics.org/careers"
   },
   "Education Northwest": {
     "platform": "trakstar",
@@ -187,13 +187,25 @@
     "platform": "greenhouse",
     "token": "navapbc"
   },
+  "New Classrooms": {
+    "platform": "links",
+    "token": "https://newclassrooms.org/careers/"
+  },
   "New Visions for Public Schools": {
     "platform": "greenhouse",
     "token": "centralofficecareers"
   },
+  "NewYork-Presbyterian": {
+    "platform": "workday",
+    "token": "nyp.wd1.myworkdayjobs.com|nyp|nypcareers"
+  },
   "Newsela": {
     "platform": "greenhouse",
     "token": "newsela"
+  },
+  "Northwell Health": {
+    "platform": "oracle",
+    "token": "eppr.fa.us2.oraclecloud.com|CX_2"
   },
   "Overdeck Family Foundation": {
     "platform": "adp",
@@ -238,6 +250,10 @@
   "Research for Action": {
     "platform": "adp",
     "token": "672697df-5c45-42d2-9198-e958445cada6"
+  },
+  "Robin Hood": {
+    "platform": "adp",
+    "token": "5690b998-5a2d-4792-b2de-97f5fca569c2"
   },
   "Saga Education": {
     "platform": "greenhouse",
