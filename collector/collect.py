@@ -268,7 +268,7 @@ def collect_discovery(today, seen, known_jobs, orgs=()):
         if raw is None:
             results.append(({"org": name, "category": "Discovered", "status": "skipped (no API key set)"}, []))
             continue
-        kept = [j for j in raw if discovery.keep(j) and discovery.recent_enough(j)
+        kept = [j for j in raw if discovery.keep(j) and discovery.recent_enough(j, date.fromisoformat(today))
                 and not _already_known(j, known, known_titles)]
         jobs = []
         for j in kept:
