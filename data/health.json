@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T13:35:48+00:00",
+  "generated_at": "2026-11-23T10:52:25+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -9,7 +9,7 @@
       "token": "zearn",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 2,
+      "total": 1,
       "relevant": 0
     },
     {
@@ -31,8 +31,8 @@
       "token": "centralofficecareers",
       "found_by": "cached",
       "status": "ok",
-      "total": 6,
-      "relevant": 1
+      "total": 5,
+      "relevant": 0
     },
     {
       "org": "Amplify",
@@ -42,7 +42,7 @@
       "token": "amplify",
       "found_by": "cached",
       "status": "ok",
-      "total": 33,
+      "total": 30,
       "relevant": 4
     },
     {
@@ -141,7 +141,7 @@
       "token": "newsela",
       "found_by": "cached",
       "status": "ok",
-      "total": 11,
+      "total": 9,
       "relevant": 1
     },
     {
@@ -163,7 +163,7 @@
       "token": "panorama-education",
       "found_by": "cached",
       "status": "ok",
-      "total": 8,
+      "total": 9,
       "relevant": 1
     },
     {
@@ -206,9 +206,9 @@
       "platform": "recruitee",
       "token": "greatminds",
       "found_by": "cached",
-      "status": "ok",
-      "total": 24,
-      "relevant": 2
+      "status": "empty: guessed board had no postings",
+      "total": 0,
+      "relevant": 0
     },
     {
       "org": "TNTP",
@@ -216,7 +216,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "tntp.wd5.myworkdayjobs.com|tntp|TNTP",
-      "found_by": "cached",
+      "found_by": "careers page",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -251,8 +251,8 @@
       "token": "teachinglab",
       "found_by": "cached",
       "status": "ok",
-      "total": 3,
-      "relevant": 1
+      "total": 2,
+      "relevant": 0
     },
     {
       "org": "EdReports",
@@ -262,7 +262,7 @@
       "token": "edreports",
       "found_by": "cached",
       "status": "ok",
-      "total": 2,
+      "total": 1,
       "relevant": 0
     },
     {
@@ -273,7 +273,7 @@
       "token": "digital-promise",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 1,
+      "total": 4,
       "relevant": 0
     },
     {
@@ -317,8 +317,8 @@
       "token": "duolingo",
       "found_by": "cached",
       "status": "ok",
-      "total": 59,
-      "relevant": 7
+      "total": 54,
+      "relevant": 6
     },
     {
       "org": "Coursera",
@@ -328,8 +328,8 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 39,
-      "relevant": 2
+      "total": 34,
+      "relevant": 0
     },
     {
       "org": "Brilliant",
@@ -339,7 +339,7 @@
       "token": "brilliant",
       "found_by": "cached",
       "status": "ok",
-      "total": 4,
+      "total": 3,
       "relevant": 0
     },
     {
@@ -350,7 +350,7 @@
       "token": "renaissancelearning-nam",
       "found_by": "cached",
       "status": "ok",
-      "total": 16,
+      "total": 15,
       "relevant": 0
     },
     {
@@ -372,8 +372,8 @@
       "token": "https://careers.mheducation.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 83,
-      "relevant": 11
+      "total": 88,
+      "relevant": 12
     },
     {
       "org": "Pearson",
@@ -383,8 +383,8 @@
       "token": "hccz.fa.em3.oraclecloud.com|CX_2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 205,
-      "relevant": 5
+      "total": 198,
+      "relevant": 2
     },
     {
       "org": "College Board",
@@ -392,7 +392,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "collegeboard.wd1.myworkdayjobs.com|collegeboard|Careers",
-      "found_by": "cached",
+      "found_by": "careers page",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -416,8 +416,8 @@
       "token": "mathematica|4",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 24,
-      "relevant": 16
+      "total": 26,
+      "relevant": 18
     },
     {
       "org": "American Institutes for Research",
@@ -427,8 +427,8 @@
       "token": "americaninstitutesforresearch",
       "found_by": "cached",
       "status": "ok",
-      "total": 17,
-      "relevant": 13
+      "total": 10,
+      "relevant": 7
     },
     {
       "org": "RAND",
@@ -447,7 +447,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "urban.wd115.myworkdayjobs.com|urban|Urban-Careers",
-      "found_by": "cached",
+      "found_by": "careers page",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -471,8 +471,8 @@
       "token": "recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 6,
-      "relevant": 0
+      "total": 7,
+      "relevant": 1
     },
     {
       "org": "SRI Education",
@@ -504,7 +504,7 @@
       "token": "egpy.fa.us2.oraclecloud.com|JoinAbt",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 19,
+      "total": 24,
       "relevant": 3
     },
     {
@@ -524,7 +524,7 @@
       "tier": 2,
       "platform": "links",
       "token": "https://www.edanalytics.org/careers",
-      "found_by": "posting links on https://www.edanalytics.org/careers",
+      "found_by": "cached",
       "status": "ok",
       "total": 1,
       "relevant": 1
@@ -614,7 +614,7 @@
       "token": "bfa63131-def5-44e4-b58b-93b120048fdf",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 6,
+      "total": 7,
       "relevant": 1
     },
     {
@@ -636,7 +636,7 @@
       "token": "verainstituteofjustice",
       "found_by": "cached",
       "status": "ok",
-      "total": 9,
+      "total": 8,
       "relevant": 2
     },
     {
@@ -647,7 +647,7 @@
       "token": "innovatingjustice",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 54,
+      "total": 53,
       "relevant": 1
     },
     {
@@ -680,7 +680,7 @@
       "token": "recidiviz",
       "found_by": "cached",
       "status": "ok",
-      "total": 12,
+      "total": 13,
       "relevant": 4
     },
     {
@@ -702,8 +702,8 @@
       "token": "navapbc",
       "found_by": "cached",
       "status": "ok",
-      "total": 20,
-      "relevant": 2
+      "total": 19,
+      "relevant": 1
     },
     {
       "org": "DataKind",
@@ -713,7 +713,7 @@
       "token": "datakindinc",
       "found_by": "cached",
       "status": "ok",
-      "total": 3,
+      "total": 2,
       "relevant": 0
     },
     {
@@ -724,8 +724,8 @@
       "token": "propel",
       "found_by": "cached",
       "status": "ok",
-      "total": 6,
-      "relevant": 0
+      "total": 8,
+      "relevant": 1
     },
     {
       "org": "U.S. Digital Response",
@@ -768,8 +768,8 @@
       "token": "anthropic",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 661,
-      "relevant": 88
+      "total": 634,
+      "relevant": 80
     },
     {
       "org": "Chan Zuckerberg Initiative",
@@ -788,7 +788,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "gatesfoundation.wd1.myworkdayjobs.com|gatesfoundation|Gates",
-      "found_by": "cached",
+      "found_by": "careers page",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -823,7 +823,7 @@
       "token": "17519654-d224-4f10-9a5f-2b7ad3cd5a77",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 2,
+      "total": 3,
       "relevant": 1
     },
     {
@@ -843,9 +843,9 @@
       "tier": 2,
       "platform": "bamboohr",
       "token": "precisiondev",
-      "found_by": "linked page https://www.povertyactionlab.org/careers/country-director-precision-development-job-105651",
+      "found_by": "cached",
       "status": "ok",
-      "total": 5,
+      "total": 7,
       "relevant": 0
     },
     {
@@ -857,7 +857,7 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 17,
-      "relevant": 1
+      "relevant": 2
     },
     {
       "org": "Ed-Fi Alliance",
@@ -922,7 +922,7 @@
       "token": "https://www.measurementinc.com/careers/",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 2,
+      "total": 1,
       "relevant": 0
     },
     {
@@ -1008,7 +1008,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
-      "found_by": "cached",
+      "found_by": "linked page https://careers.icf.com/us/en/digital-modernization-jobs",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -1055,7 +1055,7 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 150,
-      "relevant": 9
+      "relevant": 11
     },
     {
       "org": "NYC Public Schools Central Office",
@@ -1076,7 +1076,7 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 331,
+      "total": 356,
       "relevant": 4
     },
     {
@@ -1087,8 +1087,8 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 242,
-      "relevant": 3
+      "total": 255,
+      "relevant": 6
     },
     {
       "org": "Brown University",
@@ -1096,7 +1096,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
-      "found_by": "cached",
+      "found_by": "linked page http://www.brown.edu/careers",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -1120,7 +1120,7 @@
       "token": "wd1.myworkdaysite.com|upenn|careers-at-penn",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 325,
+      "total": 320,
       "relevant": 1
     },
     {
@@ -1153,7 +1153,7 @@
       "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
       "found_by": "cached",
       "status": "ok",
-      "total": 108,
+      "total": 105,
       "relevant": 3
     },
     {
@@ -1229,8 +1229,8 @@
       "platform": "adp",
       "token": "8d062d6e-b354-4c8f-96ab-5157321963e8",
       "found_by": "cached",
-      "status": "ok",
-      "total": 1,
+      "status": "empty: guessed board had no postings",
+      "total": 0,
       "relevant": 0
     },
     {
@@ -1240,8 +1240,8 @@
       "platform": "workable",
       "token": "open-up-resources",
       "found_by": "careers page",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
+      "status": "ok",
+      "total": 2,
       "relevant": 0
     },
     {
@@ -1285,8 +1285,8 @@
       "token": "careers-rtiinc.icims.com",
       "found_by": "cached",
       "status": "ok",
-      "total": 35,
-      "relevant": 12
+      "total": 34,
+      "relevant": 5
     },
     {
       "org": "NYU Langone Health",
@@ -1307,8 +1307,8 @@
       "token": "eppr.fa.us2.oraclecloud.com|CX_2",
       "found_by": "cached",
       "status": "ok",
-      "total": 257,
-      "relevant": 7
+      "total": 283,
+      "relevant": 6
     },
     {
       "org": "NewYork-Presbyterian",
@@ -1316,7 +1316,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "nyp.wd1.myworkdayjobs.com|nyp|nypcareers",
-      "found_by": "cached",
+      "found_by": "linked page https://careers.nyp.org/us/en/search-results",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
@@ -1358,14 +1358,14 @@
       "org": "NYC Jobs (NYC Open Data)",
       "category": "NYC Government",
       "status": "ok",
-      "total": 1390,
-      "relevant": 243
+      "total": 1358,
+      "relevant": 245
     },
     {
       "org": "USAJOBS",
       "status": "ok",
-      "total": 481,
-      "relevant": 92
+      "total": 498,
+      "relevant": 110
     },
     {
       "org": "The Muse",
@@ -1389,14 +1389,14 @@
       "category": "Discovered",
       "status": "ok",
       "total": 120,
-      "relevant": 35
+      "relevant": 28
     },
     {
       "org": "HigherEdJobs",
       "category": "Discovered",
       "status": "ok",
-      "total": 158,
-      "relevant": 13
+      "total": 0,
+      "relevant": 0
     }
   ]
 }
