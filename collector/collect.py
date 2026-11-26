@@ -1,4 +1,4 @@
-"""Weekly job collection.
+"""Daily job collection.
 
 Reads orgs.csv, finds each org's hiring platform, pulls every open posting, keeps the
 ones that are plausibly relevant, and writes:
@@ -6,7 +6,7 @@ ones that are plausibly relevant, and writes:
     data/jobs.json       relevant open postings, with first-seen dates
     data/health.json     per-source status, so broken sources are easy to spot
     data/platforms.json  detected hiring platforms, reused on later runs
-    data/seen.json       first-seen dates by posting URL
+    data/seen.json       first-seen dates (and times, for postings found since daily runs began) by posting URL
 
 Run from the repo root:  python -m collector.collect
 """
@@ -35,6 +35,9 @@ MAX_REMOTE_CHECKS_PER_ORG = 80  # out-of-area postings whose description is read
 SEEN_RETENTION_DAYS = 90
 NEW_WINDOW_DAYS = 7      # without a record of the last email, "new" means first seen within the past week
 MAX_NEW_WINDOW_DAYS = 14  # never reach back further than this, even if emails stopped going out
+# When this run started; a posting first seen in this run gets it as first_seen_at, so a daily reader can take
+# exactly the postings found since its own last run.
+RUN_AT = datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
 def load_json(path, default):
@@ -77,8 +80,11 @@ def resolve_platform(org, cache):
 def finish(job, *, org, category, tier, source, today, seen):
     desc = job.get("description") or ""
     job_id = hashlib.sha1((job.get("url") or org + job.get("title", "")).encode()).hexdigest()[:12]
-    first_seen = seen.get(job["url"], {}).get("first_seen", today)
-    seen[job["url"]] = {"first_seen": first_seen, "last_seen": today}
+    record = seen.get(job["url"], {})
+    first_seen = record.get("first_seen", today)
+    # Postings first seen before daily runs began have a date only; start of that day (UTC) stands in.
+    first_seen_at = record.get("first_seen_at") or (RUN_AT if job["url"] not in seen else first_seen + "T00:00:00+00:00")
+    seen[job["url"]] = {"first_seen": first_seen, "first_seen_at": first_seen_at, "last_seen": today}
     out = {
         "id": job_id,
         "org": job.get("org") or org,
@@ -91,6 +97,7 @@ def finish(job, *, org, category, tier, source, today, seen):
         "url": job.get("url"),
         "posted": iso_date(job.get("posted")),
         "first_seen": first_seen,
+        "first_seen_at": first_seen_at,
         "new_this_week": first_seen > (date.fromisoformat(today) - timedelta(days=NEW_WINDOW_DAYS)).isoformat(),
         "employment_type": job.get("employment_type"),
         "department": job.get("department"),
@@ -307,7 +314,8 @@ def main():
         health.append(h)
         jobs.extend(j)
 
-    since = new_since(today, load_json(DATA / "email_status.json", {}))
+    # The workflow no longer sends an email, so "new this week" is simply first seen in the past seven days.
+    since = new_since(today, {})
     for job in jobs:
         job["new_this_week"] = job["first_seen"] > since
 
