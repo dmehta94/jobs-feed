@@ -32,6 +32,8 @@ The workflow runs at 22:17 UTC Sunday to Friday and again at 05:17 UTC Monday to
 
 After collecting, `python -m collector.screen` writes `data/daily_candidates.json`. It drops only clear cases: listed pay that tops out under $60,000, an advanced degree required with no experience route, 5+ years required, policing, corrections, intelligence, and military employers, defense contractors, frontier AI and big-tech AI employers (except Anthropic and Google DeepMind), charter and private schools, finance and sales titles, in-person worksites in the Bronx, Staten Island, Jersey City, or Hoboken, and fully on-site DC roles. Anything less clear passes with a flag. A reader that remembers its last run takes the candidates with `first_seen_at` after it; the seven-day window means a missed run or check is caught up rather than lost.
 
+Math teaching postings at Queensborough Community College (adjunct and lecturer titles from cuny.jobs) are a separate lane: they skip the title filter and the screen, and land in `teaching_leads` in `daily_candidates.json`.
+
 The weekly email (`collector/email_digest.py`) is no longer sent by the workflow; it can still be run by hand.
 
 ## Adding or fixing an organization

@@ -93,7 +93,9 @@ def parse_cuny_rss(raw):
         place, title = (m.group(1), m.group(2)) if m else ("", title)
         place = place.replace("New York", "New York City") if place.strip().lower() == "new york" else place
         job = _job(title, f"{place}, NY" if place else "", link, posted=posted, description=html_to_text(desc))
-        job["org"] = "CUNY"
+        # The hiring college is named in the posting's opening lines; a mention further down may be a list of colleges.
+        opening = (job["description"] or "")[:600]
+        job["org"] = "CUNY Queensborough Community College" if re.search(r"queensborough", opening, re.I) else "CUNY"
         jobs.append(job)
     return jobs
 

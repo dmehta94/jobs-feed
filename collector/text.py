@@ -85,6 +85,20 @@ DATA_WORK = re.compile(r"\b(data|research\w*|analyst|analytics|scientist|statist
                        r"curriculum|assessment|measurement|quantitative)\b", re.I)
 
 
+# A separate lane for Dev: math teaching at Queensborough Community College (QCC, Bayside). These postings
+# fail the data/research title filter and the bridge-track rules on purpose, so they are kept and flagged here
+# instead of judged as jobs. Adjunct and lecturer titles only; professor ranks need a PhD.
+QCC = re.compile(r"queensborough", re.I)
+TEACHING_TITLE = re.compile(r"\b(adjunct|lecturer|instructor)\b", re.I)
+MATH_TITLE = re.compile(r"\bmath(?:ematics|ematical|s)?\b", re.I)
+
+
+def is_qcc_math_teaching(job):
+    where = " ".join(str(job.get(k) or "") for k in ("org", "description"))
+    title = job.get("title") or ""
+    return bool(QCC.search(where) and TEACHING_TITLE.search(title) and MATH_TITLE.search(title))
+
+
 def title_is_relevant(title):
     if not title:
         return False
