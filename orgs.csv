@@ -122,3 +122,8 @@ NewYork-Presbyterian,Health,2,https://careers.nyp.org/,,,Data analyst and data s
 Memorial Sloan Kettering Cancer Center,Health,2,https://careers.mskcc.org/,,,Data analyst and data scientist roles; the old iCIMS board returned 404 on Nov 9 2026
 Hartford HealthCare,Health,2,https://hartfordhealthcare.org/careers,,,Mostly Connecticut roles; only fully remote ones pass the location filter
 Columbia University,Higher Ed,2,https://opportunities.columbia.edu/,,,"All Columbia staff roles, including Columbia University Irving Medical Center (CUIMC)"
+StateJobsNY,NYS Government,2,https://statejobs.ny.gov/public/vacancyTable.cfm,statejobsny,all,"Every public NYS agency vacancy; NYC and Nassau counties kept, others only if the posting says fully remote"
+CUNY (cuny.jobs),Higher Ed,2,https://cuny.jobs/,cuny_rss,https://cuny.jobs/jobs/feed/rss/,All CUNY colleges and the central office
+NYN Jobs,Discovered,3,https://jobs.nynmedia.com/,jobboard_rss,jobs.nynmedia.com,NY nonprofit board; RSS lists only the newest postings
+City & State New York Jobs,Discovered,3,https://jobs.cityandstateny.com/,jobboard_rss,jobs.cityandstateny.com,NY government and nonprofit board; RSS lists only the newest postings
+NYS Office of the Attorney General,NYS Government,2,https://ag.ny.gov/job-postings,nys_ag,all,Postings are PDFs; title and deadline only
