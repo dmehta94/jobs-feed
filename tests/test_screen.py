@@ -65,7 +65,12 @@ def test_excluded_employers():
 def test_title_keywords():
     assert reason(title="Financial Analyst") == "finance or sales title"
     assert reason(title="Sales Development Representative") == "finance or sales title"
-    assert reason(title="Correction Officer Data Analyst") is not None
+    assert reason(title="Correction Officer") is not None
+    assert reason(title="Police Cadet") is not None
+    # Naming the subject isn't the job; reform and oversight work stays in.
+    assert reason(org="Vera Institute of Justice", title="Research Analyst, Policing") is None
+    assert reason(org="Civilian Complaint Review Board", title="Police Accountability Analyst") is None
+    assert reason(title="Military Family Services Coordinator") is None
     # Grant and program titles can be research work; the reader decides.
     assert reason(title="Grants Data Analyst") is None
     assert reason(title="Program Coordinator") is None

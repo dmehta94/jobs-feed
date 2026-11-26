@@ -40,7 +40,11 @@ FINANCE_SALES_TITLE = re.compile(
     r"\b(financ\w*|accounting|accountant|budget|revenue|payroll|treasury|investment|investor relations|"
     r"trading|trader|private equity|capital markets|portfolio manager|underwrit\w*|actuar\w*|"
     r"sales|account executive|business development|account manager)\b", re.I)
-POLICING_TITLE = re.compile(r"\b(police|policing|correction(?:s|al)?|detention|probation officer|military)\b", re.I)
+# Titles that are themselves policing or corrections jobs. Titles that only name the subject ("Research Analyst,
+# Policing" at a reform nonprofit, "Police Accountability Analyst" at an oversight board) are left to the reader;
+# excluded employers are caught by FORCE_ORG.
+POLICING_TITLE = re.compile(r"\b(?:police|correction(?:s|al)?|peace|probation|parole|detention) (?:officer|sergeant|"
+                            r"lieutenant|captain|cadet|aide|investigator)s?\b", re.I)
 # A posting that names an advanced degree but also offers another way in (federal "qualify on education alone",
 # "or an equivalent combination of education and experience") doesn't clearly require the degree.
 EXPERIENCE_ROUTE = re.compile(
