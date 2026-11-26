@@ -2,15 +2,13 @@ name: Collect jobs
 
 on:
   schedule:
-    # Mondays 02:17 UTC (Sunday night Eastern). GitHub delays scheduled runs by hours at busy times
-    # (the 10:00 UTC slot ran at 16:39 on Oct 26), so this leaves room before the 7:19 a.m. digest.
-    - cron: "17 2 * * 1"
+    # Two runs a night, so postings land before the 4:37 a.m. (New York) daily check. GitHub cron is UTC only and
+    # has started scheduled runs 7 to 14 hours late here, so the main run starts the evening before.
+    #   22:17 UTC Sun-Fri = 5:17 p.m. EST / 6:17 p.m. EDT
+    #   05:17 UTC Mon-Sat = 12:17 a.m. EST / 1:17 a.m. EDT (backup; if it lands late, the next check picks it up)
+    - cron: "17 22 * * 0-5"
+    - cron: "17 5 * * 1-6"
   workflow_dispatch:
-    inputs:
-      email:
-        description: "Send the email after collecting (yes/no)"
-        required: false
-        default: "yes"
 
 permissions:
   contents: write
@@ -41,24 +39,8 @@ jobs:
       - name: Summarize what postings ask for
         continue-on-error: true
         run: python -m collector.analyze
-      - name: Email this week's postings
-        if: always()
-        continue-on-error: true
-        env:
-          DRY_RUN: ${{ github.event.inputs.email == 'no' && '1' || '' }}
-          READ_LINKEDIN_ALERTS: ${{ vars.READ_LINKEDIN_ALERTS }}
-          GMAIL_ADDRESS: ${{ secrets.GMAIL_ADDRESS }}
-          GMAIL_APP_PASSWORD: ${{ secrets.GMAIL_APP_PASSWORD }}
-          DIGEST_TO: ${{ secrets.DIGEST_TO }}
-          MIN_SALARY: ${{ vars.MIN_SALARY }}
-          EXCLUDE_TERMS: ${{ vars.EXCLUDE_TERMS }}
-          EXCLUDE_EMPLOYERS: ${{ vars.EXCLUDE_EMPLOYERS }}
-          MAX_YEARS: ${{ vars.MAX_YEARS }}
-          MAX_ITEMS: ${{ vars.MAX_ITEMS }}
-          MAX_PER_ORG: ${{ vars.MAX_PER_ORG }}
-          MAX_NYC: ${{ vars.MAX_NYC }}
-          MIN_FIT: ${{ vars.MIN_FIT }}
-        run: python -m collector.email_digest
+      - name: Screen the past week's new postings
+        run: python -m collector.screen
       - name: Commit results
         run: |
           git config user.name "jobs-feed bot"
@@ -67,6 +49,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes"
           else
-            git commit -m "data: weekly collection $(date -u +%F)"
+            git commit -m "data: collection $(date -u +%FT%H:%MZ)"
+            git pull --rebase -X theirs origin "${GITHUB_REF_NAME}" || git rebase --abort
             git push
           fi

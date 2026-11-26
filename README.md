@@ -1,14 +1,15 @@
 # jobs-feed
 
-A weekly collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area (including Nassau County), the DC metro, and remote jobs anywhere in the US.
+A daily collector of open data, research, and analyst postings at education organizations, education and policy research groups, universities, civic tech nonprofits, and NYC government. It keeps jobs in the NYC area (including Nassau County), the DC metro, and remote jobs anywhere in the US.
 
-Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's hiring platform, pulls every open posting straight from that platform's public job feed, keeps the plausibly relevant ones, and commits the results to `data/`.
+Every night a GitHub Action reads `orgs.csv`, finds each organization's hiring platform, pulls every open posting straight from that platform's public job feed, keeps the plausibly relevant ones, and commits the results to `data/`.
 
 ## Sources
 
 - **Organization job boards.** The supported platforms are Greenhouse, Lever, Ashby, SmartRecruiters, Workable, Workday, BambooHR, Recruitee, Breezy, ADP Workforce Now, Oracle Recruiting Cloud, Paylocity, Pinpoint, JazzHR, iCIMS and Jibe, Jobvite, Rippling, UKG Pro, UKG Ready, Cornerstone, Eightfold, Trakstar Hire, PageUp, and careers pages that link straight to individual postings. A board found by guessing that turns out to be empty is reported as `empty` and re-detected the next week. `python -m collector.probe` (or the "Probe failing sources" workflow) diagnoses sources that fail. The collector finds an organization's platform by reading its careers page, including one level of linked pages, and remembers it in `data/platforms.json`.
 - **NYC Jobs.** All external city postings come from the [NYC Open Data jobs dataset](https://data.cityofnewyork.us/City-Government/Jobs-NYC-Postings/kpav-sd4t), narrowed to data, research, and analyst titles.
 - **Keyword searches across job aggregators.** These catch employers that aren't in `orgs.csv`. Results must mention education or public-interest work in the employer name, title, or opening of the description. The sources are [The Muse](https://www.themuse.com/developers/api/v2) and [Remotive](https://remotive.com/api-documentation), which need no key, and [Adzuna](https://developer.adzuna.com/), which is optional and needs a free key saved as `ADZUNA_APP_ID` and `ADZUNA_APP_KEY`. Two education job boards are also read: [Edtech.com](https://www.edtech.com/jobs) (its sitemap of the past week's postings, then each relevant posting's structured data) and [HigherEdJobs](https://www.higheredjobs.com/) (remote postings only). These postings are marked `Discovered`, unless the employer matches an organization in `orgs.csv`; then they take that organization's tier and category, so a tier 1 organization whose own board can't be read still ranks as tier 1.
+- **New York boards.** [StateJobsNY](https://statejobs.ny.gov/public/vacancyTable.cfm) (every public state agency vacancy; NYC and Nassau counties kept), [cuny.jobs](https://cuny.jobs/) (its RSS feed), [NYN Jobs](https://jobs.nynmedia.com/) and [City & State New York Jobs](https://jobs.cityandstateny.com/) (their RSS feeds, which list only the newest postings, so daily runs matter), and the [NYS Attorney General's postings](https://ag.ny.gov/job-postings) (title, bureau, and deadline; the postings themselves are PDFs). NYC Health + Hospitals uses a PeopleSoft candidate site that can't be read this way.
 - **USAJOBS (optional).** Federal postings in the NYC area, the DC metro, or remote. This source needs a free key from [developer.usajobs.gov](https://developer.usajobs.gov/), saved as the repository secrets `USAJOBS_API_KEY` and `USAJOBS_EMAIL`.
 
 ## Output
@@ -18,26 +19,20 @@ Every Monday morning a GitHub Action reads `orgs.csv`, finds each organization's
 | `data/jobs.json` | Relevant open postings: title, org, location, pay if listed, posted and first-seen dates, years of experience and advanced degrees required, and the description |
 | `data/health.json` | One row per source: which platform it uses, whether it worked, and how many postings it had |
 | `data/platforms.json` | Detected hiring platforms, reused on later runs |
-| `data/seen.json` | When each posting was first seen, so new postings can be flagged |
+| `data/seen.json` | When each posting was first seen (date, and time for postings found since daily runs began), so new postings can be flagged |
+| `data/daily_candidates.json` | The past seven days' new postings that pass the clear-cut hard filters, each with `first_seen_at`, flags for what still needs a human read, and a trimmed `requirements_and_duties` text, plus a log of what was dropped and why |
 | `data/email_status.json` | Counts from the last email step and the date an email last went out |
 | `data/analysis.md` | What the postings ask for: tools, methods, experience, and pay, overall and by role family |
 
 The filters only drop postings that are clearly off-target, such as unrelated fields, executive titles, or on-site jobs outside the NYC and DC areas. Postings listed in another city are kept when the description says the job can be done fully remotely ("can be performed remotely", "fully remote", "remote within the US"); hybrid schedules elsewhere don't count. Judging fit is left to whoever reads the output.
 
-## Weekly email (optional)
+## Schedule and the daily screen
 
-After each run, the workflow can email a short list of the week's new postings, grouped by organization tier, with pay, location, and closing dates where known. It sends through Gmail and needs:
+The workflow runs at 22:17 UTC Sunday to Friday and again at 05:17 UTC Monday to Saturday (GitHub schedules in UTC only, and has started scheduled runs here 7 to 14 hours late, so the main run starts the evening before a morning reader needs it). `workflow_dispatch` runs it by hand.
 
-- **Secrets** (Settings → Secrets and variables → Actions → Secrets): `GMAIL_ADDRESS` and `GMAIL_APP_PASSWORD`. The app password comes from your Google Account's security settings and requires 2-Step Verification. You can also set `DIGEST_TO` to send to a different address.
-- **Variables** (same page, Variables tab; all optional): `MIN_SALARY` drops postings whose listed top of range is below it, `EXCLUDE_TERMS` drops postings mentioning any of a comma-separated list of terms, `EXCLUDE_EMPLOYERS` drops postings from employers whose name contains any of a comma-separated list (prefix a name with `!` to exempt it, as in `Google, !DeepMind`), and `MAX_YEARS` drops postings asking for at least that many years of experience (default 5).
+After collecting, `python -m collector.screen` writes `data/daily_candidates.json`. It drops only clear cases: listed pay that tops out under $60,000, an advanced degree required with no experience route, 5+ years required, policing, corrections, intelligence, and military employers, defense contractors, frontier AI and big-tech AI employers (except Anthropic and Google DeepMind), charter and private schools, finance and sales titles, in-person worksites in the Bronx, Staten Island, Jersey City, or Hoboken, and fully on-site DC roles. Anything less clear passes with a flag. A reader that remembers its last run takes the candidates with `first_seen_at` after it; the seven-day window means a missed run or check is caught up rather than lost.
 
-A posting counts as new when it was first seen after the last email went out (recorded as `last_sent` in `data/email_status.json`; dry runs don't change it). Before any email has been recorded, new means first seen in the past seven days, and the window never reaches back more than fourteen days.
-
-The email is a short ranked list, not every posting. `collector/fit.py` drops senior and off-target titles (finance, IT, engineering, project management, internships, and similar), then scores the rest on role match, education focus, and experience asked. These optional variables tune it: `MAX_ITEMS` (default 15), `MAX_PER_ORG` (default 3), `MAX_NYC` (default 5), and `MIN_FIT` (default 5; raise it for a stricter list).
-
-The email also has a section of postings from the account owner's LinkedIn job-alert emails, read with the same app password over IMAP (read-only). Because this repository is public, those postings are never written to `data/`, committed, or printed to the Actions log beyond a count; they appear only in the email, and their links are rebuilt without LinkedIn's tracking and sign-in parameters. Set the variable `READ_LINKEDIN_ALERTS` to `no` to turn this off.
-
-If the secrets aren't set, the email step is skipped and the collector runs as usual. A manual run with `email` set to `no` builds the email without sending it.
+The weekly email (`collector/email_digest.py`) is no longer sent by the workflow; it can still be run by hand.
 
 ## Adding or fixing an organization
 

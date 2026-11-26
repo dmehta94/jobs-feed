@@ -8,7 +8,7 @@ import re
 from datetime import datetime, timezone
 from urllib.parse import quote, urljoin, urlparse
 
-from . import http, sources_extra
+from . import http, sources_extra, sources_ny
 from .text import extract_salary, html_to_text
 
 # ---------- detection ----------
@@ -425,6 +425,7 @@ ADAPTERS = {
     "recruitee": fetch_recruitee,
     "breezy": fetch_breezy,
     **sources_extra.ADAPTERS,
+    **sources_ny.ADAPTERS,
 }
 
 
@@ -435,6 +436,8 @@ def fetch_detail(detail):
     platform, args = detail
     if platform == "page":
         return sources_extra.page_detail(args)[1]
+    if platform == "statejobsny":
+        return sources_ny.statejobs_detail(args)
     if platform == "adp":
         return sources_extra.adp_detail(*args)
     if platform == "oracle":

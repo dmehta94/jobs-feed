@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T10:52:25+00:00",
+  "generated_at": "2026-11-26T17:53:17+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -42,8 +42,8 @@
       "token": "amplify",
       "found_by": "cached",
       "status": "ok",
-      "total": 30,
-      "relevant": 4
+      "total": 28,
+      "relevant": 3
     },
     {
       "org": "Illustrative Mathematics",
@@ -108,7 +108,7 @@
       "token": "careers.curriculumassociates.com|curriculumassociates.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 59,
+      "total": 61,
       "relevant": 0
     },
     {
@@ -130,7 +130,7 @@
       "token": "khanacademy",
       "found_by": "cached",
       "status": "ok",
-      "total": 3,
+      "total": 5,
       "relevant": 1
     },
     {
@@ -141,7 +141,7 @@
       "token": "newsela",
       "found_by": "cached",
       "status": "ok",
-      "total": 9,
+      "total": 6,
       "relevant": 1
     },
     {
@@ -163,7 +163,7 @@
       "token": "panorama-education",
       "found_by": "cached",
       "status": "ok",
-      "total": 9,
+      "total": 8,
       "relevant": 1
     },
     {
@@ -196,19 +196,19 @@
       "token": "commonlit",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 0,
-      "relevant": 0
+      "total": 1,
+      "relevant": 1
     },
     {
       "org": "Great Minds",
       "category": "Education",
       "tier": 2,
-      "platform": "recruitee",
+      "platform": "greenhouse",
       "token": "greatminds",
-      "found_by": "cached",
-      "status": "empty: guessed board had no postings",
-      "total": 0,
-      "relevant": 0
+      "found_by": "matched by name",
+      "status": "ok",
+      "total": 17,
+      "relevant": 2
     },
     {
       "org": "TNTP",
@@ -273,7 +273,7 @@
       "token": "digital-promise",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 4,
+      "total": 3,
       "relevant": 0
     },
     {
@@ -318,7 +318,7 @@
       "found_by": "cached",
       "status": "ok",
       "total": 54,
-      "relevant": 6
+      "relevant": 7
     },
     {
       "org": "Coursera",
@@ -328,8 +328,8 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 34,
-      "relevant": 0
+      "total": 35,
+      "relevant": 2
     },
     {
       "org": "Brilliant",
@@ -350,7 +350,7 @@
       "token": "renaissancelearning-nam",
       "found_by": "cached",
       "status": "ok",
-      "total": 15,
+      "total": 17,
       "relevant": 0
     },
     {
@@ -372,8 +372,8 @@
       "token": "https://careers.mheducation.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 88,
-      "relevant": 12
+      "total": 87,
+      "relevant": 13
     },
     {
       "org": "Pearson",
@@ -384,7 +384,7 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 198,
-      "relevant": 2
+      "relevant": 3
     },
     {
       "org": "College Board",
@@ -416,7 +416,7 @@
       "token": "mathematica|4",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 26,
+      "total": 25,
       "relevant": 18
     },
     {
@@ -471,7 +471,7 @@
       "token": "recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 7,
+      "total": 8,
       "relevant": 1
     },
     {
@@ -504,8 +504,8 @@
       "token": "egpy.fa.us2.oraclecloud.com|JoinAbt",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 24,
-      "relevant": 3
+      "total": 14,
+      "relevant": 2
     },
     {
       "org": "Education Development Center",
@@ -548,7 +548,7 @@
       "token": "9e2312b5-b5bd-498a-975d-1e1c12aead82|9200770504427_3",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 4,
+      "total": 5,
       "relevant": 1
     },
     {
@@ -614,7 +614,7 @@
       "token": "bfa63131-def5-44e4-b58b-93b120048fdf",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 7,
+      "total": 8,
       "relevant": 1
     },
     {
@@ -647,7 +647,7 @@
       "token": "innovatingjustice",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 53,
+      "total": 52,
       "relevant": 1
     },
     {
@@ -669,7 +669,7 @@
       "token": "963627e8-e7cc-484e-be0c-95c248a520de",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 2,
+      "total": 3,
       "relevant": 0
     },
     {
@@ -680,7 +680,7 @@
       "token": "recidiviz",
       "found_by": "cached",
       "status": "ok",
-      "total": 13,
+      "total": 10,
       "relevant": 4
     },
     {
@@ -691,7 +691,7 @@
       "token": "codeforamerica",
       "found_by": "cached",
       "status": "ok",
-      "total": 10,
+      "total": 11,
       "relevant": 1
     },
     {
@@ -702,7 +702,7 @@
       "token": "navapbc",
       "found_by": "cached",
       "status": "ok",
-      "total": 19,
+      "total": 18,
       "relevant": 1
     },
     {
@@ -1055,7 +1055,7 @@
       "found_by": "orgs.csv",
       "status": "ok",
       "total": 150,
-      "relevant": 11
+      "relevant": 9
     },
     {
       "org": "NYC Public Schools Central Office",
@@ -1076,8 +1076,8 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 356,
-      "relevant": 4
+      "total": 366,
+      "relevant": 3
     },
     {
       "org": "Stanford University",
@@ -1087,8 +1087,8 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 255,
-      "relevant": 6
+      "total": 258,
+      "relevant": 5
     },
     {
       "org": "Brown University",
@@ -1120,7 +1120,7 @@
       "token": "wd1.myworkdaysite.com|upenn|careers-at-penn",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 320,
+      "total": 317,
       "relevant": 1
     },
     {
@@ -1153,7 +1153,7 @@
       "token": "ecsr.fa.us2.oraclecloud.com|CX_1",
       "found_by": "cached",
       "status": "ok",
-      "total": 105,
+      "total": 119,
       "relevant": 3
     },
     {
@@ -1228,7 +1228,7 @@
       "tier": 2,
       "platform": "adp",
       "token": "8d062d6e-b354-4c8f-96ab-5157321963e8",
-      "found_by": "cached",
+      "found_by": "careers page",
       "status": "empty: guessed board had no postings",
       "total": 0,
       "relevant": 0
@@ -1239,7 +1239,7 @@
       "tier": 2,
       "platform": "workable",
       "token": "open-up-resources",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 2,
       "relevant": 0
@@ -1285,7 +1285,7 @@
       "token": "careers-rtiinc.icims.com",
       "found_by": "cached",
       "status": "ok",
-      "total": 34,
+      "total": 31,
       "relevant": 5
     },
     {
@@ -1307,7 +1307,7 @@
       "token": "eppr.fa.us2.oraclecloud.com|CX_2",
       "found_by": "cached",
       "status": "ok",
-      "total": 283,
+      "total": 287,
       "relevant": 6
     },
     {
@@ -1355,17 +1355,72 @@
       "relevant": 0
     },
     {
+      "org": "StateJobsNY",
+      "category": "NYS Government",
+      "tier": 2,
+      "platform": "statejobsny",
+      "token": "all",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 1824,
+      "relevant": 12
+    },
+    {
+      "org": "CUNY (cuny.jobs)",
+      "category": "Higher Ed",
+      "tier": 2,
+      "platform": "cuny_rss",
+      "token": "https://cuny.jobs/jobs/feed/rss/",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 384,
+      "relevant": 24
+    },
+    {
+      "org": "NYN Jobs",
+      "category": "Discovered",
+      "tier": 3,
+      "platform": "jobboard_rss",
+      "token": "jobs.nynmedia.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 2,
+      "relevant": 0
+    },
+    {
+      "org": "City & State New York Jobs",
+      "category": "Discovered",
+      "tier": 3,
+      "platform": "jobboard_rss",
+      "token": "jobs.cityandstateny.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 15,
+      "relevant": 2
+    },
+    {
+      "org": "NYS Office of the Attorney General",
+      "category": "NYS Government",
+      "tier": 2,
+      "platform": "nys_ag",
+      "token": "all",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 12,
+      "relevant": 3
+    },
+    {
       "org": "NYC Jobs (NYC Open Data)",
       "category": "NYC Government",
       "status": "ok",
-      "total": 1358,
-      "relevant": 245
+      "total": 1377,
+      "relevant": 253
     },
     {
       "org": "USAJOBS",
       "status": "ok",
-      "total": 498,
-      "relevant": 110
+      "total": 483,
+      "relevant": 99
     },
     {
       "org": "The Muse",
@@ -1389,7 +1444,7 @@
       "category": "Discovered",
       "status": "ok",
       "total": 120,
-      "relevant": 28
+      "relevant": 26
     },
     {
       "org": "HigherEdJobs",

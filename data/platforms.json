@@ -35,6 +35,10 @@
     "platform": "icims",
     "token": "careers-brookings.icims.com"
   },
+  "CUNY (cuny.jobs)": {
+    "platform": "cuny_rss",
+    "token": "https://cuny.jobs/jobs/feed/rss/"
+  },
   "Carnegie Foundation for the Advancement of Teaching": {
     "platform": "trakstar",
     "token": "carnegiefoundationcareers"
@@ -54,6 +58,10 @@
   "Child Trends": {
     "platform": "adp",
     "token": "70c1bbee-a65c-4b42-bb04-9dcb8a73868a"
+  },
+  "City & State New York Jobs": {
+    "platform": "jobboard_rss",
+    "token": "jobs.cityandstateny.com"
   },
   "Code for America": {
     "platform": "greenhouse",
@@ -115,6 +123,10 @@
     "platform": "trakstar",
     "token": "educationnorthwest"
   },
+  "Great Minds": {
+    "platform": "greenhouse",
+    "token": "greatminds"
+  },
   "Harvard University": {
     "platform": "smartrecruiters",
     "token": "HarvardUniversity"
@@ -162,6 +174,14 @@
   "NORC at the University of Chicago": {
     "platform": "pageup",
     "token": "https://careers.norc.org/en-us"
+  },
+  "NYN Jobs": {
+    "platform": "jobboard_rss",
+    "token": "jobs.nynmedia.com"
+  },
+  "NYS Office of the Attorney General": {
+    "platform": "nys_ag",
+    "token": "all"
   },
   "NYU": {
     "platform": "icims",
@@ -246,6 +266,10 @@
   "Stanford University": {
     "platform": "oracle",
     "token": "careersearch.stanford.edu|stanford"
+  },
+  "StateJobsNY": {
+    "platform": "statejobsny",
+    "token": "all"
   },
   "Teaching Lab": {
     "platform": "greenhouse",

@@ -314,8 +314,10 @@ def test_orgs_csv_is_well_formed():
     names = [o["name"] for o in orgs]
     assert len(names) == len(set(names))
     for o in orgs:
-        assert o["category"] in {"Education", "Research & Policy", "Civic Tech", "Higher Ed", "NYC Government", "AI & Tech", "Health"}
-        assert o["tier"] in {"1", "2"}
+        assert o["category"] in {"Education", "Research & Policy", "Civic Tech", "Higher Ed", "NYC Government",
+                                 "NYS Government", "AI & Tech", "Health", "Discovered"}
+        # Multi-employer boards (NYN Jobs, City & State) are tier 3, like aggregator postings.
+        assert o["tier"] in {"1", "2"} or (o["category"] == "Discovered" and o["tier"] == "3")
         assert o["careers_url"].startswith("https://")
 
 
