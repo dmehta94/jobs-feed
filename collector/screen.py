@@ -4,6 +4,9 @@ Reads data/jobs.json and writes data/daily_candidates.json. A posting is in the 
 seen in the past WINDOW_DAYS days; a reader that keeps its own last-run time takes only the postings with
 first_seen_at after it, so a missed day is picked up on the next one instead of lost.
 
+QCC math teaching postings (collect marks them teaching_lead) skip the filters and go in their own
+teaching_leads list, which Dev reads as a separate lane rather than as bridge-track jobs.
+
 Only clear cases are dropped here: a rule fires when the posting's own fields say so plainly. Anything
 ambiguous passes with a flag, and judging fit (commute, track, day-to-day work) is left to the reader.
 
@@ -170,10 +173,17 @@ CANDIDATE_FIELDS = ("id", "org", "category", "tier", "source", "title", "locatio
 def screen(feed, now=None):
     now = now or datetime.now(timezone.utc)
     since = now - timedelta(days=WINDOW_DAYS)
-    candidates, dropped = [], []
+    candidates, dropped, teaching = [], [], []
     for job in feed.get("jobs", []):
         seen_at = parse_time(job.get("first_seen_at") or job.get("first_seen"))
         if not seen_at or seen_at <= since:
+            continue
+        if job.get("teaching_lead"):  # QCC math teaching: its own lane, not judged by the job filters
+            row = {k: job.get(k) for k in CANDIDATE_FIELDS if job.get(k) is not None}
+            row["flags"] = (["College Now: teaches high school students in college courses"]
+                            if re.search(r"college now", job.get("title") or "", re.I) else [])
+            row["requirements_and_duties"] = trim(job.get("description"))
+            teaching.append(row)
             continue
         result = drop_reason(job)
         if result:
@@ -197,9 +207,11 @@ def screen(feed, now=None):
         "sources_ok": feed.get("sources_ok"),
         "sources_total": feed.get("sources_total"),
         "candidate_count": len(candidates),
+        "teaching_lead_count": len(teaching),
         "dropped_count": len(dropped),
         "dropped_by_reason": dict(sorted(counts.items(), key=lambda kv: -kv[1])),
         "candidates": candidates,
+        "teaching_leads": teaching,
         "dropped": dropped,
     }
 

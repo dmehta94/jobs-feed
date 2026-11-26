@@ -24,8 +24,8 @@ from . import discovery, sources_extra
 from .government import fetch_nyc, fetch_usajobs
 from .sources import ADAPTERS, detect, fetch_detail, probe
 from .fit import title_priority
-from .text import (advanced_degree_required, extract_salary, iso_date, location_is_ok, remote_from_text,
-                   title_is_relevant, years_required)
+from .text import (advanced_degree_required, extract_salary, is_qcc_math_teaching, iso_date, location_is_ok,
+                   remote_from_text, title_is_relevant, years_required)
 
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
@@ -172,7 +172,10 @@ def collect_org(org, cache, today, seen):
     for j in raw:  # many boards flag remote work only in the title, e.g. "Research Analyst (Remote Eligible)"
         if not j.get("remote") and re.search(r"\bremote\b", j["title"], re.I):
             j["remote"] = True
-    titled = [j for j in raw if title_is_relevant(j["title"])]
+    for j in raw:  # QCC math teaching is its own lane (see text.is_qcc_math_teaching)
+        if is_qcc_math_teaching(j):
+            j.setdefault("extra", {})["teaching_lead"] = True
+    titled = [j for j in raw if title_is_relevant(j["title"]) or (j.get("extra") or {}).get("teaching_lead")]
     relevant = [j for j in titled if location_is_ok(j["location"], j["remote"])]
     # Postings based elsewhere often say only in the description that they can be done remotely.
     elsewhere = sorted((j for j in titled if not location_is_ok(j["location"], j["remote"])

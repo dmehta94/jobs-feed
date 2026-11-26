@@ -35,9 +35,17 @@ def test_cuny_rss_titles_carry_the_place():
     jobs = sources_ny.parse_cuny_rss(read("cuny.rss"))
     assert jobs[0]["title"] == "Employee Relations Manager, Human Resources"
     assert jobs[0]["location"] == "Queens, NY"
-    assert jobs[0]["org"] == "CUNY"
+    assert jobs[0]["org"] == "CUNY Queensborough Community College"  # named in the posting's opening lines
     assert jobs[0]["posted"] == "2026-11-26"
     assert len(jobs[0]["description"]) > 500
+
+
+def test_cuny_org_is_only_qcc_when_the_opening_names_it():
+    item = ("<rss><channel><item><title>(USA-NY-Brooklyn) Adjunct Lecturer - Mathematics</title><link>https://cuny.jobs/x</link>"
+            "<description>Kingsborough Community College seeks adjuncts. " + "Filler text. " * 80 +
+            "Other campuses: Queensborough, LaGuardia.</description><pubDate>Thu, 26 Nov 2026 12:00:00 GMT</pubDate>"
+            "</item></channel></rss>")
+    assert sources_ny.parse_cuny_rss(item)[0]["org"] == "CUNY"
 
 
 def test_jobboard_rss_splits_role_employer_and_place():

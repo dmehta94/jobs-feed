@@ -124,3 +124,48 @@ def test_finish_stamps_first_seen_at_for_new_postings_only():
     assert new["first_seen_at"] == collect.RUN_AT
     assert old["first_seen_at"] == "2026-11-02T00:00:00+00:00"
     assert seen["https://example.org/new"]["first_seen_at"] == collect.RUN_AT
+
+
+def test_qcc_math_teaching_is_its_own_lane():
+    from collector.text import is_qcc_math_teaching
+    qcc = "Queensborough Community College invites applications for Adjunct Lecturers."
+    assert is_qcc_math_teaching({"title": "Adjunct Lecturer - Mathematics and Computer Science Department",
+                                 "description": qcc})
+    assert is_qcc_math_teaching({"title": "Adjunct Lecturer - Mathematics (College Now Program)",
+                                 "org": "CUNY Queensborough Community College"})
+    # Only QCC, only math, only adjunct/lecturer titles.
+    assert not is_qcc_math_teaching({"title": "Adjunct Lecturer - Mathematics",
+                                     "description": "Kingsborough Community College seeks adjuncts."})
+    assert not is_qcc_math_teaching({"title": "Adjunct Lecturer - Statistics (Business Department)",
+                                     "description": qcc})
+    assert not is_qcc_math_teaching({"title": "Adjunct Lecturer - Computer Science", "description": qcc})
+    assert not is_qcc_math_teaching({"title": "Assistant Professor - Mathematics and Computer Science",
+                                     "description": qcc})
+    feed = {"jobs": [job(url="https://example.org/qcc", org="CUNY Queensborough Community College",
+                         title="Adjunct Lecturer - Mathematics (College Now Program)", teaching_lead=True,
+                         salary_max=None, description="Responsibilities: Teach MA 119. Hourly.")]}
+    out = screen(feed, now=NOW)
+    assert out["candidates"] == [] and out["dropped"] == []
+    assert out["teaching_lead_count"] == 1
+    assert out["teaching_leads"][0]["flags"] == ["College Now: teaches high school students in college courses"]
+
+
+def test_collect_keeps_qcc_math_postings_the_title_filter_would_drop(monkeypatch):
+    from collector import sources
+    posts = [
+        {"title": "Adjunct Lecturer - Mathematics and Computer Science Department", "location": "Queens, NY",
+         "url": "https://cuny.jobs/qcc-math", "remote": None, "posted": "2026-11-26", "department": None,
+         "employment_type": None, "salary_min": None, "salary_max": None, "salary_text": None,
+         "description": "Queensborough Community College invites applications.", "org": "CUNY Queensborough Community College"},
+        {"title": "Adjunct Lecturer - English", "location": "Queens, NY", "url": "https://cuny.jobs/qcc-eng",
+         "remote": None, "posted": "2026-11-26", "department": None, "employment_type": None, "salary_min": None,
+         "salary_max": None, "salary_text": None, "description": "Queensborough Community College.",
+         "org": "CUNY Queensborough Community College"},
+    ]
+    monkeypatch.setitem(collect.ADAPTERS, "fake_cuny", lambda token: [dict(p) for p in posts])
+    org = {"name": "CUNY (cuny.jobs)", "category": "Higher Ed", "tier": "2", "ats": "fake_cuny", "token": "x",
+           "careers_url": ""}
+    monkeypatch.setattr(collect, "resolve_platform", lambda org, cache: ("fake_cuny", "x", "orgs.csv"))
+    _, jobs = collect.collect_org(org, {}, "2026-11-26", {})
+    assert [j["url"] for j in jobs] == ["https://cuny.jobs/qcc-math"]
+    assert jobs[0]["teaching_lead"] is True and jobs[0]["org"] == "CUNY Queensborough Community College"

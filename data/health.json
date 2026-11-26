@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T17:53:17+00:00",
+  "generated_at": "2026-11-26T21:20:13+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -20,7 +20,7 @@
       "token": "https://newclassrooms.org/careers/",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 2,
+      "total": 0,
       "relevant": 0
     },
     {
@@ -205,7 +205,7 @@
       "tier": 2,
       "platform": "greenhouse",
       "token": "greatminds",
-      "found_by": "matched by name",
+      "found_by": "cached",
       "status": "ok",
       "total": 17,
       "relevant": 2
@@ -328,7 +328,7 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 35,
+      "total": 36,
       "relevant": 2
     },
     {
@@ -1240,8 +1240,8 @@
       "platform": "workable",
       "token": "open-up-resources",
       "found_by": "cached",
-      "status": "ok",
-      "total": 2,
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
       "relevant": 0
     },
     {
@@ -1285,7 +1285,7 @@
       "token": "careers-rtiinc.icims.com",
       "found_by": "cached",
       "status": "ok",
-      "total": 31,
+      "total": 30,
       "relevant": 5
     },
     {
@@ -1307,7 +1307,7 @@
       "token": "eppr.fa.us2.oraclecloud.com|CX_2",
       "found_by": "cached",
       "status": "ok",
-      "total": 287,
+      "total": 285,
       "relevant": 6
     },
     {
