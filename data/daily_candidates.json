@@ -1,10 +1,11 @@
 {
- "generated_at": "2026-11-26T17:53:17+00:00",
- "screened_at": "2026-11-26T17:53:21+00:00",
- "window_start": "2026-11-19T17:53:21+00:00",
- "sources_ok": 81,
+ "generated_at": "2026-11-26T21:20:13+00:00",
+ "screened_at": "2026-11-26T21:20:18+00:00",
+ "window_start": "2026-11-19T21:20:18+00:00",
+ "sources_ok": 80,
  "sources_total": 135,
  "candidate_count": 127,
+ "teaching_lead_count": 0,
  "dropped_count": 89,
  "dropped_by_reason": {
   "advanced degree required": 28,
@@ -2951,6 +2952,7 @@
    "description_chars": 3324
   }
  ],
+ "teaching_leads": [],
  "dropped": [
   {
    "org": "Anthropic",

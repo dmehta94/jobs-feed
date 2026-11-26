@@ -1,6 +1,6 @@
 # What the collected postings ask for
 
-Based on 618 postings with descriptions (collection run 2026-11-26T17:53:17+00:00).
+Based on 618 postings with descriptions (collection run 2026-11-26T21:20:13+00:00).
 
 ## All postings (618 postings)
 median experience asked: 3 yrs (32% ask 2 or fewer; 179 state a number); median top of pay range: $114,000 (544 list pay); master's or PhD required: 17% (PhD: 12%)
@@ -30,8 +30,8 @@ median experience asked: 3 yrs (32% ask 2 or fewer; 179 state a number); median 
 | Git/GitHub | 3% |
 | Administrative data | 2% |
 | AWS | 2% |
-| Stata | 2% |
 | Regression | 2% |
+| Stata | 2% |
 | dbt | 2% |
 | Looker | 1% |
 | BigQuery / GCP | 1% |
@@ -49,8 +49,8 @@ median experience asked: 4 yrs (31% ask 2 or fewer; 67 state a number); median t
 | Qualitative methods | 31% |
 | Excel | 28% |
 | Master's preferred or required | 24% |
-| SQL | 21% |
 | Data visualization / dashboards | 21% |
+| SQL | 21% |
 | AI / LLM tools | 20% |
 | Python | 14% |
 | Explaining to non-technical audiences | 13% |
@@ -95,8 +95,8 @@ median experience asked: 4.0 yrs (23% ask 2 or fewer; 26 state a number); median
 | Qualitative methods | 44% |
 | Data visualization / dashboards | 25% |
 | AI / LLM tools | 24% |
-| R | 19% |
 | Python | 19% |
+| R | 19% |
 | Excel | 18% |
 | Master's preferred or required | 17% |
 | Survey methods | 14% |
@@ -105,7 +105,7 @@ median experience asked: 4.0 yrs (23% ask 2 or fewer; 26 state a number); median
 | SAS | 9% |
 | Psychometrics (IRT, validity, reliability) | 9% |
 | SQL | 9% |
-| Administrative data | 8% |
+| Causal inference / quasi-experimental | 8% |
 
 Most postings from: Dept Of Health/Mental Hygiene (11), Anthropic (10), Mathematica (9), American Institutes for Research (6), Office Of The Mayor (6), Brookings Institution (3), CUNY (2), Hra/Dept Of Social Services (2)
 
@@ -124,8 +124,8 @@ median experience asked: 4 yrs (0% ask 2 or fewer; 5 state a number); median top
 | Causal inference / quasi-experimental | 22% |
 | Experiments / RCTs | 19% |
 | R | 19% |
-| Psychometrics (IRT, validity, reliability) | 15% |
 | Qualitative methods | 15% |
+| Psychometrics (IRT, validity, reliability) | 15% |
 | Master's preferred or required | 15% |
 | Survey methods | 11% |
 | Regression | 11% |
@@ -167,14 +167,14 @@ median experience asked: 3.5 yrs (0% ask 2 or fewer; 6 state a number); median t
 | Qualitative methods | 36% |
 | AI / LLM tools | 36% |
 | Python | 29% |
-| Explaining to non-technical audiences | 21% |
 | Tableau | 21% |
+| Explaining to non-technical audiences | 21% |
 | Power BI | 14% |
 | Experiments / RCTs | 14% |
 | Causal inference / quasi-experimental | 14% |
 | R | 14% |
-| Psychometrics (IRT, validity, reliability) | 7% |
 | Master's preferred or required | 7% |
+| Psychometrics (IRT, validity, reliability) | 7% |
 
 Most postings from: Housing Preservation & Dvlpmnt (3), Anthropic (3), Department Of Finance (1), Office Of The Mayor (1), Duolingo (1), Financial Info Svcs Agency (1), Newsela (1), Nyc Housing Authority (1)
 
@@ -185,19 +185,19 @@ median experience asked: 2.0 yrs (100% ask 2 or fewer; 2 state a number); median
 |---|---|
 | Writing / reports | 92% |
 | Data visualization / dashboards | 38% |
-| R | 23% |
 | Qualitative methods | 23% |
+| Master's preferred or required | 23% |
 | SAS | 23% |
 | SQL | 23% |
-| Master's preferred or required | 23% |
+| R | 23% |
 | Causal inference / quasi-experimental | 23% |
 | Survey methods | 23% |
-| Longitudinal / panel data | 15% |
 | Excel | 15% |
+| Longitudinal / panel data | 15% |
 | AI / LLM tools | 15% |
 | Python | 15% |
-| Explaining to non-technical audiences | 8% |
 | Experiments / RCTs | 8% |
+| Explaining to non-technical audiences | 8% |
 
 Most postings from: U.S. Coast Guard (4), Dept Of Health/Mental Hygiene (3), Anthropic (2), American Institutes for Research (1), Mathematica (1), Recidiviz (1), Vanderbilt University (1)
 
@@ -215,11 +215,11 @@ median experience asked: 5 yrs (0% ask 2 or fewer; 1 state a number); median top
 | Survey methods | 17% |
 | AI / LLM tools | 17% |
 | Qualitative methods | 17% |
-| K-12 or school experience | 17% |
-| SQL | 17% |
 | Python | 17% |
-| Looker | 17% |
 | Master's preferred or required | 17% |
+| SQL | 17% |
+| Looker | 17% |
+| K-12 or school experience | 17% |
 | SAS | 17% |
 
 Most postings from: Pearson (2), Mathematica (1), Cognia (1), Khan Academy (1), RTI International (1)
@@ -232,8 +232,8 @@ median experience asked: 6.0 yrs (0% ask 2 or fewer; 2 state a number); median t
 | Writing / reports | 80% |
 | Survey methods | 40% |
 | Tableau | 40% |
-| SQL | 40% |
 | Data visualization / dashboards | 40% |
+| SQL | 40% |
 | Excel | 40% |
 | Qualitative methods | 20% |
 | Master's preferred or required | 20% |
