@@ -127,29 +127,29 @@ CUNY (cuny.jobs),Higher Ed,2,https://cuny.jobs/,cuny_rss,https://cuny.jobs/jobs/
 NYN Jobs,Discovered,3,https://jobs.nynmedia.com/,jobboard_rss,jobs.nynmedia.com,NY nonprofit board; RSS lists only the newest postings
 City & State New York Jobs,Discovered,3,https://jobs.cityandstateny.com/,jobboard_rss,jobs.cityandstateny.com,NY government and nonprofit board; RSS lists only the newest postings
 NYS Office of the Attorney General,NYS Government,2,https://ag.ny.gov/job-postings,nys_ag,all,Postings are PDFs; title and deadline only
-TransitCenter,Research & Policy,1,https://transitcenter.org/about/jobs/,,,LAMP list; NYC transit research and advocacy
-Regional Plan Association,Research & Policy,1,https://rpa.org/about/careers,,,LAMP list; NYC-region planning and transit
+TransitCenter,Research & Policy,1,https://transitcenter.org/careers/,,,LAMP list; NYC transit research and advocacy
+Regional Plan Association,Research & Policy,1,https://rpa.org/,,,LAMP list; NYC-region planning and transit
 ACLU,Research & Policy,1,https://www.aclu.org/careers,,,LAMP list; data and analytics team
-Brennan Center for Justice,Research & Policy,2,https://www.brennancenter.org/careers,,,LAMP list; NYC-based
+Brennan Center for Justice,Research & Policy,2,https://www.brennancenter.org/careers,jazzhr,brennancenter,LAMP list; NYC-based
 Center for Policing Equity,Research & Policy,2,https://policingequity.org/careers,,,"LAMP list; research on bias in policing, not a police employer"
-Protect Democracy,Civic Tech,2,https://protectdemocracy.org/careers/,,,LAMP list; remote-friendly
-DrivenData,Civic Tech,2,https://www.drivendata.co/careers/,,,LAMP list; social-impact data science
-Civis Analytics,Civic Tech,2,https://www.civisanalytics.com/careers/,,,LAMP list
+Protect Democracy,Civic Tech,2,https://protectdemocracy.org/careers/,recruitee,protectdemocracy,LAMP list; remote-friendly
+DrivenData,Civic Tech,2,https://www.drivendata.co/careers/,workable,drivendata,LAMP list; social-impact data science
+Civis Analytics,Civic Tech,2,https://www.civisanalytics.com/careers/,greenhouse,civisanalytics,LAMP list
 Replica,Civic Tech,1,https://www.replicahq.com/careers,,,LAMP list; urban mobility data
 Swiftly,Civic Tech,1,https://www.goswift.ly/careers,,,LAMP list; transit data platform
-Skylight,Civic Tech,2,https://skylight.digital/careers/,,,LAMP list; verify comp
-Schrödinger,AI & Tech,2,https://www.schrodinger.com/careers/,,,LAMP list; NYC office; scientific computing
+Skylight,Civic Tech,2,https://skylight.digital/careers/,greenhouse,skylighthq,LAMP list; verify comp
+Schrödinger,AI & Tech,2,https://www.schrodinger.com/careers/,greenhouse,schrdinger,LAMP list; NYC office; scientific computing
 Wikimedia Foundation,Civic Tech,2,https://wikimediafoundation.org/about/jobs/,,,LAMP list; remote
-Figma,AI & Tech,2,https://www.figma.com/careers/,,,LAMP list; data scientist and research titles only
+Figma,AI & Tech,2,https://www.figma.com/careers/,greenhouse,figma,LAMP list; data scientist and research titles only
 Headway,Health,2,https://headway.co/careers,,,LAMP list; NYC office plus remote
-FINRA,Research & Policy,2,https://www.finra.org/about/careers,,,LAMP list; market regulation analytics
-Natural Resources Defense Council,Research & Policy,2,https://www.nrdc.org/careers,,,LAMP list; NYC office
-Chapin Hall,Research & Policy,2,https://www.chapinhall.org/careers/,,,LAMP list
+FINRA,Research & Policy,2,https://www.finra.org/about/careers,workday,finra.wd1.myworkdayjobs.com|finra|FINRA,LAMP list; market regulation analytics
+Natural Resources Defense Council,Research & Policy,2,https://www.nrdc.org/careers,icims,careers-nrdc.icims.com,LAMP list; NYC office
+Chapin Hall,Research & Policy,2,https://www.chapinhall.org/careers,,,LAMP list
 Opportunity@Work,Civic Tech,2,https://opportunityatwork.org/careers/,,,LAMP list
-mRelief,Civic Tech,2,https://www.mrelief.com/careers,,,LAMP list
+mRelief,Civic Tech,2,https://www.mrelief.com/careers,bamboohr,mrelief,LAMP list
 Hospital for Special Surgery,Health,2,https://careers.hss.edu/,,,Followed on LinkedIn
 17a,Civic Tech,2,https://www.17a.com/careers,,,Followed on LinkedIn; government data contractor
-Via,Civic Tech,2,https://ridewithvia.com/careers,,,"Followed on LinkedIn; transit technology, NYC"
-HR&A Advisors,Research & Policy,2,https://www.hraadvisors.com/careers/,,,Followed on LinkedIn; NYC planning and policy consulting
-Udacity,Education,2,https://www.udacity.com/jobs,,,LAMP list
-Pacific Northwest National Laboratory,Research & Policy,2,https://www.pnnl.gov/jobs,,,LAMP list; remote roles only
+Via,Civic Tech,2,https://ridewithvia.com/careers,greenhouse,via,"Followed on LinkedIn; transit technology, NYC"
+HR&A Advisors,Research & Policy,2,https://www.hraadvisors.com/careers/,jazzhr,hraadvisors,Followed on LinkedIn; NYC planning and policy consulting
+Udacity,Education,2,https://www.udacity.com/jobs,greenhouse,udacity,LAMP list
+Pacific Northwest National Laboratory,Research & Policy,2,https://www.pnnl.gov/jobs,icims,careers-pnnl.icims.com,LAMP list; remote roles only
