@@ -6097,6 +6097,11 @@
     "first_seen_at": "2026-11-26T17:48:06+00:00",
     "last_seen": "2026-11-27"
   },
+  "https://www.usajobs.gov:443/job/894260900": {
+    "first_seen": "2026-11-27",
+    "first_seen_at": "2026-11-27T15:06:12+00:00",
+    "last_seen": "2026-11-27"
+  },
   "https://www.usajobs.gov:443/job/894266500": {
     "first_seen": "2026-11-26",
     "first_seen_at": "2026-11-26T17:48:06+00:00",
@@ -6107,9 +6112,24 @@
     "first_seen_at": "2026-11-26T17:48:06+00:00",
     "last_seen": "2026-11-27"
   },
+  "https://www.usajobs.gov:443/job/894311800": {
+    "first_seen": "2026-11-27",
+    "first_seen_at": "2026-11-27T15:06:12+00:00",
+    "last_seen": "2026-11-27"
+  },
   "https://www.usajobs.gov:443/job/894339400": {
     "first_seen": "2026-11-26",
     "first_seen_at": "2026-11-26T17:48:06+00:00",
+    "last_seen": "2026-11-27"
+  },
+  "https://www.usajobs.gov:443/job/894342200": {
+    "first_seen": "2026-11-27",
+    "first_seen_at": "2026-11-27T15:06:12+00:00",
+    "last_seen": "2026-11-27"
+  },
+  "https://www.usajobs.gov:443/job/894344300": {
+    "first_seen": "2026-11-27",
+    "first_seen_at": "2026-11-27T15:06:12+00:00",
     "last_seen": "2026-11-27"
   }
 }

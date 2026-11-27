@@ -1,13 +1,13 @@
 # What the collected postings ask for
 
-Based on 700 postings with descriptions (collection run 2026-11-27T04:28:24+00:00).
+Based on 702 postings with descriptions (collection run 2026-11-27T15:13:29+00:00).
 
-## All postings (700 postings)
-median experience asked: 3.0 yrs (33% ask 2 or fewer; 234 state a number); median top of pay range: $117,226 (615 list pay); master's or PhD required: 16% (PhD: 11%)
+## All postings (702 postings)
+median experience asked: 3.0 yrs (34% ask 2 or fewer; 234 state a number); median top of pay range: $117,226 (618 list pay); master's or PhD required: 16% (PhD: 11%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 73% |
+| Writing / reports | 72% |
 | Qualitative methods | 37% |
 | AI / LLM tools | 30% |
 | Master's preferred or required | 22% |
@@ -18,8 +18,8 @@ median experience asked: 3.0 yrs (33% ask 2 or fewer; 234 state a number); media
 | R | 10% |
 | Explaining to non-technical audiences | 10% |
 | Survey methods | 10% |
-| Psychometrics (IRT, validity, reliability) | 9% |
 | Machine learning | 9% |
+| Psychometrics (IRT, validity, reliability) | 9% |
 | Tableau | 8% |
 | Power BI | 7% |
 | GIS | 7% |
@@ -41,11 +41,11 @@ median experience asked: 3.0 yrs (33% ask 2 or fewer; 234 state a number); media
 Most postings from: Anthropic (80), Dept Of Health/Mental Hygiene (66), ICF (35), CUNY (24), Office Of The Mayor (24), Department Of Transportation (22), Mathematica (18), Dept Of Environment Protection (16)
 
 ## General data analysis (264 postings)
-median experience asked: 3 yrs (33% ask 2 or fewer; 89 state a number); median top of pay range: $112,883 (233 list pay); master's or PhD required: 15% (PhD: 9%)
+median experience asked: 3 yrs (34% ask 2 or fewer; 89 state a number); median top of pay range: $112,883 (234 list pay); master's or PhD required: 15% (PhD: 9%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 76% |
+| Writing / reports | 75% |
 | Qualitative methods | 38% |
 | Excel | 28% |
 | AI / LLM tools | 26% |
@@ -86,19 +86,19 @@ median experience asked: 3.0 yrs (41% ask 2 or fewer; 66 state a number); median
 
 Most postings from: Dept Of Health/Mental Hygiene (29), Anthropic (21), Office Of The Mayor (15), CUNY (13), Department Of City Planning (13), Department Of Transportation (12), Campaign Finance Board (10), Dept Of Environment Protection (6)
 
-## Policy & social research (101 postings)
-median experience asked: 4 yrs (21% ask 2 or fewer; 33 state a number); median top of pay range: $115,000 (79 list pay); master's or PhD required: 17% (PhD: 16%)
+## Policy & social research (103 postings)
+median experience asked: 4 yrs (21% ask 2 or fewer; 33 state a number); median top of pay range: $115,000 (81 list pay); master's or PhD required: 17% (PhD: 16%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 85% |
-| Qualitative methods | 47% |
-| AI / LLM tools | 28% |
-| Data visualization / dashboards | 24% |
-| Python | 21% |
-| R | 20% |
-| Excel | 18% |
-| Survey methods | 18% |
+| Writing / reports | 83% |
+| Qualitative methods | 46% |
+| AI / LLM tools | 27% |
+| Data visualization / dashboards | 23% |
+| Python | 20% |
+| R | 19% |
+| Survey methods | 17% |
+| Excel | 17% |
 | Master's preferred or required | 16% |
 | Psychometrics (IRT, validity, reliability) | 11% |
 | Explaining to non-technical audiences | 10% |
@@ -149,8 +149,8 @@ median experience asked: 3 yrs (15% ask 2 or fewer; 13 state a number); median t
 | R | 18% |
 | Causal inference / quasi-experimental | 14% |
 | Explaining to non-technical audiences | 14% |
-| Machine learning | 9% |
 | Survey methods | 9% |
+| Machine learning | 9% |
 | dbt | 9% |
 
 Most postings from: ICF (5), Figma (3), Housing Preservation & Dvlpmnt (3), Anthropic (3), Department Of Finance (1), Office Of The Mayor (1), Duolingo (1), Financial Info Svcs Agency (1)
@@ -186,18 +186,18 @@ median experience asked: 2 yrs (67% ask 2 or fewer; 3 state a number); median to
 | Writing / reports | 93% |
 | Data visualization / dashboards | 36% |
 | Qualitative methods | 29% |
-| Master's preferred or required | 21% |
 | SQL | 21% |
 | SAS | 21% |
+| Master's preferred or required | 21% |
 | R | 21% |
 | AI / LLM tools | 21% |
 | Causal inference / quasi-experimental | 21% |
 | Survey methods | 21% |
-| Excel | 14% |
 | Longitudinal / panel data | 14% |
+| Excel | 14% |
 | Python | 14% |
 | Regression | 7% |
-| Explaining to non-technical audiences | 7% |
+| Experiments / RCTs | 7% |
 
 Most postings from: U.S. Coast Guard (4), Dept Of Health/Mental Hygiene (3), Anthropic (2), Figma (1), American Institutes for Research (1), Mathematica (1), Recidiviz (1), Vanderbilt University (1)
 
@@ -210,16 +210,16 @@ median experience asked: 5 yrs (0% ask 2 or fewer; 1 state a number); median top
 | Psychometrics (IRT, validity, reliability) | 67% |
 | Data visualization / dashboards | 33% |
 | R | 33% |
-| Explaining to non-technical audiences | 17% |
-| Administrative data | 17% |
 | Survey methods | 17% |
+| Administrative data | 17% |
+| Explaining to non-technical audiences | 17% |
 | Qualitative methods | 17% |
 | AI / LLM tools | 17% |
-| Master's preferred or required | 17% |
-| K-12 or school experience | 17% |
-| SQL | 17% |
-| Looker | 17% |
 | Python | 17% |
+| SQL | 17% |
+| K-12 or school experience | 17% |
+| Master's preferred or required | 17% |
+| Looker | 17% |
 | SAS | 17% |
 
 Most postings from: Pearson (2), Mathematica (1), Cognia (1), Khan Academy (1), RTI International (1)
@@ -231,11 +231,11 @@ median experience asked: 7 yrs (0% ask 2 or fewer; 1 state a number); median top
 |---|---|
 | Writing / reports | 75% |
 | Survey methods | 50% |
-| Master's preferred or required | 25% |
-| Qualitative methods | 25% |
 | Data visualization / dashboards | 25% |
-| SQL | 25% |
 | Tableau | 25% |
+| SQL | 25% |
+| Qualitative methods | 25% |
+| Master's preferred or required | 25% |
 | AI / LLM tools | 25% |
 | Excel | 25% |
 
@@ -246,9 +246,9 @@ median experience asked: 3.5 yrs (50% ask 2 or fewer; 2 state a number); median 
 
 | Mentioned | Share |
 |---|---|
-| AI / LLM tools | 67% |
-| Psychometrics (IRT, validity, reliability) | 67% |
 | Python | 67% |
+| Psychometrics (IRT, validity, reliability) | 67% |
+| AI / LLM tools | 67% |
 | Writing / reports | 33% |
 | Machine learning | 33% |
 

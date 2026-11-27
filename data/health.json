@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T04:28:24+00:00",
+  "generated_at": "2026-11-27T15:13:29+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -328,7 +328,7 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 36,
+      "total": 35,
       "relevant": 2
     },
     {
@@ -372,7 +372,7 @@
       "token": "https://careers.mheducation.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 87,
+      "total": 89,
       "relevant": 13
     },
     {
@@ -437,9 +437,10 @@
       "platform": "workday",
       "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site",
       "found_by": "orgs.csv",
-      "status": "ok",
-      "total": 12,
-      "relevant": 2
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
+      "relevant": 0,
+      "carried_over": 2
     },
     {
       "org": "Urban Institute",
@@ -1008,10 +1009,11 @@
       "tier": 2,
       "platform": "workday",
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
-      "found_by": "linked page https://careers.icf.com/us/en/digital-modernization-jobs",
-      "status": "ok",
-      "total": 297,
-      "relevant": 35
+      "found_by": "cached",
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
+      "relevant": 0,
+      "carried_over": 35
     },
     {
       "org": "Teachers College Columbia",
@@ -1076,7 +1078,7 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 366,
+      "total": 367,
       "relevant": 3
     },
     {
@@ -1087,7 +1089,7 @@
       "token": "careersearch.stanford.edu|stanford",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 258,
+      "total": 257,
       "relevant": 5
     },
     {
@@ -1096,10 +1098,11 @@
       "tier": 2,
       "platform": "workday",
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
-      "found_by": "linked page http://www.brown.edu/careers",
-      "status": "ok",
-      "total": 72,
-      "relevant": 1
+      "found_by": "cached",
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
+      "relevant": 0,
+      "carried_over": 1
     },
     {
       "org": "University of Chicago",
@@ -1141,7 +1144,7 @@
       "platform": "workday",
       "token": "uva.wd1.myworkdayjobs.com|uva|uva_pipelines_and_pathways",
       "found_by": "linked page https://jobs.virginia.edu/us/en/pipelines-pathways",
-      "status": "empty: guessed board had no postings",
+      "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0
     },
@@ -1239,7 +1242,7 @@
       "tier": 2,
       "platform": "workable",
       "token": "open-up-resources",
-      "found_by": "careers page",
+      "found_by": "cached",
       "status": "ok",
       "total": 2,
       "relevant": 0
@@ -1307,8 +1310,8 @@
       "token": "eppr.fa.us2.oraclecloud.com|CX_2",
       "found_by": "cached",
       "status": "ok",
-      "total": 285,
-      "relevant": 6
+      "total": 272,
+      "relevant": 5
     },
     {
       "org": "NewYork-Presbyterian",
@@ -1362,7 +1365,7 @@
       "token": "all",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 1824,
+      "total": 1811,
       "relevant": 12
     },
     {
@@ -1373,7 +1376,7 @@
       "token": "https://cuny.jobs/jobs/feed/rss/",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 384,
+      "total": 381,
       "relevant": 24
     },
     {
@@ -1581,9 +1584,10 @@
       "platform": "workday",
       "token": "finra.wd1.myworkdayjobs.com|finra|FINRA",
       "found_by": "orgs.csv",
-      "status": "ok",
-      "total": 51,
-      "relevant": 2
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
+      "relevant": 0,
+      "carried_over": 2
     },
     {
       "org": "Natural Resources Defense Council",
@@ -1646,7 +1650,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (ConnectTimeout: HTTPSConnectionPool(host='www.17a.com', port=443): Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.17a.com', port=443) at 0x7bf763db5d30>, 'Connection to www.17a.com timed out. (connect timeout=25)')))",
+      "found_by": "careers page failed (ConnectTimeout: HTTPSConnectionPool(host='www.17a.com', port=443): Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.17a.com', port=443) at 0x7b4bd248cc80>, 'Connection to www.17a.com timed out. (connect timeout=25)')))",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -1716,8 +1720,8 @@
     {
       "org": "USAJOBS",
       "status": "ok",
-      "total": 483,
-      "relevant": 99
+      "total": 486,
+      "relevant": 102
     },
     {
       "org": "The Muse",

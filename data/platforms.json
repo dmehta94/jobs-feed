@@ -43,10 +43,6 @@
     "platform": "icims",
     "token": "careers-brookings.icims.com"
   },
-  "Brown University": {
-    "platform": "workday",
-    "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown"
-  },
   "CUNY (cuny.jobs)": {
     "platform": "cuny_rss",
     "token": "https://cuny.jobs/jobs/feed/rss/"
@@ -139,10 +135,6 @@
     "platform": "trakstar",
     "token": "educationnorthwest"
   },
-  "FINRA": {
-    "platform": "workday",
-    "token": "finra.wd1.myworkdayjobs.com|finra|FINRA"
-  },
   "Figma": {
     "platform": "greenhouse",
     "token": "figma"
@@ -158,10 +150,6 @@
   "Harvard University": {
     "platform": "smartrecruiters",
     "token": "HarvardUniversity"
-  },
-  "ICF": {
-    "platform": "workday",
-    "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site"
   },
   "Illustrative Mathematics": {
     "platform": "jazzhr",
@@ -274,10 +262,6 @@
   "Protect Democracy": {
     "platform": "recruitee",
     "token": "protectdemocracy"
-  },
-  "RAND": {
-    "platform": "workday",
-    "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site"
   },
   "RTI International": {
     "platform": "icims",
