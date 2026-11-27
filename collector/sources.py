@@ -325,15 +325,32 @@ def fetch_workable(token):
 WORKDAY_SEARCH_TERMS = ["data", "research", "analyst", "efficacy", "psychometric", "learning science", "evaluation"]
 
 
+# Workday sites sit behind Cloudflare, which answers HTTP 429 to requests that don't look like they come from the
+# careers page itself. These are the headers that page sends when it calls the same job-search endpoint.
+WORKDAY_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"
+WORKDAY_PAUSE = 1.0  # seconds between requests to one Workday site
+
+
+def workday_headers(host, tenant, site):
+    page = _workday_url(host, tenant, site, "")
+    return {"User-Agent": WORKDAY_UA, "Accept": "application/json", "Accept-Language": "en-US",
+            "Origin": f"https://{host}", "Referer": page}
+
+
 def fetch_workday(token):
+    import time
     host, tenant, site = token.split("|")
     base = f"https://{host}/wday/cxs/{tenant}/{site}"
+    headers = workday_headers(host, tenant, site)
     found = {}
     for term in WORKDAY_SEARCH_TERMS:
         offset = 0
         while offset < 200:
+            if found or offset or term != WORKDAY_SEARCH_TERMS[0]:
+                time.sleep(WORKDAY_PAUSE)
             data = http.post_json(f"{base}/jobs", {"appliedFacets": {}, "limit": 20,
-                                                   "offset": offset, "searchText": term})
+                                                   "offset": offset, "searchText": term},
+                                  headers=headers, retries=2)
             postings = data.get("jobPostings", [])
             for j in postings:
                 path = j.get("externalPath")
@@ -448,7 +465,8 @@ def fetch_detail(detail):
         return sources_extra.eightfold_detail(*args)
     if platform == "workday":
         base, path = args
-        info = http.get_json(f"{base}{path}").get("jobPostingInfo", {})
+        _, _, host, _, _, tenant, site = base.split("/")[:7]
+        info = http.get_json(f"{base}{path}", headers=workday_headers(host, tenant, site)).get("jobPostingInfo", {})
         return html_to_text(info.get("jobDescription", ""))
     if platform == "smartrecruiters":
         token, job_id = args

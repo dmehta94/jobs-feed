@@ -25,9 +25,7 @@ jobs:
         env:
           ORGS: ${{ inputs.orgs }}
         run: |
-          if [ "$ORGS" = "--diag" ]; then
-            python -m collector.diag_workday
-          elif [ -n "$ORGS" ]; then
+          if [ -n "$ORGS" ]; then
             IFS='|' read -ra NAMES <<< "$ORGS"
             python -m collector.probe "${NAMES[@]}"
           else

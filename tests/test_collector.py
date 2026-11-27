@@ -29,8 +29,10 @@ class FakeSession:
     def __init__(self, routes):
         self.routes = routes
         self.calls = []
+        self.kwargs = []
 
     def request(self, method, url, **kwargs):
+        self.kwargs.append(kwargs)
         if kwargs.get("params"):
             params = kwargs["params"]
             pairs = params.items() if isinstance(params, dict) else params
@@ -50,6 +52,7 @@ def fake(monkeypatch):
     def install(routes):
         session = FakeSession(routes)
         monkeypatch.setattr(http, "session", session)
+        monkeypatch.setattr(sources, "WORKDAY_PAUSE", 0)
         return session
     return install
 
@@ -703,3 +706,28 @@ def test_icims_drops_screen_reader_title_label(monkeypatch):
     monkeypatch.setattr(sources_extra.http, "get_text", lambda *a, **k: next(pages))
     jobs = sources_extra.fetch_icims("careers-nrdc.icims.com")
     assert [j["title"] for j in jobs] == ["Policy Advocate, Colorado"]
+
+
+def test_workday_sends_careers_page_headers(fake):
+    listing = {"total": 0, "jobPostings": []}
+    session = fake({r"POST https://acme\.wd5\.myworkdayjobs\.com/wday/cxs/acme/Careers/jobs$": listing})
+    sources.fetch_workday("acme.wd5.myworkdayjobs.com|acme|Careers")
+    headers = session.kwargs[0]["headers"]
+    assert headers["User-Agent"].startswith("Mozilla/5.0")
+    assert headers["Referer"] == "https://acme.wd5.myworkdayjobs.com/Careers"
+
+
+def test_429_is_retried_after_retry_after(monkeypatch):
+    class Resp:
+        def __init__(self, status, headers=None):
+            self.status_code, self.headers, self.text = status, headers or {}, "{}"
+
+        def json(self):
+            return {"ok": True}
+
+    replies = iter([Resp(429, {"Retry-After": "7"}), Resp(200)])
+    waits = []
+    monkeypatch.setattr(http, "session", type("S", (), {"request": lambda self, *a, **k: next(replies)})())
+    monkeypatch.setattr(http.time, "sleep", waits.append)
+    assert http.post_json("https://x/jobs", {}, retries=2) == {"ok": True}
+    assert waits == [7]
