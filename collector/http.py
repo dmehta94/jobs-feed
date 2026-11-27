@@ -20,6 +20,7 @@ def _request(method, url, *, retries=1, **kwargs):
     kwargs.setdefault("timeout", TIMEOUT)
     last = None
     for attempt in range(retries + 1):
+        limited = None
         try:
             resp = session.request(method, url, **kwargs)
         except requests.RequestException as exc:
@@ -30,11 +31,24 @@ def _request(method, url, *, retries=1, **kwargs):
             if resp.status_code < 400:
                 return resp
             last = FetchError(f"HTTP {resp.status_code}")
-            if resp.status_code < 500 and resp.status_code != 429:
+            if resp.status_code == 429:
+                limited = resp
+            elif resp.status_code < 500:
                 break
         if attempt < retries:
-            time.sleep(2)
+            time.sleep(_backoff(limited, attempt))
     raise last
+
+
+def _backoff(resp, attempt):
+    """Seconds to wait before retrying: the server's Retry-After for a 429 (capped at 60), else
+    2s for other errors and 5s, 15s, ... for a 429 with no Retry-After."""
+    if resp is None:
+        return 2
+    try:
+        return min(60, max(1, int(getattr(resp, "headers", {}).get("Retry-After", ""))))
+    except ValueError:
+        return 5 * 3 ** attempt
 
 
 def get_json(url, **kwargs):
