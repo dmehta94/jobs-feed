@@ -693,3 +693,13 @@ def test_discovered_posting_takes_listed_org_tier():
     assert collect._listed_org("New Classrooms Innovation Partners", orgs)["tier"] == "1"
     assert collect._listed_org("Carnegie Learning", orgs) is None
     assert collect._listed_org("NYC", orgs) is None
+
+
+def test_icims_drops_screen_reader_title_label(monkeypatch):
+    from collector import sources_extra
+    page = ('<a href="https://careers-nrdc.icims.com/jobs/1234/policy-advocate/job?in_iframe=1">'
+            '<span class="sr-only">Job Title</span> Policy Advocate, Colorado</a>')
+    pages = iter(["", page, ""])
+    monkeypatch.setattr(sources_extra.http, "get_text", lambda *a, **k: next(pages))
+    jobs = sources_extra.fetch_icims("careers-nrdc.icims.com")
+    assert [j["title"] for j in jobs] == ["Policy Advocate, Colorado"]

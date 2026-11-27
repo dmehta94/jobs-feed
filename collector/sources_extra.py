@@ -296,7 +296,8 @@ def fetch_icims(host, max_pages=15):
             return fetch_jibe(f"{p.scheme}://{p.netloc}")
         before = len(found)
         for href, jid, slug, label in _ICIMS_JOB.findall(raw):
-            title = html_to_text(label) or slug.replace("-", " ").title()
+            # Some portals put a screen-reader "Job Title" label inside the link text.
+            title = re.sub(r"^\s*Job Title\s+", "", html_to_text(label)) or slug.replace("-", " ").title()
             if jid in found or len(title) < 3:
                 continue
             ctx = raw[raw.find(href):raw.find(href) + 1500]
