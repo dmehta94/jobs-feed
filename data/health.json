@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-26T21:20:13+00:00",
+  "generated_at": "2026-11-27T04:28:24+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -383,7 +383,7 @@
       "token": "hccz.fa.em3.oraclecloud.com|CX_2",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 198,
+      "total": 199,
       "relevant": 3
     },
     {
@@ -437,9 +437,9 @@
       "platform": "workday",
       "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site",
       "found_by": "orgs.csv",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
-      "relevant": 0
+      "status": "ok",
+      "total": 12,
+      "relevant": 2
     },
     {
       "org": "Urban Institute",
@@ -1009,9 +1009,9 @@
       "platform": "workday",
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
       "found_by": "linked page https://careers.icf.com/us/en/digital-modernization-jobs",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
-      "relevant": 0
+      "status": "ok",
+      "total": 297,
+      "relevant": 35
     },
     {
       "org": "Teachers College Columbia",
@@ -1097,9 +1097,9 @@
       "platform": "workday",
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
       "found_by": "linked page http://www.brown.edu/careers",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
-      "relevant": 0
+      "status": "ok",
+      "total": 72,
+      "relevant": 1
     },
     {
       "org": "University of Chicago",
@@ -1141,7 +1141,7 @@
       "platform": "workday",
       "token": "uva.wd1.myworkdayjobs.com|uva|uva_pipelines_and_pathways",
       "found_by": "linked page https://jobs.virginia.edu/us/en/pipelines-pathways",
-      "status": "fetch failed: HTTP 429",
+      "status": "empty: guessed board had no postings",
       "total": 0,
       "relevant": 0
     },
@@ -1239,9 +1239,9 @@
       "tier": 2,
       "platform": "workable",
       "token": "open-up-resources",
-      "found_by": "cached",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
+      "found_by": "careers page",
+      "status": "ok",
+      "total": 2,
       "relevant": 0
     },
     {
@@ -1410,6 +1410,303 @@
       "relevant": 3
     },
     {
+      "org": "TransitCenter",
+      "category": "Research & Policy",
+      "tier": 1,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Regional Plan Association",
+      "category": "Research & Policy",
+      "tier": 1,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "ACLU",
+      "category": "Research & Policy",
+      "tier": 1,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Brennan Center for Justice",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "jazzhr",
+      "token": "brennancenter",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 22,
+      "relevant": 0
+    },
+    {
+      "org": "Center for Policing Equity",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Protect Democracy",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": "recruitee",
+      "token": "protectdemocracy",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 12,
+      "relevant": 0
+    },
+    {
+      "org": "DrivenData",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": "workable",
+      "token": "drivendata",
+      "found_by": "orgs.csv",
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Civis Analytics",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "civisanalytics",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 3,
+      "relevant": 1
+    },
+    {
+      "org": "Replica",
+      "category": "Civic Tech",
+      "tier": 1,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Swiftly",
+      "category": "Civic Tech",
+      "tier": 1,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Skylight",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "skylighthq",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 12,
+      "relevant": 1
+    },
+    {
+      "org": "Schrödinger",
+      "category": "AI & Tech",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "schrdinger",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 37,
+      "relevant": 5
+    },
+    {
+      "org": "Wikimedia Foundation",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Figma",
+      "category": "AI & Tech",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "figma",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 141,
+      "relevant": 14
+    },
+    {
+      "org": "Headway",
+      "category": "Health",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "careers page failed (HTTP 403)",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "FINRA",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "workday",
+      "token": "finra.wd1.myworkdayjobs.com|finra|FINRA",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 51,
+      "relevant": 2
+    },
+    {
+      "org": "Natural Resources Defense Council",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "icims",
+      "token": "careers-nrdc.icims.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 22,
+      "relevant": 2
+    },
+    {
+      "org": "Chapin Hall",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "unsupported:paycom",
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Opportunity@Work",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "not found on careers page",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "mRelief",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": "bamboohr",
+      "token": "mrelief",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Hospital for Special Surgery",
+      "category": "Health",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "careers page failed (ConnectionError: HTTPSConnectionPool(host='careers.hss.edu', port=443): Max retries exceeded with url: / (Caused by NameResolutionError(\"HTTPSConnection(host='careers.hss.edu', port=443): Failed to resolve 'careers.hss.edu' ([Errno -2] Name or service not known)\")))",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "17a",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": null,
+      "token": null,
+      "found_by": "careers page failed (ConnectTimeout: HTTPSConnectionPool(host='www.17a.com', port=443): Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.17a.com', port=443) at 0x7bf763db5d30>, 'Connection to www.17a.com timed out. (connect timeout=25)')))",
+      "status": "no supported platform found",
+      "total": 0,
+      "relevant": 0
+    },
+    {
+      "org": "Via",
+      "category": "Civic Tech",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "via",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 181,
+      "relevant": 0
+    },
+    {
+      "org": "HR&A Advisors",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "jazzhr",
+      "token": "hraadvisors",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 17,
+      "relevant": 9
+    },
+    {
+      "org": "Udacity",
+      "category": "Education",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "udacity",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 20,
+      "relevant": 2
+    },
+    {
+      "org": "Pacific Northwest National Laboratory",
+      "category": "Research & Policy",
+      "tier": 2,
+      "platform": "icims",
+      "token": "careers-pnnl.icims.com",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 62,
+      "relevant": 9
+    },
+    {
+      "org": "AE Studio",
+      "category": "AI & Tech",
+      "tier": 2,
+      "platform": "greenhouse",
+      "token": "aestudio",
+      "found_by": "orgs.csv",
+      "status": "ok",
+      "total": 8,
+      "relevant": 3
+    },
+    {
       "org": "NYC Jobs (NYC Open Data)",
       "category": "NYC Government",
       "status": "ok",
@@ -1444,7 +1741,7 @@
       "category": "Discovered",
       "status": "ok",
       "total": 120,
-      "relevant": 26
+      "relevant": 24
     },
     {
       "org": "HigherEdJobs",

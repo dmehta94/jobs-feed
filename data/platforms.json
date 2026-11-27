@@ -1,4 +1,8 @@
 {
+  "AE Studio": {
+    "platform": "greenhouse",
+    "token": "aestudio"
+  },
   "Abt Global": {
     "platform": "oracle",
     "token": "egpy.fa.us2.oraclecloud.com|JoinAbt"
@@ -27,6 +31,10 @@
     "platform": "paylocity",
     "token": "17519654-d224-4f10-9a5f-2b7ad3cd5a77"
   },
+  "Brennan Center for Justice": {
+    "platform": "jazzhr",
+    "token": "brennancenter"
+  },
   "Brilliant": {
     "platform": "lever",
     "token": "brilliant"
@@ -34,6 +42,10 @@
   "Brookings Institution": {
     "platform": "icims",
     "token": "careers-brookings.icims.com"
+  },
+  "Brown University": {
+    "platform": "workday",
+    "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown"
   },
   "CUNY (cuny.jobs)": {
     "platform": "cuny_rss",
@@ -62,6 +74,10 @@
   "City & State New York Jobs": {
     "platform": "jobboard_rss",
     "token": "jobs.cityandstateny.com"
+  },
+  "Civis Analytics": {
+    "platform": "greenhouse",
+    "token": "civisanalytics"
   },
   "Code for America": {
     "platform": "greenhouse",
@@ -123,13 +139,29 @@
     "platform": "trakstar",
     "token": "educationnorthwest"
   },
+  "FINRA": {
+    "platform": "workday",
+    "token": "finra.wd1.myworkdayjobs.com|finra|FINRA"
+  },
+  "Figma": {
+    "platform": "greenhouse",
+    "token": "figma"
+  },
   "Great Minds": {
     "platform": "greenhouse",
     "token": "greatminds"
   },
+  "HR&A Advisors": {
+    "platform": "jazzhr",
+    "token": "hraadvisors"
+  },
   "Harvard University": {
     "platform": "smartrecruiters",
     "token": "HarvardUniversity"
+  },
+  "ICF": {
+    "platform": "workday",
+    "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site"
   },
   "Illustrative Mathematics": {
     "platform": "jazzhr",
@@ -187,6 +219,10 @@
     "platform": "icims",
     "token": "uscareers-nyu.icims.com"
   },
+  "Natural Resources Defense Council": {
+    "platform": "icims",
+    "token": "careers-nrdc.icims.com"
+  },
   "Nava PBC": {
     "platform": "greenhouse",
     "token": "navapbc"
@@ -207,9 +243,17 @@
     "platform": "oracle",
     "token": "eppr.fa.us2.oraclecloud.com|CX_2"
   },
+  "Open Up Resources": {
+    "platform": "workable",
+    "token": "open-up-resources"
+  },
   "Overdeck Family Foundation": {
     "platform": "adp",
     "token": "04bec9b7-ccb5-4dd2-947d-4c34fc061de3"
+  },
+  "Pacific Northwest National Laboratory": {
+    "platform": "icims",
+    "token": "careers-pnnl.icims.com"
   },
   "Panorama Education": {
     "platform": "workable",
@@ -226,6 +270,14 @@
   "Propel": {
     "platform": "ashby",
     "token": "propel"
+  },
+  "Protect Democracy": {
+    "platform": "recruitee",
+    "token": "protectdemocracy"
+  },
+  "RAND": {
+    "platform": "workday",
+    "token": "rand.wd5.myworkdayjobs.com|rand|External_Career_Site"
   },
   "RTI International": {
     "platform": "icims",
@@ -255,6 +307,14 @@
     "platform": "greenhouse",
     "token": "sagaeducation"
   },
+  "Schrödinger": {
+    "platform": "greenhouse",
+    "token": "schrdinger"
+  },
+  "Skylight": {
+    "platform": "greenhouse",
+    "token": "skylighthq"
+  },
   "Social Policy Research Associates": {
     "platform": "jazzhr",
     "token": "sprajobs"
@@ -279,6 +339,10 @@
     "platform": "breezy",
     "token": "us-digital-response"
   },
+  "Udacity": {
+    "platform": "greenhouse",
+    "token": "udacity"
+  },
   "University of Pennsylvania": {
     "platform": "workday",
     "token": "wd1.myworkdaysite.com|upenn|careers-at-penn"
@@ -291,6 +355,10 @@
     "platform": "greenhouse",
     "token": "verainstituteofjustice"
   },
+  "Via": {
+    "platform": "greenhouse",
+    "token": "via"
+  },
   "WestEd": {
     "platform": "ukgpro",
     "token": "recruiting2.ultipro.com|WES1032WSTE|e5cebb97-720c-4bb5-8a63-deffd14ff13a"
@@ -298,5 +366,9 @@
   "Zearn": {
     "platform": "workable",
     "token": "zearn"
+  },
+  "mRelief": {
+    "platform": "bamboohr",
+    "token": "mrelief"
   }
 }
