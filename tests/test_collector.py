@@ -731,3 +731,25 @@ def test_429_is_retried_after_retry_after(monkeypatch):
     monkeypatch.setattr(http.time, "sleep", waits.append)
     assert http.post_json("https://x/jobs", {}, retries=2) == {"ok": True}
     assert waits == [7]
+
+
+def test_carry_over_keeps_postings_from_a_source_that_failed_this_run():
+    previous = [
+        {"url": "https://u/1", "org": "Urban Institute", "collected_from": "Urban Institute", "title": "Research Analyst"},
+        {"url": "https://u/old", "org": "Urban Institute", "collected_from": "Urban Institute", "title": "Stale"},
+        {"url": "https://m/1", "org": "Mathematica", "collected_from": "Mathematica", "title": "Analyst"},
+        {"url": "https://n/1", "org": "NYS Dept of Health", "title": "Analyst"},  # older file: no collected_from
+    ]
+    health = [{"org": "Urban Institute", "status": "fetch failed: HTTP 429"}, {"org": "Mathematica", "status": "ok"}]
+    seen = {"https://u/1": {"last_seen": "2026-11-25"}, "https://u/old": {"last_seen": "2026-11-10"},
+            "https://m/1": {"last_seen": "2026-11-26"}}
+    kept = collect.carry_over(previous, health, [], seen, "2026-11-26")
+    assert [j["url"] for j in kept] == ["https://u/1"]  # Mathematica answered; the stale one is past the window
+    assert kept[0]["carried_over"] is True and health[0]["carried_over"] == 1
+
+
+def test_carry_over_skips_postings_found_again():
+    previous = [{"url": "https://u/1", "collected_from": "Urban Institute", "org": "Urban Institute"}]
+    health = [{"org": "Urban Institute", "status": "fetch failed: HTTP 429"}]
+    assert collect.carry_over(previous, health, [{"url": "https://u/1"}], {"https://u/1": {"last_seen": "2026-11-26"}},
+                              "2026-11-26") == []

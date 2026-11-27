@@ -328,7 +328,7 @@ WORKDAY_SEARCH_TERMS = ["data", "research", "analyst", "efficacy", "psychometric
 # Workday sites sit behind Cloudflare, which answers HTTP 429 to requests that don't look like they come from the
 # careers page itself. These are the headers that page sends when it calls the same job-search endpoint.
 WORKDAY_UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0 Safari/537.36"
-WORKDAY_PAUSE = 1.0  # seconds between requests to one Workday site
+WORKDAY_PAUSE = 0.5  # seconds between requests to one Workday site
 
 
 def workday_headers(host, tenant, site):
@@ -350,7 +350,7 @@ def fetch_workday(token):
                 time.sleep(WORKDAY_PAUSE)
             data = http.post_json(f"{base}/jobs", {"appliedFacets": {}, "limit": 20,
                                                    "offset": offset, "searchText": term},
-                                  headers=headers, retries=2)
+                                  headers=headers)
             postings = data.get("jobPostings", [])
             for j in postings:
                 path = j.get("externalPath")

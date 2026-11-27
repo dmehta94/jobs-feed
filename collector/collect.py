@@ -33,6 +33,7 @@ DESCRIPTION_CHARS = 12000
 MAX_DETAIL_FETCHES_PER_ORG = 80
 MAX_REMOTE_CHECKS_PER_ORG = 80  # out-of-area postings whose description is read to see if they're remote
 SEEN_RETENTION_DAYS = 90
+CARRY_OVER_DAYS = 7      # how long a failing source's last postings are kept
 NEW_WINDOW_DAYS = 7      # without a record of the last email, "new" means first seen within the past week
 MAX_NEW_WINDOW_DAYS = 14  # never reach back further than this, even if emails stopped going out
 # When this run started; a posting first seen in this run gets it as first_seen_at, so a daily reader can take
@@ -77,7 +78,7 @@ def resolve_platform(org, cache):
     return platform, None, how
 
 
-def finish(job, *, org, category, tier, source, today, seen):
+def finish(job, *, org, category, tier, source, today, seen, collected_from=None):
     desc = job.get("description") or ""
     job_id = hashlib.sha1((job.get("url") or org + job.get("title", "")).encode()).hexdigest()[:12]
     record = seen.get(job["url"], {})
@@ -91,6 +92,7 @@ def finish(job, *, org, category, tier, source, today, seen):
         "category": category,
         "tier": tier,
         "source": source,
+        "collected_from": collected_from or org,  # the orgs.csv row or feed this came from (see carry_over)
         "title": job["title"],
         "location": job.get("location"),
         "remote": job.get("remote"),
@@ -125,6 +127,31 @@ def _read_detail(job):
         return
     if job["description"] and job.get("salary_min") is None:
         job["salary_min"], job["salary_max"], job["salary_text"] = extract_salary(job["description"])
+
+
+def carry_over(previous, health, jobs, seen, today):
+    """Postings from sources that failed this run, kept from the last jobs.json.
+
+    A site that answers on one run and blocks the next (Workday does this to GitHub's servers) would
+    otherwise drop its postings from the feed until it answers again. A posting is kept only while it
+    was last actually seen within CARRY_OVER_DAYS, and is marked carried_over."""
+    failed = {h["org"] for h in health if str(h.get("status", "")).startswith("fetch failed")}
+    have = {j["url"] for j in jobs}
+    cutoff = (date.fromisoformat(today) - timedelta(days=CARRY_OVER_DAYS)).isoformat()
+    kept = []
+    for job in previous:
+        source = job.get("collected_from") or job.get("org")
+        last = (seen.get(job.get("url")) or {}).get("last_seen", "")
+        if source in failed and job.get("url") not in have and last >= cutoff:
+            kept.append({**job, "carried_over": True})
+            have.add(job["url"])
+    counts = {}
+    for job in kept:
+        counts[job.get("collected_from") or job.get("org")] = counts.get(job.get("collected_from") or job.get("org"), 0) + 1
+    for h in health:
+        if h["org"] in counts:
+            h["carried_over"] = counts[h["org"]]
+    return kept
 
 
 def new_since(today, email_status):
@@ -209,7 +236,7 @@ def collect_government(today, seen):
     results = []
     try:
         total, nyc = fetch_nyc()
-        jobs = [finish(j, org=j["org"], category="NYC Government", tier=2, source="nyc_open_data",
+        jobs = [finish(j, org=j["org"], category="NYC Government", tier=2, source="nyc_open_data", collected_from="NYC Jobs (NYC Open Data)",
                        today=today, seen=seen) for j in nyc]
         results.append(({"org": "NYC Jobs (NYC Open Data)", "category": "NYC Government", "status": "ok",
                          "total": total, "relevant": len(jobs)}, jobs))
@@ -221,7 +248,7 @@ def collect_government(today, seen):
             results.append(({"org": "USAJOBS", "status": "skipped (no API key set)"}, []))
         else:
             fed = [j for j in fed if title_is_relevant(j["title"])]
-            jobs = [finish(j, org=j["org"], category="Federal Government", tier=3, source="usajobs",
+            jobs = [finish(j, org=j["org"], category="Federal Government", tier=3, source="usajobs", collected_from="USAJOBS",
                            today=today, seen=seen) for j in fed]
             results.append(({"org": "USAJOBS", "status": "ok", "total": total, "relevant": len(jobs)}, jobs))
     except http.FetchError as exc:
@@ -285,7 +312,8 @@ def collect_discovery(today, seen, known_jobs, orgs=()):
             listed = _listed_org(j["org"], orgs)
             jobs.append(finish(j, org=j["org"], category=listed.get("category") if listed else "Discovered",
                                tier=int(listed.get("tier") or 2) if listed else 3,
-                               source=name.lower().replace(" ", ""), today=today, seen=seen))
+                               source=name.lower().replace(" ", ""), today=today, seen=seen,
+                               collected_from=name))
         known.update(_norm_key(j["org"], j["title"]) for j in jobs)
         for j in jobs:
             known_titles.setdefault(_norm_key("", j["title"])[1], []).append(_org_words(j["org"]))
@@ -300,6 +328,7 @@ def main():
     orgs = load_orgs()
     cache = load_json(DATA / "platforms.json", {})
     seen = load_json(DATA / "seen.json", {})
+    previous = load_json(DATA / "jobs.json", {}).get("jobs", [])
     first_run = not seen
 
     health, jobs = [], []
@@ -316,6 +345,8 @@ def main():
         print(f"{h['org'][:45]:45} {'(search)':22} {h['status'][:40]:40} {h.get('relevant', 0):>4}/{h.get('total', 0)}")
         health.append(h)
         jobs.extend(j)
+
+    jobs.extend(carry_over(previous, health, jobs, seen, today))
 
     # The workflow no longer sends an email, so "new this week" is simply first seen in the past seven days.
     since = new_since(today, {})
