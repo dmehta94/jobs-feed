@@ -29,8 +29,10 @@ class FakeSession:
     def __init__(self, routes):
         self.routes = routes
         self.calls = []
+        self.kwargs = []
 
     def request(self, method, url, **kwargs):
+        self.kwargs.append(kwargs)
         if kwargs.get("params"):
             params = kwargs["params"]
             pairs = params.items() if isinstance(params, dict) else params
@@ -50,6 +52,7 @@ def fake(monkeypatch):
     def install(routes):
         session = FakeSession(routes)
         monkeypatch.setattr(http, "session", session)
+        monkeypatch.setattr(sources, "WORKDAY_PAUSE", 0)
         return session
     return install
 
@@ -703,3 +706,50 @@ def test_icims_drops_screen_reader_title_label(monkeypatch):
     monkeypatch.setattr(sources_extra.http, "get_text", lambda *a, **k: next(pages))
     jobs = sources_extra.fetch_icims("careers-nrdc.icims.com")
     assert [j["title"] for j in jobs] == ["Policy Advocate, Colorado"]
+
+
+def test_workday_sends_careers_page_headers(fake):
+    listing = {"total": 0, "jobPostings": []}
+    session = fake({r"POST https://acme\.wd5\.myworkdayjobs\.com/wday/cxs/acme/Careers/jobs$": listing})
+    sources.fetch_workday("acme.wd5.myworkdayjobs.com|acme|Careers")
+    headers = session.kwargs[0]["headers"]
+    assert headers["User-Agent"].startswith("Mozilla/5.0")
+    assert headers["Referer"] == "https://acme.wd5.myworkdayjobs.com/Careers"
+
+
+def test_429_is_retried_after_retry_after(monkeypatch):
+    class Resp:
+        def __init__(self, status, headers=None):
+            self.status_code, self.headers, self.text = status, headers or {}, "{}"
+
+        def json(self):
+            return {"ok": True}
+
+    replies = iter([Resp(429, {"Retry-After": "7"}), Resp(200)])
+    waits = []
+    monkeypatch.setattr(http, "session", type("S", (), {"request": lambda self, *a, **k: next(replies)})())
+    monkeypatch.setattr(http.time, "sleep", waits.append)
+    assert http.post_json("https://x/jobs", {}, retries=2) == {"ok": True}
+    assert waits == [7]
+
+
+def test_carry_over_keeps_postings_from_a_source_that_failed_this_run():
+    previous = [
+        {"url": "https://u/1", "org": "Urban Institute", "collected_from": "Urban Institute", "title": "Research Analyst"},
+        {"url": "https://u/old", "org": "Urban Institute", "collected_from": "Urban Institute", "title": "Stale"},
+        {"url": "https://m/1", "org": "Mathematica", "collected_from": "Mathematica", "title": "Analyst"},
+        {"url": "https://n/1", "org": "NYS Dept of Health", "title": "Analyst"},  # older file: no collected_from
+    ]
+    health = [{"org": "Urban Institute", "status": "fetch failed: HTTP 429"}, {"org": "Mathematica", "status": "ok"}]
+    seen = {"https://u/1": {"last_seen": "2026-11-25"}, "https://u/old": {"last_seen": "2026-11-10"},
+            "https://m/1": {"last_seen": "2026-11-26"}}
+    kept = collect.carry_over(previous, health, [], seen, "2026-11-26")
+    assert [j["url"] for j in kept] == ["https://u/1"]  # Mathematica answered; the stale one is past the window
+    assert kept[0]["carried_over"] is True and health[0]["carried_over"] == 1
+
+
+def test_carry_over_skips_postings_found_again():
+    previous = [{"url": "https://u/1", "collected_from": "Urban Institute", "org": "Urban Institute"}]
+    health = [{"org": "Urban Institute", "status": "fetch failed: HTTP 429"}]
+    assert collect.carry_over(previous, health, [{"url": "https://u/1"}], {"https://u/1": {"last_seen": "2026-11-26"}},
+                              "2026-11-26") == []
