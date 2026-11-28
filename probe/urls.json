@@ -1,0 +1,11 @@
+[
+  {
+    "url": "https://calendar.google.com/calendar/ical/fcrjsfqi6p3jpc3urerk77caig%40group.calendar.google.com/public/basic.ics",
+    "status": 200,
+    "final_url": "https://calendar.google.com/calendar/ical/fcrjsfqi6p3jpc3urerk77caig%40group.calendar.google.com/public/basic.ics",
+    "content_type": "text/calendar; charset=utf-8",
+    "length": 1440474,
+    "file": "probe/urls/00_calendar_google_com_calendar_ical_fcrjsfqi6p3jpc3u.txt",
+    "head": "BEGIN:VCALENDAR\r\nPRODID:-//Google Inc//Google Calendar 70.9054//EN\r\nVERSION:2.0\r\nCALSCALE:GREGORIAN\r\nMETHOD:PUBLISH\r\nX-WR-CALNAME:Civic tech conferences (curated by the Civic Tech Field Guide)\r\nX-WR-TIMEZONE:Etc/GMT\r\nX-WR-CALDESC:Civic tech conferences and opportunities. To share an event to\r\n  this"
+  }
+]
