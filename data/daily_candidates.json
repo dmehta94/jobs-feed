@@ -1,22 +1,43 @@
 {
- "generated_at": "2026-11-27T15:13:29+00:00",
- "screened_at": "2026-11-27T15:13:36+00:00",
- "window_start": "2026-11-20T15:13:36+00:00",
+ "generated_at": "2026-11-28T04:03:40+00:00",
+ "screened_at": "2026-11-28T04:03:46+00:00",
+ "window_start": "2026-11-21T04:03:46+00:00",
  "sources_ok": 94,
  "sources_total": 162,
  "candidate_count": 177,
  "teaching_lead_count": 0,
- "dropped_count": 108,
+ "dropped_count": 105,
  "dropped_by_reason": {
-  "advanced degree required": 31,
-  "5+ years required": 26,
-  "policing, corrections, intelligence, or military employer or role": 26,
+  "advanced degree required": 30,
+  "5+ years required": 25,
+  "policing, corrections, intelligence, or military employer or role": 25,
   "finance or sales title": 14,
   "pay below the $60K floor": 6,
   "in-person or hybrid worksite in the Bronx, Staten Island, Jersey City, or Hoboken": 4,
   "defense contractor": 1
  },
  "candidates": [
+  {
+   "id": "ed4d2aa8bfc9",
+   "org": "Internal Revenue Service",
+   "category": "Federal Government",
+   "tier": 3,
+   "source": "usajobs",
+   "title": "Program Analyst",
+   "location": "Multiple Locations",
+   "url": "https://www.usajobs.gov:443/job/894431600",
+   "posted": "2026-11-27",
+   "first_seen": "2026-11-28",
+   "first_seen_at": "2026-11-28T03:55:56+00:00",
+   "employment_type": "Monday - Friday, 8:00 AM - 4:30 PM",
+   "department": "Department of the Treasury",
+   "salary_min": 125776.0,
+   "salary_max": 192694.0,
+   "salary_text": "$125776–$192694 Per Year",
+   "flags": [],
+   "requirements_and_duties": "WHAT IS TAX EXEMPT & GOVERNMENT ENTITIES? One year of experience refers to full-time work; part-timework is considered on a prorated basis. To ensure full credit for your work experience, please indicate dates of employment by month/day/year, and indicate number of hours worked per week, on your resume. You must meet the following requirements by the closing date of this announcement. QUALIFICATION REQUIREMENTS: SPECIALIZED EXPERIENCE GS-14: You must have one year of specialized experience at a level of difficulty and responsibility equivalent to the GS-13 grade level in the Federal service. Specialized experience for this position includes: Experience with a wide range of analytical and evaluative methods and techniques sufficient to coordinate complex programs and solutions of related issues pertaining to Exempt Organizations and Government Entities (EO/GE) customer segment (organizations exempt from income tax under IRC 501, Tax Exempt Bonds, Federal State and Local Governments, and Indian Tribal Governments); Experience with a full range of Federal laws, policies, regulations, and precedents applicable to the segment(s) of the Service's program affected by the assigned project or study, specifically EO/GE; Experience with the overall mission, objectives, functions, policies, and organizational structure of the Internal Revenue Service and in particular, EO/GE; Experience with management principles and processes to perform project management duties and to effectively coordinate and integrate project objectives and recommendations both inside EO/GE and with other BODs; Experience working with others and to maintain harmonious relationships with all parties; Experience with oral and written communication. AND You must also meet the following requirement(s): TIME AFTER COMPETITIVE APPOINTMENT (TACA): By the closing date (or if this is an open continuous announcement, by the cut-off date) specified in this job announcement, current civilian employees must have completed at least 90 days of federal civilian service since their latest non-temporary appointment from a competitive referral certificate, known as time after competitive appointment. For this requirement, a competitive appointment is one where you applied to and were appointed from an announcement open to \"All US Citizens\" TIME IN GRADE (TIG): For positions above the GS-05, applicants must meet applicable time-in-­grade requirements to be considered eligible. One year (52 weeks) at the next lower grade level is required to meet the time-in-grade requirements for the grade you are applying for. For positions at the GS-05, you cannot advance to the GS-05 if you have held a GS-02 in the past 52 weeks. There is no TIG restriction for GS-02, 03 or 04 positions. For more information on qualifications please refer to OPM's Qualifications Standards.",
+   "description_chars": 3408
+  },
   {
    "id": "ec26660aeee7",
    "org": "Internal Revenue Service",
@@ -735,29 +756,6 @@
     "location outside NYC and DC with no remote statement found; check it"
    ],
    "requirements_and_duties": "Overview At PNNL, our core capabilities are divided among major departments that we refer to as Directorates within the Lab, focused on a specific area of scientific research or other function, with its own leadership team and dedicated budget. Our Science & Technology directorates include National Security, Integrated Discovery Sciences, and Energy and Environment. In addition, we have an Environmental Molecular Sciences Laboratory, a Department of Energy, Office of Science user facility housed on the PNNL campus. The Energy and Environment Directorate delivers science and technology solution Experience conducting residential building assessments, evaluating retrofit performance, and integrating technical and occupant-focused datasets is highly desirable. The successful candidate will provide technical leadership and support across a diverse portfolio of residential buildings research projects. Qualifications Minimum Qualifications: BS/BA and 5+ years of relevant building indoor environmental quality experience -OR- MS/MA and 3+ years of relevant building indoor environmental quality experience -OR- PhD with 1+ year of relevant building indoor environmental quality experience. Demonstrated experience with building diagnostics and field instrumentation, including blower door testing, environmental monitoring, and energy performance measurement. Demonstrated experience assessing indoor environmental quality, thermal comfort, indoor air quality, acoustics, occupant health, resilience, or other non-energy impacts of buildings. Preferred Qualifications: PhD and at least two (2) years of building indoor environmental quality experience. Experience conducting residential building performance evaluations, field studies, or measurement and verification activities. Experience with building diagnostics and field instrumentation, including blower door testing, environmental monitoring, and energy performance measurement. Experience assessing indoor environmental quality, thermal comfort, indoor air quality, acoustics, occupant health, resilience, or other non-energy impacts of buildings. Experience designing and implementing field data collection protocols and quality assurance procedures. Experience developing and administering occupant surveys and integrating survey results with building performance data. Experience managing, organizing, quality-checking, and analyzing large datasets from multiple data sources. Intermediate to advanced skills for data analysis and visualization (R; Python etc.). Energy and/or IEQ modeling skills a plus. Experience in applying statistical methods to building performance, energy, or social science datasets. Demonstrated ability to communicate technical findings to diverse audiences through reports, presentations, data visualizations, and peer-reviewed publications. Experience collaborating with utilities, state agencies, industry partners, and multidisciplinary research teams. Strong written and verbal communication skills. Demonstrated initiative, creativity, and passion for advancing building performance, affordability, resilience, comfort, and sustainability. Willingness to travel domestically for field studies, stakeholder engagement activities, and professional conferences. Hazardous Working Conditions/Environment Not Applicable. Additional Information Not Applicable. “Referral Eligible” Testing Designated Position This is not a Testing Designated Position (TDP). About PNNL Pacific Northwest National …",
-   "description_chars": 12000
-  },
-  {
-   "id": "cef5e2362e71",
-   "org": "Pacific Northwest National Laboratory",
-   "category": "Research & Policy",
-   "tier": 2,
-   "source": "icims",
-   "title": "Building Systems Research Engineer",
-   "location": "United States",
-   "url": "https://careers-pnnl.icims.com/jobs/13333/login",
-   "posted": "2026-11-07",
-   "first_seen": "2026-11-27",
-   "first_seen_at": "2026-11-27T04:17:54+00:00",
-   "department": "",
-   "salary_min": 89300.0,
-   "salary_max": 89300.0,
-   "salary_text": "vant to the performance of the position. Minimum Salary USD $89,300.00/Yr. Maximum Salary",
-   "years_required": 2,
-   "flags": [
-    "location outside NYC and DC with no remote statement found; check it"
-   ],
-   "requirements_and_duties": "Overview At PNNL, our core capabilities are divided among major departments that we refer to as Directorates within the Lab, focused on a specific area of scientific research or other function, with its own leadership team and dedicated budget. Our Science & Technology directorates include National Security, Integrated Discovery Sciences, and Energy and Environment. In addition, we have an Environmental Molecular Sciences Laboratory, a Department of Energy, Office of Science user facility housed on the PNNL campus. The Energy and Environment Directorate delivers science and technology solution Qualifications Minimum Qualifications: BS/BA and 2 years of relevant experience -OR- MS/MA -OR- PhD Relevant experience includes degree in Mechanical, Civil, or Architectural Engineering with relevant experience in the building sciences. Demonstrated experience in test planning and performance, data acquisition and senor selection and installation, data analysis, reporting, stakeholder engagement and/or communication -or- Demonstrated experience with building science, building construction, and building energy savings technologies and construction techniques. Preferred Qualifications: Advance degree in Mechanical, Civil, or Architectural Engineering or related field. Experience in the construction industry. Demonstrated experience in building residential buildings, working with contractors, and addressing and solving residential building construction issues and challenges Hazardous Working Conditions/Environment Not Applicable. Additional Information Not Applicable. Testing Designated Position This is not a Testing Designated Position (TDP). About PNNL Pacific Northwest National Laboratory (PNNL) is a world-class research institution powered by a highly educated, diverse workforce committed to the values of Integrity, Creativity, Collaboration, Impact, and Courage. Every year, scores of dynamic, driven people come to PNNL to work with renowned researchers on meaningful science, innovations and outcomes for the U.S. Department of Energy and other sponsors; here is your chance to be one of them! At PNNL, you will find an exciting research environment and excellent benefits including health insurance, and flexible work schedules. PNNL is located in eastern Washington State—the dry side of Washington known for its stellar outdoor recreation and affordable cost of living. The Lab’s campus is only a 45-minute flight (or ~3 hour drive) from Seattle or Portland, and is serviced by the convenient PSC airport, connected to 8 major hubs. Commitment to Excellence and Equal Employment Opportunity Our laboratory is committed to fostering a work environment where all individuals are treated with fairness and respect while solving critical challenges in fundamental sciences, national security, and energy resiliency. We are an Equal Employment Opportunity employer. Pacific Northwest National Laboratory (PNNL) is an Equal Opportunity Employer. PNNL considers all applicants for employment without regard to race, religion, color, sex, national origin, age, disability, genetic information (including family medical history), protected veteran status, and any other status or characteristic protected by federal, state, and/or local laws. We are committed to providing reasonable accommodations for individuals with disabilities and disabled veterans in our job application procedures and in employment. If you need assistance or an accommodation due to a disability, contact …",
    "description_chars": 12000
   },
   {
@@ -4060,13 +4058,6 @@
    "url": "https://job-boards.greenhouse.io/civisanalytics/jobs/8407000"
   },
   {
-   "org": "Coursera",
-   "title": "Senior GTM Workflow & Process Analyst",
-   "reason": "5+ years required",
-   "detail": "6 years",
-   "url": "https://job-boards.greenhouse.io/coursera/jobs/6266564004"
-  },
-  {
    "org": "Department For The Aging",
    "title": "Administrative Budget Analyst",
    "reason": "finance or sales title",
@@ -4397,12 +4388,6 @@
    "url": "https://statejobs.ny.gov/public/vacancyDetailsView.cfm?id=226367"
   },
   {
-   "org": "Northwell Health",
-   "title": "Associate Business Intelligence Analyst - Onsite",
-   "reason": "policing, corrections, intelligence, or military employer or role",
-   "url": "https://eppr.fa.us2.oraclecloud.com/hcmUI/CandidateExperience/en/sites/CX_2/job/192607"
-  },
-  {
    "org": "Office Of Management & Budget",
    "title": "Analyst  Capital Financial Planning",
    "reason": "finance or sales title",
@@ -4428,13 +4413,6 @@
    "reason": "advanced degree required",
    "detail": "PhD",
    "url": "https://postdoc-pnnl.icims.com/jobs/14012/login"
-  },
-  {
-   "org": "Pacific Northwest National Laboratory",
-   "title": "Post Doctorate Research Associate- Water Resource Engineer/Hydrologist",
-   "reason": "advanced degree required",
-   "detail": "PhD",
-   "url": "https://postdoc-pnnl.icims.com/jobs/12817/login"
   },
   {
    "org": "Police Department",

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-27T15:13:29+00:00",
+  "generated_at": "2026-11-28T04:03:40+00:00",
   "sources": [
     {
       "org": "Zearn",
@@ -20,7 +20,7 @@
       "token": "https://newclassrooms.org/careers/",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 0,
+      "total": 2,
       "relevant": 0
     },
     {
@@ -328,8 +328,8 @@
       "token": "coursera",
       "found_by": "cached",
       "status": "ok",
-      "total": 35,
-      "relevant": 2
+      "total": 34,
+      "relevant": 1
     },
     {
       "org": "Brilliant",
@@ -648,7 +648,7 @@
       "token": "innovatingjustice",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 52,
+      "total": 55,
       "relevant": 1
     },
     {
@@ -1009,7 +1009,7 @@
       "tier": 2,
       "platform": "workday",
       "token": "icf.wd5.myworkdayjobs.com|icf|ICFExternal_Career_Site",
-      "found_by": "cached",
+      "found_by": "linked page https://careers.icf.com/us/en/digital-modernization-jobs",
       "status": "fetch failed: HTTP 429",
       "total": 0,
       "relevant": 0,
@@ -1078,7 +1078,7 @@
       "token": "HarvardUniversity",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 367,
+      "total": 366,
       "relevant": 3
     },
     {
@@ -1098,11 +1098,10 @@
       "tier": 2,
       "platform": "workday",
       "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown",
-      "found_by": "cached",
-      "status": "fetch failed: HTTP 429",
-      "total": 0,
-      "relevant": 0,
-      "carried_over": 1
+      "found_by": "linked page http://www.brown.edu/careers",
+      "status": "ok",
+      "total": 72,
+      "relevant": 1
     },
     {
       "org": "University of Chicago",
@@ -1243,8 +1242,8 @@
       "platform": "workable",
       "token": "open-up-resources",
       "found_by": "cached",
-      "status": "ok",
-      "total": 2,
+      "status": "fetch failed: HTTP 429",
+      "total": 0,
       "relevant": 0
     },
     {
@@ -1310,8 +1309,8 @@
       "token": "eppr.fa.us2.oraclecloud.com|CX_2",
       "found_by": "cached",
       "status": "ok",
-      "total": 272,
-      "relevant": 5
+      "total": 269,
+      "relevant": 4
     },
     {
       "org": "NewYork-Presbyterian",
@@ -1365,7 +1364,7 @@
       "token": "all",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 1811,
+      "total": 1837,
       "relevant": 12
     },
     {
@@ -1398,7 +1397,7 @@
       "token": "jobs.cityandstateny.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 15,
+      "total": 14,
       "relevant": 2
     },
     {
@@ -1563,7 +1562,7 @@
       "token": "figma",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 141,
+      "total": 140,
       "relevant": 14
     },
     {
@@ -1650,7 +1649,7 @@
       "tier": 2,
       "platform": null,
       "token": null,
-      "found_by": "careers page failed (ConnectTimeout: HTTPSConnectionPool(host='www.17a.com', port=443): Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.17a.com', port=443) at 0x7b4bd248cc80>, 'Connection to www.17a.com timed out. (connect timeout=25)')))",
+      "found_by": "careers page failed (ConnectTimeout: HTTPSConnectionPool(host='www.17a.com', port=443): Max retries exceeded with url: /careers (Caused by ConnectTimeoutError(<HTTPSConnection(host='www.17a.com', port=443) at 0x70072e8b4e30>, 'Connection to www.17a.com timed out. (connect timeout=25)')))",
       "status": "no supported platform found",
       "total": 0,
       "relevant": 0
@@ -1696,8 +1695,8 @@
       "token": "careers-pnnl.icims.com",
       "found_by": "orgs.csv",
       "status": "ok",
-      "total": 62,
-      "relevant": 9
+      "total": 54,
+      "relevant": 7
     },
     {
       "org": "AE Studio",
@@ -1720,8 +1719,8 @@
     {
       "org": "USAJOBS",
       "status": "ok",
-      "total": 486,
-      "relevant": 102
+      "total": 482,
+      "relevant": 103
     },
     {
       "org": "The Muse",
@@ -1745,7 +1744,7 @@
       "category": "Discovered",
       "status": "ok",
       "total": 120,
-      "relevant": 24
+      "relevant": 23
     },
     {
       "org": "HigherEdJobs",

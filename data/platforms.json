@@ -43,6 +43,10 @@
     "platform": "icims",
     "token": "careers-brookings.icims.com"
   },
+  "Brown University": {
+    "platform": "workday",
+    "token": "brown.wd5.myworkdayjobs.com|brown|staff-careers-brown"
+  },
   "CUNY (cuny.jobs)": {
     "platform": "cuny_rss",
     "token": "https://cuny.jobs/jobs/feed/rss/"
@@ -230,10 +234,6 @@
   "Northwell Health": {
     "platform": "oracle",
     "token": "eppr.fa.us2.oraclecloud.com|CX_2"
-  },
-  "Open Up Resources": {
-    "platform": "workable",
-    "token": "open-up-resources"
   },
   "Overdeck Family Foundation": {
     "platform": "adp",

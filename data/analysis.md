@@ -1,9 +1,9 @@
 # What the collected postings ask for
 
-Based on 702 postings with descriptions (collection run 2026-11-27T15:13:29+00:00).
+Based on 698 postings with descriptions (collection run 2026-11-28T04:03:40+00:00).
 
-## All postings (702 postings)
-median experience asked: 3.0 yrs (34% ask 2 or fewer; 234 state a number); median top of pay range: $117,226 (618 list pay); master's or PhD required: 16% (PhD: 11%)
+## All postings (698 postings)
+median experience asked: 3 yrs (34% ask 2 or fewer; 231 state a number); median top of pay range: $117,715 (616 list pay); master's or PhD required: 15% (PhD: 11%)
 
 | Mentioned | Share |
 |---|---|
@@ -20,7 +20,7 @@ median experience asked: 3.0 yrs (34% ask 2 or fewer; 234 state a number); media
 | Survey methods | 10% |
 | Machine learning | 9% |
 | Psychometrics (IRT, validity, reliability) | 9% |
-| Tableau | 8% |
+| Tableau | 7% |
 | Power BI | 7% |
 | GIS | 7% |
 | K-12 or school experience | 5% |
@@ -29,8 +29,8 @@ median experience asked: 3.0 yrs (34% ask 2 or fewer; 234 state a number); media
 | Causal inference / quasi-experimental | 3% |
 | Git/GitHub | 3% |
 | AWS | 3% |
-| Administrative data | 2% |
 | Regression | 2% |
+| Administrative data | 2% |
 | Stata | 2% |
 | dbt | 2% |
 | Snowflake | 2% |
@@ -40,18 +40,18 @@ median experience asked: 3.0 yrs (34% ask 2 or fewer; 234 state a number); media
 
 Most postings from: Anthropic (80), Dept Of Health/Mental Hygiene (66), ICF (35), CUNY (24), Office Of The Mayor (24), Department Of Transportation (22), Mathematica (18), Dept Of Environment Protection (16)
 
-## General data analysis (264 postings)
-median experience asked: 3 yrs (34% ask 2 or fewer; 89 state a number); median top of pay range: $112,883 (234 list pay); master's or PhD required: 15% (PhD: 9%)
+## General data analysis (263 postings)
+median experience asked: 3.0 yrs (34% ask 2 or fewer; 88 state a number); median top of pay range: $112,883 (234 list pay); master's or PhD required: 15% (PhD: 9%)
 
 | Mentioned | Share |
 |---|---|
-| Writing / reports | 75% |
+| Writing / reports | 76% |
 | Qualitative methods | 38% |
 | Excel | 28% |
-| AI / LLM tools | 26% |
+| AI / LLM tools | 25% |
 | Master's preferred or required | 23% |
 | Data visualization / dashboards | 22% |
-| SQL | 22% |
+| SQL | 21% |
 | Python | 14% |
 | Explaining to non-technical audiences | 13% |
 | Power BI | 12% |
@@ -61,16 +61,16 @@ median experience asked: 3 yrs (34% ask 2 or fewer; 89 state a number); median t
 | Survey methods | 6% |
 | GIS | 4% |
 
-Most postings from: Anthropic (31), Dept Of Health/Mental Hygiene (20), ICF (15), Dept Of Environment Protection (9), HR&A Advisors (8), CUNY (7), Department Of Transportation (7), Hra/Dept Of Social Services (7)
+Most postings from: Anthropic (31), Dept Of Health/Mental Hygiene (20), ICF (15), Dept Of Environment Protection (9), HR&A Advisors (8), Internal Revenue Service (8), CUNY (7), Department Of Transportation (7)
 
-## Other (225 postings)
-median experience asked: 3.0 yrs (41% ask 2 or fewer; 66 state a number); median top of pay range: $111,552 (205 list pay); master's or PhD required: 20% (PhD: 15%)
+## Other (223 postings)
+median experience asked: 3.0 yrs (41% ask 2 or fewer; 64 state a number); median top of pay range: $111,552 (204 list pay); master's or PhD required: 20% (PhD: 15%)
 
 | Mentioned | Share |
 |---|---|
 | Writing / reports | 68% |
 | Qualitative methods | 31% |
-| Master's preferred or required | 28% |
+| Master's preferred or required | 29% |
 | AI / LLM tools | 23% |
 | Excel | 21% |
 | Python | 12% |
@@ -86,28 +86,28 @@ median experience asked: 3.0 yrs (41% ask 2 or fewer; 66 state a number); median
 
 Most postings from: Dept Of Health/Mental Hygiene (29), Anthropic (21), Office Of The Mayor (15), CUNY (13), Department Of City Planning (13), Department Of Transportation (12), Campaign Finance Board (10), Dept Of Environment Protection (6)
 
-## Policy & social research (103 postings)
-median experience asked: 4 yrs (21% ask 2 or fewer; 33 state a number); median top of pay range: $115,000 (81 list pay); master's or PhD required: 17% (PhD: 16%)
+## Policy & social research (102 postings)
+median experience asked: 4 yrs (21% ask 2 or fewer; 33 state a number); median top of pay range: $116,076 (80 list pay); master's or PhD required: 16% (PhD: 15%)
 
 | Mentioned | Share |
 |---|---|
 | Writing / reports | 83% |
 | Qualitative methods | 46% |
 | AI / LLM tools | 27% |
-| Data visualization / dashboards | 23% |
+| Data visualization / dashboards | 24% |
 | Python | 20% |
 | R | 19% |
-| Survey methods | 17% |
-| Excel | 17% |
+| Survey methods | 18% |
+| Excel | 18% |
 | Master's preferred or required | 16% |
-| Psychometrics (IRT, validity, reliability) | 11% |
 | Explaining to non-technical audiences | 10% |
+| Psychometrics (IRT, validity, reliability) | 10% |
 | Stata | 9% |
 | SQL | 9% |
 | Causal inference / quasi-experimental | 8% |
 | SAS | 8% |
 
-Most postings from: Dept Of Health/Mental Hygiene (11), Anthropic (10), Mathematica (9), American Institutes for Research (6), Office Of The Mayor (6), ICF (4), Figma (3), Pacific Northwest National Laboratory (3)
+Most postings from: Dept Of Health/Mental Hygiene (11), Anthropic (10), Mathematica (9), American Institutes for Research (6), Office Of The Mayor (6), ICF (4), Figma (3), Brookings Institution (3)
 
 ## Data science (39 postings)
 median experience asked: 3 yrs (38% ask 2 or fewer; 13 state a number); median top of pay range: $177,500 (36 list pay); master's or PhD required: 5% (PhD: 5%)
@@ -138,14 +138,14 @@ median experience asked: 3 yrs (15% ask 2 or fewer; 13 state a number); median t
 | Mentioned | Share |
 |---|---|
 | Writing / reports | 86% |
-| Qualitative methods | 59% |
 | AI / LLM tools | 59% |
+| Qualitative methods | 59% |
 | SQL | 55% |
 | Data visualization / dashboards | 50% |
 | Excel | 27% |
 | Python | 27% |
-| Tableau | 23% |
 | Power BI | 23% |
+| Tableau | 23% |
 | R | 18% |
 | Causal inference / quasi-experimental | 14% |
 | Explaining to non-technical audiences | 14% |
@@ -174,7 +174,7 @@ median experience asked: 4 yrs (38% ask 2 or fewer; 13 state a number); median t
 | Tableau | 18% |
 | Master's preferred or required | 18% |
 | R | 14% |
-| Explaining to non-technical audiences | 14% |
+| BigQuery / GCP | 14% |
 
 Most postings from: Anthropic (5), ICF (4), Dept Of Health/Mental Hygiene (3), Defense Counterintelligence and Security Agency (2), McGraw Hill (2), Figma (1), Commodity Futures Trading Commission (1), Code for America (1)
 
@@ -215,10 +215,10 @@ median experience asked: 5 yrs (0% ask 2 or fewer; 1 state a number); median top
 | Explaining to non-technical audiences | 17% |
 | Qualitative methods | 17% |
 | AI / LLM tools | 17% |
-| Python | 17% |
 | SQL | 17% |
 | K-12 or school experience | 17% |
 | Master's preferred or required | 17% |
+| Python | 17% |
 | Looker | 17% |
 | SAS | 17% |
 
@@ -231,9 +231,9 @@ median experience asked: 7 yrs (0% ask 2 or fewer; 1 state a number); median top
 |---|---|
 | Writing / reports | 75% |
 | Survey methods | 50% |
-| Data visualization / dashboards | 25% |
-| Tableau | 25% |
 | SQL | 25% |
+| Tableau | 25% |
+| Data visualization / dashboards | 25% |
 | Qualitative methods | 25% |
 | Master's preferred or required | 25% |
 | AI / LLM tools | 25% |
@@ -246,8 +246,8 @@ median experience asked: 3.5 yrs (50% ask 2 or fewer; 2 state a number); median 
 
 | Mentioned | Share |
 |---|---|
-| Python | 67% |
 | Psychometrics (IRT, validity, reliability) | 67% |
+| Python | 67% |
 | AI / LLM tools | 67% |
 | Writing / reports | 33% |
 | Machine learning | 33% |

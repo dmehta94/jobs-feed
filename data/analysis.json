@@ -1,7 +1,7 @@
 {
-  "postings_with_descriptions": 702,
+  "postings_with_descriptions": 698,
   "overall": {
-    "postings": 702,
+    "postings": 698,
     "term_share_pct": {
       "Writing / reports": 72,
       "Qualitative methods": 37,
@@ -16,7 +16,7 @@
       "Survey methods": 10,
       "Machine learning": 9,
       "Psychometrics (IRT, validity, reliability)": 9,
-      "Tableau": 8,
+      "Tableau": 7,
       "Power BI": 7,
       "GIS": 7,
       "K-12 or school experience": 5,
@@ -25,8 +25,8 @@
       "Causal inference / quasi-experimental": 3,
       "Git/GitHub": 3,
       "AWS": 3,
-      "Administrative data": 2,
       "Regression": 2,
+      "Administrative data": 2,
       "Stata": 2,
       "dbt": 2,
       "Snowflake": 2,
@@ -36,16 +36,16 @@
       "Longitudinal / panel data": 1
     },
     "years_required": {
-      "postings_stating": 234,
-      "median": 3.0,
+      "postings_stating": 231,
+      "median": 3,
       "share_0_to_2": 34
     },
     "salary_max": {
-      "postings_stating": 618,
-      "median": 117226.0
+      "postings_stating": 616,
+      "median": 117715.0
     },
     "phd_required_pct": 11,
-    "advanced_degree_required_pct": 16,
+    "advanced_degree_required_pct": 15,
     "orgs": [
       [
         "Anthropic",
@@ -83,15 +83,15 @@
   },
   "families": {
     "General data analysis": {
-      "postings": 264,
+      "postings": 263,
       "term_share_pct": {
-        "Writing / reports": 75,
+        "Writing / reports": 76,
         "Qualitative methods": 38,
         "Excel": 28,
-        "AI / LLM tools": 26,
+        "AI / LLM tools": 25,
         "Master's preferred or required": 23,
         "Data visualization / dashboards": 22,
-        "SQL": 22,
+        "SQL": 21,
         "Python": 14,
         "Explaining to non-technical audiences": 13,
         "Power BI": 12,
@@ -117,8 +117,8 @@
         "Longitudinal / panel data": 0
       },
       "years_required": {
-        "postings_stating": 89,
-        "median": 3,
+        "postings_stating": 88,
+        "median": 3.0,
         "share_0_to_2": 34
       },
       "salary_max": {
@@ -149,25 +149,25 @@
           8
         ],
         [
+          "Internal Revenue Service",
+          8
+        ],
+        [
           "CUNY",
           7
         ],
         [
           "Department Of Transportation",
           7
-        ],
-        [
-          "Hra/Dept Of Social Services",
-          7
         ]
       ]
     },
     "Other": {
-      "postings": 225,
+      "postings": 223,
       "term_share_pct": {
         "Writing / reports": 68,
         "Qualitative methods": 31,
-        "Master's preferred or required": 28,
+        "Master's preferred or required": 29,
         "AI / LLM tools": 23,
         "Excel": 21,
         "Python": 12,
@@ -194,12 +194,12 @@
         "Causal inference / quasi-experimental": 0
       },
       "years_required": {
-        "postings_stating": 66,
+        "postings_stating": 64,
         "median": 3.0,
         "share_0_to_2": 41
       },
       "salary_max": {
-        "postings_stating": 205,
+        "postings_stating": 204,
         "median": 111552.0
       },
       "phd_required_pct": 15,
@@ -240,25 +240,25 @@
       ]
     },
     "Policy & social research": {
-      "postings": 103,
+      "postings": 102,
       "term_share_pct": {
         "Writing / reports": 83,
         "Qualitative methods": 46,
         "AI / LLM tools": 27,
-        "Data visualization / dashboards": 23,
+        "Data visualization / dashboards": 24,
         "Python": 20,
         "R": 19,
-        "Survey methods": 17,
-        "Excel": 17,
+        "Survey methods": 18,
+        "Excel": 18,
         "Master's preferred or required": 16,
-        "Psychometrics (IRT, validity, reliability)": 11,
         "Explaining to non-technical audiences": 10,
+        "Psychometrics (IRT, validity, reliability)": 10,
         "Stata": 9,
         "SQL": 9,
         "Causal inference / quasi-experimental": 8,
         "SAS": 8,
-        "Machine learning": 8,
         "Administrative data": 7,
+        "Machine learning": 7,
         "GIS": 6,
         "Regression": 5,
         "Power BI": 5,
@@ -277,11 +277,11 @@
         "share_0_to_2": 21
       },
       "salary_max": {
-        "postings_stating": 81,
-        "median": 115000.0
+        "postings_stating": 80,
+        "median": 116076.5
       },
-      "phd_required_pct": 16,
-      "advanced_degree_required_pct": 17,
+      "phd_required_pct": 15,
+      "advanced_degree_required_pct": 16,
       "orgs": [
         [
           "Dept Of Health/Mental Hygiene",
@@ -312,7 +312,7 @@
           3
         ],
         [
-          "Pacific Northwest National Laboratory",
+          "Brookings Institution",
           3
         ]
       ]
@@ -339,8 +339,8 @@
         "Master's preferred or required": 10,
         "Regression": 8,
         "dbt": 5,
-        "SAS": 5,
         "Git/GitHub": 5,
+        "SAS": 5,
         "AWS": 5,
         "Snowflake": 5,
         "Excel": 3,
@@ -396,14 +396,14 @@
       "postings": 22,
       "term_share_pct": {
         "Writing / reports": 86,
-        "Qualitative methods": 59,
         "AI / LLM tools": 59,
+        "Qualitative methods": 59,
         "SQL": 55,
         "Data visualization / dashboards": 50,
         "Excel": 27,
         "Python": 27,
-        "Tableau": 23,
         "Power BI": 23,
+        "Tableau": 23,
         "R": 18,
         "Causal inference / quasi-experimental": 14,
         "Explaining to non-technical audiences": 14,
@@ -414,8 +414,8 @@
         "GIS": 9,
         "Psychometrics (IRT, validity, reliability)": 5,
         "Master's preferred or required": 5,
-        "Snowflake": 5,
         "Git/GitHub": 5,
+        "Snowflake": 5,
         "K-12 or school experience": 5,
         "SAS": 5,
         "Administrative data": 5
@@ -483,8 +483,8 @@
         "Tableau": 18,
         "Master's preferred or required": 18,
         "R": 14,
-        "Explaining to non-technical audiences": 14,
         "BigQuery / GCP": 14,
+        "Explaining to non-technical audiences": 14,
         "Snowflake": 14,
         "Power BI": 9,
         "SAS": 5,
@@ -560,11 +560,11 @@
         "Explaining to non-technical audiences": 7,
         "Tableau": 7,
         "Git/GitHub": 7,
-        "Looker": 7,
         "BigQuery / GCP": 7,
-        "Stata": 7,
+        "Looker": 7,
+        "Administrative data": 7,
         "Psychometrics (IRT, validity, reliability)": 7,
-        "Administrative data": 7
+        "Stata": 7
       },
       "years_required": {
         "postings_stating": 3,
@@ -624,10 +624,10 @@
         "Explaining to non-technical audiences": 17,
         "Qualitative methods": 17,
         "AI / LLM tools": 17,
-        "Python": 17,
         "SQL": 17,
         "K-12 or school experience": 17,
         "Master's preferred or required": 17,
+        "Python": 17,
         "Looker": 17,
         "SAS": 17
       },
@@ -670,9 +670,9 @@
       "term_share_pct": {
         "Writing / reports": 75,
         "Survey methods": 50,
-        "Data visualization / dashboards": 25,
-        "Tableau": 25,
         "SQL": 25,
+        "Tableau": 25,
+        "Data visualization / dashboards": 25,
         "Qualitative methods": 25,
         "Master's preferred or required": 25,
         "AI / LLM tools": 25,
@@ -707,8 +707,8 @@
     "Learning science & engineering": {
       "postings": 3,
       "term_share_pct": {
-        "Python": 67,
         "Psychometrics (IRT, validity, reliability)": 67,
+        "Python": 67,
         "AI / LLM tools": 67,
         "Writing / reports": 33,
         "Machine learning": 33
@@ -740,5 +740,5 @@
       ]
     }
   },
-  "generated_at": "2026-11-27T15:13:29+00:00"
+  "generated_at": "2026-11-28T04:03:40+00:00"
 }
